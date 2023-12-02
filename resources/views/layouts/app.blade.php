@@ -339,66 +339,98 @@
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="index.html">
-                            <i class="icon-grid menu-icon"></i>
-                            <span class="menu-title">Data Desa Tarikolot</span>
+                        <a class="nav-link" data-toggle="collapse" href="#ui-basic" aria-expanded="false" aria-controls="ui-basic">
+                          <i class="icon-layout menu-icon"></i>
+                          <span class="menu-title">Data Desa Tarikolot</span>
+                          <i class="menu-arrow"></i>
                         </a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="index.html">
-                            <i class="icon-grid menu-icon"></i>
-                            <span class="menu-title">Data Sirkulasi Desa</span>
+                        <div class="collapse" id="ui-basic">
+                          <ul class="nav flex-column sub-menu">
+                            <li class="nav-item"> <a class="nav-link" href="../../pages/ui-features/buttons.html">Data Pemerintahan</a></li>
+                            <li class="nav-item"> <a class="nav-link" href="../../pages/ui-features/dropdowns.html">Data Penduduk</a></li>
+                          </ul>
+                        </div>
+                      </li>
+                      <li class="nav-item">
+                        <a class="nav-link" data-toggle="collapse" href="#charts" aria-expanded="false" aria-controls="charts">
+                          <i class="icon-bar-graph menu-icon"></i>
+                          <span class="menu-title">Data Sirkulasi Desa</span>
+                          <i class="menu-arrow"></i>
                         </a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="index.html">
-                            <i class="icon-grid menu-icon"></i>
-                            <span class="menu-title">Surat Menyurat</span>
+                        <div class="collapse" id="charts">
+                          <ul class="nav flex-column sub-menu">
+                            <li class="nav-item"> <a class="nav-link" href="pages/charts/chartjs.html">Data Melahirkan</a></li>
+                            <li class="nav-item"> <a class="nav-link" href="pages/charts/chartjs.html">Data Meninggal</a></li>
+                            <li class="nav-item"> <a class="nav-link" href="pages/charts/chartjs.html">Data Pendatang</a></li>
+                            <li class="nav-item"> <a class="nav-link" href="pages/charts/chartjs.html">Data Pindah</a></li>
+                          </ul>
+                        </div>
+                      </li>
+
+                      <li class="nav-item">
+                        <a class="nav-link" data-toggle="collapse" href="#tables" aria-expanded="false" aria-controls="tables">
+                          <i class="icon-grid-2 menu-icon"></i>
+                          <span class="menu-title">Surat Menyurat</span>
+                          <i class="menu-arrow"></i>
                         </a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="index.html">
-                            <i class="icon-grid menu-icon"></i>
-                            <span class="menu-title">SPJ Kegiatan</span>
+                        <div class="collapse" id="tables">
+                          <ul class="nav flex-column sub-menu">
+                            <li class="nav-item"> <a class="nav-link" href="pages/tables/basic-table.html">Surat Kependudukan</a></li>
+                            <li class="nav-item"> <a class="nav-link" href="pages/tables/basic-table.html">Surat Keluar</a></li>
+                          </ul>
+                        </div>
+                      </li>
+
+                      <li class="nav-item">
+                        <a class="nav-link" data-toggle="collapse" href="#icons" aria-expanded="false" aria-controls="icons">
+                          <i class="icon-contract menu-icon"></i>
+                          <span class="menu-title">SPJ Kegiatan</span>
+                          <i class="menu-arrow"></i>
                         </a>
-                    </li>
+                        <div class="collapse" id="icons">
+                          <ul class="nav flex-column sub-menu">
+                            <li class="nav-item"> <a class="nav-link" href="pages/icons/mdi.html">Barang dan Jasa</a></li>
+                          </ul>
+                        </div>
+                      </li>
+            
                 </ul>
             </nav>
 
-            <script src="{{ asset('vendors/js/vendor.bundle.base.js') }}"></script>
+            <script src="vendors/js/vendor.bundle.base.js"></script>
             <!-- endinject -->
             <!-- Plugin js for this page -->
-            <script src="{{ asset('vendors/chart.js/Chart.min.js') }}"></script>
-            <script src="{{ asset('vendors/datatables.net/jquery.dataTables.js') }}"></script>
-            <script src="{{ asset('vendors/datatables.net-bs4/dataTables.bootstrap4.js') }}"></script>
-            <script src="{{ asset('js/dataTables.select.min.js') }}"></script>
+            <script src="vendors/chart.js/Chart.min.js"></script>
+            <script src="vendors/datatables.net/jquery.dataTables.js"></script>
+            <script src="vendors/datatables.net-bs4/dataTables.bootstrap4.js"></script>
+            <script src="js/dataTables.select.min.js"></script>
 
             <!-- End plugin js for this page -->
             <!-- inject:js -->
-            <script src="{{ asset('js/off-canvas.js') }}"></script>
-            <script src="{{ asset('js/hoverable-collapse.js') }}"></script>
-            <script src="{{ asset('js/template.js') }}"></script>
-            <script src="{{ asset('js/settings.js') }}"></script>
-            <script src="{{ asset('js/todolist.js') }}"></script>
+            <script src="js/off-canvas.js"></script>
+            <script src="js/hoverable-collapse.js"></script>
+            <script src="js/template.js"></script>
+            <script src="js/settings.js"></script>
+            <script src="js/todolist.js"></script>
             <!-- endinject -->
             <!-- Custom js for this page-->
-            <script src="{{ asset('js/dashboard.js') }}"></script>
-            <script src="{{ asset('js/Chart.roundedBarCharts.js') }}"></script>
+            <script src="js/dashboard.js"></script>
+            <script src="js/Chart.roundedBarCharts.js"></script>
             <script defer src="https://use.fontawesome.com/releases/v5.15.4/js/fontawesome.js" integrity="sha384-dPBGbj4Uoy1OOpM4+aRGfAOc0W37JkROT+3uynUgTHZCHZNMHfGXsmmvYTffZjYO" crossorigin="anonymous"></script>
-            <script src="{{ asset('../../vendors/js/vendor.bundle.base.js')}}"></script>
+            <script src="../../vendors/js/vendor.bundle.base.js"></script>
             <!-- endinject -->
             <!-- Plugin js for this page -->
-            <script src="{{asset('../../vendors/chart.js/Chart.min.js')}}"></script>
+            <script src="../../vendors/chart.js/Chart.min.js"></script>
             <!-- End plugin js for this page -->
             <!-- inject:js -->
-            <script src="{{asset('../../js/off-canvas.js')}}"></script>
-            <script src="{{asset('../../js/hoverable-collapse.js')}}"></script>
-            <script src="{{asset('../../js/template.js')}}"></script>
-            <script src="{{asset ('../../js/settings.js')}}"></script>
-            <script src="{{asset('../../js/todolist.js')}}"></script>
+            <script src="../../js/off-canvas.js"></script>
+            <script src="../../js/hoverable-collapse.js"></script>
+            <script src="../../js/template.js"></script>
+            <script src="../../js/settings.js"></script>
+            <script src="../../js/todolist.js"></script>
             <!-- endinject -->
             <!-- Custom js for this page-->
-            <script src="{{asset('../../js/chart.js')}}"></script>
+            <script src="../../js/chart.js"></script>
             
 
             @yield('navbar-admin')
