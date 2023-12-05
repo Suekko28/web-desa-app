@@ -55,8 +55,21 @@ class LoginController extends Controller
             return redirect()->back()->withErrors($validator)->withInput();
         }
     }
-    protected function authenticated(Request $request, $user)
+    protected function logout(Request $request, $user)
     {
-        dd('halo');
+        auth()->user()->tokens()->delete();
+        $this->guard()->logout();
+        $request->session()->invalidate();
+        $request->session()->regenerateToken();
+        session(["verified" => false]);
+        session(["token" => ""]);
+
+        if ($response = $this->loggedOut($request)) {
+            return $response;
+        }
+
+        return $request->wantsJson()
+        ? new JsonResponse([], 204)
+        : redirect('/');
     }
 }

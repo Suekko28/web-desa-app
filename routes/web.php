@@ -17,11 +17,14 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/admin/dashboard', function () {
-    return view('dashboard');
-});
+
+// Route::get('/admin/dashboard', function () {
+//     return view('dashboard');
+// });
 
 Auth::routes();
+
+Route::get('/dashboard',[App\Http\Controllers\DashboardController::class,'index'])->name('dashboard');
 
 Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
