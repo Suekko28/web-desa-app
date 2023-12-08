@@ -1,0 +1,13 @@
+.button_data_tambah,
+.button_data_import,
+.button_data_export{
+    margin-right: 1em;
+    margin-bottom: 1em;
+}
+
+.data_diri,
+.alamat_pribadi,
+.pendidikan_kerja,
+.data_ortu {
+    margin-top: 2em;
+}
