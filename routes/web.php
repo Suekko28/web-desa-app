@@ -17,6 +17,10 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+Route::get('/index', function () {
+    return view('index');
+});
+
 //my credential
 //http://user:password@192.168.0.1:3128
 // Route::get('/admin/dashboard', function () {
