@@ -69,45 +69,49 @@
                         <div class="col-12">
                             <div class="card">
                                 <div class="card-body">
-                                    <div class="d-flex flex-row">
-                                        <button type="button" class="btn btn-primary button_data_tambah">Tambah Data
-                                            Penduduk</button>
-                                        <button type="button" class="btn btn-secondary  button_data_import">Import Data
-                                            Penduduk</button>
-                                        <button type="button" class="btn btn-success  button_data_export">Eksport Data
-                                            Penduduk</button>
-                                    </div>
                                     <table id="datatable" class="table table-bordered dt-responsive nowrap"
                                         style="border-collapse: collapse; border-spacing: 0; width: 100%;">
                                         <thead>
                                             <tr>
                                                 <th>No</th>
-                                                <th>Nama</th>
-                                                <th>NIK</th>
-                                                <th>NKK</th>
-                                                <th>RT</th>
-                                                <th>RW</th>
-                                                <th>Action</th>
+                                                <th>Jenis Surat</th>
+                                                <th>Persyaratan</th>
+                                                <th>Aksi</th>
                                             </tr>
                                         </thead>
                                         <tbody>
+                                            <tr>
                                             <td>1</td>
-                                            <td>1</td>
-                                            <td>1</td>
-                                            <td>1</td>
-                                            <td>1</td>
-                                            <td>1</td>
+                                            <td>Surat Keterangan Domisili</td>
+                                            <td>Fotocopy KTP & KK</td>
                                             <td scope="row" class="text-center">
-                                                <a href="" class="btn btn-warning mb-2"><i
-                                                        class=" fa fa-solid fa-pen-to-square"
-                                                        style="color:white;"></i></a>
-                                                <form action="" method="POST">
-                                                    @csrf
-                                                    @method('DELETE')
-                                                    <button class="btn btn-danger mb-2"><i
-                                                            class="fa fa-solid fa-trash"></i></button>
-                                                </form>
+                                                <a href="" class="btn btn-primary mb-2"><i
+                                                        class=" fa fa-solid fa-file"
+                                                        style="color:white;"></i> Buat Surat</a>
                                             </td>
+                                        </tr>
+
+                                        <tr>
+                                            <td>2</td>
+                                            <td>Surat Keterangan Tidak Mampu</td>
+                                            <td>Fotocopy KTP & KK</td>
+                                            <td scope="row" class="text-center">
+                                                <a href="" class="btn btn-primary mb-2"><i
+                                                        class=" fa fa-solid fa-file"
+                                                        style="color:white;"></i> Buat Surat</a>
+                                            </td>
+                                        </tr>
+
+                                        <tr>
+                                            <td>3</td>
+                                            <td>Surat Keterangan Usaha</td>
+                                            <td>Fotocopy KTP & KK</td>
+                                            <td scope="row" class="text-center">
+                                                <a href="" class="btn btn-primary mb-2"><i
+                                                        class=" fa fa-solid fa-file"
+                                                        style="color:white;"></i> Buat Surat</a>
+                                            </td>
+                                        </tr>
                                         </tbody>
                                     </table>
 

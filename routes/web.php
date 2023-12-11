@@ -22,7 +22,7 @@ Route::get('/index', function () {
 });
 
 Route::get('/datapenduduk', function () {
-    return view('penduduk.index');
+    return view('admin.penduduk.index');
 });
 
 Route::get('/form', function () {
@@ -31,6 +31,31 @@ Route::get('/form', function () {
 
 Route::get('/datapenduduk/create', function () {
     return view('penduduk.create');
+});
+
+Route::get('/pemerintahandesa', function () {
+    return view('admin.pemerintahan.desa.index');
+});
+
+Route::get('/pemerintahandesa/create', function () {
+    return view('admin.pemerintahan.desa.create');
+});
+
+Route::get('/bpd', function () {
+    return view('admin.pemerintahan.desa.index');
+});
+
+Route::get('/bpd/create', function () {
+    return view('admin.pemerintahan.desa.create');
+});
+
+Route::get('/suratkependudukan', function () {
+    return view('admin.surat.kependudukan.index');
+});
+
+
+Route::get('/suratkependudukan/create', function () {
+    return view('admin.surat.kependudukan.create');
 });
 
 //my credential
