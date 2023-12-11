@@ -52,12 +52,12 @@
                     <div class="row">
                         <div class="col-12">
                             <div class="page-title-box d-flex align-items-center justify-content-between">
-                                <h4 class="page-title mb-0 font-size-18">Data Tables</h4>
+                                <h4 class="page-title mb-0 font-size-18">Pemerintahan Desa</h4>
 
                                 <div class="page-title-right">
                                     <ol class="breadcrumb m-0">
                                         <li class="breadcrumb-item"><a href="javascript: void(0);">Dashboard</a></li>
-                                        <li class="breadcrumb-item active">Data Tables</li>
+                                        <li class="breadcrumb-item"><a href="javascript: void(0);">Pemerintahan Desa</a></li>
                                     </ol>
                                 </div>
 
