@@ -22,15 +22,15 @@ Route::get('/index', function () {
 });
 
 Route::get('/datapenduduk', function () {
-    return view('admin.penduduk.index');
+    return view('penduduk.index');
 });
 
 Route::get('/form', function () {
-    return view('admin.penduduk.create');
+    return view('penduduk.create');
 });
 
 Route::get('/datapenduduk/create', function () {
-    return view('admin.penduduk.create');
+    return view('penduduk.create');
 });
 
 //my credential
@@ -39,9 +39,7 @@ Route::get('/datapenduduk/create', function () {
 //     return view('dashboard');
 // });
 
-// Auth::routes();
-
-Route::get('/dashboard',[App\Http\Controllers\DashboardController::class,'index'])->name('dashboard');
+Auth::routes();
 
 Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
