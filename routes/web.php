@@ -38,11 +38,11 @@ Route::get('/pemerintahandesa/create', function () {
 });
 
 Route::get('/bpd', function () {
-    return view('admin.pemerintahan.desa.index');
+    return view('admin.pemerintahan.bpd.index');
 });
 
 Route::get('/bpd/create', function () {
-    return view('admin.pemerintahan.desa.create');
+    return view('admin.pemerintahan.bpd.create');
 });
 
 Route::get('/suratkependudukan', function () {
