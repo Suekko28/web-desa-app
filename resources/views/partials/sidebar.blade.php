@@ -42,7 +42,7 @@
                                 <span>Data Lembaga Pemerintahan</span>
                             </a>
                             <ul class="sub-menu mb-2" aria-expanded="false">
-                                <li><a href="{{ route('pemerintahan-desa.index') }}">Pemerintahan Desa</a></li>
+                                <li><a href="">Pemerintahan Desa</a></li>
                                 <li><a href="tasks-kanban.html">Badan Permusyawaratan Desa</a></li>
                                 <li><a href="tasks-create.html">Lembaga Pemberdayaan Masyarakat</a></li>
                                 <li><a href="tasks-list.html">MUI (Majelis Ulama Indonesia)</a></li>

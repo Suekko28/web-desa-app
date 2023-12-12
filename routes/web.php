@@ -15,7 +15,7 @@ use App\Http\Controllers\Controller;
 |
 */
 
-// Route::Resource('/pemerintahan-desa',App\Http\Controllers\PemerintahanDesaController::class);
+Route::Resource('/pemerintahan-desa',App\Http\Controllers\PemerintahanDesaController::class);
 
 Route::get('/', function () {
     return view('index');
@@ -33,28 +33,32 @@ Route::get('/index', function () {
 //     return view('penduduk.create');
 // });
 
+Route::get('/datapenduduk', function () {
+    return view('penduduk.index');
+});
+
 Route::get('/datapenduduk/create', function () {
     return view('penduduk.create');
 });
 
 Route::get('/pemerintahandesa', function () {
-    return view('admin.pemerintahan.desa.index');
+    return view('pemerintahan-desa.index');
 });
 
 Route::get('/pemerintahandesa/create', function () {
-    return view('admin.pemerintahan.desa.create');
+    return view('pemerintahan-desa.create');
 });
 
 Route::get('/bpd', function () {
-    return view('admin.pemerintahan.bpd.index');
+    return view('pemerintahan-bpd.index');
 });
 
 Route::get('/bpd/create', function () {
-    return view('admin.pemerintahan.bpd.create');
+    return view('pemerintahan-bpd.create');
 });
 
 Route::get('/suratkependudukan', function () {
-    return view('admin.surat.kependudukan.index');
+    return view('surat-kependudukan.index');
 });
 
 
