@@ -1,4 +1,4 @@
-@extends('../../layouts.app')
+@extends('layouts.app')
 @section('contents')
     <div class="row">
         <div class="col-12">
