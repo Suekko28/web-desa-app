@@ -43,11 +43,14 @@
                     <div class="row">
                         <div class="col-12">
                             <div class="page-title-box d-flex align-items-center justify-content-between">
-                                <h4 class="page-title mb-0 font-size-18">Dashboard</h4>
+                                <h4 class="page-title mb-0 font-size-18">Input Data Penduduk</h4>
 
                                 <div class="page-title-right">
                                     <ol class="breadcrumb m-0">
-                                        <li class="breadcrumb-item active">Welcome to Qovex Dashboard</li>
+                                        <li class="breadcrumb-item"><a href="javascript: void(0);">Dashboard</a></li>
+                                        <li class="breadcrumb-item"><a href="javascript: void(0);">Data Penduduk</a>
+                                        </li>
+                                        <li class="breadcrumb-item active">Input Data Penduduk</li>
                                     </ol>
                                 </div>
 
@@ -205,97 +208,89 @@
                                             <div class="row">
 
 
-                                        <div class="col-sm-6">
-                                            <label for="nama2" class="col-form-label">
-                                                Pendidikan</label>
-                                            <select class="form-control">
-                                                <option value="1">1</option>
-                                                <option value="2">2</option>
-                                                <option value="3">3</option>
-                                                <option value="4">4</option>
-                                            </select>
+                                                <div class="col-sm-6">
+                                                    <label for="nama2" class="col-form-label">
+                                                        Pendidikan</label>
+                                                    <select class="form-control">
+                                                        <option value="1">1</option>
+                                                        <option value="2">2</option>
+                                                        <option value="3">3</option>
+                                                        <option value="4">4</option>
+                                                    </select>
+                                                </div>
+
+                                                <div class="col-sm-6">
+                                                    <label for="nama2" class="col-form-label">Pekerjaan</label>
+                                                    <input type="text" class="form-control" id="nama2"
+                                                        name="nama" placeholder="">
+                                                </div>
+
+                                                <div class="col-sm-6">
+                                                    <label for="nama2" class="col-form-label">
+                                                        Kepemilikan BPJS</label>
+                                                    <select class="form-control">
+                                                        <option value="1">1</option>
+                                                        <option value="2">2</option>
+                                                        <option value="3">3</option>
+                                                        <option value="4">4</option>
+                                                    </select>
+                                                </div>
+
+                                                <div class="col-sm-6">
+                                                    <label for="nama2" class="col-form-label">
+                                                        Kepemilikan E-KTP</label>
+                                                    <select class="form-control">
+                                                        <option value="1">1</option>
+                                                        <option value="2">2</option>
+                                                        <option value="3">3</option>
+                                                        <option value="4">4</option>
+                                                    </select>
+                                                </div>
+                                            </div>
                                         </div>
 
-                                        <div class="col-sm-6">
-                                            <label for="nama2" class="col-form-label">Pekerjaan</label>
-                                            <input type="text" class="form-control" id="nama2" name="nama"
-                                                placeholder="">
+                                        <h5 class="text-center data_ortu">Data Orang Tua</h5>
+
+                                        <div class="form-group">
+                                            <div class="row">
+
+                                                <div class="col-sm-6">
+                                                    <label for="nama2" class="col-form-label">Nama Ibu</label>
+                                                    <input type="text" class="form-control" id="nama2"
+                                                        name="nama" placeholder="">
+                                                </div>
+
+                                                <div class="col-sm-6">
+                                                    <label for="nama2" class="col-form-label">Nama Ayah</label>
+                                                    <input type="text" class="form-control" id="nama2"
+                                                        name="nama" placeholder="">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="d-flex flex-row-reverse">
+                                            <button type="submit" class="btn btn-primary ml-3">Simpan</button>
+                                            <a href="{{ url('/admin/kegiatan') }}" class="btn btn-danger">Batal</a>
                                         </div>
 
-                                        <div class="col-sm-6">
-                                            <label for="nama2" class="col-form-label">
-                                                Kepemilikan BPJS</label>
-                                            <select class="form-control">
-                                                <option value="1">1</option>
-                                                <option value="2">2</option>
-                                                <option value="3">3</option>
-                                                <option value="4">4</option>
-                                            </select>
-                                        </div>
-
-                                        <div class="col-sm-6">
-                                            <label for="nama2" class="col-form-label">
-                                                Kepemilikan E-KTP</label>
-                                            <select class="form-control">
-                                                <option value="1">1</option>
-                                                <option value="2">2</option>
-                                                <option value="3">3</option>
-                                                <option value="4">4</option>
-                                            </select>
-                                        </div>
                                     </div>
                                 </div>
+                                <!-- /.card-body -->
+                            </form>
+                            <!-- /.row (main row) -->
+                        </div><!-- /.container-fluid -->
+                    </section>
 
-                                <h5 class="text-center data_ortu">Data Orang Tua</h5>
-
-                                <div class="form-group">
-                                    <div class="row">
-
-                                        <div class="col-sm-6">
-                                            <label for="nama2" class="col-form-label">Nama Ibu</label>
-                                            <input type="text" class="form-control" id="nama2" name="nama"
-                                                placeholder="">
-                                        </div>
-
-                                        <div class="col-sm-6">
-                                            <label for="nama2" class="col-form-label">Nama Ayah</label>
-                                            <input type="text" class="form-control" id="nama2" name="nama"
-                                                placeholder="">
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="d-flex flex-row-reverse">
-                                    <button type="submit" class="btn btn-primary ml-3">Simpan</button>
-                                    <a href="{{ url('/admin/kegiatan') }}" class="btn btn-danger">Batal</a>
-                                </div>
-                            
-
-                                    </div>
-
-                                </div>
-
-
-
-                                
-                        </div>
+                    <!-- end row -->
                 </div>
-                <!-- /.card-body -->
-                </form>
-                <!-- /.row (main row) -->
-            </div><!-- /.container-fluid -->
-            </section>
+                <!-- End Page-content -->
 
-            <!-- end row -->
+                @include('partials.footer')
+
+            </div>
+            <!-- end main content-->
+
         </div>
-        <!-- End Page-content -->
-
-        @include('partials.footer')
-
-    </div>
-    <!-- end main content-->
-
-    </div>
-    <!-- END layout-wrapper -->
+        <!-- END layout-wrapper -->
 
     </div>
     <!-- end container-fluid -->

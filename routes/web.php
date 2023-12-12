@@ -33,9 +33,29 @@ Route::get('/index', function () {
 //     return view('penduduk.create');
 // });
 
-// Route::get('/datapenduduk/create', function () {
-//     return view('penduduk.create');
-// });
+Route::get('/datapenduduk/create', function () {
+    return view('penduduk.create');
+});
+
+Route::get('/pemerintahandesa', function () {
+    return view('admin.pemerintahan.desa.index');
+});
+
+Route::get('/pemerintahandesa/create', function () {
+    return view('admin.pemerintahan.desa.create');
+});
+
+Route::get('/bpd', function () {
+    return view('admin.pemerintahan.bpd.index');
+});
+
+Route::get('/bpd/create', function () {
+    return view('admin.pemerintahan.bpd.create');
+});
+
+Route::get('/suratkependudukan', function () {
+    return view('admin.surat.kependudukan.index');
+});
 
 
 

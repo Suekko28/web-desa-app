@@ -43,11 +43,14 @@
                     <div class="row">
                         <div class="col-12">
                             <div class="page-title-box d-flex align-items-center justify-content-between">
-                                <h4 class="page-title mb-0 font-size-18">Dashboard</h4>
+                                <h4 class="page-title mb-0 font-size-18">Badan Pemusyawaratan Desa</h4>
 
                                 <div class="page-title-right">
                                     <ol class="breadcrumb m-0">
-                                        <li class="breadcrumb-item active">Welcome to Qovex Dashboard</li>
+                                        <li class="breadcrumb-item"><a href="javascript: void(0);">Dashboard</a></li>
+                                        <li class="breadcrumb-item"><a href="javascript: void(0);">Badan Pemusyawaratan Desa</a></li>
+                                        <li class="breadcrumb-item active">Input Badan Pemusyawaratan Desa</li>
+
                                     </ol>
                                 </div>
 
@@ -70,40 +73,45 @@
                                         <div class="form-group">
                                             <div class="row">
                                                 <div class="col-sm-4">
-                                                    <label for="nama1" class="col-form-label">Nama Lengkap</label>
-                                                    <input type="text" class="form-control" id="nama1"
-                                                        name="nik" placeholder="">
+                                                    <label for="profile" class="col-form-label">Profile</label>
+                                                    <input type="file" class="form-control" id="profile"
+                                                        name="profile" placeholder="">
+                                                </div>
+                                                <div class="col-sm-4">
+                                                    <label for="name" class="col-form-label">Nama Lengkap</label>
+                                                    <input type="text" class="form-control" id="name"
+                                                        name="name" placeholder="">
                                                 </div>
 
                                                 <div class="col-sm-4">
-                                                    <label for="nama2" class="col-form-label">Jabatan</label>
-                                                    <input type="text" class="form-control" id="nama2"
-                                                        name="nkk" placeholder="">
+                                                    <label for="jabatan" class="col-form-label">Jabatan</label>
+                                                    <input type="text" class="form-control" id="jabatan"
+                                                        name="jabatan" placeholder="">
                                                 </div>
 
                                                 <div class="col-sm-4">
-                                                    <label for="nama2" class="col-form-label">Tempat Lahir</label>
-                                                    <input type="text" class="form-control" id="nama2"
-                                                        name="nama" placeholder="">
+                                                    <label for="tempat_lahir" class="col-form-label">Tempat Lahir</label>
+                                                    <input type="text" class="form-control" id="tempat_lahir"
+                                                        name="tempat_lahir" placeholder="">
                                                 </div>
 
                                                 <div class="col-sm-4">
-                                                    <label for="nama1" class="col-form-label">Tanggal Lahir</label>
-                                                    <input type="date" class="form-control" id="nama1"
-                                                        name="nik" placeholder="">
+                                                    <label for="tanggal_lahir" class="col-form-label">Tanggal Lahir</label>
+                                                    <input type="date" class="form-control" id="tanggal_lahir"
+                                                        name="tanggal_lahir" placeholder="">
                                                 </div>
 
                                                 <div class="col-sm-4">
-                                                    <label for="nama2" class="col-form-label">Jenis Kelamin</label>
+                                                    <label for="gender" class="col-form-label" name="gender">Jenis Kelamin</label>
                                                     <select class="form-control">
                                                         <option value="1">Laki-Laki</option>
                                                         <option value="2">Perempuan</option>
                                                     </select>
                                                 </div>
 
-                                                <div class="col-sm-4">
-                                                    <label for="nama1" class="col-form-label">Alamat</label>
-                                                    <textarea type="text" class="form-control" id="nama1" name="nik" placeholder=""></textarea>
+                                                <div class="col">
+                                                    <label for="alamat" class="col-form-label">Alamat</label>
+                                                    <textarea rows="5" type="text" class="form-control" id="alamat" name="alamat" placeholder=""></textarea>
                                                 </div>
 
                                             </div>
@@ -113,17 +121,7 @@
                                             <button type="submit" class="btn btn-primary ml-3">Simpan</button>
                                             <a href="{{ url('/admin/kegiatan') }}" class="btn btn-danger">Batal</a>
                                         </div>
-
-
-                                    </div>
-
-                                </div>
-
-
-
-
-                        </div>
-                </div>
+                    
                 <!-- /.card-body -->
                 </form>
                 <!-- /.row (main row) -->
