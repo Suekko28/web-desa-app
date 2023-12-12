@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\DataTables\PemerintahDesaDatatable;
+use App\DataTables\PemerintahDesaDataTable;
 use App\Http\Controllers\Controller;
 use App\Models\Penduduk;
 use Illuminate\Http\Request;
@@ -12,9 +12,10 @@ class PemerintahanDesaController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index(PemerintahDesaDatatable $dataTable)
+    public function index(PemerintahDesaDataTable $dataTable)
     {
-        return view('desa.index');
+        dd(auth()->user());
+        return $dataTable->render('pemerintahan-desa.index');
     }
 
     /**

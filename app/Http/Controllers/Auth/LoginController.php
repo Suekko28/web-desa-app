@@ -48,14 +48,14 @@ class LoginController extends Controller
         $credentials = $request->only('email', 'password');
         if (auth()->attempt($credentials)) {
             session(["token" => auth()->user()->createToken($request->email)->plainTextToken]);
-            return redirect()->route('home');
+            return redirect()->route('index');
         }
         else{
             $validator->getMessageBag()->add('email', 'Username atau Password salah');
             return redirect()->back()->withErrors($validator)->withInput();
         }
     }
-    protected function logout(Request $request, $user)
+    protected function logout(Request $request)
     {
         auth()->user()->tokens()->delete();
         $this->guard()->logout();

@@ -1,10 +1,9 @@
-@extends('layouts.app')
-
+@extends('layouts.guest')
+@section('page-title','Login')
 @section('contents')
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
-                <div class="card-header">{{ __('Login') }}</div>
                 <div class="card-body">
                     <form method="POST" action="{{ route('login') }}">
                         @csrf
@@ -30,7 +29,7 @@
                                 <input id="password" type="password" class="form-control @error('email') is-invalid @enderror" name="password" required autocomplete="current-password">
                             </div>
                         </div>
-
+                        
                         <div class="row mb-3">
                             <div class="col-md-6 offset-md-4">
                                 <div class="form-check">
@@ -48,12 +47,17 @@
                                 <button type="submit" class="btn btn-primary">
                                     {{ __('Login') }}
                                 </button>
-
+                                <label class="register" for="register">
+                                <a class="btn btn-link" href="{{ route('register') }}">
+                                        {{ __('Register') }}
+                                    </a>
+                                </label>
                                 @if (Route::has('password.request'))
-                                    <a class="btn btn-link" href="{{ route('password.request') }}">
+                                    <a class="btn btn-link offset-md-4" href="{{ route('password.request') }}">
                                         {{ __('Forgot Your Password?') }}
                                     </a>
                                 @endif
+                                
                             </div>
                         </div>
                     </form>

@@ -7,7 +7,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta content="Premium Multipurpose Admin & Dashboard Template" name="description" />
     <meta content="Themesbrand" name="author" />
-    <script src = "https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
     <!-- App favicon -->
     <link rel="shortcut icon" href="{{ asset('assets/images/favicon.ico') }}">
 
@@ -39,7 +38,7 @@
         <!-- Begin page -->
         <div id="layout-wrapper">
 
-            @include('partials.topbar') @include('partials.sidebar')
+            @include('partials.guest_topbar')
 
             <!-- ============================================================== -->
             <!-- Start right Content here -->
@@ -55,17 +54,6 @@
                                 <h4 class="page-title mb-0 font-size-18">
                                     @yield('page-title')
                                 </h4>
-
-                                <div class="page-title-right">
-                                    <ol class="breadcrumb m-0">
-                                        <li class="breadcrumb-item"><a href="javascript: void(0);">
-                                            @yield('master-title')
-                                        </a></li>
-                                        <li class="breadcrumb-item active">
-                                            @yield('page-title')
-                                        </li>
-                                    </ol>
-                                </div>
 
                             </div>
                         </div>
@@ -119,27 +107,7 @@
     <script defer src="https://use.fontawesome.com/releases/v5.15.4/js/fontawesome.js"
         integrity="sha384-dPBGbj4Uoy1OOpM4+aRGfAOc0W37JkROT+3uynUgTHZCHZNMHfGXsmmvYTffZjYO" crossorigin="anonymous">
     </script>
-    
-    @vite('resources/js/app.js')
-
-    <!-- confirm modal js -->
-    <script>
-        function confirmDelete(elm) {
-            $('#modal-delete').find('form').attr('action', elm.attr('route'));
-            $('#btn-delete-modal').click();
-        }
-
-        function updateTableWidth() {
-            $('.dataTables_wrapper').find('.row').width($(".card-body").width());
-            $('.table.dataTable').width($(".card-body").width());
-        }
-
-    </script>
-    <!-- end confirm modal js -->
-
-    <!-- Page level custom scripts -->
-    @yield('custom_scripts')
-    @stack('scripts')
+        
 
 </body>
 

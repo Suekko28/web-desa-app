@@ -15,15 +15,19 @@ use App\Http\Controllers\Controller;
 |
 */
 
+Auth::routes();
 Route::Resource('/pemerintahan-desa',App\Http\Controllers\PemerintahanDesaController::class);
 
-Route::get('/', function () {
-    return view('index');
+Route::middleware(['auth'])->group(function(){
+    Route::get('/', function () {
+        return view('index');
+    });
+    
+    Route::get('/index', function () {
+        return view('index');
+    })->name('index');
 });
 
-Route::get('/index', function () {
-    return view('index');
-})->name('dashboard');
 
 // Route::get('/datapenduduk', function () {
 //     return view('admin.penduduk.index');
@@ -94,7 +98,7 @@ Route::get('/suratkependudukan', function () {
 //     return view('dashboard');
 // });
 
-// Auth::routes();
+
 
 // Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('dashboard');
 
