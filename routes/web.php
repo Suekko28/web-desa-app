@@ -15,7 +15,7 @@ use App\Http\Controllers\Controller;
 |
 */
 
-Route::Resource('/pemerintahan-desa',App\Http\Controllers\PemerintahanDesaController::class);
+// Route::Resource('/pemerintahan-desa',App\Http\Controllers\PemerintahanDesaController::class);
 
 Route::get('/', function () {
     return view('index');
@@ -90,7 +90,7 @@ Route::get('/suratkependudukan', function () {
 //     return view('dashboard');
 // });
 
-Auth::routes();
+// Auth::routes();
 
 // Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('dashboard');
 
