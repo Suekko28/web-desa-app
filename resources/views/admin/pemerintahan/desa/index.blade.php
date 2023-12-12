@@ -71,48 +71,15 @@
                             <div class="card">
                                 <div class="card-body">
                                     <div class="d-flex flex-row">
-                                        <button type="button" class="btn btn-primary button_data_tambah">Tambah Data
-                                            Penduduk</button>
+                                        <a href="{{route('pemerintahan-desa.create')}}"><button type="button" class="btn btn-primary button_data_tambah">Tambah Data
+                                            Penduduk</button></a>
                                         <button type="button" class="btn btn-secondary  button_data_import">Import Data
                                             Penduduk</button>
                                         <button type="button" class="btn btn-success  button_data_export">Eksport Data
                                             Penduduk</button>
                                     </div>
                                     <div class="table-responsive">
-                                        <table id="datatable" class="table table-bordered dt-responsive nowrap"
-                                            style="border-collapse: collapse; border-spacing: 0; width: 100%;">
-                                            <thead>
-                                                <tr>
-                                                    <th>No</th>
-                                                    <th>Nama Lengkap</th>
-                                                    <th>Jabatan</th>
-                                                    <th>Usia</th>
-                                                    <th>Aksi</th>
-                                                </tr>
-                                            </thead>
-                                            <tbody>
-                                                <tr>
-                                                    <td>1</td>
-                                                    <td>Aldi Dharmawan</td>
-                                                    <td>Kepala Desa</td>
-                                                    <td>20 Tahun</td>
-                                                    <td scope="row" class="text-center ">
-                                                        <a href="" class="btn btn-warning mb-2"><i
-                                                                class=" fa fa-solid fa-pen-to-square"
-                                                                style="color:white;"></i></a>
-                                                        <form action="" method="POST">
-                                                            @csrf
-                                                            @method('DELETE')
-                                                            <button class="btn btn-danger mb-2"><i
-                                                                    class="fa fa-solid fa-trash"></i></button>
-                                                        </form>
-                                                    </td>
-                                                </tr>
-
-
-                                            </tbody>
-                                        </table>
-                                    </div>
+                                        {{ $dataTable->table() }}
 
                                 </div>
                             </div>

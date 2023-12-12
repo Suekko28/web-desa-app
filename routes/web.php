@@ -1,6 +1,8 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Controller;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -13,50 +15,54 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+Route::Resource('/pemerintahan-desa',App\Http\Controllers\PemerintahanDesaController::class);
+
 Route::get('/', function () {
-    return view('welcome');
+    return view('index');
 });
 
 Route::get('/index', function () {
     return view('index');
-});
+})->name('dashboard');
 
-Route::get('/datapenduduk', function () {
-    return view('admin.penduduk.index');
-});
+// Route::get('/datapenduduk', function () {
+//     return view('admin.penduduk.index');
+// });
 
-Route::get('/form', function () {
-    return view('penduduk.create');
-});
+// Route::get('/form', function () {
+//     return view('penduduk.create');
+// });
 
-Route::get('/datapenduduk/create', function () {
-    return view('penduduk.create');
-});
-
-Route::get('/pemerintahandesa', function () {
-    return view('admin.pemerintahan.desa.index');
-});
-
-Route::get('/pemerintahandesa/create', function () {
-    return view('admin.pemerintahan.desa.create');
-});
-
-Route::get('/bpd', function () {
-    return view('admin.pemerintahan.desa.index');
-});
-
-Route::get('/bpd/create', function () {
-    return view('admin.pemerintahan.desa.create');
-});
-
-Route::get('/suratkependudukan', function () {
-    return view('admin.surat.kependudukan.index');
-});
+// Route::get('/datapenduduk/create', function () {
+//     return view('penduduk.create');
+// });
 
 
-Route::get('/suratkependudukan/create', function () {
-    return view('admin.surat.kependudukan.create');
-});
+
+// Route::get('/pemerintahandesa', function () {
+//     return view('admin.pemerintahan.desa.index');
+// });
+
+// Route::get('/pemerintahandesa/create', function () {
+//     return view('admin.pemerintahan.desa.create');
+// });
+
+// Route::get('/bpd', function () {
+//     return view('admin.pemerintahan.desa.index');
+// });
+
+// Route::get('/bpd/create', function () {
+//     return view('admin.pemerintahan.desa.create');
+// });
+
+// Route::get('/suratkependudukan', function () {
+//     return view('admin.surat.kependudukan.index');
+// });
+
+
+// Route::get('/suratkependudukan/create', function () {
+//     return view('admin.surat.kependudukan.create');
+// });
 
 //my credential
 //http://user:password@192.168.0.1:3128
@@ -66,5 +72,5 @@ Route::get('/suratkependudukan/create', function () {
 
 Auth::routes();
 
-Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+// Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('dashboard');
 
