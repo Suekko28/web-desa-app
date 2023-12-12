@@ -14,7 +14,7 @@ class PemerintahanDesaController extends Controller
      */
     public function index(PemerintahDesaDatatable $dataTable)
     {
-        return $dataTable->render('admin.pemerintahan.desa.index');
+        return view('desa.index');
     }
 
     /**
