@@ -45,10 +45,12 @@
             <!-- Start right Content here -->
             <!-- ============================================================== -->
             <div class="main-content">
+                <div clas="page-content">
                 @yield('contents')
                 <!-- End Page-content -->
                 
             <!-- end main content-->
+                </div>
             @include('partials.footer')
             </div>
         </div>
