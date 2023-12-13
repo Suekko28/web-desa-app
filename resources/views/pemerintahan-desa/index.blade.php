@@ -7,7 +7,7 @@
             <div class="card">
                 <div class="card-body">
                     <div id="table-default" class="table-responsive">
-                        {{ $dataTable->table() }}
+                        {{-- {{ $dataTable->table() }} --}}
                     </div>
                 </div>
             </div>
@@ -16,5 +16,5 @@
 @endsection
 
 @push('scripts')
-    {{ $dataTable->scripts(attributes: ['type' => 'module']) }}
+    {{-- {{ $dataTable->scripts(attributes: ['type' => 'module']) }} --}}
 @endpush

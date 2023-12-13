@@ -45,6 +45,10 @@ Route::middleware(['auth'])->group(function(){
 //     return view('penduduk.create');
 // });
 
+Route::get('/login', function () {
+    return view('auth.login');
+});
+
 Route::get('/datapenduduk', function () {
     return view('penduduk.index');
 });
