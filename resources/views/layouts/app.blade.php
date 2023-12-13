@@ -59,7 +59,7 @@
 
                                 <div class="page-title-right">
                                     <ol class="breadcrumb m-0">
-                                        <li class="breadcrumb-item"><a href="javascript: void(0);">
+                                        <li class="breadcru mb-item"><a href="javascript: void(0);" style="color:white">
                                             @yield('master-title')
                                         </a></li>
                                         <li class="breadcrumb-item active">
