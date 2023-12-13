@@ -1,7 +1,13 @@
 <?php
 
-use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Controller;
+use App\Http\Controllers\HomeController;
+use App\Http\Controllers\PemerintahanDesaController;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Route;
+
+
+
 
 
 /*
@@ -16,7 +22,6 @@ use App\Http\Controllers\Controller;
 */
 
 Auth::routes();
-Route::Resource('/pemerintahan-desa',App\Http\Controllers\PemerintahanDesaController::class);
 
 Route::middleware(['auth'])->group(function(){
     Route::get('/', function () {
@@ -26,6 +31,9 @@ Route::middleware(['auth'])->group(function(){
     Route::get('/index', function () {
         return view('index');
     })->name('index');
+
+    Route::Resource('/pemerintahan-desa',PemerintahanDesaController::class);
+
 });
 
 

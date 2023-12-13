@@ -24,6 +24,9 @@ class penduduk extends Model
     protected $fillable = [
         'nama',
         'jabatan',
-        'usia',
+        'tmpt_lahir',
+        'jns_kelamin',
+        'tgl_lahir',
+        'alamat',
     ];
 }

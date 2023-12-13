@@ -15,7 +15,10 @@ return new class extends Migration
             $table->id();
             $table->string('nama');
             $table->string('jabatan');
-            $table->Integer('usia');
+            $table->string('tmpt_lahir');
+            $table->integer('jns_kelamin');
+            $table->date('tgl_lahir');
+            $table->string('alamat');
             $table->timestamps();
         });
     }

@@ -22,17 +22,18 @@ class PemerintahDesaDataTable extends DataTable
      */
     public function dataTable(QueryBuilder $query): EloquentDataTable
     {
-        $actionBtn = '<button class="btn btn-sm btn-outline-primary" data-bs-toggle="dropdown" aria-expanded="false">
-        <svg xmlns="http://www.w3.org/2000/svg" class="icon" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
-        <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
-        <path d="M8 9l3 3l-3 3"></path>
-        <path d="M13 15l3 0"></path>
-        <path d="M4 4m0 4a4 4 0 0 1 4 -4h8a4 4 0 0 1 4 4v8a4 4 0 0 1 -4 4h-8a4 4 0 0 1 -4 -4z"></path></svg>
-        Action</button><div class="dropdown-menu">';
+        
+        $actionBtn='<div class="col">
+        <a href="' . route('pemerintahan-desa.index') . '/{{ $id }}/edit" name="edit" class="btn btn-large btn-secondary mr-2">Edit</a>';
+        
+        $actionBtn .= '<a href="javascript:void(0)" onclick="confirmDelete($(this))"
+            route="' . route('pemerintahan-desa.index') . '/{{ $id }}" class="btn btn-large btn-secondary mr-2">Delete</a>';
+
+        $actionBtn.='</div>';
 
         return (new EloquentDataTable($query))
-            ->addColumn('', $actionBtn)
-            ->rawColumns([''])
+            ->addColumn('action', $actionBtn)
+            ->rawColumns(['action'])
             ->setRowId('id');
     }
 
@@ -49,8 +50,10 @@ class PemerintahDesaDataTable extends DataTable
             'penduduk.id as id',
             'penduduk.nama as nama',
             'penduduk.jabatan as jabatan',
-            'penduduk.usia as usia',
-            'penduduk.created_at as created_at',
+            \DB::raw('CASE WHEN jns_kelamin = 1 THEN "Laki-Laki" ELSE "Perempuan" END AS jns_kelamin'),
+            'penduduk.tmpt_lahir as tmpt_lahir',
+            'penduduk.tgl_lahir as tgl_lahir',
+            'penduduk.alamat as alamat',
             'penduduk.updated_at as updated_at',
         );
     }
@@ -62,21 +65,16 @@ class PemerintahDesaDataTable extends DataTable
      */
     public function html(): HtmlBuilder
     {
+        $btn = [
+            Button::make('add'),
+        ];
         return $this->builder()
                     ->setTableId('penduduk-table')
                     ->columns($this->getColumns())
                     ->minifiedAjax()
-                    //->dom('Bfrtip')
-                    ->orderBy(1)
-                    ->selectStyleSingle()
-                    ->buttons([
-                        Button::make('excel'),
-                        Button::make('csv'),
-                        Button::make('pdf'),
-                        Button::make('print'),
-                        Button::make('reset'),
-                        Button::make('reload')
-                    ]);
+                    ->orderBy(0,'asc')
+                    ->buttons($btn)
+                    ->lengthMenu([10, 50, 100]);
     }
 
     /**
@@ -91,10 +89,12 @@ class PemerintahDesaDataTable extends DataTable
                 ->width(10),
             Column::make('nama'),
             Column::make('jabatan'),
-            Column::make('usia'),
-            Column::make('created_at'),
+            Column::make('jns_kelamin'),
+            Column::make('tmpt_lahir'),
+            Column::make('tgl_lahir'),
+            Column::make('alamat'),
             Column::make('updated_at'),
-            Column::computed('')
+            Column::computed('action')
                 ->exportable(false)
                 ->printable(false)
                 ->width(60)

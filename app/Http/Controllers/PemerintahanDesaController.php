@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\DataTables\PemerintahDesaDataTable;
 use App\Http\Controllers\Controller;
+use App\Http\Requests\PendudukFormRequest;
 use App\Models\Penduduk;
 use Illuminate\Http\Request;
 
@@ -14,7 +15,6 @@ class PemerintahanDesaController extends Controller
      */
     public function index(PemerintahDesaDataTable $dataTable)
     {
-        dd(auth()->user());
         return $dataTable->render('pemerintahan-desa.index');
     }
 
@@ -23,15 +23,17 @@ class PemerintahanDesaController extends Controller
      */
     public function create()
     {
-        return view('admin.pemerintahan.desa.create');
+        return view('pemerintahan-desa.create');
     }
 
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(PendudukFormRequest $request)
     {
-        //
+        $data=$request->all();
+        Penduduk::create($data);
+        return redirect()->route('pemerintahan-desa.index')->with('success','data berhasil ditambahkan'); 
     }
 
     /**
@@ -47,15 +49,19 @@ class PemerintahanDesaController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        $user=Penduduk::find($id);
+        return view('pemerintahan-desa.edit',[
+                    "data"=>$user,
+            ]);
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(PendudukFormRequest $request, string $id)
     {
-        //
+        $user=Penduduk::find($id)->update($request->all());
+        return redirect()->route('pemerintahan-desa.index')->with('success','data berhasil diubah'); 
     }
 
     /**
@@ -63,6 +69,8 @@ class PemerintahanDesaController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        $user=Penduduk::find($id)->delete();
+        return redirect()->route('pemerintahan-desa.index')->with('success','data berhasil dihapus'); 
+
     }
 }

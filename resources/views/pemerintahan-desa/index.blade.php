@@ -1,6 +1,6 @@
 @extends('layouts.app')
 @section('master-title','Pemerintahan')
-@section('page-title','Desa')
+@section('page-title','Data Desa')
 @section('contents')
     <div class="row">
         <div class="col-12">
