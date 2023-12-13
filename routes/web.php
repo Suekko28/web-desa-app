@@ -4,6 +4,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\PemerintahanBPDController;
 use App\Http\Controllers\PemerintahanDesaController;
+use App\Http\Controllers\PendudukController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -48,9 +49,7 @@ Route::middleware(['auth'])->group(function(){
 //     return view('penduduk.create');
 // });
 
-Route::get('/login', function () {
-    return view('auth.login');
-});
+
 
 Route::get('/datapenduduk', function () {
     return view('penduduk.index');
@@ -74,6 +73,14 @@ Route::get('/bpd', function () {
 
 Route::get('/bpd/create', function () {
     return view('pemerintahan-bpd.create');
+});
+
+Route::get('/lpm', function () {
+    return view('pemerintahan-lpm.index');
+});
+
+Route::get('/lpm/create', function () {
+    return view('pemerintahan-lpm.create');
 });
 
 Route::get('/suratkependudukan', function () {
