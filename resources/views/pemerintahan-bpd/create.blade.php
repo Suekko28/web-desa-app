@@ -1,6 +1,6 @@
 @extends('layouts.app')
-@section('master-title','Pemerintahan BPD')
-@section('page-title','Create')
+@section('master-title','Pemerintahan BPD/')
+@section('page-title',' Create')
 @section('contents')
                     <section class="content">
                         <div class="container-fluid">

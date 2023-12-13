@@ -1,6 +1,6 @@
 @extends('layouts.app')
-@section('master-title','Dashboard')
-@section('page-title','Lembaga Pemberdayaan Masyarakat')
+@section('master-title','Dashboard/')
+@section('page-title','Sahbandar')
 @section('contents')
     <div class="row">
         <div class="col-12">

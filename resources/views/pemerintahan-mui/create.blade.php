@@ -1,6 +1,6 @@
 @extends('layouts.app')
-@section('master-title','Dashboard / ')
-@section('page-title',' Lembaga Pemberdayaan Masyarakat')
+@section('master-title','Majelis Ulama Indonesia/')
+@section('page-title','Create')
 @section('contents')
                     <section class="content">
                         <div class="container-fluid">

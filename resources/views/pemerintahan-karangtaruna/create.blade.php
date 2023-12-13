@@ -1,5 +1,5 @@
 @extends('layouts.app')
-@section('master-title','Pemberdayaan Kesejahteraan Keluarga/')
+@section('master-title','Karang Taruna/')
 @section('page-title','Create')
 @section('contents')
                     <section class="content">
