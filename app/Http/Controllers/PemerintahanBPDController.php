@@ -2,20 +2,20 @@
 
 namespace App\Http\Controllers;
 
-use App\DataTables\PemerintahDesaDataTable;
+use App\DataTables\PemerintahanBPDDataTable;
 use App\Http\Controllers\Controller;
-use App\Http\Requests\PendudukFormRequest;
-use App\Models\Penduduk;
+use App\Http\Requests\PemerintahanBPDFormRequest;
+use App\Models\PemerintahanBPD;
 use Illuminate\Http\Request;
 
-class PemerintahanDesaController extends Controller
+class PemerintahanBPDController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
-    public function index(PemerintahDesaDataTable $dataTable)
+    public function index(PemerintahanBPDDataTable $dataTable)
     {
-        return $dataTable->render('pemerintahan-desa.index');
+        return $dataTable->render('pemerintahan-bpd.index');
     }
 
     /**
@@ -23,17 +23,18 @@ class PemerintahanDesaController extends Controller
      */
     public function create()
     {
-        return view('pemerintahan-desa.create');
+        return view('pemerintahan-bpd.create');
     }
 
     /**
      * Store a newly created resource in storage.
      */
-    public function store(PendudukFormRequest $request)
+    public function store(PemerintahanBPDFormRequest $request)
     {
         $data=$request->all();
-        Penduduk::create($data);
-        return redirect()->route('pemerintahan-desa.index')->with('success','data berhasil ditambahkan'); 
+        PemerintahanBPD::create($data);
+        return redirect()->route('pemerintahan-bpd.index')->with('success','data berhasil ditambahkan'); 
+
     }
 
     /**
@@ -49,8 +50,8 @@ class PemerintahanDesaController extends Controller
      */
     public function edit(string $id)
     {
-        $user=Penduduk::find($id);
-        return view('pemerintahan-desa.edit',[
+        $user=PemerintahanBPD::find($id);
+        return view('pemerintahan-bpd.edit',[
                     "data"=>$user,
             ]);
     }
@@ -58,10 +59,10 @@ class PemerintahanDesaController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(PendudukFormRequest $request, string $id)
+    public function update(Request $request, string $id)
     {
-        $user=Penduduk::find($id)->update($request->all());
-        return redirect()->route('pemerintahan-desa.index')->with('success','data berhasil diubah'); 
+        $user=PemerintahanBPD::find($id)->update($request->all());
+        return redirect()->route('pemerintahan-bpd.index')->with('success','data berhasil diubah'); 
     }
 
     /**
@@ -69,8 +70,7 @@ class PemerintahanDesaController extends Controller
      */
     public function destroy(string $id)
     {
-        $user=Penduduk::find($id)->delete();
+        $user=PemerintahanBPD::find($id)->delete();
         return redirect()->route('pemerintahan-desa.index')->with('success','data berhasil dihapus'); 
-
     }
 }
