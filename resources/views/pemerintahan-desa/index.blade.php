@@ -2,6 +2,7 @@
 @section('master-title','Dashboard/')
 @section('page-title','Pemerintahan Desa')
 @section('contents')
+<main>
     <div class="row">
         <div class="col-12">
             <div class="card">
@@ -13,6 +14,7 @@
             </div>
         </div>
     </div>
+</main>
 @endsection
 
 @push('scripts')
