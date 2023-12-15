@@ -40,7 +40,7 @@ Route::middleware(['auth'])->group(function(){
     Route::Resource('/pemerintahan-karang-taruna',\App\Http\Controllers\PemerintahanKarangTarunaController::class);
     Route::Resource('/pemerintahan-posyandu',\App\Http\Controllers\PemerintahanPosyanduController::class);
     
-    Route::Resource('/penduduk',PendudukController::class);
+    Route::Resource('/penduduk',\App\Http\Controllers\PendudukController::class);
 });
 
 

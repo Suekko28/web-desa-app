@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\DataTables\PendudukDataTable;
+use App\Http\Controllers\Controller;
 use App\Models\Penduduk;
 use Illuminate\Http\Request;
 
@@ -10,7 +12,7 @@ class PendudukController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(PendudukDataTable $dataTable)
     {
         //tes blade
         return $dataTable->render('penduduk.index');

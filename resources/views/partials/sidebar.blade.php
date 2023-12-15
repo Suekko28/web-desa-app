@@ -53,7 +53,7 @@
                             </ul>
                         </li>
 
-                        <li><a href="layouts-horizontal.html">Data Penduduk</a></li>
+                    <li><a href="{{ route('penduduk.index') }}">Data Penduduk</a></li>
                     </ul>
                 </li>
 
