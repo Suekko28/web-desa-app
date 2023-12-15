@@ -10,8 +10,8 @@
 
             <div class="mt-3">
 
-                {{-- <a href="#" class="text-dark font-weight-medium font-size-16">{{ auth()->user()->name }}</a>
-                <p class="text-body mt-1 mb-0 font-size-13">{{ auth()->user()->jabatan }}</p> --}}
+                <a href="#" class="text-dark font-weight-medium font-size-16">{{ auth()->user()->nama }}</a>
+                <p class="text-body mt-1 mb-0 font-size-13">{{ auth()->user()->jabatan }}</p>
 
             </div>
         </div>

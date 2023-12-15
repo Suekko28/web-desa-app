@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use App\DataTables\PemerintahDesaDataTable;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\PendudukFormRequest;
-use App\Models\Penduduk;
+use App\Models\PemerintahanDesa;
 use Illuminate\Http\Request;
 
 class PemerintahanDesaController extends Controller
