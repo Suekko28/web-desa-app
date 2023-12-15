@@ -48,7 +48,7 @@ class PemerintahanSahbandarController extends Controller
      */
     public function edit(String $id)
     {
-        $user=Penduduk::find($id);
+        $user=PemerintahanSahbandar::find($id);
         return view('pemerintahan-sahbandar.edit',[
                     "data"=>$user,
             ]);
@@ -59,7 +59,7 @@ class PemerintahanSahbandarController extends Controller
      */
     public function update(PemerintahanSahbandarRequest $request, string $id)
     {
-        $user=Penduduk::find($id)->update($request->all());
+        $user=PemerintahanSahbandar::find($id)->update($request->all());
         return redirect()->route('pemerintahan-sahbandar.index')->with('success','data berhasil diubah'); 
     }
 
@@ -68,7 +68,7 @@ class PemerintahanSahbandarController extends Controller
      */
     public function destroy(string $id)
     {
-        $user=Penduduk::find($id)->delete();
+        $user=PemerintahanSahbandar::find($id)->delete();
         return redirect()->route('pemerintahan-sahbandar.index')->with('success','data berhasil dihapus'); 
     }
 }

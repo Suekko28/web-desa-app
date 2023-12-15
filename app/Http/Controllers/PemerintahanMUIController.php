@@ -48,7 +48,7 @@ class PemerintahanMUIController extends Controller
      */
     public function edit(String $id)
     {
-        $user=Penduduk::find($id);
+        $user=PemerintahanMUI::find($id);
         return view('pemerintahan-mui.edit',[
                     "data"=>$user,
             ]);
@@ -59,7 +59,7 @@ class PemerintahanMUIController extends Controller
      */
     public function update(PemerintahanMUIRequest $request, string $id)
     {
-        $user=Penduduk::find($id)->update($request->all());
+        $user=PemerintahanMUI::find($id)->update($request->all());
         return redirect()->route('pemerintahan-mui.index')->with('success','data berhasil diubah'); 
     }
 
@@ -68,7 +68,7 @@ class PemerintahanMUIController extends Controller
      */
     public function destroy(string $id)
     {
-        $user=Penduduk::find($id)->delete();
+        $user=PemerintahanMUI::find($id)->delete();
         return redirect()->route('pemerintahan-mui.index')->with('success','data berhasil dihapus'); 
     }
 }

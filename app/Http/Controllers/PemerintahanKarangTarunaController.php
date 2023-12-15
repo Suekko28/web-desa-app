@@ -48,7 +48,7 @@ class PemerintahanKarangTarunaController extends Controller
      */
     public function edit(String $id)
     {
-        $user=Penduduk::find($id);
+        $user=PemerintahanKarangTaruna::find($id);
         return view('pemerintahan-karangtaruna.edit',[
                     "data"=>$user,
             ]);
@@ -59,7 +59,7 @@ class PemerintahanKarangTarunaController extends Controller
      */
     public function update(PemerintahanKarangTarunaRequest $request, string $id)
     {
-        $user=Penduduk::find($id)->update($request->all());
+        $user=PemerintahanKarangTaruna::find($id)->update($request->all());
         return redirect()->route('pemerintahan-karangtaruna.index')->with('success','data berhasil diubah'); 
     }
 
@@ -68,7 +68,7 @@ class PemerintahanKarangTarunaController extends Controller
      */
     public function destroy(string $id)
     {
-        $user=Penduduk::find($id)->delete();
+        $user=PemerintahanKarangTaruna::find($id)->delete();
         return redirect()->route('pemerintahan-karangtaruna.index')->with('success','data berhasil dihapus'); 
     }
 }

@@ -49,7 +49,7 @@ class PemerintahanLPMController extends Controller
      */
     public function edit(String $id)
     {
-        $user=Penduduk::find($id);
+        $user=PemerintahanLPM::find($id);
         return view('pemerintahan-lpm.edit',[
                     "data"=>$user,
             ]);
@@ -60,7 +60,7 @@ class PemerintahanLPMController extends Controller
      */
     public function update(PemerintahanLPMRequest $request, string $id)
     {
-        $user=Penduduk::find($id)->update($request->all());
+        $user=PemerintahanLPM::find($id)->update($request->all());
         return redirect()->route('pemerintahan-lpm.index')->with('success','data berhasil diubah'); 
     }
 
@@ -69,7 +69,7 @@ class PemerintahanLPMController extends Controller
      */
     public function destroy(string $id)
     {
-        $user=Penduduk::find($id)->delete();
+        $user=PemerintahanLPM::find($id)->delete();
         return redirect()->route('pemerintahan-lpm.index')->with('success','data berhasil dihapus'); 
     }
 }

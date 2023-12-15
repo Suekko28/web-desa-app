@@ -50,7 +50,7 @@ class PemerintahanDesaController extends Controller
      */
     public function edit(string $id)
     {
-        $user=Penduduk::find($id);
+        $user=PemerintahanDesa::find($id);
         return view('pemerintahan-desa.edit',[
                     "data"=>$user,
             ]);
@@ -61,7 +61,7 @@ class PemerintahanDesaController extends Controller
      */
     public function update(PemerintahanDesaFormRequest $request, string $id)
     {
-        $user=Penduduk::find($id)->update($request->all());
+        $user=PemerintahanDesa::find($id)->update($request->all());
         return redirect()->route('pemerintahan-desa.index')->with('success','data berhasil diubah'); 
     }
 
@@ -70,7 +70,7 @@ class PemerintahanDesaController extends Controller
      */
     public function destroy(string $id)
     {
-        $user=Penduduk::find($id)->delete();
+        $user=PemerintahanDesa::find($id)->delete();
         return redirect()->route('pemerintahan-desa.index')->with('success','data berhasil dihapus'); 
 
     }

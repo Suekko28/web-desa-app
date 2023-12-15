@@ -48,7 +48,7 @@ class PemerintahanPKKController extends Controller
      */
     public function edit(String $id)
     {
-        $user=Penduduk::find($id);
+        $user=PemerintahanPKK::find($id);
         return view('pemerintahan-pkk.edit',[
                     "data"=>$user,
             ]);
@@ -59,7 +59,7 @@ class PemerintahanPKKController extends Controller
      */
     public function update(PemerintahanPKKRequest $request, string $id)
     {
-        $user=Penduduk::find($id)->update($request->all());
+        $user=PemerintahanPKK::find($id)->update($request->all());
         return redirect()->route('pemerintahan-pkk.index')->with('success','data berhasil diubah'); 
     }
 
@@ -68,7 +68,7 @@ class PemerintahanPKKController extends Controller
      */
     public function destroy(string $id)
     {
-        $user=Penduduk::find($id)->delete();
+        $user=PemerintahanPKK::find($id)->delete();
         return redirect()->route('pemerintahan-pkk.index')->with('success','data berhasil dihapus'); 
     }
 }
