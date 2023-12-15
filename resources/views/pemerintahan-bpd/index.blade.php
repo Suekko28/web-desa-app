@@ -32,7 +32,7 @@
                 <div class="card">
                           
                         <div id="table-default" class="table-responsive">
-                            {{-- {{ $dataTable->table() }} --}}
+                            {{ $dataTable->table() }}
                         </div>
                     </div>
                 </div>
