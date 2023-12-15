@@ -23,10 +23,10 @@ class PemerintahanBPDDataTable extends DataTable
     public function dataTable(QueryBuilder $query): EloquentDataTable
     {
         $actionBtn='<div class="col">
-        <a href="' . route('pemerintahan-bpd.index') . '/{{ $id }}/edit" name="edit" class="btn btn-large btn-secondary mr-2">Edit</a>';
+        <a href="' . route('pemerintahan-bpd.index') . '/{{ $id }}/edit" name="edit" class="btn btn-warning"><i class="fa-solid fa-pen-to-square"></i></a>';
         
         $actionBtn .= '<a href="javascript:void(0)" onclick="confirmDelete($(this))"
-            route="' . route('pemerintahan-bpd.index') . '/{{ $id }}" class="btn btn-large btn-secondary mr-2">Delete</a>';
+            route="' . route('pemerintahan-bpd.index') . '/{{ $id }}" class="btn btn-danger mt-2"><i class="fa-solid fa-trash-can"></i></a>';
 
         $actionBtn.='</div>';
 
