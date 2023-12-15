@@ -70,8 +70,8 @@
                                     </div>
 
                                     <div class="col-sm-4">
-                                        <label for="jns_kelamin" class="col-form-label">Jenis Kelamin</label>
-                                        <select id="jns_kelamin" name="jns_kelamin" class="form-control" required>
+                                        <label for="jenis_kelamin" class="col-form-label">Jenis Kelamin</label>
+                                        <select id="jenis_kelamin" name="jenis_kelamin" class="form-control" required>
                                             <option value="1" selected>Laki-Laki</option>
                                             <option value="2">Perempuan</option>
                                         </select>

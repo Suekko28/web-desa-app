@@ -16,7 +16,6 @@ class PemerintahanDesaController extends Controller
      */
     public function index(PemerintahDesaDataTable $dataTable)
     {
-        // dd($dataTable);
         return $dataTable->render('pemerintahan-desa.index');
     }
 
@@ -60,7 +59,7 @@ class PemerintahanDesaController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(PendudukFormRequest $request, string $id)
+    public function update(PemerintahanDesaFormRequest $request, string $id)
     {
         $user=Penduduk::find($id)->update($request->all());
         return redirect()->route('pemerintahan-desa.index')->with('success','data berhasil diubah'); 

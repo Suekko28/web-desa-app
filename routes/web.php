@@ -1,10 +1,6 @@
 <?php
 
 use App\Http\Controllers\Controller;
-use App\Http\Controllers\HomeController;
-use App\Http\Controllers\PemerintahanBPDController;
-use App\Http\Controllers\PemerintahanDesaController;
-use App\Http\Controllers\PendudukController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -35,8 +31,15 @@ Route::middleware(['auth'])->group(function(){
         return view('index');
     })->name('index');
 
-    Route::Resource('/pemerintahan-desa',PemerintahanDesaController::class);
-    Route::Resource('/pemerintahan-bpd',PemerintahanBPDController::class);
+    Route::Resource('/pemerintahan-desa',\App\Http\Controllers\PemerintahanDesaController::class);
+    Route::Resource('/pemerintahan-BPD',\App\Http\Controllers\PemerintahanBPDController::class);
+    Route::Resource('/pemerintahan-lpm',\App\Http\Controllers\PemerintahanLPMController::class);
+    Route::Resource('/pemerintahan-mui',\App\Http\Controllers\PemerintahanMUIController::class);
+    Route::Resource('/pemerintahan-pkk',\App\Http\Controllers\PemerintahanPKKController::class);
+    Route::Resource('/pemerintahan-sahbandar',\App\Http\Controllers\PemerintahanSahbandarController::class);
+    Route::Resource('/pemerintahan-karang-taruna',\App\Http\Controllers\PemerintahanKarangTarunaController::class);
+    Route::Resource('/pemerintahan-posyandu',\App\Http\Controllers\PemerintahanPosyanduController::class);
+    
     Route::Resource('/penduduk',PendudukController::class);
 });
 
@@ -51,41 +54,41 @@ Route::middleware(['auth'])->group(function(){
 
 
 
-Route::get('/datapenduduk', function () {
-    return view('penduduk.index');
-});
+// Route::get('/datapenduduk', function () {
+//     return view('penduduk.index');
+// });
 
-Route::get('/datapenduduk/create', function () {
-    return view('penduduk.create');
-});
+// Route::get('/datapenduduk/create', function () {
+//     return view('penduduk.create');
+// });
 
-Route::get('/pemerintahandesa', function () {
-    return view('pemerintahan-desa.index');
-});
+// Route::get('/pemerintahandesa', function () {
+//     return view('pemerintahan-desa.index');
+// });
 
-Route::get('/pemerintahandesa/create', function () {
-    return view('pemerintahan-desa.create');
-});
+// Route::get('/pemerintahandesa/create', function () {
+//     return view('pemerintahan-desa.create');
+// });
 
-Route::get('/bpd', function () {
-    return view('pemerintahan-bpd.index');
-});
+// Route::get('/BPD', function () {
+//     return view('pemerintahan-BPD.index');
+// });
 
-Route::get('/bpd/create', function () {
-    return view('pemerintahan-bpd.create');
-});
+// Route::get('/BPD/create', function () {
+//     return view('pemerintahan-BPD.create');
+// });
 
-Route::get('/lpm', function () {
-    return view('pemerintahan-lpm.index');
-});
+// Route::get('/lpm', function () {
+//     return view('pemerintahan-lpm.index');
+// });
 
-Route::get('/lpm/create', function () {
-    return view('pemerintahan-lpm.create');
-});
+// Route::get('/lpm/create', function () {
+//     return view('pemerintahan-lpm.create');
+// });
 
-Route::get('/suratkependudukan', function () {
-    return view('surat-kependudukan.index');
-});
+// Route::get('/suratkependudukan', function () {
+//     return view('surat-kependudukan.index');
+// });
 
 
 
@@ -97,11 +100,11 @@ Route::get('/suratkependudukan', function () {
 //     return view('admin.pemerintahan.desa.create');
 // });
 
-// Route::get('/bpd', function () {
+// Route::get('/BPD', function () {
 //     return view('admin.pemerintahan.desa.index');
 // });
 
-// Route::get('/bpd/create', function () {
+// Route::get('/BPD/create', function () {
 //     return view('admin.pemerintahan.desa.create');
 // });
 

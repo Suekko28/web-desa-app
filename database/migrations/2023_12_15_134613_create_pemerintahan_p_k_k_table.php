@@ -11,12 +11,12 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('pemerintahan_BPD', function (Blueprint $table) {
+        Schema::create('pemerintahan_pkk', function (Blueprint $table) {
             $table->id();
             $table->string('nama');
             $table->string('jabatan');
             $table->string('tmpt_lahir');
-            $table->integer('jns_kelamin');
+            $table->integer('jenis_kelamin');
             $table->date('tgl_lahir');
             $table->string('alamat');
             $table->timestamps();
@@ -28,6 +28,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('pemerintahan_BPD');
+        Schema::dropIfExists('pemerintahan_pkk');
     }
 };

@@ -29,7 +29,7 @@
         <div class="container-fluid">
             <!-- Small boxes (Stat box) -->
 
-            <form action="{{ route('pemerintahan-bpd.update', $data->id) }}" method="post" enctype="multipart/form-data">
+            <form action="{{ route('pemerintahan-BPD.update', $data->id) }}" method="post" enctype="multipart/form-data">
                 @method('PUT')
                 @csrf
                 <div class="card">
@@ -69,11 +69,11 @@
                                 </div>
 
                                 <div class="col-sm-4">
-                                    <label for="jns_kelamin" class="col-form-label">Jenis Kelamin</label>
-                                    <select class="form-control" id="jns_kelamin" name="jns_kelamin">
-                                        <option value="1" @if ($data->jns_kelamin == '1') selected @endif>Laki-Laki
+                                    <label for="jenis_kelamin" class="col-form-label">Jenis Kelamin</label>
+                                    <select class="form-control" id="jenis_kelamin" name="jenis_kelamin">
+                                        <option value="1" @if ($data->jenis_kelamin == '1') selected @endif>Laki-Laki
                                         </option>
-                                        <option value="2" @if ($data->jns_kelamin == '2') selected @endif>Perempuan
+                                        <option value="2" @if ($data->jenis_kelamin == '2') selected @endif>Perempuan
                                         </option>
                                     </select>
                                 </div>

@@ -50,7 +50,7 @@ class PemerintahDesaDataTable extends DataTable
             'pemerintahan_desa.id as id',
             'pemerintahan_desa.nama as nama',
             'pemerintahan_desa.jabatan as jabatan',
-            \DB::raw('CASE WHEN jns_kelamin = 1 THEN "Laki-Laki" ELSE "Perempuan" END AS jns_kelamin'),
+            \DB::raw('CASE WHEN jenis_kelamin = 1 THEN "Laki-Laki" ELSE "Perempuan" END AS jenis_kelamin'),
             'pemerintahan_desa.tmpt_lahir as tmpt_lahir',
             'pemerintahan_desa.tgl_lahir as tgl_lahir',
             'pemerintahan_desa.alamat as alamat',
@@ -71,7 +71,7 @@ class PemerintahDesaDataTable extends DataTable
 
         ];
         return $this->builder()
-                    ->setTableId('penduduk-table')
+                    ->setTableId('pemerintah-desa-table')
                     ->columns($this->getColumns())
                     ->minifiedAjax()
                     ->orderBy(0,'asc')
@@ -91,7 +91,7 @@ class PemerintahDesaDataTable extends DataTable
                 ->width(10),
             Column::make('nama'),
             Column::make('jabatan'),
-            Column::make('jns_kelamin'),
+            Column::make('jenis_kelamin'),
             Column::make('tmpt_lahir'),
             Column::make('tgl_lahir'),
             Column::make('alamat'),

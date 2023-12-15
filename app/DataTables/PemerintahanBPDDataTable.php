@@ -23,10 +23,10 @@ class PemerintahanBPDDataTable extends DataTable
     public function dataTable(QueryBuilder $query): EloquentDataTable
     {
         $actionBtn='<div class="col">
-        <a href="' . route('pemerintahan-bpd.index') . '/{{ $id }}/edit" name="edit" class="btn btn-warning"><i class="fa-solid fa-pen-to-square"></i></a>';
+        <a href="' . route('pemerintahan-BPD.index') . '/{{ $id }}/edit" name="edit" class="btn btn-warning"><i class="fa-solid fa-pen-to-square"></i></a>';
         
         $actionBtn .= '<a href="javascript:void(0)" onclick="confirmDelete($(this))"
-            route="' . route('pemerintahan-bpd.index') . '/{{ $id }}" class="btn btn-danger mt-2"><i class="fa-solid fa-trash-can"></i></a>';
+            route="' . route('pemerintahan-BPD.index') . '/{{ $id }}" class="btn btn-danger mt-2"><i class="fa-solid fa-trash-can"></i></a>';
 
         $actionBtn.='</div>';
 
@@ -49,7 +49,7 @@ class PemerintahanBPDDataTable extends DataTable
             'Pemerintahan_BPD.id as id',
             'Pemerintahan_BPD.nama as nama',
             'Pemerintahan_BPD.jabatan as jabatan',
-            \DB::raw('CASE WHEN jns_kelamin = 1 THEN "Laki-Laki" ELSE "Perempuan" END AS jns_kelamin'),
+            \DB::raw('CASE WHEN jenis_kelamin = 1 THEN "Laki-Laki" ELSE "Perempuan" END AS jenis_kelamin'),
             'Pemerintahan_BPD.tmpt_lahir as tmpt_lahir',
             'Pemerintahan_BPD.tgl_lahir as tgl_lahir',
             'Pemerintahan_BPD.alamat as alamat',
@@ -90,7 +90,7 @@ class PemerintahanBPDDataTable extends DataTable
                 ->width(10),
             Column::make('nama'),
             Column::make('jabatan'),
-            Column::make('jns_kelamin'),
+            Column::make('jenis_kelamin'),
             Column::make('tmpt_lahir'),
             Column::make('tgl_lahir'),
             Column::make('alamat'),

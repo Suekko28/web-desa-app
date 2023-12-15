@@ -16,7 +16,7 @@ return new class extends Migration
             $table->string('nama');
             $table->string('jabatan');
             $table->string('tmpt_lahir');
-            $table->integer('jns_kelamin');
+            $table->integer('jenis_kelamin');
             $table->date('tgl_lahir');
             $table->string('alamat');
             $table->timestamps();

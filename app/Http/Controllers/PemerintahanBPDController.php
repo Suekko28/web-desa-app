@@ -15,7 +15,7 @@ class PemerintahanBPDController extends Controller
      */
     public function index(PemerintahanBPDDataTable $dataTable)
     {
-        return $dataTable->render('pemerintahan-bpd.index');
+        return $dataTable->render('pemerintahan-BPD.index');
     }
 
     /**
@@ -23,7 +23,7 @@ class PemerintahanBPDController extends Controller
      */
     public function create()
     {
-        return view('pemerintahan-bpd.create');
+        return view('pemerintahan-BPD.create');
     }
 
     /**
@@ -33,7 +33,7 @@ class PemerintahanBPDController extends Controller
     {
         $data=$request->all();
         PemerintahanBPD::create($data);
-        return redirect()->route('pemerintahan-bpd.index')->with('success','data berhasil ditambahkan'); 
+        return redirect()->route('pemerintahan-BPD.index')->with('success','data berhasil ditambahkan'); 
 
     }
 
@@ -51,7 +51,7 @@ class PemerintahanBPDController extends Controller
     public function edit(string $id)
     {
         $user=PemerintahanBPD::find($id);
-        return view('pemerintahan-bpd.edit',[
+        return view('pemerintahan-BPD.edit',[
                     "data"=>$user,
             ]);
     }
@@ -62,7 +62,7 @@ class PemerintahanBPDController extends Controller
     public function update(Request $request, string $id)
     {
         $user=PemerintahanBPD::find($id)->update($request->all());
-        return redirect()->route('pemerintahan-bpd.index')->with('success','data berhasil diubah'); 
+        return redirect()->route('pemerintahan-BPD.index')->with('success','data berhasil diubah'); 
     }
 
     /**

@@ -25,7 +25,7 @@ class penduduk extends Model
         'nama',
         'jabatan',
         'tmpt_lahir',
-        'jns_kelamin',
+        'jenis_kelamin',
         'tgl_lahir',
         'alamat',
     ];

@@ -43,13 +43,13 @@
                             </a>
                             <ul class="sub-menu mb-2" aria-expanded="false">
                                 <li><a href="{{ route('pemerintahan-desa.index') }}">Pemerintahan Desa</a></li>
-                                <li><a href="{{ route('pemerintahan-bpd.index') }}">Badan Permusyawaratan Desa</a></li>
-                                <li><a href="tasks-create.html">Lembaga Pemberdayaan Masyarakat</a></li>
-                                <li><a href="tasks-list.html">MUI (Majelis Ulama Indonesia)</a></li>
-                                <li><a href="tasks-kanban.html">PKK (Pemberdayaan Kesejahteraan Keluarga)</a></li>
-                                <li><a href="tasks-create.html">Sahbandar</a></li>
-                                <li><a href="tasks-create.html">Karang Taruna</a></li>
-                                <li><a href="tasks-create.html">Posyandu</a></li>
+                                <li><a href="{{ route('pemerintahan-BPD.index') }}">Badan Permusyawaratan Desa</a></li>
+                                <li><a href="{{ route('pemerintahan-lpm.index') }}">Lembaga Pemberdayaan Masyarakat</a></li>
+                                <li><a href="{{ route('pemerintahan-mui.index') }}">MUI (Majelis Ulama Indonesia)</a></li>
+                                <li><a href="{{ route('pemerintahan-pkk.index') }}">PKK (Pemberdayaan Kesejahteraan Keluarga)</a></li>
+                                <li><a href="{{ route('pemerintahan-sahbandar.index') }}">Sahbandar</a></li>
+                                <li><a href="{{ route('pemerintahan-karang-taruna.index') }}">Karang Taruna</a></li>
+                                <li><a href="{{ route('pemerintahan-posyandu.index') }}">Posyandu</a></li>
                             </ul>
                         </li>
 

@@ -25,7 +25,7 @@ class PemerintahanBPDFormRequest extends FormRequest
             'nama'=>['required','string','max:100'],
             'jabatan'=>['required','string','max:100'],
             'tmpt_lahir'=>['required','string','max:100'],
-            'jns_kelamin'=>['required','int'],
+            'jenis_kelamin'=>['required','int'],
             'tgl_lahir'=>['required','date'],
             'alamat'=>['required','string','max:250'],
         ];

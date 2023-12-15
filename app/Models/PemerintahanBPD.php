@@ -14,7 +14,7 @@ class PemerintahanBPD extends Model
      *
      * @var string
      */
-    protected $table = 'Pemerintahan_BPD';
+    protected $table = 'pemerintahan_BPD';
 
     /**
      * The attributes that are mass assignable.
@@ -25,7 +25,7 @@ class PemerintahanBPD extends Model
         'nama',
         'jabatan',
         'tmpt_lahir',
-        'jns_kelamin',
+        'jenis_kelamin',
         'tgl_lahir',
         'alamat',
     ];
