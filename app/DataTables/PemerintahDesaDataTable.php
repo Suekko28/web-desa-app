@@ -24,10 +24,10 @@ class PemerintahDesaDataTable extends DataTable
     {
         
         $actionBtn='<div class="col">
-        <a href="' . route('pemerintahan-desa.index') . '/{{ $id }}/edit" name="edit" class="btn btn-large btn-secondary mr-2">Edit</a>';
+        <a href="' . route('pemerintahan-desa.index') . '/{{ $id }}/edit" name="edit" class="btn btn-large btn-secondary mr-2" style="background-color:yellow><i class="fa-solid fa-pen-to-square"></i>Edit</a>';
         
         $actionBtn .= '<a href="javascript:void(0)" onclick="confirmDelete($(this))"
-            route="' . route('pemerintahan-desa.index') . '/{{ $id }}" class="btn btn-large btn-secondary mr-2">Delete</a>';
+            route="' . route('pemerintahan-desa.index') . '/{{ $id }}" class="btn btn-large btn-secondary mr-2 mt-2" style="background-color:red"><i class="fa-solid fa-trash-can"></i>Delete</a>';
 
         $actionBtn.='</div>';
 
@@ -67,6 +67,8 @@ class PemerintahDesaDataTable extends DataTable
     {
         $btn = [
             Button::make('add'),
+            Button::make('export'),
+
         ];
         return $this->builder()
                     ->setTableId('penduduk-table')

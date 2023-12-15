@@ -12,7 +12,9 @@ class PendudukController extends Controller
      */
     public function index()
     {
-        return $dataTable->render('');
+        //tes blade
+        return view('penduduk.index');
+        // return $dataTable->render('penduduk-desa.index');
     }
 
     /**

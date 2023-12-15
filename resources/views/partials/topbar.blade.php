@@ -1,4 +1,4 @@
-<header id="page-topbar" class="mt-2">
+<header id="page-topbar" class="mt-2 ">
     <div class="navbar-header">
         <div class="container-fluid">
             <div class="float-right">

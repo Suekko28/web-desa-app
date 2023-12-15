@@ -24,21 +24,21 @@
 
                 <li>
                     <a href="calendar.html" class=" waves-effect">
-                        <i class="mdi mdi-calendar-text"></i>
+                        <i class=" fas fa-light fa-gauge"></i>
                         <span>Dashboard</span>
                     </a>
                 </li>
 
                 <li>
                     <a href="javascript: void(0);" class="has-arrow waves-effect">
-                        <i class="mdi mdi-flip-horizontal"></i>
+                        <i class="fas fa-solid fa-book"></i>
                         <span>Data Desa Tarikolot</span>
                     </a>    
                     
                     <ul class="sub-menu" aria-expanded="false">
                         <li>
                             <a href="javascript: void(0);" class="has-arrow waves-effect mb-2">
-                                <i class="mdi mdi-calendar-check"></i>
+                                <i class="fas fa-solid fa-building"></i>
                                 <span>Data Lembaga Pemerintahan</span>
                             </a>
                             <ul class="sub-menu mb-2" aria-expanded="false">
@@ -59,7 +59,7 @@
 
                 <li>
                     <a href="javascript: void(0);" class="has-arrow waves-effect">
-                        <i class="mdi mdi-newspaper"></i>
+                        <i class="fas fa-solid fa-envelope-open-text"></i>
                         <span>Surat Menyurat</span>
                     </a>
                     <ul class="sub-menu" aria-expanded="false">
