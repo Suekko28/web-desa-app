@@ -2,7 +2,7 @@
 
 namespace App\DataTables;
 
-use App\Models\Penduduk;
+use App\Models\PemerintahanDesa;
 use Illuminate\Database\Eloquent\Builder as QueryBuilder;
 use Yajra\DataTables\EloquentDataTable;
 use Yajra\DataTables\Html\Builder as HtmlBuilder;
@@ -24,10 +24,10 @@ class PemerintahDesaDataTable extends DataTable
     {
         
         $actionBtn='<div class="col">
-        <a href="' . route('pemerintahan-desa.index') . '/{{ $id }}/edit" name="edit" class="btn btn-large btn-secondary mr-2">Edit</a>';
+        <a href="' . route('pemerintahan-desa.index') . '/{{ $id }}/edit" name="edit" class="btn btn-large btn-secondary mr-2" style="background-color:yellow><i class="fa-solid fa-pen-to-square"></i>Edit</a>';
         
         $actionBtn .= '<a href="javascript:void(0)" onclick="confirmDelete($(this))"
-            route="' . route('pemerintahan-desa.index') . '/{{ $id }}" class="btn btn-large btn-secondary mr-2">Delete</a>';
+            route="' . route('pemerintahan-desa.index') . '/{{ $id }}" class="btn btn-large btn-secondary mr-2 mt-2" style="background-color:red"><i class="fa-solid fa-trash-can"></i>Delete</a>';
 
         $actionBtn.='</div>';
 
@@ -40,21 +40,21 @@ class PemerintahDesaDataTable extends DataTable
     /**
      * Get query source of dataTable.
      *
-     * @param \App\Models\Penduduk $model
+     * @param \App\Models\PemerintahanDesa $model
      * @return \Illuminate\Database\Eloquent\Builder
      */
-    public function query(Penduduk $model): QueryBuilder
+    public function query(PemerintahanDesa $model): QueryBuilder
     {
         return $model->newQuery()
         ->select(
-            'penduduk.id as id',
-            'penduduk.nama as nama',
-            'penduduk.jabatan as jabatan',
+            'pemerintahan_desa.id as id',
+            'pemerintahan_desa.nama as nama',
+            'pemerintahan_desa.jabatan as jabatan',
             \DB::raw('CASE WHEN jns_kelamin = 1 THEN "Laki-Laki" ELSE "Perempuan" END AS jns_kelamin'),
-            'penduduk.tmpt_lahir as tmpt_lahir',
-            'penduduk.tgl_lahir as tgl_lahir',
-            'penduduk.alamat as alamat',
-            'penduduk.updated_at as updated_at',
+            'pemerintahan_desa.tmpt_lahir as tmpt_lahir',
+            'pemerintahan_desa.tgl_lahir as tgl_lahir',
+            'pemerintahan_desa.alamat as alamat',
+            'pemerintahan_desa.updated_at as updated_at',
         );
     }
 
@@ -67,6 +67,8 @@ class PemerintahDesaDataTable extends DataTable
     {
         $btn = [
             Button::make('add'),
+            Button::make('export'),
+
         ];
         return $this->builder()
                     ->setTableId('penduduk-table')
@@ -109,6 +111,6 @@ class PemerintahDesaDataTable extends DataTable
      */
     protected function filename(): string
     {
-        return 'Penduduk_' . date('YmdHis');
+        return 'Pemerintah_Desa_' . date('YmdHis');
     }
 }

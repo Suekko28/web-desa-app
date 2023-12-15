@@ -66,6 +66,8 @@ class PemerintahanBPDDataTable extends DataTable
     {
         $btn = [
             Button::make('add'),
+            Button::make('export'),
+
         ];
         return $this->builder()
                     ->setTableId('pemerintahanBPD-table')

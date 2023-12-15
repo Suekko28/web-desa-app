@@ -1,4 +1,4 @@
-<header id="page-topbar" class="mt-2">
+<header id="page-topbar" class="mt-2 ">
     <div class="navbar-header">
         <div class="container-fluid">
             <div class="float-right">
@@ -7,15 +7,15 @@
                         data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         <img class="rounded-circle header-profile-user" src="/assets/images/users/avatar-2.jpg"
                             alt="Header Avatar">
-                        {{-- <span class="d-none d-xl-inline-block ml-1">{{ auth()->user()->name }}</span> --}}
+                        <span class="d-none d-xl-inline-block ml-1">{{ auth()->user()->nama }}</span>
                         <i class="mdi mdi-chevron-down d-none d-xl-inline-block"></i>
                     </button>
                     <div class="dropdown-menu dropdown-menu-right">
                         <!-- item-->
+                        <form method="POST" action="{{ route('logout') }}">
                         <button type="submit" class="dropdown-item text-danger">
                             @csrf
                             <i class="bx bx-power-off font-size-16 align-middle mr-1"></i> Logout
-                        </a>
                         </form>
                     </div>
                 </div>

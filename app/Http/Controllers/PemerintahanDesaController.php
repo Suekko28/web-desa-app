@@ -4,8 +4,9 @@ namespace App\Http\Controllers;
 
 use App\DataTables\PemerintahDesaDataTable;
 use App\Http\Controllers\Controller;
+use App\Http\Requests\PemerintahanDesaFormRequest;
 use App\Http\Requests\PendudukFormRequest;
-use App\Models\Penduduk;
+use App\Models\PemerintahanDesa;
 use Illuminate\Http\Request;
 
 class PemerintahanDesaController extends Controller
@@ -15,6 +16,7 @@ class PemerintahanDesaController extends Controller
      */
     public function index(PemerintahDesaDataTable $dataTable)
     {
+        // dd($dataTable);
         return $dataTable->render('pemerintahan-desa.index');
     }
 
@@ -29,10 +31,10 @@ class PemerintahanDesaController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(PendudukFormRequest $request)
+    public function store(PemerintahanDesaFormRequest $request)
     {
         $data=$request->all();
-        Penduduk::create($data);
+        PemerintahanDesa::create($data);
         return redirect()->route('pemerintahan-desa.index')->with('success','data berhasil ditambahkan'); 
     }
 
