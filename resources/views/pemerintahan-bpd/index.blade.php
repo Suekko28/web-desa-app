@@ -31,14 +31,6 @@
             <div class="col-12">
                 <div class="card">
                     <div class="card-body">
-                        {{-- <div class="d-flex flex-row">
-                            <button type="button" class="btn btn-primary button_data_tambah">Tambah Data
-                                Penduduk</button>
-                            <button type="button" class="btn btn-secondary  button_data_import">Import Data
-                                Penduduk</button>
-                            <button type="button" class="btn btn-success  button_data_export">Eksport Data
-                                Penduduk</button>
-                        </div> --}}
                         <div id="table-default" class="table-responsive">
                             {{ $dataTable->table() }}
                         </div>

@@ -26,7 +26,11 @@
         crossorigin="anonymous" referrerpolicy="no-referrer" />
 
     <main>
+        <section class="content">
+
         <div class="container-fluid">
+            @include('layouts.message')
+
             <!-- Small boxes (Stat box) -->
 
             <form action="{{ route('pemerintahan-desa.update', $data->id) }}" method="post" enctype="multipart/form-data">
@@ -71,6 +75,7 @@
                                 <div class="col-sm-4">
                                     <label for="jenis_kelamin" class="col-form-label">Jenis Kelamin</label>
                                     <select class="form-control" id="jenis_kelamin" name="jenis_kelamin">
+                                        <option value="" selected>--Pilih Salah Satu--</option>
                                         <option value="1" @if ($data->jenis_kelamin == '1') selected @endif>Laki-Laki
                                         </option>
                                         <option value="2" @if ($data->jenis_kelamin == '2') selected @endif>Perempuan
@@ -88,7 +93,7 @@
 
                         <div class="d-flex flex-row-reverse">
                             <button type="submit" class="btn btn-primary ml-3">Simpan</button>
-                            <a href="{{ route('pemerintahan-desa.index') }}" class="btn btn-danger">Batal</a>
+                            <a href="{{ route('pemerintahan-posyandu.index') }}" class="btn btn-danger">Batal</a>
                         </div>
 
 
@@ -96,6 +101,7 @@
             </form>
             <!-- /.row (main row) -->
         </div><!-- /.container-fluid -->
+        </section>
     </main>
 
     <script src="{{ asset('assets/libs/jquery/jquery.min.js') }}"></script>

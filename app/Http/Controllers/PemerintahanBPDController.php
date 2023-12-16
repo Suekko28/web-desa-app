@@ -33,7 +33,7 @@ class PemerintahanBPDController extends Controller
     {
         $data=$request->all();
         PemerintahanBPD::create($data);
-        return redirect()->route('pemerintahan-BPD.index')->with('success','data berhasil ditambahkan'); 
+        return redirect()->route('pemerintahan-BPD.index')->with('success','Data berhasil ditambahkan'); 
 
     }
 
@@ -62,7 +62,7 @@ class PemerintahanBPDController extends Controller
     public function update(Request $request, string $id)
     {
         $user=PemerintahanBPD::find($id)->update($request->all());
-        return redirect()->route('pemerintahan-BPD.index')->with('success','data berhasil diubah'); 
+        return redirect()->route('pemerintahan-BPD.index')->with('success','Data berhasil diubah'); 
     }
 
     /**
@@ -71,6 +71,6 @@ class PemerintahanBPDController extends Controller
     public function destroy(string $id)
     {
         $user=PemerintahanBPD::find($id)->delete();
-        return redirect()->route('pemerintahan-desa.index')->with('success','data berhasil dihapus'); 
+        return redirect()->route('pemerintahan-BPD.index')->with('success','Data berhasil dihapus'); 
     }
 }

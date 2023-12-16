@@ -28,6 +28,8 @@
     <main>
         <section class="content">
             <div class="container-fluid">
+                @include('layouts.message')
+
                 <!-- Small boxes (Stat box) -->
 
                 <form action="{{ route('pemerintahan-desa.store') }}" method="POST" enctype="multipart/form-data">
@@ -48,13 +50,13 @@
                                     <div class="col-sm-4">
                                         <label for="name" class="col-form-label">Nama Lengkap</label>
                                         <input type="text" class="form-control" id="nama" name="nama"
-                                            placeholder="">
+                                            placeholder="Nama Sesuai KTP">
                                     </div>
 
                                     <div class="col-sm-4">
                                         <label for="jabatan" class="col-form-label">Jabatan</label>
                                         <input type="text" class="form-control" id="jabatan" name="jabatan"
-                                            placeholder="">
+                                            placeholder="Jabatan">
                                     </div>
 
                                     <div class="col-sm-4">
@@ -66,20 +68,21 @@
                                     <div class="col-sm-4">
                                         <label for="tgl_lahir" class="col-form-label">Tanggal Lahir</label>
                                         <input type="date" class="form-control" id="tgl_lahir" name="tgl_lahir"
-                                            placeholder="">
+                                            placeholder="Tempat Lahir">
                                     </div>
 
                                     <div class="col-sm-4">
                                         <label for="jenis_kelamin" class="col-form-label">Jenis Kelamin</label>
                                         <select id="jenis_kelamin" name="jenis_kelamin" class="form-control" required>
-                                            <option value="1" selected>Laki-Laki</option>
+                                            <option value="" selected>--Pilih Salah Satu--</option>
+                                            <option value="1" >Laki-Laki</option>
                                             <option value="2">Perempuan</option>
                                         </select>
                                     </div>
 
                                     <div class="col">
                                         <label for="alamat" class="col-form-label">Alamat</label>
-                                        <textarea rows="5" type="text" class="form-control" id="alamat" name="alamat" placeholder=""></textarea>
+                                        <textarea rows="5" type="text" class="form-control" id="alamat" name="alamat" placeholder="Alamat Lengkap (Jl / Kampung  No.Rumah"></textarea>
                                     </div>
 
                                 </div>
@@ -87,7 +90,7 @@
 
                             <div class="d-flex flex-row-reverse">
                                 <button type="submit" class="btn btn-primary ml-3">Simpan</button>
-                                <a href="{{ url('/admin/kegiatan') }}" class="btn btn-danger">Batal</a>
+                                <a href="{{ route('pemerintahan-mui.index') }}" class="btn btn-danger">Batal</a>
                             </div>
 
 

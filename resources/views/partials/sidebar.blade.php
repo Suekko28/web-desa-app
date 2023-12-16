@@ -23,7 +23,7 @@
                 <li class="menu-title">Menu</li>
 
                 <li>
-                    <a href="calendar.html" class=" waves-effect">
+                    <a href="{{ route('index') }}" class=" waves-effect">
                         <i class=" fas fa-light fa-gauge"></i>
                         <span>Dashboard</span>
                     </a>
