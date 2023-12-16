@@ -15,3 +15,11 @@
 a {
     text-decoration: none;
 }
+
+/* CSS untuk menyesuaikan jarak antara tombol */
+.dataTables_wrapper .btn {
+    margin-right: 10px; /* Sesuaikan angka ini sesuai kebutuhan jarak horizontal antar tombol */
+    
+}
+
+
