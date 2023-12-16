@@ -146,9 +146,9 @@
                                             Dusun</label>
                                         <select class="form-control" name="dusun" id="dusun">
                                             <option value="">--Pilih Salah Satu--</option>
-                                            <option value="1" @if ($data->dusun == '1') @endif>Dusun 1</option>
-                                            <option value="2" @if ($data->dusun == '2') @endif>Dusun 2</option>
-                                            <option value="3" @if ($data->dusun == '3') @endif>Dusun 3</option>
+                                            <option value="1" @if ($data->dusun == '1') selected @endif>Dusun 1</option>
+                                            <option value="2" @if ($data->dusun == '2') selected @endif>Dusun 2</option>
+                                            <option value="3" @if ($data->dusun == '3') selected @endif>Dusun 3</option>
                                         </select>
                                     </div>
 
@@ -166,7 +166,7 @@
 
                                     <div class="col-sm-12">
                                         <label for="alamat" class="col-form-label">Alamat</label>
-                                        <textarea type="text" class="form-control" id="alamat" name="alamat" rows="5" value="{{$data->alamat}}" placeholder="Alamat Lengkap (Jl / Kampung  No.Rumah"></textarea>
+                                        <textarea type="text" class="form-control" id="alamat" name="alamat" rows="5" placeholder="Alamat Lengkap (Jl / Kampung  No.Rumah">{{$data->alamat}}</textarea>
                                     </div>
                                 </div>
                             </div>
