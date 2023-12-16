@@ -28,6 +28,8 @@ class PendudukDataTable extends DataTable
         $actionBtn .= '<a href="javascript:void(0)" onclick="confirmDelete($(this))"
             route="' . route('penduduk.index') . '/{{ $id }}" class="btn btn-danger mt-2"><i class="fa-solid fa-trash-can"></i></a>';
 
+        $actionBtn .= '<a href="javascript:void(0)" onclick="confirmDelete($(this))"
+        route="' . route('penduduk.index') . '/{{ $id }}" class="btn btn-danger mt-2"><i class="fa-solid fa-eye"></i></a>';
         $actionBtn.='</div>';
 
         return (new EloquentDataTable($query))
@@ -65,9 +67,12 @@ class PendudukDataTable extends DataTable
     public function html(): HtmlBuilder
     {
         $btn = [
-            Button::make('add'),
-            Button::make('export'),
-
+            Button::make('add')->text('+ Tambah Data'),
+            Button::make('export')->text('Export Data'),
+            [
+                'text'      => 'Import Data',
+                'className' => 'btn-info',
+            ],
         ];
         return $this->builder()
                     ->setTableId('penduduk-desa-table')
