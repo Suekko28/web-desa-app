@@ -32,8 +32,13 @@ class PendudukController extends Controller
      */
     public function store(Request $request)
     {
+        
         $data=$request->all();
+        $temp=Penduduk::find(1);
+        dd($temp->agama);
+
         Penduduk::create($data);
+        
         return redirect()->route('penduduk.index')->with('success','data berhasil ditambahkan');
     
     }

@@ -47,13 +47,27 @@ class PendudukDataTable extends DataTable
         return $model->newQuery()
         ->select(
             'penduduk.id as id',
+            'penduduk.tgl_pindah_masuk as tgl_pindah_masuk',
+            'penduduk.tgl_lapor as tgl_lapor',
+            'penduduk.NIK as NIK',
+            'penduduk.NKK as NKK',
             'penduduk.nama as nama',
-            'penduduk.jabatan as jabatan',
-            \DB::raw('CASE WHEN jenis_kelamin = 1 THEN "Laki-Laki" ELSE "Perempuan" END AS jenis_kelamin'),
-            'penduduk.tmpt_lahir as tmpt_lahir',
+            'penduduk.tempat_lahir as tempat_lahir',
             'penduduk.tgl_lahir as tgl_lahir',
+            'penduduk.jenis_kelamin as jenis_kelamin',
+            'penduduk.agama as agama',
+            'penduduk.kewarganegaraan as kewarganegaraan',
+            'penduduk.status_pernikahan as status_pernikahan',
+            'penduduk.dusun as dusun',
+            'penduduk.rt as rt',
+            'penduduk.rw as rw',
             'penduduk.alamat as alamat',
-            'penduduk.updated_at as updated_at',
+            'penduduk.pendidikan as pendidikan',
+            'penduduk.pekerjaan as pekerjaan',
+            'penduduk.kepemilikan_bpjs as kepemilikan_bpjs',
+            'penduduk.kepemilikan_e_ktp as kepemilikan_e_ktp',
+            'penduduk.nama_ibu as nama_ibu',
+            'penduduk.nama_ayah as nama_ayah',
         );
     }
 
@@ -88,13 +102,26 @@ class PendudukDataTable extends DataTable
         return [
             Column::make('id')
                 ->width(10),
+            Column::make('tgl_pindah_masuk'),
+            Column::make('tgl_lapor'),
+            Column::make('NIK'),
+            Column::make('NKK'),
             Column::make('nama'),
-            Column::make('jabatan'),
-            Column::make('jenis_kelamin'),
-            Column::make('tmpt_lahir'),
+            Column::make('tempat_lahir'),
             Column::make('tgl_lahir'),
+            Column::make('jenis_kelamin'),
+            Column::make('agama'),
+            Column::make('kewarganegaraan'),
+            Column::make('status_pernikahan'),
+            Column::make('dusun'),
+            Column::make('rt'),
             Column::make('alamat'),
-            Column::make('updated_at'),
+            Column::make('pendidikan'),
+            Column::make('pekerjaan'),
+            Column::make('kepemilikan_bpjs'),
+            Column::make('kepemilikan_e_ktp'),
+            Column::make('nama_ibu'),
+            Column::make('nama_ayah'),
             Column::computed('action')
                 ->exportable(false)
                 ->printable(false)

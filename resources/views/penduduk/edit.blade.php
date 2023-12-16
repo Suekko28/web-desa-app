@@ -32,7 +32,7 @@
 
                 <!-- Small boxes (Stat box) -->
 
-                <form action="{{ url('/admin/kegiatan') }}" method="post" enctype="multipart/form-data">
+                <form action="{{ route('penduduk.store') }}" method="POST" enctype="multipart/form-data">
                     @csrf
                     <div class="card">
                         <div class="card-body">
@@ -41,14 +41,14 @@
                                     <div class="col-sm-6">
                                         <label for="nama1" class="col-form-label">Tanggal Pindah
                                             Masuk</label>
-                                        <input type="date" class="form-control" id="tgl_msk" name="tgl_msk"
-                                            placeholder="">
+                                        <input type="date" class="form-control" id="tgl_pindah_masuk" name="tgl_pindah_masuk"
+                                            value="{{ $data->tgl_pindah_masuk }}">
                                     </div>
 
                                     <div class="col-sm-6">
                                         <label for="nama2" class="col-form-label">Tanggal Lapor</label>
-                                        <input type="date" class="form-control" id="tgl_lpr" name="tgl_lpr"
-                                            placeholder="">
+                                        <input type="date" class="form-control" id="tgl_lapor" name="tgl_lapor"
+                                            value="{{ $data->tgl_lapor }}">
                                     </div>
                                 </div>
 
@@ -61,46 +61,40 @@
                                 <div class="row">
                                     <div class="col-sm-4">
                                         <label for="nik" class="col-form-label">NIK</label>
-                                        <input type="text" class="form-control" id="nik" name="nik"
-                                            placeholder="Nomor KTP">
+                                        <input type="text" class="form-control" id="NIK" name="NIK"
+                                            value="{{$data->NIK}}">
                                     </div>
 
                                     <div class="col-sm-4">
                                         <label for="nkk" class="col-form-label">NKK</label>
-                                        <input type="text" class="form-control" id="nkk" name="nkk"
-                                            placeholder="Nomor KK">
+                                        <input type="text" class="form-control" id="NKK" name="NKK"
+                                            value="{{$data->NKK}}">
                                     </div>
 
                                     <div class="col-sm-4">
                                         <label for="nama" class="col-form-label">Nama Lengkap</label>
                                         <input type="text" class="form-control" id="nama" name="nama"
-                                            placeholder="Nama Sesuai KTP">
+                                            placeholder="Nama Sesuai KTP" value="{{$data->nama}}">
                                     </div>
 
                                     <div class="col-sm-4">
                                         <label for="tmpt_lhr" class="col-form-label">Tempat Lahir</label>
-                                        <input type="text" class="form-control" id="nama1" name="nik"
-                                            placeholder="Tempat Lahir">
+                                        <input type="text" class="form-control" id="nama1" name="tempat_lahir"
+                                            placeholder="Tempat Lahir" value="{{$data->tempat_lahir}}">
                                     </div>
 
                                     <div class="col-sm-4">
                                         <label for="tgl_lhr" class="col-form-label">Tanggal Lahir</label>
-                                        <input type="date" class="form-control" id="tgl_lhr" name="tgl_lhr"
-                                            placeholder="">
-                                    </div>
-
-                                    <div class="col-sm-4">
-                                        <label for="usia" class="col-form-label">Usia</label>
-                                        <input type="text" class="form-control" id="usia" name="usia"
-                                            placeholder="Usia Anda">
+                                        <input type="date" class="form-control" id="tgl_lhr" name="tgl_lahir"
+                                            placeholder="" value="{{$data->tgl_lahir}}">
                                     </div>
 
                                     <div class="col-sm-6">
                                         <label for="jenis_kelamin" class="col-form-label">Jenis Kelamin</label>
                                         <select class="form-control" name="jenis_kelamin" id="jenis_kelamin">
                                             <option value="0">--Pilih Salah Satu--</option>
-                                            <option value="1">Laki-Laki</option>
-                                            <option value="2">Perempuan</option>
+                                            <option value="1" @if ($data->jenis_kelamin == 'laki-laki') selected @endif>Laki-Laki</option>
+                                            <option value="2" @if ($data->jenis_kelamin == 'perempuan') selected @endif>Perempuan</option>
                                         </select>
                                     </div>
 
@@ -108,34 +102,34 @@
                                         <label for="agama" class="col-form-label">Agama</label>
                                         <select class="form-control" name="agama" id="agama">
                                             <option value="">--Pilih Salah Satu--</option>
-                                            <option value="1">Islam</option>
-                                            <option value="2">Kristen Protestan</option>
-                                            <option value="3">Kristen Katolik</option>
-                                            <option value="4">Hindu</option>
-                                            <option value="5">Buddha</option>
-                                            <option value="6">Khonghucu</option>
+                                            <option value="1" @if ($data->agama == 'islam') selected @endif>Islam</option>
+                                            <option value="2" @if ($data->agama == 'kristen protestan') selected @endif>Kristen Protestan</option>
+                                            <option value="3" @if ($data->agama == 'kristen katholik') selected @endif>Kristen Katholik</option>
+                                            <option value="4" @if ($data->agama == 'hindu') selected @endif>Hindu</option>
+                                            <option value="5" @if ($data->agama == 'buddha') selected @endif>Buddha</option>
+                                            <option value="6" @if ($data->agama == 'khonghucu') selected @endif>Khonghucu</option>
                                         </select>
                                     </div>
 
                                     <div class="col-sm-6">
                                         <label for="warga_negara" class="col-form-label">Warga Negara</label>
-                                        <select class="form-control" name="warga_negara" id="warga_negara">
+                                        <select class="form-control" name="kewarganegaraan" id="warga_negara">
                                             <option value="">--Pilih Salah Satu--</option>
-                                            <option value="1">WNI</option>
-                                            <option value="2">WNA</option>
-                                            <option value="3">Kedua Kewarganegaraan</option>
+                                            <option value="1" @if ($data->kewarganegaraan == 'WNI') selected @endif>WNI</option>
+                                            <option value="2" @if ($data->kewarganegaraan == 'WNA') selected @endif>WNA</option>
+                                            <option value="3" @if ($data->kewarganegaraan == 'Kedua Kewarganegaraan') selected @endif>Kedua Kewarganegaraan</option>
                                         </select>
                                     </div>
 
                                     <div class="col-sm-6">
                                         <label for="status_nikah" class="col-form-label">Status
                                             Pernikahan</label>
-                                        <select class="form-control" name="status_nikah" id="status_nikah">
+                                        <select class="form-control" name="status_pernikahan" id="status_nikah">
                                             <option value="">--Pilih Salah Satu--</option>
-                                            <option value="1">Belum Kawin</option>
-                                            <option value="2">Kawin</option>
-                                            <option value="3">Cerai Hidup</option>
-                                            <option value="4">Cerai Mati</option>
+                                            <option value="1" @if ($data->status_pernikahan == 'belum kawin') selected @endif>Belum Kawin</option>
+                                            <option value="2" @if ($data->status_pernikahan == 'kawin') selected @endif>Kawin</option>
+                                            <option value="3" @if ($data->status_pernikahan == 'cerai hidup') selected @endif>Cerai Hidup</option>
+                                            <option value="4" @if ($data->status_pernikahan == 'cerai mati') selected @endif>Cerai Mati</option>
                                         </select>
                                     </div>
                                 </div>
@@ -152,27 +146,27 @@
                                             Dusun</label>
                                         <select class="form-control" name="dusun" id="dusun">
                                             <option value="">--Pilih Salah Satu--</option>
-                                            <option value="1">Dusun 1</option>
-                                            <option value="2">Dusun 2</option>
-                                            <option value="3">Dusun 3</option>
+                                            <option value="1" @if ($data->dusun == '1') @endif>Dusun 1</option>
+                                            <option value="2" @if ($data->dusun == '2') @endif>Dusun 2</option>
+                                            <option value="3" @if ($data->dusun == '3') @endif>Dusun 3</option>
                                         </select>
                                     </div>
 
                                     <div class="col-sm-4">
                                         <label for="rt" class="col-form-label">RT</label>
                                         <input type="text" class="form-control" id="rt" name="rt"
-                                            placeholder="000">
+                                            placeholder="000" value="{{$data->rt}}">
                                     </div>
 
                                     <div class="col-sm-4">
                                         <label for="rw" class="col-form-label">RW</label>
                                         <input type="text" class="form-control" id="rw" name="rw"
-                                            placeholder="000">
+                                            placeholder="000" value="{{$data->rw}}">
                                     </div>
 
                                     <div class="col-sm-12">
                                         <label for="alamat" class="col-form-label">Alamat</label>
-                                        <textarea type="text" class="form-control" id="alamat" name="alamat" rows="5" placeholder="Alamat Lengkap (Jl / Kampung  No.Rumah"></textarea>
+                                        <textarea type="text" class="form-control" id="alamat" name="alamat" rows="5" value="{{$data->alamat}}" placeholder="Alamat Lengkap (Jl / Kampung  No.Rumah"></textarea>
                                     </div>
                                 </div>
                             </div>
@@ -190,37 +184,37 @@
                                             Pendidikan</label>
                                         <select class="form-control" name="pendidikan" id="pendidikan">
                                             <option value="">--Pilih Salah Satu--</option>
-                                            <option value="1">Tidak/Belum Sekolah</option>
-                                            <option value="2">SD Sederajat</option>
-                                            <option value="3">SLTP Sederajat</option>
-                                            <option value="4">SLTA Sederajat</option>
-                                            <option value="5">Diploma I</option>
-                                            <option value="6">Diploma II</option>
-                                            <option value="7">Diploma III</option>
-                                            <option value="8">Diploma IV</option>
-                                            <option value="9">Stara I</option>
-                                            <option value="10">Stara II</option>
-                                            <option value="11">Stara III</option>
+                                            <option value="1" @if ($data->pendidikan == 'tidak sekolah') selected @endif >Tidak/Belum Sekolah</option>
+                                            <option value="2" @if ($data->pendidikan == 'SD') selected @endif>SD Sederajat</option>
+                                            <option value="3" @if ($data->pendidikan == 'SLTP Sederajat') selected @endif>SLTP Sederajat</option>
+                                            <option value="4" @if ($data->pendidikan == 'SLTA Sederajat') selected @endif>SLTA Sederajat</option>
+                                            <option value="5" @if ($data->pendidikan == 'Diploma 1') selected @endif>Diploma I</option>
+                                            <option value="6" @if ($data->pendidikan == 'Diploma 2') selected @endif>Diploma II</option>
+                                            <option value="7" @if ($data->pendidikan == 'Diploma 3') selected @endif>Diploma III</option>
+                                            <option value="8" @if ($data->pendidikan == 'Diploma 4') selected @endif>Diploma IV</option>
+                                            <option value="9" @if ($data->pendidikan == 'Stara 1') selected @endif>Stara I</option>
+                                            <option value="10" @if ($data->pendidikan == 'Stara 2') selected @endif>Stara II</option>
+                                            <option value="11" @if ($data->pendidikan == 'Stara 3') selected @endif>Stara III</option>
                                         </select>
                                     </div>
 
                                     <div class="col-sm-6">
                                         <label for="pekerjaan" class="col-form-label">Pekerjaan</label>
                                         <input type="text" class="form-control" id="pekerjaan" name="pekerjaan"
-                                            placeholder="Jenis Usaha">
+                                            placeholder="Jenis Usaha" value="{{$data->pekerjaan}}">
                                     </div>
 
                                     <div class="col-sm-6">
                                         <label for="bpjs" class="col-form-label">
                                             Kepemilikan BPJS</label>
-                                        <select class="form-control" class="bpjs" id="bpjs">
+                                        <select class="form-control" class="bpjs" name="kepemilikan_bpjs" id="bpjs">
                                             <option value="">--Pilih Salah Satu--</option>
-                                            <option value="1">PPU</option>
-                                            <option value="2">PBPU</option>
-                                            <option value="3">PD Pemda</option>
-                                            <option value="4">Bukan Pekerja</option>
-                                            <option value="5">PBI JK</option>
-                                            <option value="6">Tidak Ada</option>
+                                            <option value="1" @if ($data->kepemilikan_bpjs == 'PBI') selected @endif>PPU</option>
+                                            <option value="2" @if ($data->kepemilikan_bpjs == 'PBPU') selected @endif>PBPU</option>
+                                            <option value="3" @if ($data->kepemilikan_bpjs == 'PD Pemda') selected @endif>PD Pemda</option>
+                                            <option value="4" @if ($data->kepemilikan_bpjs == 'Bukan pekerja') selected @endif>Bukan Pekerja</option>
+                                            <option value="5" @if ($data->kepemilikan_bpjs == 'PBI JK') selected @endif>PBI JK</option>
+                                            <option value="6" @if ($data->kepemilikan_bpjs == 'Tidak ada') selected @endif>Tidak Ada</option>
 
                                         </select>
                                     </div>
@@ -228,10 +222,10 @@
                                     <div class="col-sm-6">
                                         <label for="e_ktp" class="col-form-label">
                                             Kepemilikan E-KTP</label>
-                                        <select class="form-control" class="e_ktp" id="e_ktp">
+                                        <select class="form-control" class="e_ktp" name="kepemilikan_e_ktp" id="e_ktp">
                                             <option value="">--Pilih Salah Satu--</option>
-                                            <option value="1">Ada</option>
-                                            <option value="2">Tidak Ada</option>
+                                            <option value="1" @if ($data->kepemilikan_e_ktp == 'ada') selected @endif>Ada</option>
+                                            <option value="2" @if ($data->kepemilikan_e_ktp == 'tidak ada') selected @endif>Tidak Ada</option>
                                         </select>
                                     </div>
                                 </div>
@@ -246,19 +240,19 @@
                                     <div class="col-sm-6">
                                         <label for="nama_ibu" class="col-form-label">Nama Ibu</label>
                                         <input type="text" class="form-control" id="nama_ibu" name="nama_ibu"
-                                            placeholder="Nama Ibu">
+                                            placeholder="Nama Ibu" value="{{$data->nama_ibu}}">
                                     </div>
 
                                     <div class="col-sm-6">
                                         <label for="nama_ayah" class="col-form-label">Nama Ayah</label>
                                         <input type="text" class="form-control" id="nama_ayah" name="nama_ayah"
-                                            placeholder="Nama Ayah">
+                                            placeholder="Nama Ayah" value="{{$data->nama_ayah}}">
                                     </div>
                                 </div>
                             </div>
                             <div class="d-flex flex-row-reverse">
                                 <button type="submit" class="btn btn-primary ml-3">Simpan</button>
-                                <a href="{{ url('/admin/kegiatan') }}" class="btn btn-danger">Batal</a>
+                                <a href="{{ route('penduduk.index') }}" class="btn btn-danger">Batal</a>
                             </div>
 
                         </div>

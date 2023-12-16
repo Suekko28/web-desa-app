@@ -32,7 +32,7 @@
 
                 <!-- Small boxes (Stat box) -->
 
-                <form action="{{ url('/admin/kegiatan') }}" method="post" enctype="multipart/form-data">
+                <form action="{{ route('penduduk.store') }}" method="POST" enctype="multipart/form-data">
                     @csrf
                     <div class="card">
                         <div class="card-body">
@@ -41,13 +41,13 @@
                                     <div class="col-sm-6">
                                         <label for="nama1" class="col-form-label">Tanggal Pindah
                                             Masuk</label>
-                                        <input type="date" class="form-control" id="tgl_msk" name="tgl_msk"
+                                        <input type="date" class="form-control" id="tgl_pindah_masuk" name="tgl_pindah_masuk"
                                             placeholder="">
                                     </div>
 
                                     <div class="col-sm-6">
                                         <label for="nama2" class="col-form-label">Tanggal Lapor</label>
-                                        <input type="date" class="form-control" id="tgl_lpr" name="tgl_lpr"
+                                        <input type="date" class="form-control" id="tgl_lapor" name="tgl_lapor"
                                             placeholder="">
                                     </div>
                                 </div>
@@ -61,13 +61,13 @@
                                 <div class="row">
                                     <div class="col-sm-4">
                                         <label for="nik" class="col-form-label">NIK</label>
-                                        <input type="text" class="form-control" id="nik" name="nik"
+                                        <input type="text" class="form-control" id="NIK" name="NIK"
                                             placeholder="Nomor KTP">
                                     </div>
 
                                     <div class="col-sm-4">
                                         <label for="nkk" class="col-form-label">NKK</label>
-                                        <input type="text" class="form-control" id="nkk" name="nkk"
+                                        <input type="text" class="form-control" id="NKK" name="NKK"
                                             placeholder="Nomor KK">
                                     </div>
 
@@ -79,20 +79,14 @@
 
                                     <div class="col-sm-4">
                                         <label for="tmpt_lhr" class="col-form-label">Tempat Lahir</label>
-                                        <input type="text" class="form-control" id="nama1" name="nik"
+                                        <input type="text" class="form-control" id="nama1" name="tempat_lahir"
                                             placeholder="Tempat Lahir">
                                     </div>
 
                                     <div class="col-sm-4">
                                         <label for="tgl_lhr" class="col-form-label">Tanggal Lahir</label>
-                                        <input type="date" class="form-control" id="tgl_lhr" name="tgl_lhr"
+                                        <input type="date" class="form-control" id="tgl_lhr" name="tgl_lahir"
                                             placeholder="">
-                                    </div>
-
-                                    <div class="col-sm-4">
-                                        <label for="usia" class="col-form-label">Usia</label>
-                                        <input type="text" class="form-control" id="usia" name="usia"
-                                            placeholder="Usia Anda">
                                     </div>
 
                                     <div class="col-sm-6">
@@ -119,7 +113,7 @@
 
                                     <div class="col-sm-6">
                                         <label for="warga_negara" class="col-form-label">Warga Negara</label>
-                                        <select class="form-control" name="warga_negara" id="warga_negara">
+                                        <select class="form-control" name="kewarganegaraan" id="warga_negara">
                                             <option value="">--Pilih Salah Satu--</option>
                                             <option value="1">WNI</option>
                                             <option value="2">WNA</option>
@@ -130,7 +124,7 @@
                                     <div class="col-sm-6">
                                         <label for="status_nikah" class="col-form-label">Status
                                             Pernikahan</label>
-                                        <select class="form-control" name="status_nikah" id="status_nikah">
+                                        <select class="form-control" name="status_pernikahan" id="status_nikah">
                                             <option value="">--Pilih Salah Satu--</option>
                                             <option value="1">Belum Kawin</option>
                                             <option value="2">Kawin</option>
@@ -213,7 +207,7 @@
                                     <div class="col-sm-6">
                                         <label for="bpjs" class="col-form-label">
                                             Kepemilikan BPJS</label>
-                                        <select class="form-control" class="bpjs" id="bpjs">
+                                        <select class="form-control" class="bpjs" name="kepemilikan_bpjs" id="bpjs">
                                             <option value="">--Pilih Salah Satu--</option>
                                             <option value="1">PPU</option>
                                             <option value="2">PBPU</option>
@@ -228,7 +222,7 @@
                                     <div class="col-sm-6">
                                         <label for="e_ktp" class="col-form-label">
                                             Kepemilikan E-KTP</label>
-                                        <select class="form-control" class="e_ktp" id="e_ktp">
+                                        <select class="form-control" class="e_ktp" name="kepemilikan_e_ktp" id="e_ktp">
                                             <option value="">--Pilih Salah Satu--</option>
                                             <option value="1">Ada</option>
                                             <option value="2">Tidak Ada</option>
@@ -258,7 +252,7 @@
                             </div>
                             <div class="d-flex flex-row-reverse">
                                 <button type="submit" class="btn btn-primary ml-3">Simpan</button>
-                                <a href="{{ url('/admin/kegiatan') }}" class="btn btn-danger">Batal</a>
+                                <a href="{{ route('penduduk.index') }}" class="btn btn-danger">Batal</a>
                             </div>
 
                         </div>

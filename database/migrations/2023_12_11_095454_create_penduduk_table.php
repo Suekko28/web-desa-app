@@ -13,12 +13,27 @@ return new class extends Migration
     {
         Schema::create('penduduk', function (Blueprint $table) {
             $table->id();
+            $table->date('tgl_pindah_masuk');
+            $table->date('tgl_lapor');
+            $table->string('NIK');
+            $table->string('NKK');
             $table->string('nama');
-            $table->string('jabatan');
-            $table->string('tmpt_lahir');
-            $table->integer('jenis_kelamin');
+            $table->string('tempat_lahir');
             $table->date('tgl_lahir');
+            $table->integer('jenis_kelamin');// laki-laki,perempuan
+            $table->integer('agama'); //islam,kristen protestan,kristen katholik,hindu,budha,konghucu
+            $table->integer('kewarganegaraan'); //WNI,WNA,Kedua Kewarganegaraan
+            $table->integer('status_pernikahan'); //belum kawin,kawin,cerai hidup,cerai mati
+            $table->string('dusun');
+            $table->string('rt');
+            $table->string('rw');
             $table->string('alamat');
+            $table->integer('pendidikan');//tidak sekolah,SD,SLTP,SLTA,diploma 1,diploma 2,diploma 3,diploma 4
+            $table->string('pekerjaan');
+            $table->integer('kepemilikan_bpjs');
+            $table->integer('kepemilikan_e_ktp');
+            $table->string('nama_ibu');
+            $table->string('nama_ayah');
             $table->timestamps();
         });
     }
