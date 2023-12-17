@@ -4,6 +4,7 @@ namespace App\Imports;
 
 use App\Models\Penduduk;
 use Maatwebsite\Excel\Concerns\ToModel;
+use Carbon\Carbon;
 
 class PendudukImport implements ToModel
 {
@@ -14,7 +15,10 @@ class PendudukImport implements ToModel
     */
     public function model(array $row)
     {  
-        // dd($row);
+        if ($row[0]=='Id') {
+            return null;
+        }
+  
         return new Penduduk([
             'tgl_pindah_masuk'=>$row[1],
             'tgl_lapor'=>$row[2],
