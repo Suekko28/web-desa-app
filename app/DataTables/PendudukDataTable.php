@@ -107,26 +107,11 @@ class PendudukDataTable extends DataTable
         return [
             Column::make('id')
                 ->width(10),
-            Column::make('tgl_pindah_masuk'),
-            Column::make('tgl_lapor'),
             Column::make('NIK'),
             Column::make('NKK'),
             Column::make('nama'),
-            Column::make('tempat_lahir'),
-            Column::make('tgl_lahir'),
-            Column::make('jenis_kelamin'),
-            Column::make('agama'),
-            Column::make('kewarganegaraan'),
-            Column::make('status_pernikahan'),
-            Column::make('dusun'),
             Column::make('rt'),
-            Column::make('alamat'),
-            Column::make('pendidikan'),
-            Column::make('pekerjaan'),
-            Column::make('kepemilikan_bpjs'),
-            Column::make('kepemilikan_e_ktp'),
-            Column::make('nama_ibu'),
-            Column::make('nama_ayah'),
+            Column::make('rw'),
             Column::computed('action')
                 ->exportable(false)
                 ->printable(false)

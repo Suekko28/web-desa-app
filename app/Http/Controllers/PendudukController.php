@@ -35,7 +35,6 @@ class PendudukController extends Controller
         
         $data=$request->all();
         $temp=Penduduk::find(1);
-        dd($temp->agama);
 
         Penduduk::create($data);
         
