@@ -30,17 +30,16 @@ class PemerintahanKarangTarunaController extends Controller
      */
     public function store(PemerintahanKarangTarunaRequest $request)
     {
-        $path = public_path('images/');
-        !is_dir($path) &&
-            mkdir($path, 0777, true);
-        $imageName = time(). '_'.$request->nama . '.' . $request->profile->extension();
-        $request->profile->move($path, $imageName);
+        $image = $request->file('profile');
+        $nama_image = rand() . $image->getClientOriginalName();
+        $image->storeAs('public/karangtaruna', $nama_image);
 
-        $data=$request->all();
-        $data['profile']=$imageName;
-        
+        $data = $request->all();
+        $data['profile'] = $nama_image;
+
+
         PemerintahanKarangTaruna::create($data);
-        return redirect()->route('pemerintahan-karangtaruna.index')->with('success','data berhasil ditambahkan');
+        return redirect()->route('pemerintahan-karang-taruna.index')->with('success', 'data berhasil ditambahkan');
     }
 
     /**
@@ -54,12 +53,12 @@ class PemerintahanKarangTarunaController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(String $id)
+    public function edit(string $id)
     {
-        $user=PemerintahanKarangTaruna::find($id);
-        return view('pemerintahan-karangtaruna.edit',[
-                    "data"=>$user,
-            ]);
+        $user = PemerintahanKarangTaruna::find($id);
+        return view('pemerintahan-karangtaruna.edit', [
+            "data" => $user,
+        ]);
     }
 
     /**
@@ -67,8 +66,24 @@ class PemerintahanKarangTarunaController extends Controller
      */
     public function update(PemerintahanKarangTarunaRequest $request, string $id)
     {
-        $user=PemerintahanKarangTaruna::find($id)->update($request->all());
-        return redirect()->route('pemerintahan-karangtaruna.index')->with('success','data berhasil diubah'); 
+        $user = PemerintahanKarangTaruna::find($id);
+    
+        // Check if a new image is uploaded
+        if ($request->hasFile('profile')) {
+            $image = $request->file('profile');
+            $extension = $image->getClientOriginalExtension(); // Get the file extension
+            $nama_image = time() . '_' . uniqid() . '.' . $extension;
+    
+            // Move the uploaded file to the storage location
+            $image->storeAs('public/karangtaruna', $nama_image);
+    
+            // Update the profile field with the new filename
+            $user->update(['profile' => $nama_image]);
+        }
+    
+        // Update other fields based on the request
+        $user->update($request->except('profile'));
+        return redirect()->route('pemerintahan-karang-taruna.index')->with('success', 'data berhasil diubah');
     }
 
     /**
@@ -76,7 +91,7 @@ class PemerintahanKarangTarunaController extends Controller
      */
     public function destroy(string $id)
     {
-        $user=PemerintahanKarangTaruna::find($id)->delete();
-        return redirect()->route('pemerintahan-karangtaruna.index')->with('success','data berhasil dihapus'); 
+        $user = PemerintahanKarangTaruna::find($id)->delete();
+        return redirect()->route('pemerintahan-karang-taruna.index')->with('success', 'data berhasil dihapus');
     }
 }

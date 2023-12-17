@@ -39,7 +39,7 @@
                     <div class="card-body">
                         <h5 class="mt-0 mb-4 text-white">Jumlah Penduduk</h5>
                         <div class="d-flex justify-content-between">
-                            <h1 class="text-white">1</h1>
+                            <h1 class="text-white">{{$penduduk->count()}}</h1>
                             <i class="fas fa-solid fa-users fa-3x" style="color:white;"></i>
                         </div>
                     </div>
@@ -51,7 +51,7 @@
                     <div class="card-body">
                         <h5 class="mt-0 mb-4 text-white">Jumlah Laki-Laki</h5>
                         <div class="d-flex justify-content-between">
-                            <h1 class="text-white">1</h1>
+                            <h1 class="text-white">{{$jumlah_laki_laki->count()}}</h1>
                             <iconify-icon icon="mdi:face-man" width="50" height="50"
                                 style="color:white;"></iconify-icon>
                         </div>
@@ -64,7 +64,7 @@
                     <div class="card-body">
                         <h5 class="mt-0 mb-4 text-white">Jumlah Perempuan</h5>
                         <div class="d-flex justify-content-between">
-                            <h1 class="text-white">1</h1>
+                            <h1 class="text-white">{{$jumlah_perempuan->count()}}</h1>
                             <iconify-icon icon="mdi:face-female" width="50" height="50"
                                 style="color:white;"></iconify-icon>
                         </div>
@@ -119,14 +119,14 @@
                         <i class="fas fa-solid fa-user fa-2x mr-3 p-3 bg-primary rounded" style="color:white;"></i>
                         <div class="d-flex flex-column">
                             <h5 class="">Total Penduduk</h5>
-                            <h5>1</h5>
+                            <h5 class="">{{$penduduk->count()}}</h5>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
 
-        <div class="row">
+        {{-- <div class="row">
             <div class="col-lg-6">
                 <div class="card">
                     <div class="card-body">
@@ -285,7 +285,7 @@
                 </div>
             </div>
             <!-- end col -->
-        </div>
+        </div> --}}
 
 
         <!-- end col -->

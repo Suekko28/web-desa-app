@@ -30,14 +30,13 @@ class PemerintahanSahbandarController extends Controller
      */
     public function store(PemerintahanSahbandarRequest $request)
     {
-        $path = public_path('images/');
-        !is_dir($path) &&
-            mkdir($path, 0777, true);
-        $imageName = time(). '_'.$request->nama . '.' . $request->profile->extension();
-        $request->profile->move($path, $imageName);
-
+       
+        $image=$request->file('profile');
+        $nama_image=rand().$image->getClientOriginalName();
+        $image->storeAs('public/sahbandar', $nama_image);
+        
         $data=$request->all();
-        $data['profile']=$imageName;
+        $data['profile']=$nama_image;
         
         PemerintahanSahbandar::create($data);
         return redirect()->route('pemerintahan-sahbandar.index')->with('success','data berhasil ditambahkan');
@@ -67,7 +66,21 @@ class PemerintahanSahbandarController extends Controller
      */
     public function update(PemerintahanSahbandarRequest $request, string $id)
     {
-        $user=PemerintahanSahbandar::find($id)->update($request->all());
+        $user = PemerintahanSahbandar::find($id);
+    
+        // Check if a new image is uploaded
+        if ($request->hasFile('profile')) {
+            $image = $request->file('profile');
+            $extension = $image->getClientOriginalExtension(); // Get the file extension
+            $nama_image = time() . '_' . uniqid() . '.' . $extension;
+    
+            // Move the uploaded file to the storage location
+            $image->storeAs('public/sahbandar', $nama_image);
+    
+            // Update the profile field with the new filename
+            $user->update(['profile' => $nama_image]);
+        }
+    
         return redirect()->route('pemerintahan-sahbandar.index')->with('success','data berhasil diubah'); 
     }
 

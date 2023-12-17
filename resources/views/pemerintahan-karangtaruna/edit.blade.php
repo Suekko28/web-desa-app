@@ -32,7 +32,7 @@
 
             <!-- Small boxes (Stat box) -->
 
-            <form action="{{ route('pemerintahan-desa.update', $data->id) }}" method="post" enctype="multipart/form-data">
+            <form action="{{ route('pemerintahan-karang-taruna.update', $data->id) }}" method="post" enctype="multipart/form-data">
                 @method('PUT')
                 @csrf
                 <div class="card">
@@ -46,7 +46,7 @@
                                 <div class="col-sm-4">
                                     <label for="profile" class="col-form-label">Profile</label>
                                     <input type="file" class="form-control" id="profile" name="profile" placeholder="">
-                                    <div>current :  <a href="">{{$data->profile}}</a> </div>
+                                    <div>current : <a href="{{ asset('storage/karangtaruna/' . $data->profile) }}">{{ $data->profile }}</a></div>
                                 </div>
                                 <div class="col-sm-4">
                                     <label for="name" class="col-form-label">Nama Lengkap</label>
@@ -93,7 +93,7 @@
 
                         <div class="d-flex flex-row-reverse">
                             <button type="submit" class="btn btn-primary ml-3">Simpan</button>
-                            <a href="{{ route('pemerintahan-karangtaruna.index') }}" class="btn btn-danger">Batal</a>
+                            <a href="{{ route('pemerintahan-karang-taruna.index') }}" class="btn btn-danger">Batal</a>
                         </div>
 
 

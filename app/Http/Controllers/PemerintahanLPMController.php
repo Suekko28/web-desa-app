@@ -31,14 +31,12 @@ class PemerintahanLPMController extends Controller
      */
     public function store(PemerintahanLPMRequest $request)
     {
-        $path = public_path('images/');
-        !is_dir($path) &&
-            mkdir($path, 0777, true);
-        $imageName = time(). '_'.$request->nama . '.' . $request->profile->extension();
-        $request->profile->move($path, $imageName);
-
+        $image=$request->file('profile');
+        $nama_image=rand().$image->getClientOriginalName();
+        $image->storeAs('public/lpm', $nama_image);
+        
         $data=$request->all();
-        $data['profile']=$imageName;
+        $data['profile']=$nama_image;
         
         PemerintahanLPM::create($data);
         return redirect()->route('pemerintahan-lpm.index')->with('success','data berhasil ditambahkan');
@@ -68,7 +66,23 @@ class PemerintahanLPMController extends Controller
      */
     public function update(PemerintahanLPMRequest $request, string $id)
     {
-        $user=PemerintahanLPM::find($id)->update($request->all());
+        $user = PemerintahanLPM::find($id);
+    
+        // Check if a new image is uploaded
+        if ($request->hasFile('profile')) {
+            $image = $request->file('profile');
+            $extension = $image->getClientOriginalExtension(); // Get the file extension
+            $nama_image = time() . '_' . uniqid() . '.' . $extension;
+    
+            // Move the uploaded file to the storage location
+            $image->storeAs('public/lpm', $nama_image);
+    
+            // Update the profile field with the new filename
+            $user->update(['profile' => $nama_image]);
+        }
+    
+        // Update other fields based on the request
+        $user->update($request->except('profile'));
         return redirect()->route('pemerintahan-lpm.index')->with('success','data berhasil diubah'); 
     }
 

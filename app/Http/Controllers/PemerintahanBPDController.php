@@ -17,6 +17,7 @@ class PemerintahanBPDController extends Controller
      */
     public function index(PemerintahanBPDDataTable $dataTable)
     {
+
         return $dataTable->render('pemerintahan-BPD.index');
     }
 
@@ -35,7 +36,7 @@ class PemerintahanBPDController extends Controller
     {   
         $image=$request->file('profile');
         $nama_image=rand().$image->getClientOriginalName();
-        $image->storeAs('profile', $nama_image);
+        $image->storeAs('public/bpd', $nama_image);
         
         $data=$request->all();
         $data['profile']=$nama_image;
@@ -58,6 +59,7 @@ class PemerintahanBPDController extends Controller
      */
     public function edit(string $id)
     {
+        
         $user=PemerintahanBPD::find($id);
         return view('pemerintahan-BPD.edit',[
                     "data"=>$user,
@@ -69,9 +71,27 @@ class PemerintahanBPDController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        $user=PemerintahanBPD::find($id)->update($request->all());
-        return redirect()->route('pemerintahan-BPD.index')->with('success','Data berhasil diubah'); 
+        $user = PemerintahanBPD::find($id);
+    
+        // Check if a new image is uploaded
+        if ($request->hasFile('profile')) {
+            $image = $request->file('profile');
+            $extension = $image->getClientOriginalExtension(); // Get the file extension
+            $nama_image = time() . '_' . uniqid() . '.' . $extension;
+    
+            // Move the uploaded file to the storage location
+            $image->storeAs('public/bpd', $nama_image);
+    
+            // Update the profile field with the new filename
+            $user->update(['profile' => $nama_image]);
+        }
+    
+        // Update other fields based on the request
+        $user->update($request->except('profile'));
+    
+        return redirect()->route('pemerintahan-BPD.index')->with('success', 'Data berhasil diubah');
     }
+    
 
     /**
      * Remove the specified resource from storage.
