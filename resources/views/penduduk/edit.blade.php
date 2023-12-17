@@ -32,7 +32,8 @@
 
                 <!-- Small boxes (Stat box) -->
 
-                <form action="{{ route('penduduk.store') }}" method="POST" enctype="multipart/form-data">
+                <form action="{{ route('penduduk.update', $data->id )}}" method="POST" enctype="multipart/form-data">
+                    @method('PUT')
                     @csrf
                     <div class="card">
                         <div class="card-body">

@@ -20,16 +20,16 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Auth::routes();
+Auth::routes([
+    'reset'=>false,
+    'verify'=>false,
+]);
 
 Route::middleware(['auth'])->group(function(){
-    Route::get('/', function () {
-        return view('index');
-    });
+    Route::get('/',[\App\Http\Controllers\DashboardController::class,'index'])->name('index');
+
     
-    Route::get('/index', function () {
-        return view('index');
-    })->name('index');
+    Route::get('/index',[\App\Http\Controllers\DashboardController::class,'index'])->name('index');
 
     Route::Resource('/pemerintahan-desa',\App\Http\Controllers\PemerintahanDesaController::class);
     Route::Resource('/pemerintahan-BPD',\App\Http\Controllers\PemerintahanBPDController::class);
@@ -39,91 +39,7 @@ Route::middleware(['auth'])->group(function(){
     Route::Resource('/pemerintahan-sahbandar',\App\Http\Controllers\PemerintahanSahbandarController::class);
     Route::Resource('/pemerintahan-karang-taruna',\App\Http\Controllers\PemerintahanKarangTarunaController::class);
     Route::Resource('/pemerintahan-posyandu',\App\Http\Controllers\PemerintahanPosyanduController::class);
-    
+    Route::Get('/penduduk-import',[\App\Http\Controllers\PendudukController::class,'importPendudukView'])->name('penduduk.import-view');
+    Route::Post('/penduduk-import',[\App\Http\Controllers\PendudukController::class,'importPenduduk'])->name('penduduk.import');
     Route::Resource('/penduduk',\App\Http\Controllers\PendudukController::class);
 });
-
-
-// Route::get('/datapenduduk', function () {
-//     return view('admin.penduduk.index');
-// });
-
-// Route::get('/form', function () {
-//     return view('penduduk.create');
-// });
-
-
-
-// Route::get('/datapenduduk', function () {
-//     return view('penduduk.index');
-// });
-
-// Route::get('/datapenduduk/create', function () {
-//     return view('penduduk.create');
-// });
-
-// Route::get('/pemerintahandesa', function () {
-//     return view('pemerintahan-desa.index');
-// });
-
-// Route::get('/pemerintahandesa/create', function () {
-//     return view('pemerintahan-desa.create');
-// });
-
-// Route::get('/BPD', function () {
-//     return view('pemerintahan-BPD.index');
-// });
-
-// Route::get('/BPD/create', function () {
-//     return view('pemerintahan-BPD.create');
-// });
-
-// Route::get('/lpm', function () {
-//     return view('pemerintahan-lpm.index');
-// });
-
-// Route::get('/lpm/create', function () {
-//     return view('pemerintahan-lpm.create');
-// });
-
-// Route::get('/suratkependudukan', function () {
-//     return view('surat-kependudukan.index');
-// });
-
-
-
-// Route::get('/pemerintahandesa', function () {
-//     return view('admin.pemerintahan.desa.index');
-// });
-
-// Route::get('/pemerintahandesa/create', function () {
-//     return view('admin.pemerintahan.desa.create');
-// });
-
-// Route::get('/BPD', function () {
-//     return view('admin.pemerintahan.desa.index');
-// });
-
-// Route::get('/BPD/create', function () {
-//     return view('admin.pemerintahan.desa.create');
-// });
-
-// Route::get('/suratkependudukan', function () {
-//     return view('admin.surat.kependudukan.index');
-// });
-
-
-// Route::get('/suratkependudukan/create', function () {
-//     return view('admin.surat.kependudukan.create');
-// });
-
-//my credential
-//http://user:password@192.168.0.1:3128
-// Route::get('/admin/dashboard', function () {
-//     return view('dashboard');
-// });
-
-
-
-// Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('dashboard');
-

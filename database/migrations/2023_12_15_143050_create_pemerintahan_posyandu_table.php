@@ -19,6 +19,7 @@ return new class extends Migration
             $table->integer('jenis_kelamin');
             $table->date('tgl_lahir');
             $table->string('alamat');
+            $table->string('profile');
             $table->timestamps();
         });
     }

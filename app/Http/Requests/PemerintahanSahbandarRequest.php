@@ -22,6 +22,7 @@ class PemerintahanSahbandarRequest extends FormRequest
     public function rules(): array
     {
         return [
+            'profile' => ['required','image','mimes:jpeg,png,jpg','max:2048'],
             'nama'=>['required','string','max:100'],
             'jabatan'=>['required','string','max:100'],
             'tmpt_lahir'=>['required','string','max:100'],

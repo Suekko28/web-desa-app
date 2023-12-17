@@ -6,6 +6,8 @@ use App\DataTables\PemerintahanBPDDataTable;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\PemerintahanBPDFormRequest;
 use App\Models\PemerintahanBPD;
+use App\Models\Image;
+
 use Illuminate\Http\Request;
 
 class PemerintahanBPDController extends Controller
@@ -30,8 +32,16 @@ class PemerintahanBPDController extends Controller
      * Store a newly created resource in storage.
      */
     public function store(PemerintahanBPDFormRequest $request)
-    {
+    {   
+        $path = public_path('images/');
+        !is_dir($path) &&
+            mkdir($path, 0777, true);
+        $imageName = time(). '_'.$request->nama . '.' . $request->profile->extension();
+        $request->profile->move($path, $imageName);
+
         $data=$request->all();
+        $data['profile']=$imageName;
+        
         PemerintahanBPD::create($data);
         return redirect()->route('pemerintahan-BPD.index')->with('success','Data berhasil ditambahkan'); 
 

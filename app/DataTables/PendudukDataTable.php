@@ -28,8 +28,9 @@ class PendudukDataTable extends DataTable
         $actionBtn .= '<a href="javascript:void(0)" onclick="confirmDelete($(this))"
             route="' . route('penduduk.index') . '/{{ $id }}" class="btn btn-danger mt-2"><i class="fa-solid fa-trash-can"></i></a>';
 
-        $actionBtn .= '<a href="javascript:void(0)" onclick="confirmDelete($(this))"
-        route="' . route('penduduk.index') . '/{{ $id }}" class="btn btn-danger mt-2"><i class="fa-solid fa-eye"></i></a>';
+        $actionBtn.='<div class="col">
+        <a href="' . route('penduduk.index') . '/{{ $id }}" name="view" class="btn btn-warning mt-2"><i class="fa-solid fa-eye"></i></a>';
+        
         $actionBtn.='</div>';
 
         return (new EloquentDataTable($query))
@@ -83,11 +84,10 @@ class PendudukDataTable extends DataTable
         $btn = [
             Button::make('add')->text('+ Tambah Data'),
             Button::make('export')->text('Export Data'),
-            [
-                'text'      => 'Import Data',
-                'className' => 'btn-info',
-            ],
         ];
+        array_push($btn, Button::raw('Import Data')
+                    ->addClass('btn-info')
+                    ->action("window.location = '" . route('penduduk.import-view') . "';"));
         return $this->builder()
                     ->setTableId('penduduk-desa-table')
                     ->columns($this->getColumns())

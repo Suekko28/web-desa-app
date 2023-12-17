@@ -6,6 +6,9 @@ use App\DataTables\PendudukDataTable;
 use App\Http\Controllers\Controller;
 use App\Models\Penduduk;
 use Illuminate\Http\Request;
+use App\Http\Requests\PendudukFormRequest;
+use App\Imports\PendudukImport;
+use Maatwebsite\Excel\Facades\Excel;
 
 class PendudukController extends Controller
 {
@@ -14,9 +17,7 @@ class PendudukController extends Controller
      */
     public function index(PendudukDataTable $dataTable)
     {
-        //tes blade
         return $dataTable->render('penduduk.index');
-        // return $dataTable->render('penduduk-desa.index');
     }
 
     /**
@@ -34,8 +35,7 @@ class PendudukController extends Controller
     {
         
         $data=$request->all();
-        $temp=Penduduk::find(1);
-
+        
         Penduduk::create($data);
         
         return redirect()->route('penduduk.index')->with('success','data berhasil ditambahkan');
@@ -45,9 +45,13 @@ class PendudukController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Penduduk $penduduk)
+    public function show(string $id)
     {
-        abort(404);
+     $data=Penduduk::find($id);
+     
+     return view('penduduk.view',[
+        "data"=>$data,
+     ]);  
     }
 
     /**
@@ -55,29 +59,40 @@ class PendudukController extends Controller
      */
     public function edit(String $id)
     {
-        $user=Penduduk::find($id);
+        $data=Penduduk::find($id);
         return view('penduduk.edit',[
-                    "data"=>$user,
+                    "data"=>$data,
             ]);
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(PendudukFormRequest $request, string $id)
+    public function update(Request $request, string $id)
     {
-        $user=PemerintahanSahbandar::find($id)->update($request->all());
+        $user=Penduduk::find($id)->update($request->all());
         return redirect()->route('penduduk.index')->with('success','data berhasil diubah'); 
     
     }
 
+    public function importPendudukView(Request $request){
+        return view('penduduk.import-view');
+    }
+
+    public function importPenduduk(Request $request){
+       
+        $nama_file = rand().$request->file_import->getClientOriginalName();
+        $request->file_import->move('file_penduduk',$nama_file);
+        Excel::import(new PendudukImport, public_path("/file_penduduk/".$nama_file));
+        return redirect()->route('users.index')->with('success', 'User Imported Successfully');
+    }
     /**
      * Remove the specified resource from storage.
      */
     public function destroy(string $id)
     {
-        $user=PemerintahanSahbandar::find($id)->delete();
-        return redirect()->route('pemerintahan-sahbandar.index')->with('success','data berhasil dihapus'); 
+        $user=Penduduk::find($id)->delete();
+        return redirect()->route('penduduk.index')->with('success','data berhasil dihapus'); 
 
     }
 }

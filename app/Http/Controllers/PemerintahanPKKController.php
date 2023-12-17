@@ -30,7 +30,15 @@ class PemerintahanPKKController extends Controller
      */
     public function store(PemerintahanPKKRequest $request)
     {
+        $path = public_path('images/');
+        !is_dir($path) &&
+            mkdir($path, 0777, true);
+        $imageName = time(). '_'.$request->nama . '.' . $request->profile->extension();
+        $request->profile->move($path, $imageName);
+
         $data=$request->all();
+        $data['profile']=$imageName;
+        
         PemerintahanPKK::create($data);
         return redirect()->route('pemerintahan-pkk.index')->with('success','data berhasil ditambahkan');
     }
