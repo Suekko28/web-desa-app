@@ -30,14 +30,12 @@ class PemerintahanPKKController extends Controller
      */
     public function store(PemerintahanPKKRequest $request)
     {
-        $path = public_path('images/');
-        !is_dir($path) &&
-            mkdir($path, 0777, true);
-        $imageName = time(). '_'.$request->nama . '.' . $request->profile->extension();
-        $request->profile->move($path, $imageName);
-
+        $image=$request->file('profile');
+        $nama_image=rand().$image->getClientOriginalName();
+        $image->storeAs('public/pkk', $nama_image);
+        
         $data=$request->all();
-        $data['profile']=$imageName;
+        $data['profile']=$nama_image;
         
         PemerintahanPKK::create($data);
         return redirect()->route('pemerintahan-pkk.index')->with('success','data berhasil ditambahkan');
@@ -67,7 +65,23 @@ class PemerintahanPKKController extends Controller
      */
     public function update(PemerintahanPKKRequest $request, string $id)
     {
-        $user=PemerintahanPKK::find($id)->update($request->all());
+        $user = PemerintahanPKK::find($id);
+    
+        // Check if a new image is uploaded
+        if ($request->hasFile('profile')) {
+            $image = $request->file('profile');
+            $extension = $image->getClientOriginalExtension(); // Get the file extension
+            $nama_image = time() . '_' . uniqid() . '.' . $extension;
+    
+            // Move the uploaded file to the storage location
+            $image->storeAs('public/pkk', $nama_image);
+    
+            // Update the profile field with the new filename
+            $user->update(['profile' => $nama_image]);
+        }
+    
+        // Update other fields based on the request
+        $user->update($request->except('profile'));
         return redirect()->route('pemerintahan-pkk.index')->with('success','data berhasil diubah'); 
     }
 

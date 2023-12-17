@@ -75,7 +75,7 @@ class penduduk extends Model
     }
     public function getKepemilikanBpjsAttribute($value)
     {
-        $arr=['PBU','PBPU','PD Pemda','Bukan pekerja','PBI JK','Tidak ada'];
+        $arr=['PPU','PBPU','PD Pemda','Bukan pekerja','PBI JK','Tidak ada'];
         return $arr[$value-1];
     }
 

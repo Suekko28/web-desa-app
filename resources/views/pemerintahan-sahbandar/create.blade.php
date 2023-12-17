@@ -33,7 +33,7 @@
 
                 <!-- Small boxes (Stat box) -->
 
-                <form action="{{ route('pemerintahan-desa.store') }}" method="POST" enctype="multipart/form-data">
+                <form action="{{ route('pemerintahan-sahbandar.store') }}" method="POST" enctype="multipart/form-data">
                     @csrf
                     <div class="card">
                         <div class="card-body">

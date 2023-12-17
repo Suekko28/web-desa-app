@@ -206,17 +206,15 @@
                                     </div>
 
                                     <div class="col-sm-6">
-                                        <label for="bpjs" class="col-form-label">
-                                            Kepemilikan BPJS</label>
-                                        <select class="form-control" class="bpjs" name="kepemilikan_bpjs" id="bpjs">
+                                        <label for="bpjs" class="col-form-label">Kepemilikan BPJS</label>
+                                        <select class="form-control" name="kepemilikan_bpjs" id="bpjs">
                                             <option value="">--Pilih Salah Satu--</option>
-                                            <option value="1" @if ($data->kepemilikan_bpjs == 'PBI') selected @endif>PPU</option>
+                                            <option value="1" @if ($data->kepemilikan_bpjs == 'PPU') selected @endif>PPU</option>
                                             <option value="2" @if ($data->kepemilikan_bpjs == 'PBPU') selected @endif>PBPU</option>
                                             <option value="3" @if ($data->kepemilikan_bpjs == 'PD Pemda') selected @endif>PD Pemda</option>
                                             <option value="4" @if ($data->kepemilikan_bpjs == 'Bukan pekerja') selected @endif>Bukan Pekerja</option>
                                             <option value="5" @if ($data->kepemilikan_bpjs == 'PBI JK') selected @endif>PBI JK</option>
                                             <option value="6" @if ($data->kepemilikan_bpjs == 'Tidak ada') selected @endif>Tidak Ada</option>
-
                                         </select>
                                     </div>
 

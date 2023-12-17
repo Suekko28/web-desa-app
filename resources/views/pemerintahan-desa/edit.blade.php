@@ -48,7 +48,8 @@
                             <div class="col-sm-4">
                                     <label for="profile" class="col-form-label">Profile</label>
                                     <input type="file" class="form-control" id="profile" name="profile" placeholder="">
-                                    <div>current :  <a href="">{{$data->profile}}</a> </div>
+                                    <div>current : <a href="{{ asset('storage/desa/' . $data->profile) }}">{{ $data->profile }}</a></div>
+
                                 </div>
                                 <div class="col-sm-4">
                                     <label for="name" class="col-form-label">Nama Lengkap</label>

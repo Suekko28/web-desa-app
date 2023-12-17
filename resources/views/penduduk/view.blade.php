@@ -47,7 +47,7 @@
                                     <div class="col-sm-6">
                                         <label for="nama2" class="col-form-label">Tanggal Lapor</label>
                                         <input type="date" class="form-control" id="tgl_lapor" name="tgl_lapor"
-                                            value="{{ $data->tgl_lapor }}">
+                                            value="{{ $data->tgl_lapor }}" disabled>
                                     </div>
                                 </div>
 
@@ -208,7 +208,7 @@
                                             Kepemilikan BPJS</label>
                                         <select class="form-control" class="bpjs" name="kepemilikan_bpjs" id="bpjs" disabled>
                                             <option value="">--Pilih Salah Satu--</option>
-                                            <option value="1" @if ($data->kepemilikan_bpjs == 'PBI') selected @endif>PPU</option>
+                                            <option value="1" @if ($data->kepemilikan_bpjs == 'PPU') selected @endif>PPU</option>
                                             <option value="2" @if ($data->kepemilikan_bpjs == 'PBPU') selected @endif>PBPU</option>
                                             <option value="3" @if ($data->kepemilikan_bpjs == 'PD Pemda') selected @endif>PD Pemda</option>
                                             <option value="4" @if ($data->kepemilikan_bpjs == 'Bukan pekerja') selected @endif>Bukan Pekerja</option>
@@ -250,8 +250,7 @@
                                 </div>
                             </div>
                             <div class="d-flex flex-row-reverse">
-                                <button type="submit" class="btn btn-primary ml-3">Simpan</button>
-                                <a href="{{ route('penduduk.index') }}" class="btn btn-danger" disabled>Batal</a>
+                                <a href="{{ route('penduduk.index') }}" class="btn btn-danger" disabled>Kembali</a>
                             </div>
 
                         </div>
