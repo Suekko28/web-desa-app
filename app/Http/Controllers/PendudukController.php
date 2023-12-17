@@ -80,11 +80,12 @@ class PendudukController extends Controller
     }
 
     public function importPenduduk(Request $request){
-       
+        
+
         $nama_file = rand().$request->file_import->getClientOriginalName();
         $request->file_import->move('file_penduduk',$nama_file);
         Excel::import(new PendudukImport, public_path("/file_penduduk/".$nama_file));
-        return redirect()->route('users.index')->with('success', 'User Imported Successfully');
+        return redirect()->route('penduduk.index')->with('success', 'User Imported Successfully');
     }
     /**
      * Remove the specified resource from storage.
