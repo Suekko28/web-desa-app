@@ -28,5 +28,6 @@ class PemerintahanBPD extends Model
         'jenis_kelamin',
         'tgl_lahir',
         'alamat',
+        'profile',
     ];
 }

@@ -32,7 +32,15 @@ class PemerintahanDesaController extends Controller
      */
     public function store(PemerintahanDesaFormRequest $request)
     {
+        $path = public_path('images/');
+        !is_dir($path) &&
+            mkdir($path, 0777, true);
+        $imageName = time(). '_'.$request->nama . '.' . $request->profile->extension();
+        $request->profile->move($path, $imageName);
+
         $data=$request->all();
+        $data['profile']=$imageName;
+        
         PemerintahanDesa::create($data);
         return redirect()->route('pemerintahan-desa.index')->with('success','data berhasil ditambahkan'); 
     }
