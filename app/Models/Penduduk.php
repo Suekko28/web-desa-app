@@ -29,6 +29,7 @@ class penduduk extends Model
         'nama',
         'tempat_lahir',
         'tgl_lahir',
+        'usia',
         'jenis_kelamin',
         'agama',
         'kewarganegaraan',

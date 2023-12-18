@@ -41,8 +41,8 @@
                                     <div class="col-sm-6">
                                         <label for="nama1" class="col-form-label">Tanggal Pindah
                                             Masuk</label>
-                                        <input type="date" class="form-control" id="tgl_pindah_masuk" name="tgl_pindah_masuk"
-                                            placeholder="">
+                                        <input type="date" class="form-control" id="tgl_pindah_masuk"
+                                            name="tgl_pindah_masuk" placeholder="">
                                     </div>
 
                                     <div class="col-sm-6">
@@ -87,6 +87,12 @@
                                         <label for="tgl_lhr" class="col-form-label">Tanggal Lahir</label>
                                         <input type="date" class="form-control" id="tgl_lhr" name="tgl_lahir"
                                             placeholder="">
+                                    </div>
+
+                                    <div class="col-sm-4">
+                                        <label for="disabledTextInput" class="col-form-label">Usia</label>
+                                        <input type="text" class="form-control bg-light" id="usia"
+                                            name="usia" placeholder="Terisi Otomatis" disabled>
                                     </div>
 
                                     <div class="col-sm-6">
@@ -134,7 +140,7 @@
                                     </div>
                                 </div>
                             </div>
-                            
+
                             <hr>
                             <h5 class="text-center alamat_pribadi">Alamat Pribadi</h5>
 
@@ -166,7 +172,8 @@
 
                                     <div class="col-sm-12">
                                         <label for="alamat" class="col-form-label">Alamat</label>
-                                        <textarea type="text" class="form-control" id="alamat" name="alamat" rows="5" placeholder="Alamat Lengkap (Jl / Kampung  No.Rumah"></textarea>
+                                        <textarea type="text" class="form-control" id="alamat" name="alamat" rows="5"
+                                            placeholder="Alamat Lengkap (Jl / Kampung  No.Rumah"></textarea>
                                     </div>
                                 </div>
                             </div>
@@ -207,7 +214,8 @@
                                     <div class="col-sm-6">
                                         <label for="bpjs" class="col-form-label">
                                             Kepemilikan BPJS</label>
-                                        <select class="form-control" class="bpjs" name="kepemilikan_bpjs" id="bpjs">
+                                        <select class="form-control" class="bpjs" name="kepemilikan_bpjs"
+                                            id="bpjs">
                                             <option value="">--Pilih Salah Satu--</option>
                                             <option value="1">PPU</option>
                                             <option value="2">PBPU</option>
@@ -222,7 +230,8 @@
                                     <div class="col-sm-6">
                                         <label for="e_ktp" class="col-form-label">
                                             Kepemilikan E-KTP</label>
-                                        <select class="form-control" class="e_ktp" name="kepemilikan_e_ktp" id="e_ktp">
+                                        <select class="form-control" class="e_ktp" name="kepemilikan_e_ktp"
+                                            id="e_ktp">
                                             <option value="">--Pilih Salah Satu--</option>
                                             <option value="1">Ada</option>
                                             <option value="2">Tidak Ada</option>
@@ -294,5 +303,35 @@
     <script defer src="https://use.fontawesome.com/releases/v5.15.4/js/fontawesome.js"
         integrity="sha384-dPBGbj4Uoy1OOpM4+aRGfAOc0W37JkROT+3uynUgTHZCHZNMHfGXsmmvYTffZjYO" crossorigin="anonymous">
     </script>
+
+    <script>
+        // Fungsi untuk menghitung usia berdasarkan tanggal lahir
+        function hitungUsia() {
+            // Ambil nilai dari input tanggal lahir
+            var tanggalLahir = document.getElementById('tgl_lhr').value;
+
+            // Konversi string tanggal lahir menjadi objek Date
+            var dob = new Date(tanggalLahir);
+
+            // Dapatkan tanggal hari ini
+            var today = new Date();
+
+            // Hitung selisih tahun antara tanggal lahir dan hari ini
+            var age = today.getFullYear() - dob.getFullYear();
+
+            // Periksa apakah ulang tahun sudah terjadi atau belum
+            if (today.getMonth() < dob.getMonth() || (today.getMonth() === dob.getMonth() && today.getDate() < dob
+                .getDate())) {
+                age--;
+            }
+
+            // Set nilai usia pada input usia
+            document.getElementById('usia').value = age;
+        }
+
+        // Panggil fungsi hitungUsia saat input tanggal lahir berubah
+        document.getElementById('tgl_lhr').addEventListener('input', hitungUsia);
+    </script>
+
 
 @endsection

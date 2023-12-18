@@ -57,6 +57,7 @@ class PendudukDataTable extends DataTable
             'penduduk.nama as nama',
             'penduduk.tempat_lahir as tempat_lahir',
             'penduduk.tgl_lahir as tgl_lahir',
+            'penduduk.usia as usia',
             'penduduk.jenis_kelamin as jenis_kelamin',
             'penduduk.agama as agama',
             'penduduk.kewarganegaraan as kewarganegaraan',

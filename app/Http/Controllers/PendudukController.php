@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\DataTables\PendudukDataTable;
 use App\Http\Controllers\Controller;
 use App\Models\Penduduk;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use App\Http\Requests\PendudukFormRequest;
 use App\Imports\PendudukImport;
@@ -35,6 +36,12 @@ class PendudukController extends Controller
     {
         
         $data=$request->all();
+
+        $tglLahir = Carbon::parse($request->tgl_lahir);
+        $usia = $tglLahir->diffInYears(Carbon::now());
+    
+        // Tambahkan usia ke dalam data
+        $data['usia'] = $usia;
         
         Penduduk::create($data);
         
