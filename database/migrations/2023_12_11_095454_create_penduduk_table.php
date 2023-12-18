@@ -20,6 +20,7 @@ return new class extends Migration
             $table->string('nama');
             $table->string('tempat_lahir');
             $table->date('tgl_lahir');
+            $table->integer('usia');
             $table->integer('jenis_kelamin');// laki-laki,perempuan
             $table->integer('agama'); //islam,kristen protestan,kristen katholik,hindu,budha,konghucu
             $table->integer('kewarganegaraan'); //WNI,WNA,Kedua Kewarganegaraan

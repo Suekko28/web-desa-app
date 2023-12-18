@@ -88,6 +88,14 @@
                                             placeholder="" value="{{$data->tgl_lahir}}" disabled>
                                     </div>
 
+                                    <div class="col-sm-4">
+                                        <label for="usia" class="col-form-label">Usia</label>
+                                        <input type="text" class="form-control bg-light" id="usia" name="usia" placeholder="Terisi Otomatis" disabled value="">
+                                        <!-- Input tersembunyi untuk menyimpan usia awal -->
+                                        <input type="hidden" id="usia_awal" name="usia_awal">
+                                    </div>
+                                    
+
                                     <div class="col-sm-6">
                                         <label for="jenis_kelamin" class="col-form-label">Jenis Kelamin</label>
                                         <select class="form-control" name="jenis_kelamin" id="jenis_kelamin" disabled>
@@ -291,5 +299,41 @@
     <script defer src="https://use.fontawesome.com/releases/v5.15.4/js/fontawesome.js"
         integrity="sha384-dPBGbj4Uoy1OOpM4+aRGfAOc0W37JkROT+3uynUgTHZCHZNMHfGXsmmvYTffZjYO" crossorigin="anonymous">
     </script>
+
+<script>
+    // Fungsi untuk menghitung usia berdasarkan tanggal lahir
+    function hitungUsia() {
+        // Ambil nilai dari input tanggal lahir
+        var tanggalLahir = document.getElementById('tgl_lhr').value;
+
+        // Konversi string tanggal lahir menjadi objek Date
+        var dob = new Date(tanggalLahir);
+
+        // Dapatkan tanggal hari ini
+        var today = new Date();
+
+        // Hitung selisih tahun antara tanggal lahir dan hari ini
+        var age = today.getFullYear() - dob.getFullYear();
+
+        // Periksa apakah ulang tahun sudah terjadi atau belum
+        if (today.getMonth() < dob.getMonth() || (today.getMonth() === dob.getMonth() && today.getDate() < dob.getDate())) {
+            age--;
+        }
+
+        // Set nilai usia pada input usia
+        document.getElementById('usia').value = age;
+
+        // Simpan nilai usia awal pada elemen tersembunyi
+        document.getElementById('usia_awal').value = age;
+    }
+
+    // Panggil fungsi hitungUsia saat input tanggal lahir berubah
+    document.getElementById('tgl_lhr').addEventListener('input', hitungUsia);
+
+    // Panggil fungsi hitungUsia untuk menginisialisasi usia awal
+    hitungUsia();
+</script>
+
+
 
 @endsection
