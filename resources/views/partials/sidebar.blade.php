@@ -4,14 +4,13 @@
     <div class="h-100">
 
         <div class="user-wid text-center py-4">
-            <div class="user-img">
-                <img src="/assets/images/users/avatar-2.jpg" alt="" class="avatar-md mx-auto rounded-circle">
-            </div>
 
             <div class="mt-3">
 
-                <a href="#" class="text-dark font-weight-medium font-size-16">{{ auth()->user()->nama }}</a>
-                <p class="text-body mt-1 mb-0 font-size-13">{{ auth()->user()->jabatan }}</p>
+                <span class="logo-lg">
+                    <img src="/assets/images/logo.png" alt="Logo Sawitri" height="50">
+                    <h6 class="mt-3">SAWITRI APPS</h6>
+                </span>
 
             </div>
         </div>

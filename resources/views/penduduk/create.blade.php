@@ -208,7 +208,7 @@
                                     <div class="col-sm-6">
                                         <label for="pekerjaan" class="col-form-label">Pekerjaan</label>
                                         <input type="text" class="form-control" id="pekerjaan" name="pekerjaan"
-                                            placeholder="Jenis Usaha">
+                                            placeholder="Jenis Usaha" oninput="updateChart()">
                                     </div>
 
                                     <div class="col-sm-6">
