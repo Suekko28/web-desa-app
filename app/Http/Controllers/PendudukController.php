@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\DataTables\PendudukDataTable;
 use App\Http\Controllers\Controller;
+use App\Http\Requests\PemerintahanDesaFormRequest;
 use App\Models\Penduduk;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
@@ -32,7 +33,7 @@ class PendudukController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(PendudukFormRequest $request)
     {
         
         $data=$request->all();
