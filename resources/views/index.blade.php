@@ -357,6 +357,12 @@
         <?php
         // Example assuming $pekerjaan is a collection of job names
         $jobNames = $pekerjaan->pluck('pekerjaan')->toArray();
+        
+        // Calculate job counts based on the job names
+        $jobCounts = array_count_values($jobNames);
+        
+        // Convert counts to an indexed array (if you need an indexed array)
+        $jobCountsIndexed = array_values($jobCounts);
         ?>
         <div class="row">
             <div class="col-lg-6">
@@ -370,32 +376,26 @@
             </div>
 
 
+            <?php
+            // Example assuming $pekerjaan is a collection of job names
+            $jobNames = $pekerjaan->pluck('usia')->toArray();
+            
+            // Calculate job counts based on the job names
+            $jobCounts = array_count_values($jobNames);
+            
+            // Convert counts to an indexed array (if you need an indexed array)
+            $jobCountsIndexed = array_values($jobCounts);
+            ?>
             <div class="col-lg-6">
                 <div class="card">
                     <div class="card-body">
-
                         <h4 class="card-title mb-4">Usia</h4>
-
-                        <div class="row text-center">
-                            <div class="col-4">
-                                <h5 class="mb-0">2541</h5>
-                                <p class="text-muted text-truncate">Activated</p>
-                            </div>
-                            <div class="col-4">
-                                <h5 class="mb-0">84845</h5>
-                                <p class="text-muted text-truncate">Pending</p>
-                            </div>
-                            <div class="col-4">
-                                <h5 class="mb-0">12001</h5>
-                                <p class="text-muted text-truncate">Deactivated</p>
-                            </div>
-                        </div>
-
-                        <canvas id="bar" height="300"></canvas>
-
+                        <div id="bar_chart_usia"></div>
                     </div>
                 </div>
+
             </div>
+
             <!-- end col -->
         </div>
 
@@ -448,7 +448,6 @@
 
 
     <!-- App js -->
-    <script src="{{ asset('assets/js/app.js') }}"></script>
 
     <script src="{{ asset('assets/libs/apexcharts/apexcharts.min.js') }}"></script>
 
@@ -619,25 +618,49 @@
         });
     </script>
 
-    <script>
-        document.addEventListener("DOMContentLoaded", function() {
-            var jobCounts = [{{ $pekerjaan->count() }}, {{ $pekerjaan->count() }}]; // Update with actual counts
 
-            var jobNames = <?php echo json_encode($jobNames); ?>;
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        var jobCounts = <?php echo json_encode($jobCountsIndexed); ?>; // Updated with the calculated counts
+        var jobNames = <?php echo json_encode(array_keys($jobCounts)); ?>;
 
-            var options = {
-                chart: {
-                    type: 'donut',
-                },
-                series: jobCounts,
-                labels: jobNames,
-                colors: ['#FF6384', '#36A2EB'], // Add more colors as needed
-            };
+        var options = {
+            chart: {
+                type: 'donut',
+            },
+            series: jobCounts,
+            labels: jobNames,
+            colors: ['#FF6384', '#36A2EB', '#FFCE56'], // Add more colors as needed
+        };
 
-            var chart = new ApexCharts(document.querySelector("#donut_chart_pekerjaan"), options);
+        var chart = new ApexCharts(document.querySelector("#donut_chart_pekerjaan"), options);
+        chart.render();
+    });
+</script>
 
-            chart.render();
-        });
-    </script>
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        var jobCounts = <?php echo json_encode($jobCountsIndexed); ?>; // Updated with the calculated counts
+        var jobNames = <?php echo json_encode(array_keys($jobCounts)); ?>;
+
+        var options = {
+            chart: {
+                type: 'bar', // Change the chart type to 'bar'
+            },
+            series: [{
+                name: 'Jumlah Usia',
+                data: jobCounts,
+            }],
+            xaxis: {
+                categories: jobNames,
+            },
+            colors: ['#FF6384', '#36A2EB', '#FFCE56'], // Add more colors as needed
+        };
+
+        var chart = new ApexCharts(document.querySelector("#bar_chart_usia"), options);
+        chart.render();
+    });
+</script>
+
     
 @endsection
