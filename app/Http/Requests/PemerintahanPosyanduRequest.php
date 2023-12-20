@@ -31,4 +31,17 @@ class PemerintahanPosyanduRequest extends FormRequest
             'alamat'=>['required','string','max:250'],
         ];
     }
+
+    public function messages(): array
+    {
+        return [
+            'profile.required' => 'Profile harus diisi.',
+            'nama.required' => 'Nama harus diisi.',
+            'jabatan.required' => 'Jabatan harus diisi.',
+            'tmpt_lahir.required' => 'Tempat Lahir harus diisi.',
+            'jenis_kelamin.required' => 'Jenis Kelamin harus diisi.',
+            'tgl_lahir.required' => 'Tanggal Lahir harus diisi.',
+            'alamat.required' => 'Alamat harus diisi.',
+        ];
+    }
 }

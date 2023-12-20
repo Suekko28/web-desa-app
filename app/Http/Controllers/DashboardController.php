@@ -54,6 +54,7 @@ class DashboardController extends Controller
 
         $pekerjaan = DB::table('penduduk')->get();
 
+        $usia = DB::table('penduduk')->get();
     
         $penduduk = DB::table('penduduk')->get();
         $jumlah_penduduk = Penduduk::count();
@@ -94,6 +95,7 @@ class DashboardController extends Controller
         'wna',
         'wni_wna',
         'pekerjaan',
+        'usia',
 
 
 
