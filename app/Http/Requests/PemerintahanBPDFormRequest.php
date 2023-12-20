@@ -44,6 +44,8 @@ class PemerintahanBPDFormRequest extends FormRequest
             'alamat.required' => 'Alamat harus diisi.',
         ];
     }
+
+    
     
 
 }
