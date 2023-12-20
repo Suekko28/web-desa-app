@@ -1,6 +1,9 @@
 @extends('layouts.app')
 @section('page-title', 'Dashboard')
 @section('contents')
+    <link rel="shortcut icon" href="{{ asset('assets/images/favicon.ico') }}">
+
+    <!-- DataTables -->
     <link href="{{ asset('assets/libs/datatables.net-bs4/css/dataTables.bootstrap4.min.css') }}" rel="stylesheet"
         type="text/css" />
     <link href="{{ asset('assets/libs/datatables.net-buttons-bs4/css/buttons.bootstrap4.min.css') }}" rel="stylesheet"
@@ -20,20 +23,11 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
         integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA=="
         crossorigin="anonymous" referrerpolicy="no-referrer" />
-    <link rel="shortcut icon" href="{{ asset('assets/images/favicon.ico') }}">
-
-    <!-- Bootstrap Css -->
-    <link href="{{ asset('assets/css/bootstrap.min.css') }}" id="bootstrap-style" rel="stylesheet" type="text/css" />
-    <!-- Icons Css -->
-    <link href="{{ asset('assets/css/icons.min.css') }}" rel="stylesheet" type="text/css" />
-    <!-- App Css-->
-    <link href="{{ asset('assets/css/app.min.css') }}" id="app-style" rel="stylesheet" type="text/css" />
 
 
 
     <main>
-        <div class="row">
-
+        <div class="row mt-4">
             <div class="col-lg-4">
                 <div class="card bg-primary text-white-50">
                     <div class="card-body">
@@ -144,7 +138,7 @@
                             </div>
                         </div>
 
-                        <canvas id="doughnutChart"></canvas>
+                        <div id="donut_chart_e_ktp"></div>
                     </div>
 
                 </div>
@@ -181,7 +175,7 @@
 
                         </div>
 
-                        <canvas id="barChart"></canvas>
+                        <div id="pie_chart_pernikahan"></div>
 
                     </div>
                 </div>
@@ -252,50 +246,12 @@
                     </div>
                 </div>
             </div>
-            
+
 
         </div>
 
         <div class="row">
             <div class="col-lg-6">
-                <div class="card">
-                    <div class="card-body">
-                        <h4 class="card-title mb-4">Kepemilikan BPJS</h4>
-
-                        <div class="row text-center">
-                            <div class="col-3">
-                                <h5 class="mb-0">{{ $bpjs_ppu->count() }}</h5>
-                                <p class="text-muted text-truncate">PPU</p>
-                            </div>
-                            <div class="col-3">
-                                <h5 class="mb-0">{{ $bpjs_pbpu->count() }}</h5>
-                                <p class="text-muted text-truncate">PBPU</p>
-                            </div>
-                            <div class="col-3">
-                                <h5 class="mb-0">{{ $bpjs_pd_pemda->count() }}</h5>
-                                <p class="text-muted text-truncate">PD Pemdak</p>
-                            </div>
-                            <div class="col-3">
-                                <h5 class="mb-0">{{ $bpjs_bukan_pekerja->count() }}</h5>
-                                <p class="text-muted text-truncate">Bukan Pekerja</p>
-                            </div>
-                            <div class="col-3">
-                                <h5 class="mb-0">{{ $bpjs_pbi_jk->count() }}</h5>
-                                <p class="text-muted text-truncate">PBI JK</p>
-                            </div>
-
-                            <div class="col-3">
-                                <h5 class="mb-0">{{ $bpjs_tidak_ada->count() }}</h5>
-                                <p class="text-muted text-truncate">Tidak Ada</p>
-                            </div>
-
-                        </div>
-
-                        <div id="pie_chart_bpjs"></div>
-                    </div>
-                </div>
-            </div>
-                        <div class="col-lg-6">
                 <div class="card">
                     <div class="card-body">
                         <h4 class="card-title mb-4">Pendidikan</h4>
@@ -357,65 +313,89 @@
                     </div>
                 </div>
             </div>
+            <div class="col-lg-6">
+                <div class="card">
+                    <div class="card-body">
+                        <h4 class="card-title mb-4">Kepemilikan BPJS</h4>
 
+                        <div class="row text-center">
+                            <div class="col-3">
+                                <h5 class="mb-0">{{ $bpjs_ppu->count() }}</h5>
+                                <p class="text-muted text-truncate">PPU</p>
+                            </div>
+                            <div class="col-3">
+                                <h5 class="mb-0">{{ $bpjs_pbpu->count() }}</h5>
+                                <p class="text-muted text-truncate">PBPU</p>
+                            </div>
+                            <div class="col-3">
+                                <h5 class="mb-0">{{ $bpjs_pd_pemda->count() }}</h5>
+                                <p class="text-muted text-truncate">PD Pemdak</p>
+                            </div>
+                            <div class="col-3">
+                                <h5 class="mb-0">{{ $bpjs_bukan_pekerja->count() }}</h5>
+                                <p class="text-muted text-truncate">Bukan Pekerja</p>
+                            </div>
+                            <div class="col-3">
+                                <h5 class="mb-0">{{ $bpjs_pbi_jk->count() }}</h5>
+                                <p class="text-muted text-truncate">PBI JK</p>
+                            </div>
+
+                            <div class="col-3">
+                                <h5 class="mb-0">{{ $bpjs_tidak_ada->count() }}</h5>
+                                <p class="text-muted text-truncate">Tidak Ada</p>
+                            </div>
+
+                        </div>
+
+                        <div id="pie_chart_bpjs"></div>
+                    </div>
+                </div>
+            </div>
 
         </div>
 
+        <?php
+        // Example assuming $pekerjaan is a collection of job names
+        $jobNames = $pekerjaan->pluck('pekerjaan')->toArray();
+        
+        // Calculate job counts based on the job names
+        $jobCounts = array_count_values($jobNames);
+        
+        // Convert counts to an indexed array (if you need an indexed array)
+        $jobCountsIndexed = array_values($jobCounts);
+        ?>
         <div class="row">
             <div class="col-lg-6">
                 <div class="card">
                     <div class="card-body">
-
-                        <h4 class="card-title mb-4">Warga Negara</h4>
-
-                        <div class="row text-center">
-                            <div class="col-4">
-                                <h5 class="mb-0">86541</h5>
-                                <p class="text-muted text-truncate">Activated</p>
-                            </div>
-                            <div class="col-4">
-                                <h5 class="mb-0">2541</h5>
-                                <p class="text-muted text-truncate">Pending</p>
-                            </div>
-                            <div class="col-4">
-                                <h5 class="mb-0">102030</h5>
-                                <p class="text-muted text-truncate">Deactivated</p>
-                            </div>
-                        </div>
-
-                        <canvas id="lineChart" height="300"></canvas>
-
+                        <h4 class="card-title mb-4">Pekerjaan</h4>
+                        <div id="donut_chart_pekerjaan"></div>
                     </div>
                 </div>
-            </div>
-            <!-- end col -->
 
+            </div>
+
+
+            <?php
+            // Example assuming $pekerjaan is a collection of job names
+            $jobNames = $pekerjaan->pluck('usia')->toArray();
+            
+            // Calculate job counts based on the job names
+            $jobCounts = array_count_values($jobNames);
+            
+            // Convert counts to an indexed array (if you need an indexed array)
+            $jobCountsIndexed = array_values($jobCounts);
+            ?>
             <div class="col-lg-6">
                 <div class="card">
                     <div class="card-body">
-
                         <h4 class="card-title mb-4">Usia</h4>
-
-                        <div class="row text-center">
-                            <div class="col-4">
-                                <h5 class="mb-0">2541</h5>
-                                <p class="text-muted text-truncate">Activated</p>
-                            </div>
-                            <div class="col-4">
-                                <h5 class="mb-0">84845</h5>
-                                <p class="text-muted text-truncate">Pending</p>
-                            </div>
-                            <div class="col-4">
-                                <h5 class="mb-0">12001</h5>
-                                <p class="text-muted text-truncate">Deactivated</p>
-                            </div>
-                        </div>
-
-                        <canvas id="bar" height="300"></canvas>
-
+                        <div id="bar_chart_usia"></div>
                     </div>
                 </div>
+
             </div>
+
             <!-- end col -->
         </div>
 
@@ -468,7 +448,6 @@
 
 
     <!-- App js -->
-    <script src="{{ asset('assets/js/app.js') }}"></script>
 
     <script src="{{ asset('assets/libs/apexcharts/apexcharts.min.js') }}"></script>
 
@@ -494,76 +473,44 @@
 
     <!-- Chart Dashboard !-->
     <script>
-        // Chart Kepemilikan E-KTP
-        var doughnutPieData_e_ktp = {
-            datasets: [{
-                data: [
+        document.addEventListener("DOMContentLoaded", function() {
+            var options = {
+                chart: {
+                    type: 'donut',
+                },
+                series: [
                     {{ $jumlah_kepemilikan_e_ktp_ada->count() }},
                     {{ $jumlah_kepemilikan_e_ktp_tidak_ada->count() }},
                 ],
-                backgroundColor: [
-                    'rgba(255, 99, 132, 0.5)',
-                    'rgba(54, 162, 235, 0.5)',
-                ],
-                borderColor: [
-                    'rgba(255,99,132,1)',
-                    'rgba(54, 162, 235, 1)',
-                ],
-            }],
-            labels: ['Ada', 'Tidak Ada']
-        };
+                labels: ['Ada', 'Tidak Ada'],
+                colors: ['#FF6384', '#36A2EB'],
+            };
 
-        // Get the canvas element
-        var ctx = document.getElementById('doughnutChart').getContext('2d');
+            var chart = new ApexCharts(document.querySelector("#donut_chart_e_ktp"), options);
 
-        // Create a doughnut chart
-        var doughnutPieData_e_ktp = new Chart(ctx, {
-            type: 'doughnut',
-            data: doughnutPieData_e_ktp,
+            chart.render();
         });
     </script>
 
     <script>
-        var barChartData = {
-            labels: ['Kawin', 'Belum Kawin', 'Cerai Hidup', 'Cerai Mati'],
-            datasets: [{
-                label: 'Status Pernikahan',
-                backgroundColor: [
-                    'rgba(255, 99, 132, 0.5)',
-                    'rgba(54, 162, 235, 0.5)',
-                    'rgba(255, 206, 86, 0.5)',
-                    'rgba(75, 192, 192, 0.5)',
-                ],
-                borderColor: [
-                    'rgba(255,99,132,1)',
-                    'rgba(54, 162, 235, 1)',
-                    'rgba(255, 206, 86, 1)',
-                    'rgba(75, 192, 192, 1)',
-                ],
-                borderWidth: 1,
-                data: [
+        document.addEventListener("DOMContentLoaded", function() {
+            var options = {
+                chart: {
+                    type: 'pie',
+                },
+                series: [
                     {{ $sts_nikah_belum_kawin->count() }},
                     {{ $sts_nikah_kawin->count() }},
                     {{ $sts_nikah_cerai_hidup->count() }},
                     {{ $sts_nikah_cerai_mati->count() }},
                 ],
-            }],
-        };
+                labels: ['Kawin', 'Belum Kawin', 'Cerai Hidup', 'Cerai Mati'],
+                colors: ['#FF6384', '#36A2EB', '#FFCE56', '#4CAF50'],
+            };
 
-        // Get the canvas element
-        var ctx = document.getElementById('barChart').getContext('2d');
+            var chart = new ApexCharts(document.querySelector("#pie_chart_pernikahan"), options);
 
-        // Create a bar chart
-        var barChart = new Chart(ctx, {
-            type: 'bar',
-            data: barChartData,
-            options: {
-                scales: {
-                    y: {
-                        beginAtZero: true,
-                    },
-                },
-            },
+            chart.render();
         });
     </script>
 
@@ -648,32 +595,72 @@
         });
     </script>
 
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            var options = {
+                chart: {
+                    type: 'donut',
+                },
+                series: [
+                    {{ $wni->count() }},
+                    {{ $wna->count() }},
+                    {{ $wni_wna->count() }},
+
+
+                ],
+                labels: ['WNI', 'WNA', 'Kedua Warganegara', ],
+                colors: ['#FF6384', '#36A2EB', '#FFCE56', ],
+            };
+
+            var chart = new ApexCharts(document.querySelector("#donut_chart_kewarganegaraan"), options);
+
+            chart.render();
+        });
+    </script>
+
+
 <script>
     document.addEventListener("DOMContentLoaded", function() {
+        var jobCounts = <?php echo json_encode($jobCountsIndexed); ?>; // Updated with the calculated counts
+        var jobNames = <?php echo json_encode(array_keys($jobCounts)); ?>;
+
         var options = {
             chart: {
                 type: 'donut',
             },
-            series: [
-                {{ $wni->count() }},
-                {{ $wna->count() }},
-                {{ $wni_wna->count() }},
-              
-               
-            ],
-            labels: ['WNI', 'WNA', 'Kedua Warganegara',
-            ],
-            colors: ['#FF6384', '#36A2EB', '#FFCE56',
-            ],
+            series: jobCounts,
+            labels: jobNames,
+            colors: ['#FF6384', '#36A2EB', '#FFCE56'], // Add more colors as needed
         };
 
-        var chart = new ApexCharts(document.querySelector("#donut_chart_kewarganegaraan"), options);
-
+        var chart = new ApexCharts(document.querySelector("#donut_chart_pekerjaan"), options);
         chart.render();
     });
 </script>
 
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        var jobCounts = <?php echo json_encode($jobCountsIndexed); ?>; // Updated with the calculated counts
+        var jobNames = <?php echo json_encode(array_keys($jobCounts)); ?>;
 
+        var options = {
+            chart: {
+                type: 'bar', // Change the chart type to 'bar'
+            },
+            series: [{
+                name: 'Jumlah Usia',
+                data: jobCounts,
+            }],
+            xaxis: {
+                categories: jobNames,
+            },
+            colors: ['#FF6384', '#36A2EB', '#FFCE56'], // Add more colors as needed
+        };
 
+        var chart = new ApexCharts(document.querySelector("#bar_chart_usia"), options);
+        chart.render();
+    });
+</script>
 
+    
 @endsection

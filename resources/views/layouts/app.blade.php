@@ -7,7 +7,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta content="Premium Multipurpose Admin & Dashboard Template" name="description" />
     <meta content="Themesbrand" name="author" />
-    <script src = "https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+
+    
+
     <!-- App favicon -->
 
 </head>
@@ -38,8 +41,8 @@
                                 <div class="page-title-right">
                                     <ol class="breadcrumb m-0">
                                         <li class="breadcru mb-item"><a href="javascript: void(0);" style="color:white">
-                                            @yield('master-title')
-                                        </a></li>
+                                                @yield('master-title')
+                                            </a></li>
                                         <li class="breadcrumb-item active">
                                             @yield('page-title')
                                         </li>
@@ -49,7 +52,7 @@
                             </div>
                         </div>
                     </div>
-                    @if($message = Session::get('success'))
+                    @if ($message = Session::get('success'))
                         <div class="alert alert-success alert-dismissible mt-1">
                             <div class="d-flex">
                                 <div>
@@ -84,16 +87,16 @@
     <!-- end container-fluid -->
 
     @include('partials.right-sidebar')
-     <!-- delete modal -->
-     <div class="modal modal-blur fade" id="modal-delete" tabindex="-1" style="display: none;" aria-hidden="true">
+    <!-- delete modal -->
+    <div class="modal modal-blur fade" id="modal-delete" tabindex="-1" style="display: none;" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered" role="document">
             <div class="modal-content">
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 <div class="modal-status bg-danger"></div>
                 <div class="modal-body text-center py-4">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="icon mb-2 text-danger icon-lg" width="24" height="24"
-                        viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round"
-                        stroke-linejoin="round">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon mb-2 text-danger icon-lg" width="24"
+                        height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none"
+                        stroke-linecap="round" stroke-linejoin="round">
                         <path stroke="none" d="M0 0h24v24H0z" fill="none" />
                         <path d="M12 9v2m0 4v.01" />
                         <path
@@ -125,11 +128,12 @@
         </div>
     </div>
     <!-- Button trigger modal delete -->
-    <button id="btn-delete-modal" data-bs-toggle="modal" style="display: none;" data-bs-target="#modal-delete"></button>
+    <button id="btn-delete-modal" data-bs-toggle="modal" style="display: none;"
+        data-bs-target="#modal-delete"></button>
     <!-- end delete modal -->
 
     <!-- JAVASCRIPT -->
-        
+
     @vite('resources/js/app.js')
 
     <!-- confirm modal js -->
@@ -143,8 +147,9 @@
             $('.dataTables_wrapper').find('.row').width($(".card-body").width());
             $('.table.dataTable').width($(".card-body").width());
         }
-
     </script>
+
+
     <!-- end confirm modal js -->
 
     <!-- Page level custom scripts -->
