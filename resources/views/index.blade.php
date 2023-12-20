@@ -631,7 +631,7 @@
                 },
                 series: jobCounts,
                 labels: jobNames,
-                colors: ['#FF6384', '#36A2EB'], // Add more colors as needed
+                colors: ['#FF6384', '#36A2EB','FFCE56'], // Add more colors as needed
             };
 
             var chart = new ApexCharts(document.querySelector("#donut_chart_pekerjaan"), options);
