@@ -67,6 +67,17 @@
                     </ul>
                 </li> 
 
+                <li>
+                    <form method="POST" action="{{ route('logout') }}">
+                        <button type="submit" class="btn btn-l dropdown-item text-danger">
+                            @csrf
+                            <i class="fas fa-solid fa-right-from-bracket"></i> Logout
+                        </form>
+                    </a>
+                </li>
+
+                
+
             </ul>
         </div>
         <!-- Sidebar -->

@@ -2,18 +2,18 @@
     <div class="navbar-header">
         <div class="container-fluid">
             <div class="float-right">
-                <div class="dropdown d-inline-block">`
-                    <button type="button" class="btn header-item waves-effect" id="page-header-user-dropdown"
-                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <div class="dropdown d-inline-block">
+                    <button type="button" class="btn header-item waves-effect" id="page-header-user-dropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <span class="d-none d-xl-inline-block ml-1"> {{ auth()->user()->nama }}</span>
                         <i class="mdi mdi-chevron-down d-none d-xl-inline-block"></i>
                     </button>
                     <div class="dropdown-menu dropdown-menu-right">
                         <!-- item-->
                         <form method="POST" action="{{ route('logout') }}">
-                        <button type="submit" class="dropdown-item text-danger">
-                            @csrf
-                            <i class="bx bx-power-off font-size-16 align-middle mr-1"></i> Logout
-                        </form>
+                            <button type="submit" class="dropdown-item text-danger">
+                                @csrf
+                                <i class="bx bx-power-off font-size-16 align-middle mr-1"></i> Logout
+                            </form>
                     </div>
                 </div>
 
