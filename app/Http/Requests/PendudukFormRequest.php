@@ -28,6 +28,18 @@ class PendudukFormRequest extends FormRequest
             'jenis_kelamin'=>['required','int'],
             'tgl_lahir'=>['required','date'],
             'alamat'=>['required','string','max:250'],
+            'tgl_pindah_masuk'=>['required','date'],
+            'NIK'=>['required','int'],
+
+            
+
+            'nama.required' => 'Nama Wajib Diisi',
+            'jabatan.required' => 'Jabatan Wajib Diisi',
+            'tmpt_lahir.required' => 'Tempat Lahir Wajib Diisi',
+            'jenis_kelamin.required' => 'Jenis Kelamin Wajib Diisi',
+            'tgl_lahir.required' => 'Tanggal Lahir Wajib Diisi',
+            'alamat.required' => 'Alamat Wajib Diisi',
+            
         ];
     }
 }
