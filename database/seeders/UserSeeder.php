@@ -19,7 +19,7 @@ class UserSeeder extends Seeder
         $user = User::firstOrCreate([
             'email' => 'james@gmail.com',
         ], [
-            'name' => james,
+            'name' => 'james',
             'email' => 'james@gmail.com',
             'email_verified_at'=>$created_at,
             'password' => Hash::make('123'),
