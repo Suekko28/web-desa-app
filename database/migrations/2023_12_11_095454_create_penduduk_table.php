@@ -11,6 +11,7 @@ return new class extends Migration
      */
     public function up(): void
     {
+
         Schema::create('penduduk', function (Blueprint $table) {
             $table->id();
             $table->date('tgl_pindah_masuk');

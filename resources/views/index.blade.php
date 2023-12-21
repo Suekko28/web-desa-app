@@ -381,7 +381,7 @@
             $jobNames = $pekerjaan->pluck('usia')->toArray();
             
             // Calculate job counts based on the job names
-            $jobCounts = array_count_values($jobNames);
+            // $jobCounts = array_count_values($jobNames);
             
             // Convert counts to an indexed array (if you need an indexed array)
             $jobCountsIndexed = array_values($jobCounts);

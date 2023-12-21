@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\DataTables\Scopes\PendudukScope;
 use App\DataTables\PendudukDataTable;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\PemerintahanDesaFormRequest;
@@ -17,9 +18,9 @@ class PendudukController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index(PendudukDataTable $dataTable)
+    public function index(PendudukDataTable $dataTable,Request $request)
     {
-        return $dataTable->render('penduduk.index');
+        return $dataTable->addScope(new PendudukScope($request))->render('penduduk.index');
     }
 
     /**

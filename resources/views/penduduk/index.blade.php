@@ -27,6 +27,20 @@
     crossorigin="anonymous" referrerpolicy="no-referrer" />
 
 <main>
+    <div class="card">
+    <div class="card-body">
+    <h3 class="card-title text-info"><u>Filter</u></h3>
+        <div class="row">
+            <div class="col-lg-6 col-md-12">
+                <div class="mb-3">
+                    <label class="form-label">Usia</label>
+                    <input type="text" class="form-control" id="usia" name="usia"
+                                            placeholder="usia">
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
     <div class="row">
         <div class="col-12">
             <div class="card">
