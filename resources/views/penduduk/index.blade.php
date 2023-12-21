@@ -27,6 +27,28 @@
     crossorigin="anonymous" referrerpolicy="no-referrer" />
 
 <main>
+    <form action="{{ route('penduduk.index') }}" method="GET" enctype="multipart/form-data"> 
+    <div class="card">
+    <div class="card-body">
+    <h3 class="card-title text-info"><u>Filter</u></h3>
+        <div class="row">
+            <div class="col-lg-6 col-md-12">
+                <div class="mb-3">
+                    <label class="form-label">Usia</label>
+                    <input type="text" class="form-control" id="usia" name="usia_mn"
+                                            placeholder="usia minimal">
+                    
+                    <input type="text" class="form-control mt-4" id="usia" name="usia_mx"
+                    placeholder="usia maksimal">
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="d-flex flex-row-reverse">
+    <button type="submit" class="btn btn-primary ml-3">Filter</button>
+    </div>
+    </div>
+    </form>
     <div class="row">
         <div class="col-12">
             <div class="card">

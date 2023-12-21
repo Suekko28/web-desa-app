@@ -2,6 +2,7 @@
 
 namespace App\DataTables;
 
+use Carbon\Carbon;
 use App\Models\Penduduk;
 use Illuminate\Database\Eloquent\Builder as QueryBuilder;
 use Yajra\DataTables\EloquentDataTable;
@@ -50,28 +51,12 @@ class PendudukDataTable extends DataTable
         return $model->newQuery()
         ->select(
             'penduduk.id as id',
-            'penduduk.tgl_pindah_masuk as tgl_pindah_masuk',
-            'penduduk.tgl_lapor as tgl_lapor',
             'penduduk.NIK as NIK',
             'penduduk.NKK as NKK',
             'penduduk.nama as nama',
-            'penduduk.tempat_lahir as tempat_lahir',
-            'penduduk.tgl_lahir as tgl_lahir',
             'penduduk.usia as usia',
-            'penduduk.jenis_kelamin as jenis_kelamin',
-            'penduduk.agama as agama',
-            'penduduk.kewarganegaraan as kewarganegaraan',
-            'penduduk.status_pernikahan as status_pernikahan',
-            'penduduk.dusun as dusun',
             'penduduk.rt as rt',
             'penduduk.rw as rw',
-            'penduduk.alamat as alamat',
-            'penduduk.pendidikan as pendidikan',
-            'penduduk.pekerjaan as pekerjaan',
-            'penduduk.kepemilikan_bpjs as kepemilikan_bpjs',
-            'penduduk.kepemilikan_e_ktp as kepemilikan_e_ktp',
-            'penduduk.nama_ibu as nama_ibu',
-            'penduduk.nama_ayah as nama_ayah',
         );
     }
 
@@ -108,9 +93,10 @@ class PendudukDataTable extends DataTable
         return [
             Column::make('id')
                 ->width(10),
+            Column::make('nama'),
             Column::make('NIK'),
             Column::make('NKK'),
-            Column::make('nama'),
+            Column::make('usia'),
             Column::make('rt'),
             Column::make('rw'),
             Column::computed('action')
