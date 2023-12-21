@@ -45,7 +45,7 @@
         </div>
     </div>
     <div class="d-flex flex-row-reverse">
-    <button type="submit" class="btn btn-primary ml-3">Filter</button>
+    <button type="submit" class="btn btn-primary ml-3 mb-2 mr-3">Filter</button>
     </div>
     </div>
     </form>
