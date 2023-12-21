@@ -69,7 +69,7 @@
         </div>
 
         <div class="row">
-            <div class="col-lg-4">
+            <div class="col-lg-6">
                 <div class="card bg-dark text-light">
                     <div class="card-body">
                         <h5 class="mt-0 mb-4 text-white">Jumlah Meninggal</h5>
@@ -81,7 +81,7 @@
                 </div>
             </div>
 
-            <div class="col-lg-4">
+            <div class="col-lg-6">
                 <div class="card bg-danger text-white-50">
                     <div class="card-body">
                         <h5 class="mt-0 mb-4 text-white">Jumlah Kelahiran</h5>
@@ -93,10 +93,25 @@
                 </div>
             </div>
 
-            <div class="col-lg-4">
+            
+        </div>
+        <div class="row">
+            <div class="col-lg-6">
+                <div class="card bg-info text-white-50">
+                    <div class="card-body">
+                        <h5 class="mt-0 mb-4 text-white">Jumlah Pindah Masuk</h5>
+                        <div class="d-flex justify-content-between">
+                            <h1 class="text-white">1</h1>
+                            <i class="fas fa-user-plus fa-3x" style="color:white;"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-lg-6">
                 <div class="card bg-warning text-white-50">
                     <div class="card-body">
-                        <h5 class="mt-0 mb-4 text-white">Jumlah Pindah Masuk/Keluar</h5>
+                        <h5 class="mt-0 mb-4 text-white">Jumlah Pindah Keluar</h5>
                         <div class="d-flex justify-content-between">
                             <h1 class="text-white">1</h1>
                             <i class="fas fa-user-xmark fa-3x" style="color:white;"></i>
@@ -162,7 +177,7 @@
                             </div>
                             <div class="col-3">
                                 <h5 class="mb-0">{{ $sts_nikah_kawin->count() }}</h5>
-                                <p class="text-muted text-truncate">Belum Kawin</p>
+                                <p class="text-muted text-truncate">Kawin</p>
                             </div>
                             <div class="col-3">
                                 <h5 class="mb-0">{{ $sts_nikah_cerai_hidup->count() }}</h5>
