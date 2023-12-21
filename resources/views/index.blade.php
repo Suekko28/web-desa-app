@@ -69,7 +69,7 @@
         </div>
 
         <div class="row">
-            <div class="col-lg-4">
+            <div class="col-lg-6">
                 <div class="card bg-dark text-light">
                     <div class="card-body">
                         <h5 class="mt-0 mb-4 text-white">Jumlah Meninggal</h5>
@@ -81,7 +81,7 @@
                 </div>
             </div>
 
-            <div class="col-lg-4">
+            <div class="col-lg-6">
                 <div class="card bg-danger text-white-50">
                     <div class="card-body">
                         <h5 class="mt-0 mb-4 text-white">Jumlah Kelahiran</h5>
@@ -93,10 +93,25 @@
                 </div>
             </div>
 
-            <div class="col-lg-4">
+
+        </div>
+        <div class="row">
+            <div class="col-lg-6">
+                <div class="card bg-info text-white-50">
+                    <div class="card-body">
+                        <h5 class="mt-0 mb-4 text-white">Jumlah Pindah Masuk</h5>
+                        <div class="d-flex justify-content-between">
+                            <h1 class="text-white">1</h1>
+                            <i class="fas fa-user-plus fa-3x" style="color:white;"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-lg-6">
                 <div class="card bg-warning text-white-50">
                     <div class="card-body">
-                        <h5 class="mt-0 mb-4 text-white">Jumlah Pindah Masuk/Keluar</h5>
+                        <h5 class="mt-0 mb-4 text-white">Jumlah Pindah Keluar</h5>
                         <div class="d-flex justify-content-between">
                             <h1 class="text-white">1</h1>
                             <i class="fas fa-user-xmark fa-3x" style="color:white;"></i>
@@ -162,7 +177,7 @@
                             </div>
                             <div class="col-3">
                                 <h5 class="mb-0">{{ $sts_nikah_kawin->count() }}</h5>
-                                <p class="text-muted text-truncate">Belum Kawin</p>
+                                <p class="text-muted text-truncate">Kawin</p>
                             </div>
                             <div class="col-3">
                                 <h5 class="mb-0">{{ $sts_nikah_cerai_hidup->count() }}</h5>
@@ -355,20 +370,33 @@
         </div>
 
         <?php
-        // Example assuming $pekerjaan is a collection of job names
-        $jobNames = $pekerjaan->pluck('pekerjaan')->toArray();
-        
-        // Calculate job counts based on the job names
-        $jobCounts = array_count_values($jobNames);
-        
-        // Convert counts to an indexed array (if you need an indexed array)
-        $jobCountsIndexed = array_values($jobCounts);
-        ?>
+            $ages = $usia->pluck('usia')->toArray();
+            
+            // Define age groups
+            $ageGroups = ['0-4', '5-9', '10-14', '15-19', '20-24', '25-29', '30-34', '35-39', '40-44', '45-49', '50-54', '55-59', '60-64', '65+'];
+            
+            // Initialize counts for each age group
+            $jobCounts = array_fill_keys($ageGroups, 0);
+            
+            // Assign each age to the appropriate group
+            foreach ($ages as $age) {
+                foreach ($ageGroups as $group) {
+                    [$start, $end] = explode('-', $group);
+                    if ($age >= $start && $age <= $end) {
+                        $jobCounts[$group]++;
+                        break;
+                    }
+                }
+            }
+            
+            // Convert counts to an indexed array
+            $jobCountsIndexed = array_values($jobCounts);
+            ?>
         <div class="row">
             <div class="col-lg-6">
                 <div class="card">
                     <div class="card-body">
-                        <h4 class="card-title mb-4">Pekerjaan</h4>
+                        <h4 class="card-title mb-4">Usia</h4>
                         <div id="donut_chart_pekerjaan"></div>
                     </div>
                 </div>
@@ -376,25 +404,8 @@
             </div>
 
 
-            <?php
-            // Example assuming $pekerjaan is a collection of job names
-            $jobNames = $pekerjaan->pluck('usia')->toArray();
             
-            // Calculate job counts based on the job names
-            $jobCounts = array_count_values($jobNames);
-            
-            // Convert counts to an indexed array (if you need an indexed array)
-            $jobCountsIndexed = array_values($jobCounts);
-            ?>
-            <div class="col-lg-6">
-                <div class="card">
-                    <div class="card-body">
-                        <h4 class="card-title mb-4">Usia</h4>
-                        <div id="bar_chart_usia"></div>
-                    </div>
-                </div>
-
-            </div>
+           
 
             <!-- end col -->
         </div>
@@ -619,48 +630,27 @@
     </script>
 
 
-<script>
-    document.addEventListener("DOMContentLoaded", function() {
-        var jobCounts = <?php echo json_encode($jobCountsIndexed); ?>; // Updated with the calculated counts
-        var jobNames = <?php echo json_encode(array_keys($jobCounts)); ?>;
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            var jobCounts = <?php echo json_encode($jobCountsIndexed); ?>; // Updated with the calculated counts
+            var jobNames = <?php echo json_encode(array_keys($jobCounts)); ?>;
 
-        var options = {
-            chart: {
-                type: 'donut',
-            },
-            series: jobCounts,
-            labels: jobNames,
-            colors: ['#FF6384', '#36A2EB', '#FFCE56'], // Add more colors as needed
-        };
+            var options = {
+                chart: {
+                    type: 'donut',
+                },
+                series: jobCounts,
+                labels: jobNames,
+                colors: ['#FF6384', '#36A2EB', '#FFCE56', '#4CAF50', '#FF9800', '#9C27B0', '#795548', '#607D8B',
+                    '#9E9E9E', '#3F51B5', '#FF5722'
+                ],
+            };
 
-        var chart = new ApexCharts(document.querySelector("#donut_chart_pekerjaan"), options);
-        chart.render();
-    });
-</script>
+            var chart = new ApexCharts(document.querySelector("#donut_chart_pekerjaan"), options);
+            chart.render();
+        });
+    </script>
 
-<script>
-    document.addEventListener("DOMContentLoaded", function() {
-        var jobCounts = <?php echo json_encode($jobCountsIndexed); ?>; // Updated with the calculated counts
-        var jobNames = <?php echo json_encode(array_keys($jobCounts)); ?>;
 
-        var options = {
-            chart: {
-                type: 'bar', // Change the chart type to 'bar'
-            },
-            series: [{
-                name: 'Jumlah Usia',
-                data: jobCounts,
-            }],
-            xaxis: {
-                categories: jobNames,
-            },
-            colors: ['#FF6384', '#36A2EB', '#FFCE56'], // Add more colors as needed
-        };
 
-        var chart = new ApexCharts(document.querySelector("#bar_chart_usia"), options);
-        chart.render();
-    });
-</script>
-
-    
 @endsection

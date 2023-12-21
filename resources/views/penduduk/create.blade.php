@@ -206,9 +206,18 @@
                                     </div>
 
                                     <div class="col-sm-6">
-                                        <label for="pekerjaan" class="col-form-label">Pekerjaan</label>
-                                        <input type="text" class="form-control" id="pekerjaan" name="pekerjaan" placeholder="Jenis Usaha">
-                                        <button type="button" class="btn btn-primary mt-2" onclick="addNewPekerjaan()">Tambah Pekerjaan</button>
+                                        <label for="pekerjaan" class="col-form-label">
+                                            Pekerjaan</label>
+                                        <select class="form-control" class="pekerjaan" name="pekerjaan"
+                                            id="pekerjaan">
+                                            <option value="">--Pilih Salah Satu--</option>
+                                            <option value="1">Karyawan Swasta</option>
+                                            <option value="2">Pengrajin</option>
+                                            <option value="3">Wirausaha</option>
+                                            <option value="4">Guru</option>
+                                            <option value="5">Petani</option>
+
+                                        </select>
                                     </div>
 
                                     <div class="col-sm-6">
