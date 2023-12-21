@@ -1,66 +1,107 @@
 @extends('layouts.app')
-@section('master-title','Dashboard/')
-@section('page-title','Data Penduduk')
+@section('master-title', 'Dashboard/')
+@section('page-title', 'Data Penduduk')
 @section('contents')
 
-<link rel="shortcut icon" href="{{ asset('assets/images/favicon.ico') }}">
+    <link rel="shortcut icon" href="{{ asset('assets/images/favicon.ico') }}">
 
-<!-- DataTables -->
-<link href="{{ asset('assets/libs/datatables.net-bs4/css/dataTables.bootstrap4.min.css') }}" rel="stylesheet"
-    type="text/css" />
-<link href="{{ asset('assets/libs/datatables.net-buttons-bs4/css/buttons.bootstrap4.min.css') }}" rel="stylesheet"
-    type="text/css" />
+    <!-- DataTables -->
+    <link href="{{ asset('assets/libs/datatables.net-bs4/css/dataTables.bootstrap4.min.css') }}" rel="stylesheet"
+        type="text/css" />
+    <link href="{{ asset('assets/libs/datatables.net-buttons-bs4/css/buttons.bootstrap4.min.css') }}" rel="stylesheet"
+        type="text/css" />
 
-<!-- Responsive datatable examples -->
-<link href="{{ asset('assets/libs/datatables.net-responsive-bs4/css/responsive.bootstrap4.min.css') }}" rel="stylesheet"
-    type="text/css" />
+    <!-- Responsive datatable examples -->
+    <link href="{{ asset('assets/libs/datatables.net-responsive-bs4/css/responsive.bootstrap4.min.css') }}" rel="stylesheet"
+        type="text/css" />
 
-<!-- Bootstrap Css -->
-<link href="{{ asset('assets/css/bootstrap.min.css') }}" id="bootstrap-style" rel="stylesheet" type="text/css" />
-<!-- Icons Css -->
-<link href="{{ asset('assets/css/icons.min.css') }}" rel="stylesheet" type="text/css" />
-<!-- App Css-->
-<link href="{{ asset('assets/css/app.min.css') }}" id="app-style" rel="stylesheet" type="text/css" />
-<link rel="stylesheet" href="{{ asset('/css/app.css') }}">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
-    integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA=="
-    crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <!-- Bootstrap Css -->
+    <link href="{{ asset('assets/css/bootstrap.min.css') }}" id="bootstrap-style" rel="stylesheet" type="text/css" />
+    <!-- Icons Css -->
+    <link href="{{ asset('assets/css/icons.min.css') }}" rel="stylesheet" type="text/css" />
+    <!-- App Css-->
+    <link href="{{ asset('assets/css/app.min.css') }}" id="app-style" rel="stylesheet" type="text/css" />
+    <link rel="stylesheet" href="{{ asset('/css/app.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
+        integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
 
-<main>
-    <form action="{{ route('penduduk.index') }}" method="GET" enctype="multipart/form-data"> 
-    <div class="card">
-    <div class="card-body">
-    <h3 class="card-title text-info"><u>Filter</u></h3>
-        <div class="row">
-            <div class="col-lg-6 col-md-12">
-                <div class="mb-3">
-                    <label class="form-label">Usia</label>
-                    <input type="text" class="form-control" id="usia" name="usia_mn"
-                                            placeholder="usia minimal">
-                    
-                    <input type="text" class="form-control mt-4" id="usia" name="usia_mx"
-                    placeholder="usia maksimal">
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="d-flex flex-row-reverse">
-    <button type="submit" class="btn btn-primary ml-3">Filter</button>
-    </div>
-    </div>
-    </form>
-    <div class="row">
-        <div class="col-12">
+
+
+    <main>
+        <form action="{{ route('penduduk.index') }}" method="GET" enctype="multipart/form-data">
             <div class="card">
                 <div class="card-body">
-                    <div id="table-default" class="table-responsive">
-                        {{ $dataTable->table() }}
+                    <h3 class="card-title text-info fw-bold">Filter</h3>
+                    <div class="form-group">
+                        <div class="row">
+                            <div class="col-sm-3">
+                                <label for="nama" class="col-form-label">Nama Lengkap</label>
+                                <input type="text" class="form-control" id="nama" name="nama"
+                                    placeholder="Nama Sesuai KTP">
+                            </div>
+                            <div class="col-sm-3">
+                                <label for="nik" class="col-form-label">NIK</label>
+                                <input type="number" class="form-control" id="NIK" name="NIK"
+                                    placeholder="Nomor KTP">
+                            </div>
+
+                            <div class="col-sm-3">
+                                <label for="nkk" class="col-form-label">NKK</label>
+                                <input type="number" class="form-control" id="NKK" name="NKK"
+                                    placeholder="Nomor KK">
+                            </div>
+
+                            <div class="col-sm-3">
+                                <label for="rt" class="col-form-label">RT</label>
+                                <input type="number" class="form-control" id="rt" name="rt" placeholder="000">
+                            </div>
+
+
+
+                        </div>
+
+                    </div>
+
+                    <div class="form-group">
+                        <div class="row">
+
+                            <div class="col-sm-3">
+                                <label for="rw" class="col-form-label">RW</label>
+                                <input type="number" class="form-control" id="rw" name="rw" placeholder="000">
+                            </div>
+                            <div class="col-sm-3">
+                                <label for="usia_mn" class="col-form-label">Usia Minimal</label>
+                                <input type="number" class="form-control" id="usia_mn" name="usia_mn"
+                                    placeholder="Usia Minimal">
+                            </div>
+                            <div class="col-sm-3">
+                                <label for="usia_mx" class="col-form-label">Usia maksimal</label>
+                                <input type="number" class="form-control" id="usia_mn" name="usia_mx"
+                                    placeholder="Usia Maksimal">
+                            </div>
+
+
+                        </div>
+                    </div>
+                    <div class="d-flex flex-row mt-3">
+                        <button type="submit" class="btn btn-primary">Filter</button>
+                    </div>
+                </div>
+        </form>
+        <div class="row">
+            <div class="col-12">
+                <div class="card">
+                    <div class="card-body">
+                        <div id="table-default" class="table-responsive">
+                            {{ $dataTable->table() }}
+
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
-</main>
+    </main>
 
     <script src="{{ asset('assets/libs/jquery/jquery.min.js') }}"></script>
     <script src="{{ asset('assets/libs/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
@@ -92,6 +133,10 @@
     <script defer src="https://use.fontawesome.com/releases/v5.15.4/js/fontawesome.js"
         integrity="sha384-dPBGbj4Uoy1OOpM4+aRGfAOc0W37JkROT+3uynUgTHZCHZNMHfGXsmmvYTffZjYO" crossorigin="anonymous">
     </script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous">
+    </script>
+
 
 @endsection
 

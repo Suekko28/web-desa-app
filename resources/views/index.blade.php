@@ -97,7 +97,7 @@
         </div>
         <div class="row">
             <div class="col-lg-6">
-                <div class="card bg-secondary text-white-50">
+                <div class="card bg-info text-white-50">
                     <div class="card-body">
                         <h5 class="mt-0 mb-4 text-white">Jumlah Pindah Masuk</h5>
                         <div class="d-flex justify-content-between">
