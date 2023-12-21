@@ -208,7 +208,7 @@
                                     <div class="col-sm-6">
                                         <label for="pekerjaan" class="col-form-label">
                                             Pekerjaan</label>
-                                        <select class="form-control" class="pekerjaan" name="kepemilikan_bpjs"
+                                        <select class="form-control" class="pekerjaan" name="pekerjaan"
                                             id="pekerjaan">
                                             <option value="">--Pilih Salah Satu--</option>
                                             <option value="1">Karyawan Swasta</option>
