@@ -370,17 +370,22 @@
         </div>
 
         <?php
-            $ages = $usia->pluck('usia')->toArray();
-            
-            // Define age groups
-            $ageGroups = ['0-4', '5-9', '10-14', '15-19', '20-24', '25-29', '30-34', '35-39', '40-44', '45-49', '50-54', '55-59', '60-64', '65+'];
-            
-            // Initialize counts for each age group
-            $jobCounts = array_fill_keys($ageGroups, 0);
-            
-            // Assign each age to the appropriate group
-            foreach ($ages as $age) {
-                foreach ($ageGroups as $group) {
+        $ages = $usia->pluck('usia')->toArray();
+        
+        // Define age groups
+        $ageGroups = ['0-4', '5-9', '10-14', '15-19', '20-24', '25-29', '30-34', '35-39', '40-44', '45-49', '50-54', '55-59', '60-64', '65+'];
+        
+        // Initialize counts for each age group
+        $jobCounts = array_fill_keys($ageGroups, 0);
+        
+        // Assign each age to the appropriate group
+        foreach ($ages as $age) {
+            foreach ($ageGroups as $group) {
+                if ($group == '65+') {
+                    if ($age >= 65) {
+                        $jobCounts[$group]++;
+                    }
+                } else {
                     [$start, $end] = explode('-', $group);
                     if ($age >= $start && $age <= $end) {
                         $jobCounts[$group]++;
@@ -388,35 +393,56 @@
                     }
                 }
             }
-            
-            // Convert counts to an indexed array
-            $jobCountsIndexed = array_values($jobCounts);
-            ?>
+        }
+        
+        // Convert counts to an indexed array
+        $jobCountsIndexed = array_values($jobCounts);
+        ?>
         <div class="row">
             <div class="col-lg-6">
                 <div class="card">
                     <div class="card-body">
                         <h4 class="card-title mb-4">Usia</h4>
-                        <div id="donut_chart_pekerjaan"></div>
+                        <div id="donut_chart_usia"></div>
                     </div>
                 </div>
 
             </div>
 
+            <div class="col-lg-6">
+                <div class="card">
+                    <div class="card-body">
+                        <h4 class="card-title mb-4">Pekerjaan</h4>
 
-            
-           
+                        <div class="row text-center">
+                            <div class="col-3">
+                                <h5 class="mb-0">{{ $pekerjaan_swasta->count() }}</h5>
+                                <p class="text-muted text-truncate">Karyawan Swasta</p>
+                            </div>
+                            <div class="col-3">
+                                <h5 class="mb-0">{{ $pekerjaan_pengrajin->count() }}</h5>
+                                <p class="text-muted text-truncate">Pengrajin</p>
+                            </div>
+                            <div class="col-3">
+                                <h5 class="mb-0">{{ $pekerjaan_wirausaha->count() }}</h5>
+                                <p class="text-muted text-truncate">Wirausaha</p>
+                            </div>
+                            <div class="col-3">
+                                <h5 class="mb-0">{{ $pekerjaan_guru->count() }}</h5>
+                                <p class="text-muted text-truncate">Guru</p>
+                            </div>
+                            <div class="col-3">
+                                <h5 class="mb-0">{{ $pekerjaan_petani->count() }}</h5>
+                                <p class="text-muted text-truncate">Petani</p>
+                            </div>
 
-            <!-- end col -->
-        </div>
+                        </div>
 
-
-        <!-- end col -->
-
-
-
-    </main>
-
+                        <div id="pie_chart_pekerjaan"></div>
+                    </div>
+                </div>
+            </div>
+        </main>
 
     <script src="{{ asset('assets/libs/jquery/jquery.min.js') }}"></script>
     <script src="{{ asset('assets/libs/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
@@ -646,10 +672,34 @@
                 ],
             };
 
-            var chart = new ApexCharts(document.querySelector("#donut_chart_pekerjaan"), options);
+            var chart = new ApexCharts(document.querySelector("#donut_chart_usia"), options);
             chart.render();
         });
     </script>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            var options = {
+                chart: {
+                    type: 'pie',
+                },
+                series: [
+                    {{ $pekerjaan_swasta->count() }},
+                    {{ $pekerjaan_pengrajin->count() }},
+                    {{ $pekerjaan_wirausaha->count() }},
+                    {{ $pekerjaan_guru->count() }},
+                    {{ $pekerjaan_petani->count() }},
+                ],
+                labels: ['Karyawan Swasta', 'Pengrajin', 'Wirausaha', 'Guru', 'Petani'],
+                colors: ['#FF6384', '#36A2EB', '#FFCE56', '#4CAF50', '#FF9800'],
+            };
+
+            var chart = new ApexCharts(document.querySelector("#pie_chart_pekerjaan"), options);
+
+            chart.render();
+        });
+    </script>
+
 
 
 

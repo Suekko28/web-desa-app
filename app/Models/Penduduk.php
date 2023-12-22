@@ -86,4 +86,9 @@ class penduduk extends Model
         $arr=['ada','tidak ada'];
         return $arr[$value-1];
     }
+
+    public function getPekerjaanAttribute($value){
+        $arr=['Karyawan Swasta','Pengrajin','Pengusaha','Guru','Petani'];
+        return $arr[$value-1];
+    }
 }

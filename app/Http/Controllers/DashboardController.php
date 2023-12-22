@@ -34,9 +34,9 @@ class DashboardController extends Controller
         $pendidikan_sltp = Penduduk::where('pendidikan', '3');
         $pendidikan_slta = Penduduk::where('pendidikan', '4');
         $pendidikan_diploma_i = Penduduk::where('pendidikan', '5');
-        $pendidikan_diploma_ii  = Penduduk::where('pendidikan', '6');
-        $pendidikan_diploma_iii  = Penduduk::where('pendidikan', '7');
-        $pendidikan_diploma_iv  = Penduduk::where('pendidikan', '8');
+        $pendidikan_diploma_ii = Penduduk::where('pendidikan', '6');
+        $pendidikan_diploma_iii = Penduduk::where('pendidikan', '7');
+        $pendidikan_diploma_iv = Penduduk::where('pendidikan', '8');
         $pendidikan_sastra_i = Penduduk::where('pendidikan', '9');
         $pendidikan_sastra_ii = Penduduk::where('pendidikan', '10');
         $pendidikan_sastra_iii = Penduduk::where('pendidikan', '11');
@@ -55,51 +55,62 @@ class DashboardController extends Controller
         $pekerjaan = DB::table('penduduk')->get();
 
         $usia = DB::table('penduduk')->get();
-    
+
         $penduduk = DB::table('penduduk')->get();
         $jumlah_penduduk = Penduduk::count();
-    
-        return view('index', compact('penduduk', 
-        'jumlah_laki_laki', 
-        'jumlah_perempuan',
-        'jumlah_kepemilikan_e_ktp_ada', 
-        'jumlah_kepemilikan_e_ktp_tidak_ada',
-        'sts_nikah_belum_kawin',
-        'sts_nikah_kawin',
-        'sts_nikah_cerai_hidup',
-        'sts_nikah_cerai_mati',
-        'agama_islam',
-        'agama_kristen_protestan',
-        'agama_kristen_katolik',
-        'agama_hindu',
-        'agama_buddha',
-        'agama_khonghucu',
-        'pendidikan_belum_sekolah',
-        'pendidikan_sd',
-        'pendidikan_sltp',
-        'pendidikan_slta',
-        'pendidikan_diploma_i',
-        'pendidikan_diploma_ii',
-        'pendidikan_diploma_iii',
-        'pendidikan_diploma_iv',
-        'pendidikan_sastra_i',
-        'pendidikan_sastra_ii',
-        'pendidikan_sastra_iii',
-        'bpjs_ppu',
-        'bpjs_pbpu',
-        'bpjs_pd_pemda',
-        'bpjs_bukan_pekerja',
-        'bpjs_pbi_jk',
-        'bpjs_tidak_ada',
-        'wni',
-        'wna',
-        'wni_wna',
-        'pekerjaan',
-        'usia',
+
+        $pekerjaan_swasta = Penduduk::where('pekerjaan', '1');
+        $pekerjaan_pengrajin = Penduduk::where('pekerjaan', '2');
+        $pekerjaan_wirausaha = Penduduk::where('pekerjaan', '3');
+        $pekerjaan_guru = Penduduk::where('pekerjaan', '4');
+        $pekerjaan_petani = Penduduk::where('pekerjaan', '5');
+
+        return view('index', compact('penduduk',
+            'jumlah_laki_laki',
+            'jumlah_perempuan',
+            'jumlah_kepemilikan_e_ktp_ada',
+            'jumlah_kepemilikan_e_ktp_tidak_ada',
+            'sts_nikah_belum_kawin',
+            'sts_nikah_kawin',
+            'sts_nikah_cerai_hidup',
+            'sts_nikah_cerai_mati',
+            'agama_islam',
+            'agama_kristen_protestan',
+            'agama_kristen_katolik',
+            'agama_hindu',
+            'agama_buddha',
+            'agama_khonghucu',
+            'pendidikan_belum_sekolah',
+            'pendidikan_sd',
+            'pendidikan_sltp',
+            'pendidikan_slta',
+            'pendidikan_diploma_i',
+            'pendidikan_diploma_ii',
+            'pendidikan_diploma_iii',
+            'pendidikan_diploma_iv',
+            'pendidikan_sastra_i',
+            'pendidikan_sastra_ii',
+            'pendidikan_sastra_iii',
+            'bpjs_ppu',
+            'bpjs_pbpu',
+            'bpjs_pd_pemda',
+            'bpjs_bukan_pekerja',
+            'bpjs_pbi_jk',
+            'bpjs_tidak_ada',
+            'wni',
+            'wna',
+            'wni_wna',
+            'pekerjaan',
+            'usia',
+            'pekerjaan_swasta',
+            'pekerjaan_pengrajin',
+            'pekerjaan_wirausaha',
+            'pekerjaan_guru',
+            'pekerjaan_petani',
 
 
 
-    ));
+        ));
     }
-    
+
 }

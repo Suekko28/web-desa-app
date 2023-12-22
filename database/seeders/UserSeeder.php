@@ -19,11 +19,14 @@ class UserSeeder extends Seeder
         $user = User::firstOrCreate([
             'email' => 'james@gmail.com',
         ], [
-            'name' => 'james',
+            'nama' => 'james',
             'email' => 'james@gmail.com',
             'email_verified_at'=>$created_at,
             'password' => Hash::make('123'),
             'created_at' => $created_at,
+            'updated_at' => $created_at,
+
         ]);
+        
     }
 }

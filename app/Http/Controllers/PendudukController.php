@@ -20,7 +20,6 @@ class PendudukController extends Controller
      */
     public function index(PendudukDataTable $dataTable,Request $request)
     {
-        
         return $dataTable->addScope(new PendudukScope($request))->render('penduduk.index');
     }
 

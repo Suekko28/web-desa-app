@@ -2,6 +2,7 @@
 
 namespace Database\Factories;
 
+use Illuminate\Database\Seeder;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -14,10 +15,12 @@ class PendudukFactory extends Factory
      *
      * @return array<string, mixed>
      */
-    public function definition(): array
+    public function run(): void
     {
-        return [
-            //
-        ];
+        $this->call([
+            UserSeeder::class,
+            PendudukSeeder::class,
+        ]);
+        
     }
 }
