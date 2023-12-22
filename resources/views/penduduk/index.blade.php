@@ -38,17 +38,17 @@
                             <div class="col-sm-3">
                                 <label for="nama" class="col-form-label">Nama Lengkap</label>
                                 <input type="text" class="form-control" id="nama" name="nama"
-                                    placeholder="Nama Sesuai KTP">
+                                    placeholder="Nama">
                             </div>
                             <div class="col-sm-3">
                                 <label for="nik" class="col-form-label">NIK</label>
-                                <input type="number" class="form-control" id="NIK" name="NIK"
+                                <input type="text" class="form-control" id="NIK" name="NIK"
                                     placeholder="Nomor KTP">
                             </div>
 
                             <div class="col-sm-3">
                                 <label for="nkk" class="col-form-label">NKK</label>
-                                <input type="number" class="form-control" id="NKK" name="NKK"
+                                <input type="text" class="form-control" id="NKK" name="NKK"
                                     placeholder="Nomor KK">
                             </div>
 

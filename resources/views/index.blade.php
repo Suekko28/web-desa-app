@@ -381,10 +381,17 @@
             // Assign each age to the appropriate group
             foreach ($ages as $age) {
                 foreach ($ageGroups as $group) {
-                    [$start, $end] = explode('-', $group);
-                    if ($age >= $start && $age <= $end) {
+                    if ($group=='65+'){
+                        if($age>=65){
                         $jobCounts[$group]++;
-                        break;
+                        }
+                    }
+                    else{
+                        [$start, $end] = explode('-', $group);
+                        if ($age >= $start && $age <= $end) {
+                            $jobCounts[$group]++;
+                            break;
+                        }
                     }
                 }
             }

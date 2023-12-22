@@ -31,7 +31,7 @@ return new class extends Migration
             $table->string('rw');
             $table->string('alamat');
             $table->integer('pendidikan');//tidak sekolah,SD,SLTP,SLTA,diploma 1,diploma 2,diploma 3,diploma 4
-            $table->string('pekerjaan');
+            $table->integer('pekerjaan');
             $table->integer('kepemilikan_bpjs');
             $table->integer('kepemilikan_e_ktp');
             $table->string('nama_ibu');

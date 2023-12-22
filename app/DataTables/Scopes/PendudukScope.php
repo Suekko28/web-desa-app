@@ -23,15 +23,44 @@ class PendudukScope implements DataTableScope
     public function apply($query)
     {
         $filters =  [
-            'age',
+            'nama',
+            'NIK',
+            'NKK',
+            'rt',
+            'rw',
+            
         ];
-
         foreach ($filters as $field) {
             if ($this->request->has($field)) {
                 if($this->request->get($field) !== null){
-                    $query->where($field, '=', $this->request->get($field));
+                    $query->where($field, 'LIKE', '%'.$this->request->get($field).'%');
                 }
             }
         }
+        $mn='0';
+        $mx='999';
+        if($this->request->has('usia_mn')){
+            if($this->request->get('usia_mn')!=null){
+            $mn=$this->request->get('usia_mn');
+                if((int)$mn<0){
+                    $mn='0';
+                }
+            }
+            $query->where('usia', '>=', $mn);
+
+        }
+
+        if($this->request->has('usia_mx')){
+            if($this->request->get('usia_mx')!=null){
+            $mx=$this->request->get('usia_mx');
+                if((int)$mx<0){
+                    $mx='0';
+                }
+            }
+            $query->where('usia', '<=', $mx);
+
+        }
+        
+        
     }
 }
