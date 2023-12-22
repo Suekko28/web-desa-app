@@ -209,9 +209,18 @@
 
                                     <div class="col-sm-6">
                                         <label for="pekerjaan" class="col-form-label">Pekerjaan</label>
-                                        <input type="text" class="form-control" id="pekerjaan" name="pekerjaan"
-                                            placeholder="Jenis Usaha" value="{{$data->pekerjaan}}">
+                                        <select class="form-control pekerjaan" name="pekerjaan" id="pekerjaan">
+                                            <option value="">--Pilih Salah Satu--</option>
+                                            <option value="1" @if(old('pekerjaan', $data->pekerjaan) == 'Karyawan Swasta') selected @endif>Karyawan Swasta</option>
+                                            <option value="2" @if(old('pekerjaan', $data->pekerjaan) == 'Pengrajin') selected @endif>Pengrajin</option>
+                                            <option value="3" @if(old('pekerjaan', $data->pekerjaan) == 'Wirausaha') selected @endif>Wirausaha</option>
+                                            <option value="4" @if(old('pekerjaan', $data->pekerjaan) == 'Guru') selected @endif>Guru</option>
+                                            <option value="5" @if(old('pekerjaan', $data->pekerjaan) == 'Petani') selected @endif>Petani</option>
+                                        </select>
                                     </div>
+                                    
+                                    
+                                    
 
                                     <div class="col-sm-6">
                                         <label for="bpjs" class="col-form-label">Kepemilikan BPJS</label>
