@@ -208,16 +208,29 @@
                                     <div class="col-sm-6">
                                         <label for="pekerjaan" class="col-form-label">
                                             Pekerjaan</label>
-                                        <select class="form-control" class="pekerjaan" name="pekerjaan"
-                                            id="pekerjaan">
-                                            <option value="">--Pilih Salah Satu--</option>
-                                            <option value="1">Karyawan Swasta</option>
-                                            <option value="2">Pengrajin</option>
-                                            <option value="3">Wirausaha</option>
-                                            <option value="4">Guru</option>
-                                            <option value="5">Petani</option>
-
-                                        </select>
+                                            <select class="form-control" class="pekerjaan" name="pekerjaan" id="pekerjaan">
+                                                <option value="">--Pilih Salah Satu--</option>
+                                                <option value="1">Buruh Harian Lepas</option>
+                                                <option value="2">Belum Bekerja</option>
+                                                <option value="3">Pengrajin Logam</option>
+                                                <option value="4">Wiraswasta</option>
+                                                <option value="5">Guru</option>
+                                                <option value="6">Mengurus Rumah Tangga</option>
+                                                <option value="7">Pegawai Negri Sipil</option>
+                                                <option value="8">Tentara Nasional Indonesia</option>
+                                                <option value="9">Guru ngaji</option>
+                                                <option value="10">Wirausaha</option>
+                                                <option value="11">Penjahit</option>
+                                                <option value="12">Pensiun PNS</option>
+                                                <option value="13">Pemulung</option>
+                                                <option value="14">Buruh</option>
+                                                <option value="15">Linmas wilayah</option>
+                                                <option value="16">Driver</option>
+                                                <option value="17">Petani</option>
+                                                <option value="18">Amil</option>
+                                                <option value="19">Service</option>
+                                            </select>
+                                            
                                     </div>
 
                                     <div class="col-sm-6">

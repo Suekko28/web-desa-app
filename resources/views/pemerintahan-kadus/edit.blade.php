@@ -1,5 +1,5 @@
 @extends('layouts.app')
-@section('master-title', 'Lembaga Pemberdayaan Masyarakat/')
+@section('master-title', 'Kadus/')
 @section('page-title', 'Edit')
 @section('contents')
     <link rel="shortcut icon" href="{{ asset('assets/images/favicon.ico') }}">
@@ -26,12 +26,14 @@
         crossorigin="anonymous" referrerpolicy="no-referrer" />
 
     <main>
+        <section class="content">
+
         <div class="container-fluid">
             @include('layouts.message')
 
             <!-- Small boxes (Stat box) -->
 
-            <form action="{{ route('pemerintahan-lpm.update', $data->id) }}" method="post" enctype="multipart/form-data">
+            <form action="{{ route('pemerintahan-kadus.update', $data->id) }}" method="post" enctype="multipart/form-data">
                 @method('PUT')
                 @csrf
                 <div class="card">
@@ -45,7 +47,7 @@
                                 <div class="col-sm-4">
                                     <label for="profile" class="col-form-label">Profile</label>
                                     <input type="file" class="form-control" id="profile" name="profile" placeholder="">
-                                    <div>current : <a href="{{ asset('storage/lpm/' . $data->profile) }}">{{ $data->profile }}</a></div>
+                                    <div>current : <a href="{{ asset('storage/posyandu/' . $data->profile) }}">{{ $data->profile }}</a></div>
                                 </div>
                                 <div class="col-sm-4">
                                     <label for="name" class="col-form-label">Nama Lengkap</label>
@@ -110,7 +112,7 @@
 
                         <div class="d-flex flex-row-reverse">
                             <button type="submit" class="btn btn-primary ml-3">Simpan</button>
-                            <a href="{{ route('pemerintahan-lpm.index') }}" class="btn btn-danger">Batal</a>
+                            <a href="{{ route('pemerintahan-kadus.index') }}" class="btn btn-danger">Batal</a>
                         </div>
 
 
@@ -118,8 +120,9 @@
             </form>
             <!-- /.row (main row) -->
         </div><!-- /.container-fluid -->
+        </section>
     </main>
-    
+
     <script src="{{ asset('assets/libs/jquery/jquery.min.js') }}"></script>
     <script src="{{ asset('assets/libs/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
     <script src="{{ asset('assets/libs/metismenu/metisMenu.min.js') }}"></script>
@@ -150,5 +153,6 @@
     <script defer src="https://use.fontawesome.com/releases/v5.15.4/js/fontawesome.js"
         integrity="sha384-dPBGbj4Uoy1OOpM4+aRGfAOc0W37JkROT+3uynUgTHZCHZNMHfGXsmmvYTffZjYO" crossorigin="anonymous">
     </script>
+
 
 @endsection

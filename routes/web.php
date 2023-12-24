@@ -43,3 +43,8 @@ Route::middleware(['auth'])->group(function(){
     Route::Post('/penduduk-import',[\App\Http\Controllers\PendudukController::class,'importPenduduk'])->name('penduduk.import');
     Route::Resource('/penduduk',\App\Http\Controllers\PendudukController::class);
 });
+
+
+Route::get('/rt', function(){
+    return view('pemerintahan-rt.index');
+});

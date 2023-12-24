@@ -1,6 +1,6 @@
 
 @extends('layouts.app')
-@section('master-title', 'Posyandu/')
+@section('master-title', 'Kadus/')
 @section('page-title', 'Create')
 @section('contents')
     <link rel="shortcut icon" href="{{ asset('assets/images/favicon.ico') }}">
@@ -33,7 +33,7 @@
 
                 <!-- Small boxes (Stat box) -->
 
-                <form action="{{ route('pemerintahan-posyandu.store') }}" method="POST" enctype="multipart/form-data">
+                <form action="{{ route('pemerintahan-kadus.store') }}" method="POST" enctype="multipart/form-data">
                     @csrf
                     <div class="card">
                         <div class="card-body">
@@ -109,7 +109,7 @@
 
                             <div class="d-flex flex-row-reverse">
                                 <button type="submit" class="btn btn-primary ml-3">Simpan</button>
-                                <a href="{{ route('pemerintahan-posyandu.index') }}" class="btn btn-danger">Batal</a>
+                                <a href="{{ route('pemerintahan-kadus.index') }}" class="btn btn-danger">Batal</a>
                             </div>
 
 
