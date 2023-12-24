@@ -20,6 +20,9 @@ return new class extends Migration
             $table->date('tgl_lahir');
             $table->string('alamat');
             $table->string('profile');
+            $table->string('no_telepon');
+            $table->string('no_sk');
+            $table->date('tgl_sk');
             $table->timestamps();
         });
     }

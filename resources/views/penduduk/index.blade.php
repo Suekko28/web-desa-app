@@ -103,7 +103,7 @@
                             <div class="col-sm-3">
                                 <label for="jenis_kelamin" class="col-form-label">Jenis Kelamin</label>
                                 <select class="form-control" name="jenis_kelamin" id="jenis_kelamin">
-                                    <option value="0">--Pilih Salah Satu--</option>
+                                    <option value="">--Pilih Salah Satu--</option>
                                     <option value="1">Laki-Laki</option>
                                     <option value="2">Perempuan</option>
                                 </select>

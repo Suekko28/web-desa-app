@@ -23,9 +23,13 @@ class PendudukScope implements DataTableScope
     public function apply($query)
     {
         $filters =  [
-            'nama',
-            'NIK',
-            'NKK',
+            'pendidikan',
+            'pekerjaan',
+            'kepemilikan_bpjs',
+            'kepemilikan_e_ktp',
+            'jenis_kelamin',
+            'status_pernikahan',
+            'agama',
             'rt',
             'rw',
             
@@ -33,7 +37,7 @@ class PendudukScope implements DataTableScope
         foreach ($filters as $field) {
             if ($this->request->has($field)) {
                 if($this->request->get($field) !== null){
-                    $query->where($field, 'LIKE', '%'.$this->request->get($field).'%');
+                    $query->where($field, '=', $this->request->get($field));
                 }
             }
         }

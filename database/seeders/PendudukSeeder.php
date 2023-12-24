@@ -43,7 +43,7 @@ class PendudukSeeder extends Seeder
             'rw'=>Str::random(3),
             'alamat'=>Str::random(mt_rand(10,20)),
             'pendidikan'=>mt_rand(1,11),
-            'pekerjaan'=>mt_rand(1,5),
+            'pekerjaan'=>mt_rand(1,19),
             'kepemilikan_bpjs'=>mt_rand(1,6),
             'kepemilikan_e_ktp'=>mt_rand(1,2),
             'nama_ibu'=>Str::random(10),

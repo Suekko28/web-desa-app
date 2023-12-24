@@ -54,6 +54,9 @@ class PemerintahanKarangTarunaDataTable extends DataTable
             'pemerintahan_karang_taruna.tgl_lahir as tgl_lahir',
             'pemerintahan_karang_taruna.alamat as alamat',
             'pemerintahan_karang_taruna.updated_at as updated_at',
+            'pemerintahan_karang_taruna.no_telepon as no_telepon',
+            'pemerintahan_karang_taruna.no_sk as no_sk',
+            'pemerintahan_karang_taruna.tgl_sk as tgl_sk',
         );
     }
 
@@ -94,6 +97,9 @@ class PemerintahanKarangTarunaDataTable extends DataTable
             Column::make('tmpt_lahir'),
             Column::make('tgl_lahir'),
             Column::make('alamat'),
+            Column::make('no_telepon'),
+            Column::make('no_sk'),
+            Column::make('tgl_sk'),
             Column::make('updated_at'),
             Column::computed('action')
                 ->exportable(false)
