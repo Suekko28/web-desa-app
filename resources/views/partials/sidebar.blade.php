@@ -32,8 +32,8 @@
                     <a href="javascript: void(0);" class="has-arrow waves-effect">
                         <i class="fas fa-solid fa-book"></i>
                         <span>Data Desa Tarikolot</span>
-                    </a>    
-                    
+                    </a>
+
                     <ul class="sub-menu" aria-expanded="false">
                         <li>
                             <a href="javascript: void(0);" class="has-arrow waves-effect mb-2">
@@ -43,16 +43,22 @@
                             <ul class="sub-menu mb-2" aria-expanded="false">
                                 <li><a href="{{ route('pemerintahan-desa.index') }}">Pemerintahan Desa</a></li>
                                 <li><a href="{{ route('pemerintahan-BPD.index') }}">Badan Permusyawaratan Desa</a></li>
-                                <li><a href="{{ route('pemerintahan-lpm.index') }}">Lembaga Pemberdayaan Masyarakat</a></li>
-                                <li><a href="{{ route('pemerintahan-mui.index') }}">MUI (Majelis Ulama Indonesia)</a></li>
-                                <li><a href="{{ route('pemerintahan-pkk.index') }}">PKK (Pemberdayaan Kesejahteraan Keluarga)</a></li>
+                                <li><a href="{{ route('pemerintahan-lpm.index') }}">Lembaga Pemberdayaan Masyarakat</a>
+                                </li>
+                                <li><a href="{{ route('pemerintahan-mui.index') }}">MUI (Majelis Ulama Indonesia)</a>
+                                </li>
+                                <li><a href="{{ route('pemerintahan-pkk.index') }}">PKK (Pemberdayaan Kesejahteraan
+                                        Keluarga)</a></li>
                                 <li><a href="{{ route('pemerintahan-sahbandar.index') }}">Sahbandar</a></li>
                                 <li><a href="{{ route('pemerintahan-karang-taruna.index') }}">Karang Taruna</a></li>
                                 <li><a href="{{ route('pemerintahan-posyandu.index') }}">Posyandu</a></li>
+                                <li><a href="">RT</a></li>
+                                <li><a href="">RW</a></li>
+                                <li><a href="">Kadus</a></li>
                             </ul>
                         </li>
 
-                    <li><a href="{{ route('penduduk.index') }}">Data Penduduk</a></li>
+                        <li><a href="{{ route('penduduk.index') }}">Data Penduduk</a></li>
                     </ul>
                 </li>
 
@@ -65,18 +71,18 @@
                         <li><a href="form-elements.html">Surat Kependudukan</a></li>
                         <li><a href="form-validation.html">Surat Keluar</a></li>
                     </ul>
-                </li> 
+                </li>
 
                 <li>
                     <form method="POST" action="{{ route('logout') }}">
                         <button type="submit" class="btn btn-l dropdown-item text-danger">
                             @csrf
                             <i class="fas fa-solid fa-right-from-bracket"></i> Logout
-                        </form>
+                    </form>
                     </a>
                 </li>
 
-                
+
 
             </ul>
         </div>
