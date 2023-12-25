@@ -15,6 +15,7 @@ use Yajra\DataTables\Services\DataTable;
 
 class PendudukDataTable extends DataTable
 {
+    
     /**
      * Build DataTable class.
      *

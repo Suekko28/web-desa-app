@@ -79,7 +79,8 @@ class PemerintahDesaDataTable extends DataTable
                     ->minifiedAjax()
                     ->orderBy(0,'asc')
                     ->buttons($btn)
-                    ->lengthMenu([10, 50, 100]);
+                    ->lengthMenu([10, 50, 100])
+                    ->responsive(true);
     }
 
     /**
@@ -90,8 +91,7 @@ class PemerintahDesaDataTable extends DataTable
     public function getColumns(): array
     {
         return [
-            Column::make('id')
-                ->width(10),
+            Column::make('id'),
             Column::make('nama'),
             Column::make('jabatan'),
             Column::make('jenis_kelamin'),
@@ -105,7 +105,6 @@ class PemerintahDesaDataTable extends DataTable
             Column::computed('action')
                 ->exportable(false)
                 ->printable(false)
-                ->width(60)
                 ->addClass('text-center'),
         ];
     }
