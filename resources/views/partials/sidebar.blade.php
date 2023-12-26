@@ -96,7 +96,7 @@
                         <span>LPJ Kegiatan</span>
                     </a>
                     <ul class="sub-menu" aria-expanded="false">
-                        <li><a href="#">Barang dan Jasa</a></li>
+                        <li><a href="{{ route('lpj-barangjasa.index') }}">Barang dan Jasa</a></li>
                     </ul>
                 </li>
 

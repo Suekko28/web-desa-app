@@ -169,15 +169,8 @@
                                     <div class="col-sm-4">
                                         <label for="dusun" class="col-form-label">
                                             Dusun</label>
-                                        <select class="form-control" name="dusun" id="dusun">
-                                            <option value="">--Pilih Salah Satu--</option>
-                                            <option value="1" @if ($data->dusun == '1') selected @endif>
-                                                Dusun 1</option>
-                                            <option value="2" @if ($data->dusun == '2') selected @endif>
-                                                Dusun 2</option>
-                                            <option value="3" @if ($data->dusun == '3') selected @endif>
-                                                Dusun 3</option>
-                                        </select>
+                                        <input type="text" class="form-control" id="dusun" name="dusun"
+                                        placeholder="Dusun">
                                     </div>
 
                                     <div class="col-sm-4">

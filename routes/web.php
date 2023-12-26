@@ -44,6 +44,7 @@ Route::middleware(['auth'])->group(function(){
     Route::Post('/penduduk-import',[\App\Http\Controllers\PendudukController::class,'importPenduduk'])->name('penduduk.import');
     Route::Resource('/penduduk',\App\Http\Controllers\PendudukController::class);
     Route::Resource('/sirkulasi-melahirkan',\App\Http\Controllers\SirkulasiMelahirkanController::class);
+    Route::Resource('/lpj-barangjasa',\App\Http\Controllers\LPJBarangJasaController::class);
 });
 
 
