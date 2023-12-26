@@ -31,18 +31,18 @@
         <div class="col-12">
             <div class="card">
                 <div class="card-body">
-                    <div class="d-flex">
-                        <button class="btn btn-primary">
+                    <div class="d-flex btn_menu">
+                        <button class="btn btn-primary btn_tambah_data">
                             Tambah Data
                         </button>
                         <div class="dropdown">
-                            <button class="btn btn-secondary dropdown-toggle" type="button" id="exportDropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <button class="btn btn-info dropdown-toggle" type="button" id="exportDropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 Export Data
                             </button>
                             <div class="dropdown-menu" aria-labelledby="exportDropdown">
                                 {{-- <a class="dropdown-item" href="#">Export to CSV</a> --}}
                                 <a class="dropdown-item" href="#">Export to Excel</a>
-                                <a class="dropdown-item" href="#">Export to PDF</a>
+                                <a class="dropdown-item" href="/pemerintahan-desa/cetak_pdf" type="button" target="_blank">Export to PDF</a>
                             </div>
                         </div>
                     </div>
