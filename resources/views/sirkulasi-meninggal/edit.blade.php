@@ -1,5 +1,5 @@
 @extends('layouts.app')
-@section('master-title', 'RW/')
+@section('master-title', 'Data Meninggal/')
 @section('page-title', 'Edit')
 @section('contents')
     <link rel="shortcut icon" href="{{ asset('assets/images/favicon.ico') }}">
@@ -28,58 +28,87 @@
     <main>
         <section class="content">
 
-        <div class="container-fluid">
-            @include('layouts.message')
+            <div class="container-fluid">
+                @include('layouts.message')
 
-            <!-- Small boxes (Stat box) -->
+                <!-- Small boxes (Stat box) -->
+                <form action="{{ route('sirkulasi-meninggal.update', $data->id) }}" method="post"
+                    enctype="multipart/form-data">
+                    @method('PUT')
+                    @csrf
+                    <div class="card">
+                        <div class="card-body">
+                            <h5 class="text-center data_diri mb-3">Data Meninggal</h5>
+                            <div class="form-group">
+                                <div class="row">
+                                    <!-- Tampilin Semua Field Di Table Jos !-->
+                                    <div class="col-sm-4">
+                                        <label for="penduduk" class="col-form-label">Penduduk</label>
+                                        <select id="penduduk" name="penduduk" class="form-control" required>
+                                            <option value="" selected>--Pilih Penduduk--</option>
+                                            <option value="1">(Diambil dari data penduduk(NIK+Nama))</option>
+                                            <option value="2">(Diambil dari data penduduk(NIK+Nama))</option>
+                                        </select>
+                                    </div>
 
-            <form action="{{ route('sirkulasi-meninggal.update', $data->id) }}" method="post" enctype="multipart/form-data">
-                @method('PUT')
-                @csrf
-                <div class="card">
-                    <div class="card-body">
+                                    <div class="col-sm-4">
+                                        <label for="tgl_meninggal" class="col-form-label">Tanggal Meninggal</label>
+                                        <input type="date" class="form-control" id="tgl_meninggal" name="tgl_meninggal"
+                                            placeholder="">
+                                    </div>
+
+                                    <div class="col-sm-4">
+                                        <label for="sebab" class="col-form-label">Sebab</label>
+                                        <input type="text" class="form-control" id="sebab" name="sebab"
+                                            placeholder="Sebab Meninggal">
+                                    </div>
 
 
-                        <h5 class="text-center data_diri">Data Diri</h5>
-
-                        <div class="form-group">
-                            <div class="row">
-
-                                <div class="col-sm-4">
-                                    <label for="penduduk" class="col-form-label">Penduduk</label>
-                                    <select id="penduduk" name="penduduk" class="form-control" required>
-                                        <option value="" selected>--Pilih Salah Satu--</option>
-                                        <option value="1">(Diamibil dari data penduduk)</option>
-                                        <option value="2">(Diamibil dari data penduduk)</option>
-                                    </select>
                                 </div>
-
-                                <div class="col-sm-4">
-                                    <label for="tgl_lahir" class="col-form-label">Tanggal Meninggal</label>
-                                    <input type="date" class="form-control" id="tgl_lahir" name="tgl_lahir"
-                                        placeholder="">
-                                </div>
-
-                                <div class="col-sm-4">
-                                    <label for="name" class="col-form-label">Sebab</label>
-                                    <input type="text" class="form-control" id="nama" name="nama"
-                                        placeholder="Sebab Meninggal" value="{{}}"> 
-                                </div>
-
-
                             </div>
-
-
-                        <div class="d-flex flex-row-reverse">
-                            <button type="submit" class="btn btn-primary ml-3">Simpan</button>
-                            <a href="{{ route('sirkulasi-meninggal.index') }}" class="btn btn-danger">Batal</a>
+    
+                            <div class="d-flex flex-row-reverse">
+                                <button type="submit" class="btn btn-primary ml-3">Simpan</button>
+                                {{-- <a href="{{ route('sirkulasi-melahirkan.index') }}" class="btn btn-danger">Batal</a> --}}
+                            </div>
+    
+    
+                            <!-- /.card-body -->
+                            </form>
+                            <!-- /.row (main row) -->
                         </div>
+                            <h5 class="text-center data_diri">Data Meninggal</h5>
+                            <div class="form-group">
+                                <div class="row">
+                                    <!-- Tampilin Semua Field Di Table Jos !-->
+                                    <div class="col-sm-4">
+                                        <label for="penduduk" class="col-form-label">Penduduk</label>
+                                        <select id="penduduk" name="penduduk" class="form-control" required>
+                                            <option value="" selected>--Pilih Penduduk--</option>
+                                            <option value="1">(Diambil dari data penduduk(NIK+Nama))</option>
+                                            <option value="2">(Diambil dari data penduduk(NIK+Nama))</option>
+                                        </select>
+                                    </div>
+
+                                    <div class="col-sm-4">
+                                        <label for="tgl_meninggal" class="col-form-label">Tanggal Meninggal</label>
+                                        <input type="date" class="form-control" id="tgl_meninggal" name="tgl_meninggal"
+                                            placeholder="" value="">
+                                    </div>
+
+                                    <div class="col-sm-4">
+                                        <label for="sebab" class="col-form-label">Sebab</label>
+                                        <input type="text" class="form-control" id="sebab" name="sebab"
+                                            placeholder="Sebab Meninggal" value="">
+                                    </div>
 
 
-                        <!-- /.card-body -->
-            </form>
-            <!-- /.row (main row) -->
-        </div><!-- /.container-fluid -->
+                                </div>
+                            </div>
+                            <!-- /.card-body -->
+                </form>
+                <!-- /.row (main row) -->
+            </div><!-- /.container-fluid -->
         </section>
     </main>
 

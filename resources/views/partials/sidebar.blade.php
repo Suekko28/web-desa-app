@@ -52,9 +52,9 @@
                                 <li><a href="{{ route('pemerintahan-sahbandar.index') }}">Sahbandar</a></li>
                                 <li><a href="{{ route('pemerintahan-karang-taruna.index') }}">Karang Taruna</a></li>
                                 <li><a href="{{ route('pemerintahan-posyandu.index') }}">Posyandu</a></li>
-                                <li><a href="">RT</a></li>
-                                <li><a href="">RW</a></li>
-                                <li><a href="">Kadus</a></li>
+                                <li><a href="#">RT</a></li>
+                                <li><a href="#">RW</a></li>
+                                <li><a href="#">Kadus</a></li>
                             </ul>
                         </li>
 
@@ -63,7 +63,7 @@
                 </li>
 
                 <li>
-                    <a href="javascript: void(0);" class="has-arrow waves-effect mb-2">
+                    <a href="javascript: void(0);" class="has-arrow waves-effect">
                         <i class="fas fa-solid fa-building"></i>
                         <span>Data Sirkulasi Desa</span>
                     </a>

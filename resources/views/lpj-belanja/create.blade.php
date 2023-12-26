@@ -1,5 +1,5 @@
 @extends('layouts.app')
-@section('master-title', 'Data Melahirkan/')
+@section('master-title', 'Data Perbelanjaan/')
 @section('page-title', 'Create')
 @section('contents')
     <link rel="shortcut icon" href="{{ asset('assets/images/favicon.ico') }}">
@@ -32,65 +32,51 @@
 
                 <!-- Small boxes (Stat box) -->
 
-                {{-- <form action="{{ route('sirkulasi-melahirkan.store') }}" method="POST" enctype="multipart/form-data"> --}}
-                @csrf
-                <div class="card">
-                    <div class="card-body">
-                        <h5 class="text-center data_diri mb-3">Data Melahirkan</h5>
-                        <div class="form-group">
-                            <div class="row">
-                                <!-- Tampilin Semua Field Di Table Jos !-->
-                                <div class="col-sm-6">
-                                    <label for="name" class="col-form-label">Nama</label>
-                                    <input type="text" class="form-control" id="nama" name="nama"
-                                        placeholder="Nama Bayi">
+                <form action="{{ route('lpj-belanja.store') }}" method="POST" enctype="multipart/form-data">
+                    @csrf
+                    <div class="card">
+                        <div class="card-body">
+                            <h5 class="text-center data_diri mb-3">Data Belanja</h5>
+                            <div class="form-group">
+                                <div class="row">
+                                    <!-- Tampilin Semua Field Di Table Jos !-->
+                                    <div class="col-sm-6">
+                                        <label for="nama_barang" class="col-form-label">Nama Barang / Jasa</label>
+                                        <input type="text" class="form-control" id="nama_barang" name="nama_barang"
+                                            placeholder="Buku/Pena/dll">
+                                    </div>
+
+                                    <div class="col-sm-6">
+                                        <label for="volume_qty" class="col-form-label">Volume / QTY</label>
+                                        <input type="number" class="form-control" id="volume_qty" name="volume_qty"
+                                            placeholder="50">
+                                    </div>
+
+                                    <div class="col-sm-6">
+                                        <label for="satuan" class="col-form-label">Satuan</label>
+                                        <input type="text" class="form-control" id="satuan" name="satuan"
+                                            placeholder="Masukkan Nama Satuan">
+                                    </div>
+
+                                    <div class="col-sm-6">
+                                        <label for="harga" class="col-form-label">Harga</label>
+                                        <input type="number" class="form-control" id="harga" name="harga"
+                                            placeholder="Masukkan Harga">
+                                    </div>
+
                                 </div>
-
-                                <div class="col-sm-6">
-                                    <label for="tmpt_lahir" class="col-form-label">Tempat Lahir</label>
-                                    <input type="text" class="form-control" id="tmpt_lahir" name="tmpt_lahir"
-                                        placeholder="Tempat Lahir">
-                                </div>
-
-                                <div class="col-sm-6">
-                                    <label for="tgl_lahir" class="col-form-label">Tanggal Lahir</label>
-                                    <input type="date" class="form-control" id="tgl_lahir" name="tgl_lahir"
-                                        placeholder="">
-                                </div>
-
-                                <div class="col-sm-6">
-                                    <label for="jenis_kelamin" class="col-form-label">Jenis Kelamin</label>
-                                    <select id="jenis_kelamin" name="jenis_kelamin" class="form-control" required>
-                                        <option value="" selected>--Pilih Salah Satu--</option>
-                                        <option value="1">Laki-Laki</option>
-                                        <option value="2">Perempuan</option>
-                                    </select>
-                                </div>
-
-                                <div class="col-sm-6">
-                                    <label for="keluarga" class="col-form-label">Keluarga</label>
-                                    <select id="keluarga" name="keluarga" class="form-control" required>
-                                        <option value="" selected>--Pilih Keluarga--</option>
-                                        <option value="1">(Diambil dari data penduduk(NIK+Nama))</option>
-                                        <option value="2">(Diambil dari data penduduk(NIK+Nama))</option>
-                                </select>
-                                </div>
-
-
                             </div>
-                        </div>
 
-                        <div class="d-flex flex-row-reverse">
-                            <button type="submit" class="btn btn-primary ml-3">Simpan</button>
-                            {{-- <a href="{{ route('sirkulasi-melahirkan.index') }}" class="btn btn-danger">Batal</a> --}}
-                        </div>
+                            <div class="d-flex flex-row-reverse">
+                                <button type="submit" class="btn btn-primary ml-3">Simpan</button>
+                                <a href="{{ route('lpj-belanja.index') }}" class="btn btn-danger">Batal</a>
+                            </div>
 
 
-                        <!-- /.card-body -->
-                        </form>
-                        <!-- /.row (main row) -->
-                    </div>
-                    <!-- /.container-fluid -->
+                            <!-- /.card-body -->
+                </form>
+                <!-- /.row (main row) -->
+            </div><!-- /.container-fluid -->
         </section>
     </main>
 

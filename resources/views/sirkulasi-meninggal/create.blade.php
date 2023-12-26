@@ -1,5 +1,5 @@
 @extends('layouts.app')
-@section('master-title', 'RW/')
+@section('master-title', 'Data Meninggal/')
 @section('page-title', 'Create')
 @section('contents')
     <link rel="shortcut icon" href="{{ asset('assets/images/favicon.ico') }}">
@@ -32,46 +32,52 @@
 
                 <!-- Small boxes (Stat box) -->
 
-                <form action="{{ route('sirkulasi-meninggal.store') }}" method="POST" enctype="multipart/form-data">
+                {{-- <form action="{{ route('sirkulasi-meninggal.store') }}" method="POST" enctype="multipart/form-data"> --}}
                     @csrf
                     <div class="card">
                         <div class="card-body">
-                            <h5 class="text-center data_diri">Tambah Data</h5>
+                            <h5 class="text-center data_diri mb-3">Data Meninggal</h5>
                             <div class="form-group">
                                 <div class="row">
-
+                                    <!-- Tampilin Semua Field Di Table Jos !-->
                                     <div class="col-sm-4">
                                         <label for="penduduk" class="col-form-label">Penduduk</label>
                                         <select id="penduduk" name="penduduk" class="form-control" required>
-                                            <option value="" selected>--Pilih Salah Satu--</option>
-                                            <option value="1">(Diamibil dari data penduduk)</option>
-                                            <option value="2">(Diamibil dari data penduduk)</option>
+                                            <option value="" selected>--Pilih Penduduk--</option>
+                                            <option value="1">(Diambil dari data penduduk(NIK+Nama))</option>
+                                            <option value="2">(Diambil dari data penduduk(NIK+Nama))</option>
                                         </select>
                                     </div>
 
                                     <div class="col-sm-4">
-                                        <label for="tgl_lahir" class="col-form-label">Tanggal Meninggal</label>
-                                        <input type="date" class="form-control" id="tgl_lahir" name="tgl_lahir"
+                                        <label for="tgl_meninggal" class="col-form-label">Tanggal Meninggal</label>
+                                        <input type="date" class="form-control" id="tgl_meninggal" name="tgl_meninggal"
                                             placeholder="">
                                     </div>
 
                                     <div class="col-sm-4">
                                         <label for="sebab" class="col-form-label">Sebab</label>
                                         <input type="text" class="form-control" id="sebab" name="sebab"
-                                            placeholder="Sebab Meninggal"> 
+                                            placeholder="Sebab Meninggal">
                                     </div>
 
 
                                 </div>
                             </div>
-
+    
                             <div class="d-flex flex-row-reverse">
                                 <button type="submit" class="btn btn-primary ml-3">Simpan</button>
-                                <a href="{{ route('sirkulasi-meninggal.index') }}" class="btn btn-danger">Batal</a>
+                                {{-- <a href="{{ route('sirkulasi-melahirkan.index') }}" class="btn btn-danger">Batal</a> --}}
                             </div>
-
-
+    
+    
                             <!-- /.card-body -->
+                            </form>
+                            <!-- /.row (main row) -->
+                        </div>
+    
+
+                        <!-- /.card-body -->
                 </form>
                 <!-- /.row (main row) -->
             </div><!-- /.container-fluid -->

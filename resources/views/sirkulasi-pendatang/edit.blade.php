@@ -1,5 +1,5 @@
 @extends('layouts.app')
-@section('master-title', 'RW/')
+@section('master-title', 'Data Pendatang/')
 @section('page-title', 'Edit')
 @section('contents')
     <link rel="shortcut icon" href="{{ asset('assets/images/favicon.ico') }}">
@@ -33,29 +33,29 @@
 
                 <!-- Small boxes (Stat box) -->
 
-                <form action="{{ route('sirkulasi-meninggal.update', $data->id) }}" method="post"
+                <form action="{{ route('sirkulasi-pendatang.update', $data->id) }}" method="post"
                     enctype="multipart/form-data">
                     @method('PUT')
                     @csrf
                     <div class="card">
                         <div class="card-body">
-
+                            <h5 class="text-center data_diri mb-3">Data Pendatang</h5>
                             <div class="form-group">
                                 <div class="row">
-
-                                    <div class="col-sm-4">
+                                    <!-- Tampilin Semua Field Di Table Jos !-->
+                                    <div class="col-sm-6">
                                         <label for="nik" class="col-form-label">NIK</label>
                                         <input type="number" class="form-control" id="nik" name="nik"
-                                            placeholder="">
+                                            placeholder="Masukkan NIK" value="">
                                     </div>
 
-                                    <div class="col-sm-4">
+                                    <div class="col-sm-6">
                                         <label for="nama" class="col-form-label">Nama Lengkap</label>
                                         <input type="text" class="form-control" id="nama" name="nama"
-                                            placeholder="Nama Lengkap">
+                                            placeholder="Nama Pendatang" value="">
                                     </div>
 
-                                    <div class="col-sm-4">
+                                    <div class="col-sm-6">
                                         <label for="jenis_kelamin" class="col-form-label">Jenis Kelamin</label>
                                         <select class="form-control" name="jenis_kelamin" id="jenis_kelamin">
                                             <option value="0">--Pilih Salah Satu--</option>
@@ -64,35 +64,33 @@
                                         </select>
                                     </div>
 
-                                    <div class="col-sm-4">
+                                    <div class="col-sm-6">
                                         <label for="tgl_datang" class="col-form-label">Tanggal Datang</label>
                                         <input type="date" class="form-control" id="tgl_datang" name="tgl_datang"
-                                            placeholder="">
+                                            placeholder="" value="">
                                     </div>
 
                                     <div class="col-sm-12">
                                         <label for="alamat_sblm" class="col-form-label">Alamat Sebelum</label>
                                         <textarea type="text" class="form-control" id="alamat_sblm" name="alamat_sblm" rows="5"
-                                            placeholder="Alamat Lengkap (Jl / Kampung  No.Rumah"></textarea>
+                                            placeholder="Alamat Lengkap (Jl / Kampung  No.Rumah)" value=""></textarea>
                                     </div>
 
                                     <div class="col-sm-12">
-                                        <label for="alamat_pindah" class="col-form-label">Alamat Pindah</label>
-                                        <textarea type="text" class="form-control" id="alamat_pindah" name="alamat_pindah" rows="5"
-                                            placeholder="Alamat Lengkap (Jl / Kampung  No.Rumah"></textarea>
+                                        <label for="alamat_skrng" class="col-form-label">Alamat Sekarang</label>
+                                        <textarea type="text" class="form-control" id="alamat_skrng" name="alamat_skrng" rows="5"
+                                            placeholder="Alamat Lengkap (Jl / Kampung  No.Rumah)" value=""></textarea>
                                     </div>
-
-
                                 </div>
+                            </div>
+
+                            <div class="d-flex flex-row-reverse">
+                                <button type="submit" class="btn btn-primary ml-3">Simpan</button>
+                                <a href="{{ route('sirkulasi-pendatang.index') }}" class="btn btn-danger">Batal</a>
+                            </div>
 
 
-                                <div class="d-flex flex-row-reverse">
-                                    <button type="submit" class="btn btn-primary ml-3">Simpan</button>
-                                    <a href="{{ route('sirkulasi-meninggal.index') }}" class="btn btn-danger">Batal</a>
-                                </div>
-
-
-                                <!-- /.card-body -->
+                            <!-- /.card-body -->
                 </form>
                 <!-- /.row (main row) -->
             </div><!-- /.container-fluid -->

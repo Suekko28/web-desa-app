@@ -28,73 +28,71 @@
     <main>
         <section class="content">
 
-        <div class="container-fluid">
-            @include('layouts.message')
+            <div class="container-fluid">
+                @include('layouts.message')
 
-            <!-- Small boxes (Stat box) -->
+                <!-- Small boxes (Stat box) -->
 
-            <form action="{{ route('sirkulasi-melahirkan.update', $data->id) }}" method="post" enctype="multipart/form-data">
-                @method('PUT')
-                @csrf
-                <div class="card">
-                    <div class="card-body">
+                <form action="{{ route('sirkulasi-melahirkan.update', $data->id) }}" method="post"
+                    enctype="multipart/form-data">
+                    @method('PUT')
+                    @csrf
+                    <div class="card">
+                        <div class="card-body">
+                            <h5 class="text-center data_diri mb-3">Data Melahirkan</h5>
+                            <div class="form-group">
+                                <div class="row">
+                                    <!-- Tampilin Semua Field Di Table Jos !-->
+                                    <div class="col-sm-6">
+                                        <label for="name" class="col-form-label">Nama</label>
+                                        <input type="text" class="form-control" id="nama" name="nama"
+                                            placeholder="Nama Bayi" value="">
+                                    </div>
+
+                                    <div class="col-sm-6">
+                                        <label for="tmpt_lahir" class="col-form-label">Tempat Lahir</label>
+                                        <input type="text" class="form-control" id="tmpt_lahir" name="tmpt_lahir"
+                                            placeholder="Tempat Lahir" value="">
+                                    </div>
+
+                                    <div class="col-sm-6">
+                                        <label for="tgl_lahir" class="col-form-label">Tanggal Lahir</label>
+                                        <input type="date" class="form-control" id="tgl_lahir" name="tgl_lahir"
+                                            placeholder="" value="">
+                                    </div>
+
+                                    <div class="col-sm-6">
+                                        <label for="jenis_kelamin" class="col-form-label">Jenis Kelamin</label>
+                                        <select id="jenis_kelamin" name="jenis_kelamin" class="form-control" required>
+                                            <option value="" selected>--Pilih Salah Satu--</option>
+                                            <option value="1">Laki-Laki</option>
+                                            <option value="2">Perempuan</option>
+                                        </select>
+                                    </div>
+
+                                    <div class="col-sm-6">
+                                        <label for="keluarga" class="col-form-label">Keluarga</label>
+                                        <select id="keluarga" name="keluarga" class="form-control" required>
+                                            <option value="" selected>--Pilih Keluarga--</option>
+                                            <option value="1">(Diambil dari data penduduk(NIK+Nama))</option>
+                                            <option value="2">(Diambil dari data penduduk(NIK+Nama))</option>
+                                        </select>
+                                    </div>
 
 
-                        <h5 class="text-center data_diri">Data Diri</h5>
-
-                        <div class="form-group">
-                            <div class="row">
-
-                                <div class="col-sm-4">
-                                    <label for="name" class="col-form-label">Nama Lengkap</label>
-                                    <input type="text" class="form-control" id="nama" name="nama"
-                                        placeholder="Nama Sesuai KTP" value="{{}}"> 
                                 </div>
-
-                                <div class="col-sm-4">
-                                    <label for="tmpt_lahir" class="col-form-label">Tempat Lahir</label>
-                                    <input type="text" class="form-control" id="tmpt_lahir" name="tmpt_lahir"
-                                        placeholder="Tempat Lahir" value="{{}}">
-                                </div>
-
-                                <div class="col-sm-4">
-                                    <label for="tgl_lahir" class="col-form-label">Tanggal Lahir</label>
-                                    <input type="date" class="form-control" id="tgl_lahir" name="tgl_lahir"
-                                        placeholder="">
-                                </div>
-
-                                <div class="col-sm-4">
-                                    <label for="jenis_kelamin" class="col-form-label">Jenis Kelamin</label>
-                                    <select class="form-control" name="jenis_kelamin" id="jenis_kelamin">
-                                        <option value="0">--Pilih Salah Satu--</option>
-                                        <option value="1" @if ($data->jenis_kelamin == 'laki-laki') selected @endif>Laki-Laki</option>
-                                        <option value="2" @if ($data->jenis_kelamin == 'perempuan') selected @endif>Perempuan</option>
-                                    </select>
                             </div>
 
-                                <div class="col-sm-4">
-                                    <label for="jenis_kelamin" class="col-form-label">Keluarga</label>
-                                    <select id="jenis_kelamin" name="jenis_kelamin" class="form-control" required>
-                                        <option value="" selected>--Pilih Salah Satu--</option>
-                                        <option value="1">(Diamibil dari data penduduk)</option>
-                                        <option value="2">(Diamibil dari data penduduk)</option>
-                                    </select>
-                                </div>
-
-
+                            <div class="d-flex flex-row-reverse">
+                                <button type="submit" class="btn btn-primary ml-3">Simpan</button>
+                                <a href="{{ route('sirkulasi-melahirkan.index') }}" class="btn btn-danger">Batal</a>
                             </div>
-                    </div>
-
-                        <div class="d-flex flex-row-reverse">
-                            <button type="submit" class="btn btn-primary ml-3">Simpan</button>
-                            <a href="{{ route('sirkulasi-melahirkan.index') }}" class="btn btn-danger">Batal</a>
-                        </div>
 
 
-                        <!-- /.card-body -->
-            </form>
-            <!-- /.row (main row) -->
-        </div><!-- /.container-fluid -->
+                            <!-- /.card-body -->
+                </form>
+                <!-- /.row (main row) -->
+            </div><!-- /.container-fluid -->
         </section>
     </main>
 

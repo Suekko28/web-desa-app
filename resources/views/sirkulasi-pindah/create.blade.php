@@ -1,5 +1,5 @@
 @extends('layouts.app')
-@section('master-title', 'RW/')
+@section('master-title', 'Data Pindah/')
 @section('page-title', 'Create')
 @section('contents')
     <link rel="shortcut icon" href="{{ asset('assets/images/favicon.ico') }}">
@@ -32,45 +32,33 @@
 
                 <!-- Small boxes (Stat box) -->
 
-                <form action="{{ route('sirkulasi-pendatang.store') }}" method="POST" enctype="multipart/form-data">
+                <form action="{{ route('sirkulasi-pindah.store') }}" method="POST" enctype="multipart/form-data">
                     @csrf
                     <div class="card">
                         <div class="card-body">
-                            <h5 class="text-center data_diri">Tambah Data</h5>
+                            <h5 class="text-center data_diri mb-3">Data Pindah</h5>
                             <div class="form-group">
                                 <div class="row">
-
-                                    <div class="col-sm-4">
-                                        <label for="nik" class="col-form-label">NIK</label>
-                                        <input type="number" class="form-control" id="nik" name="nik"
-                                            placeholder="">
-                                    </div>
-
-                                    <div class="col-sm-4">
-                                        <label for="nama" class="col-form-label">Nama Lengkap</label>
-                                        <input type="text" class="form-control" id="nama" name="nama"
-                                            placeholder="Nama Lengkap">
-                                    </div>
-
-                                    <div class="col-sm-4">
-                                        <label for="jenis_kelamin" class="col-form-label">Jenis Kelamin</label>
-                                        <select class="form-control" name="jenis_kelamin" id="jenis_kelamin">
-                                            <option value="0">--Pilih Salah Satu--</option>
-                                            <option value="1">Laki-Laki</option>
-                                            <option value="2">Perempuan</option>
+                                    <!-- Tampilin Semua Field Di Table Jos !-->
+                                    <div class="col-sm-6">
+                                        <label for="penduduk" class="col-form-label">Penduduk</label>
+                                        <select id="penduduk" name="penduduk" class="form-control" required>
+                                            <option value="" selected>--Pilih Penduduk--</option>
+                                            <option value="1">(Diambil dari data penduduk(NIK+Nama))</option>
+                                            <option value="2">(Diambil dari data penduduk(NIK+Nama))</option>
                                         </select>
                                     </div>
 
-                                    <div class="col-sm-4">
-                                        <label for="tgl_datang" class="col-form-label">Tanggal Datang</label>
-                                        <input type="date" class="form-control" id="tgl_datang" name="tgl_datang"
+
+                                    <div class="col-sm-6">
+                                        <label for="tgl_pindah" class="col-form-label">Tanggal Pindah</label>
+                                        <input type="date" class="form-control" id="tgl_pindah" name="tgl_pindah"
                                             placeholder="">
                                     </div>
 
                                     <div class="col-sm-12">
-                                        <label for="alamat_sblm" class="col-form-label">Alamat Sebelum</label>
-                                        <textarea type="text" class="form-control" id="alamat_sblm" name="alamat_sblm" rows="5"
-                                            placeholder="Alamat Lengkap (Jl / Kampung  No.Rumah"></textarea>
+                                        <label for="alasan" class="col-form-label">Alasan</label>
+                                        <textarea type="text" class="form-control" id="alasan" name="alasan" rows="5" placeholder="Alasan Pindah"></textarea>
                                     </div>
 
                                     <div class="col-sm-12">
@@ -85,7 +73,7 @@
 
                             <div class="d-flex flex-row-reverse">
                                 <button type="submit" class="btn btn-primary ml-3">Simpan</button>
-                                <a href="{{ route('sirkulasi-pendatang.index') }}" class="btn btn-danger">Batal</a>
+                                <a href="{{ route('sirkulasi-pindah.index') }}" class="btn btn-danger">Batal</a>
                             </div>
 
 
