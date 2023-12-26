@@ -15,32 +15,39 @@ class PendudukImport implements ToModel
     */
     public function model(array $row)
     {  
-        if ($row[0]=='Id') {
+        if ($row[0]=='NO') {
             return null;
         }
   
         return new Penduduk([
-            'tgl_pindah_masuk'=>$row[1],
-            'tgl_lapor'=>$row[2],
-            'NIK'=>$row[3],
-            'NKK'=>$row[4],
-            'nama'=>$row[5],
-            'tempat_lahir'=>$row[6],
-            'tgl_lahir'=>$row[7],
-            'jenis_kelamin'=>$row[8],
-            'agama'=>$row[9],
-            'kewarganegaraan'=>$row[10],
-            'status_pernikahan'=>$row[11],
+            'tgl_pindah_masuk'=>date('Y-m-d'),
+            'tgl_lapor'=>date('Y-m-d'),
+            'NIK'=>$row[1],
+            'NKK'=>$row[2],
+            'nama'=>$row[3],
+            'jenis_kelamin'=>$this->getKelamin(strtolower($row[4])),
+            'tempat_lahir'=>$row[5],
+            'tgl_lahir'=>$row[6],
+            'agama'=>$row[7],
+            'usia'=>$row[8],
+            'status_pernikahan'=>$row[9],
+            'alamat'=>$row[10],
+            'kewarganegaraan'=>$row[11],
             'dusun'=>$row[12],
             'rt'=>$row[13],
             'rw'=>$row[14],
-            'alamat'=>$row[15],
-            'pendidikan'=>$row[16],
+            'kepemilikan_bpjs'=>$row[15],
+            'kepemilikan_e_ktp'=>$row[16],
             'pekerjaan'=>$row[17],
-            'kepemilikan_bpjs'=>$row[18],
-            'kepemilikan_e_ktp'=>$row[19],
-            'nama_ibu'=>$row[20],
-            'nama_ayah'=>$row[21],
+            'pendidikan'=>$row[18],
+            'nama_ibu'=>$row[19],
+            'nama_ayah'=>$row[20],
         ]);
     }
+
+    private function getKelamin($data){
+        return ($data === 'laki-laki') ? '1' : (($data === 'perempuan') ? '1' : null);
+    }
+
+   
 }
