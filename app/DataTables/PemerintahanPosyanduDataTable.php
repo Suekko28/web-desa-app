@@ -54,6 +54,9 @@ class PemerintahanPosyanduDataTable extends DataTable
             'pemerintahan_posyandu.tgl_lahir as tgl_lahir',
             'pemerintahan_posyandu.alamat as alamat',
             'pemerintahan_posyandu.updated_at as updated_at',
+            'pemerintahan_posyandu.no_telepon as no_telepon',
+            'pemerintahan_posyandu.no_sk as no_sk',
+            'pemerintahan_posyandu.tgl_sk as tgl_sk',
         );
     }
 
@@ -94,6 +97,9 @@ class PemerintahanPosyanduDataTable extends DataTable
             Column::make('tmpt_lahir'),
             Column::make('tgl_lahir'),
             Column::make('alamat'),
+            Column::make('no_telepon'),
+            Column::make('no_sk'),
+            Column::make('tgl_sk'),
             Column::make('updated_at'),
             Column::computed('action')
                 ->exportable(false)

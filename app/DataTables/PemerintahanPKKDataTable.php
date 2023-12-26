@@ -54,6 +54,9 @@ class PemerintahanPKKDataTable extends DataTable
             'pemerintahan_pkk.tgl_lahir as tgl_lahir',
             'pemerintahan_pkk.alamat as alamat',
             'pemerintahan_pkk.updated_at as updated_at',
+            'pemerintahan_pkk.no_telepon as no_telepon',
+            'pemerintahan_pkk.no_sk as no_sk',
+            'pemerintahan_pkk.tgl_sk as tgl_sk',
         );
     }
 
@@ -94,6 +97,9 @@ class PemerintahanPKKDataTable extends DataTable
             Column::make('tmpt_lahir'),
             Column::make('tgl_lahir'),
             Column::make('alamat'),
+            Column::make('no_telepon'),
+            Column::make('no_sk'),
+            Column::make('tgl_sk'),
             Column::make('updated_at'),
             Column::computed('action')
                 ->exportable(false)

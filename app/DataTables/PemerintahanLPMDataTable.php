@@ -54,6 +54,9 @@ class PemerintahanLPMDataTable extends DataTable
             'pemerintahan_lpm.tgl_lahir as tgl_lahir',
             'pemerintahan_lpm.alamat as alamat',
             'pemerintahan_lpm.updated_at as updated_at',
+            'pemerintahan_lpm.no_telepon as no_telepon',
+            'pemerintahan_lpm.no_sk as no_sk',
+            'pemerintahan_lpm.tgl_sk as tgl_sk',
         );
     }
 
@@ -94,6 +97,9 @@ class PemerintahanLPMDataTable extends DataTable
             Column::make('tmpt_lahir'),
             Column::make('tgl_lahir'),
             Column::make('alamat'),
+            Column::make('no_telepon'),
+            Column::make('no_sk'),
+            Column::make('tgl_sk'),
             Column::make('updated_at'),
             Column::computed('action')
                 ->exportable(false)

@@ -678,27 +678,27 @@
     </script>
 
     <script>
-        document.addEventListener("DOMContentLoaded", function() {
-            var options = {
-                chart: {
-                    type: 'pie',
-                },
-                series: [
-                    {{ $pekerjaan_swasta->count() }},
-                    {{ $pekerjaan_pengrajin->count() }},
-                    {{ $pekerjaan_wirausaha->count() }},
-                    {{ $pekerjaan_guru->count() }},
-                    {{ $pekerjaan_petani->count() }},
-                ],
-                labels: ['Karyawan Swasta', 'Pengrajin', 'Wirausaha', 'Guru', 'Petani'],
-                colors: ['#FF6384', '#36A2EB', '#FFCE56', '#4CAF50', '#FF9800'],
-            };
+    document.addEventListener("DOMContentLoaded", function() {
+        var options = {
+            chart: {
+                type: 'pie',
+            },
+            series: [
+                {{ $pekerjaan_swasta->count() }},
+                {{ $pekerjaan_pengrajin->count() }},
+                {{ $pekerjaan_wirausaha->count() }},
+                {{ $pekerjaan_guru->count() }},
+                {{ $pekerjaan_petani->count() }},
+            ],
+            labels: ['Buruh Harian Lepas', 'Belum Bekerja', 'Pengrajin Logam', 'Wiraswasta', 'Guru', 'Mengurus Rumah Tangga', 'Pegawai Negri Sipil', 'Tentara Nasional Indonesia', 'Guru ngaji', 'Wirausaha', 'Penjahit', 'Pensiun PNS', 'Pemulung', 'Buruh', 'Linmas wilayah', 'Driver', 'Petani', 'Amil', 'Service'],
+            colors: ['#FF6384', '#36A2EB', '#FFCE56', '#4CAF50', '#FF9800', '#FFD700', '#00FF00', '#FF1493', '#8A2BE2', '#FF4500', '#1E90FF', '#008B8B', '#FF69B4', '#228B22', '#9370DB', '#FF6347', '#00CED1', '#8B4513', '#4682B4', '#FF8C00'],
+        };
 
-            var chart = new ApexCharts(document.querySelector("#pie_chart_pekerjaan"), options);
+        var chart = new ApexCharts(document.querySelector("#pie_chart_pekerjaan"), options);
 
-            chart.render();
-        });
-    </script>
+        chart.render();
+    });
+</script>
 
 
 

@@ -29,5 +29,8 @@ class PemerintahanBPD extends Model
         'tgl_lahir',
         'alamat',
         'profile',
+        'no_telepon',
+        'no_sk',
+        'tgl_sk',
     ];
 }

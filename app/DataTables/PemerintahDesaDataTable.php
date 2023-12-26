@@ -55,6 +55,9 @@ class PemerintahDesaDataTable extends DataTable
             'pemerintahan_desa.tgl_lahir as tgl_lahir',
             'pemerintahan_desa.alamat as alamat',
             'pemerintahan_desa.updated_at as updated_at',
+            'pemerintahan_desa.no_telepon as no_telepon',
+            'pemerintahan_desa.no_sk as no_sk',
+            'pemerintahan_desa.tgl_sk as tgl_sk',
         );
     }
 
@@ -76,7 +79,8 @@ class PemerintahDesaDataTable extends DataTable
                     ->minifiedAjax()
                     ->orderBy(0,'asc')
                     ->buttons($btn)
-                    ->lengthMenu([10, 50, 100]);
+                    ->lengthMenu([10, 50, 100])
+                    ->responsive(true);
     }
 
     /**
@@ -87,19 +91,20 @@ class PemerintahDesaDataTable extends DataTable
     public function getColumns(): array
     {
         return [
-            Column::make('id')
-                ->width(10),
+            Column::make('id'),
             Column::make('nama'),
             Column::make('jabatan'),
             Column::make('jenis_kelamin'),
             Column::make('tmpt_lahir'),
             Column::make('tgl_lahir'),
             Column::make('alamat'),
+            Column::make('no_telepon'),
+            Column::make('no_sk'),
+            Column::make('tgl_sk'),
             Column::make('updated_at'),
             Column::computed('action')
                 ->exportable(false)
                 ->printable(false)
-                ->width(60)
                 ->addClass('text-center'),
         ];
     }
