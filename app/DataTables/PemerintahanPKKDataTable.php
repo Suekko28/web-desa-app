@@ -14,6 +14,8 @@ use Yajra\DataTables\Services\DataTable;
 
 class PemerintahanPKKDataTable extends DataTable
 {
+    protected $rowIndex = 0;
+
     /**
      * Build DataTable class.
      *
@@ -22,15 +24,21 @@ class PemerintahanPKKDataTable extends DataTable
      */
     public function dataTable(QueryBuilder $query): EloquentDataTable
     {
-        $actionBtn='<div class="col">
+
+        $this->rowIndex = 0;
+
+        $actionBtn = '<div class="col">
         <a href="' . route('pemerintahan-pkk.index') . '/{{ $id }}/edit" name="edit" class="btn btn-warning"><i class="fa-solid fa-pen-to-square"></i></a>';
-        
+
         $actionBtn .= '<a href="javascript:void(0)" onclick="confirmDelete($(this))"
             route="' . route('pemerintahan-pkk.index') . '/{{ $id }}" class="btn btn-danger mt-2"><i class="fa-solid fa-trash-can"></i></a>';
 
-        $actionBtn.='</div>';
+        $actionBtn .= '</div>';
 
         return (new EloquentDataTable($query))
+            ->addColumn('id', function ($data) {
+                return ++$this->rowIndex;
+            })
             ->addColumn('action', $actionBtn)
             ->rawColumns(['action'])
             ->setRowId('id');
@@ -45,19 +53,19 @@ class PemerintahanPKKDataTable extends DataTable
     public function query(PemerintahanPKK $model): QueryBuilder
     {
         return $model->newQuery()
-        ->select(
-            'pemerintahan_pkk.id as id',
-            'pemerintahan_pkk.nama as nama',
-            'pemerintahan_pkk.jabatan as jabatan',
-            \DB::raw('CASE WHEN jenis_kelamin = 1 THEN "Laki-Laki" ELSE "Perempuan" END AS jenis_kelamin'),
-            'pemerintahan_pkk.tmpt_lahir as tmpt_lahir',
-            'pemerintahan_pkk.tgl_lahir as tgl_lahir',
-            'pemerintahan_pkk.alamat as alamat',
-            'pemerintahan_pkk.updated_at as updated_at',
-            'pemerintahan_pkk.no_telepon as no_telepon',
-            'pemerintahan_pkk.no_sk as no_sk',
-            'pemerintahan_pkk.tgl_sk as tgl_sk',
-        );
+            ->select(
+                'pemerintahan_pkk.id as id',
+                'pemerintahan_pkk.nama as nama',
+                'pemerintahan_pkk.jabatan as jabatan',
+                \DB::raw('CASE WHEN jenis_kelamin = 1 THEN "Laki-Laki" ELSE "Perempuan" END AS jenis_kelamin'),
+                'pemerintahan_pkk.tmpt_lahir as tmpt_lahir',
+                'pemerintahan_pkk.tgl_lahir as tgl_lahir',
+                'pemerintahan_pkk.alamat as alamat',
+                'pemerintahan_pkk.updated_at as updated_at',
+                'pemerintahan_pkk.no_telepon as no_telepon',
+                'pemerintahan_pkk.no_sk as no_sk',
+                'pemerintahan_pkk.tgl_sk as tgl_sk',
+            );
     }
 
     /**
@@ -73,12 +81,12 @@ class PemerintahanPKKDataTable extends DataTable
 
         ];
         return $this->builder()
-                    ->setTableId('pemerintah-pkk-table')
-                    ->columns($this->getColumns())
-                    ->minifiedAjax()
-                    ->orderBy(0,'asc')
-                    ->buttons($btn)
-                    ->lengthMenu([10, 50, 100]);
+            ->setTableId('pemerintah-pkk-table')
+            ->columns($this->getColumns())
+            ->minifiedAjax()
+            ->orderBy(0, 'asc')
+            ->buttons($btn)
+            ->lengthMenu([10, 50, 100]);
     }
 
     /**
@@ -106,7 +114,7 @@ class PemerintahanPKKDataTable extends DataTable
                 ->printable(false)
                 ->width(60)
                 ->addClass('text-center'),
-        ];    
+        ];
     }
 
     /**

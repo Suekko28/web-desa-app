@@ -62,40 +62,52 @@
                     </ul>
                 </li>
 
-                <li>
+                {{-- <li>
                     <a href="javascript: void(0);" class="has-arrow waves-effect">
                         <i class="fas fa-solid fa-building"></i>
                         <span>Data Sirkulasi Desa</span>
                     </a>
                     <ul class="sub-menu mb-2" aria-expanded="false">
-                        <li><a href="{{ route('sirkulasi-melahirkan.index') }}">Data Melahirkan</a></li>
-                        <li><a href="{{ route('pemerintahan-BPD.index') }}">Data Meninggal</a></li>
-                        <li><a href="{{ route('pemerintahan-lpm.index') }}">Data Pendatang</a>
+                        <li><a href="">Data Melahirkan</a></li>
+                        <li><a href="">Data Meninggal</a></li>
+                        <li><a href="">Data Pendatang</a>
                         </li>
-                        <li><a href="{{ route('pemerintahan-mui.index') }}">Data Pindah</a>
+                        <li><a href="">Data Pindah</a>
                         </li>
                     </ul>
-                </li>
-
+                </li> --}}
 
                 <li>
-                    <a href="javascript: void(0);" class="has-arrow waves-effect mb-2">
-                        <i class="fas fa-solid fa-building"></i>
-                        <span>LPJ Kegiatan</span>
+                    <a href="javascript: void(0);" class="has-arrow waves-effect">
+                        <i class="fas fa-solid fa-book-medical"></i>
+                        <span>Data Sirkulasi Desa</span>
                     </a>
-                    <ul class="sub-menu mb-2" aria-expanded="false">
-                        <li><a href="{{ route('pemerintahan-desa.index') }}">Barang dan Jasa</a></li>
+                    <ul class="sub-menu" aria-expanded="false">
+                        <li><a href="#">Data Melahirkan</a></li>
+                        <li><a href="#">Data Meninggal</a></li>
+                        <li><a href="#">Data Melahirkan</a></li>
+                        <li><a href="#">Data Melahirkan</a></li>
                     </ul>
                 </li>
 
+                <li>
+                    <a href="javascript: void(0);" class="has-arrow waves-effect">
+                        <i class="fas fa-solid fa-journal-whills"></i>
+                        <span>LPJ Kegiatan</span>
+                    </a>
+                    <ul class="sub-menu" aria-expanded="false">
+                        <li><a href="#">Barang dan Jasa</a></li>
+                    </ul>
+                </li>
 
+                
                 <li>
                     <a href="javascript: void(0);" class="has-arrow waves-effect">
                         <i class="fas fa-solid fa-envelope-open-text"></i>
                         <span>Surat Menyurat</span>
                     </a>
                     <ul class="sub-menu" aria-expanded="false">
-                        <li><a href="form-elements.html">Surat Kependudukan</a></li>
+                        <li><a href="#">Surat Kependudukan</a></li>
                         <li><a href="form-validation.html">Surat Keluar</a></li>
                     </ul>
                 </li>
