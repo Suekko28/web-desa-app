@@ -156,8 +156,8 @@
                                     placeholder="Usia Minimal">
                             </div>
                             <div class="col-sm-3">
-                                <label for="usia_mx" class="col-form-label">Usia maksimal</label>
-                                <input type="number" class="form-control" id="usia_mn" name="usia_mx"
+                                <label for="usia_mx" class="col-form-label">Usia Maksimal</label>
+                                <input type="number" class="form-control" id="usia_mx" name="usia_mx"
                                     placeholder="Usia Maksimal">
                             </div>
 

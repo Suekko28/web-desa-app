@@ -29,9 +29,10 @@ Route::middleware(['auth'])->group(function(){
     Route::get('/',[\App\Http\Controllers\DashboardController::class,'index'])->name('index');
 
     
-    Route::get('/dashboard',[\App\Http\Controllers\DashboardController::class,'index'])->name('index');
+    Route::get('/index',[\App\Http\Controllers\DashboardController::class,'index'])->name('index');
 
     Route::Resource('/pemerintahan-desa',\App\Http\Controllers\PemerintahanDesaController::class);
+    Route::get('/pemerintahan-desa/cetak_pdf',[\App\Http\Controllers\PemerintahanDesaController::class,'cetak_pdf']);  
     Route::Resource('/pemerintahan-BPD',\App\Http\Controllers\PemerintahanBPDController::class);
     Route::Resource('/pemerintahan-lpm',\App\Http\Controllers\PemerintahanLPMController::class);
     Route::Resource('/pemerintahan-mui',\App\Http\Controllers\PemerintahanMUIController::class);
@@ -42,6 +43,7 @@ Route::middleware(['auth'])->group(function(){
     Route::Get('/penduduk-import',[\App\Http\Controllers\PendudukController::class,'importPendudukView'])->name('penduduk.import-view');
     Route::Post('/penduduk-import',[\App\Http\Controllers\PendudukController::class,'importPenduduk'])->name('penduduk.import');
     Route::Resource('/penduduk',\App\Http\Controllers\PendudukController::class);
+    Route::Resource('/sirkulasi-melahirkan',\App\Http\Controllers\SirkulasiMelahirkanController::class);
 });
 
 
@@ -50,9 +52,9 @@ Route::middleware(['auth'])->group(function(){
 
 //Sirkulasi Desa
 
-Route::get('/sirkulasi-melahirkan', function(){
-    return view('sirkulasi-melahirkan.index');
-});
+// Route::get('/sirkulasi-melahirkan', function(){
+//     return view('sirkulasi-melahirkan.index');
+// });
 
 Route::get('/sirkulasi-melahirkan/create', function(){
     return view('sirkulasi-melahirkan.create');

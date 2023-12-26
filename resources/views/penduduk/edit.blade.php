@@ -32,7 +32,7 @@
 
                 <!-- Small boxes (Stat box) -->
 
-                <form action="{{ route('penduduk.update', $data->id )}}" method="POST" enctype="multipart/form-data">
+                <form action="{{ route('penduduk.update', $data->id) }}" method="POST" enctype="multipart/form-data">
                     @method('PUT')
                     @csrf
                     <div class="card">
@@ -42,8 +42,8 @@
                                     <div class="col-sm-6">
                                         <label for="nama1" class="col-form-label">Tanggal Pindah
                                             Masuk</label>
-                                        <input type="date" class="form-control" id="tgl_pindah_masuk" name="tgl_pindah_masuk"
-                                            value="{{ $data->tgl_pindah_masuk }}">
+                                        <input type="date" class="form-control" id="tgl_pindah_masuk"
+                                            name="tgl_pindah_masuk" value="{{ $data->tgl_pindah_masuk }}">
                                     </div>
 
                                     <div class="col-sm-6">
@@ -63,47 +63,50 @@
                                     <div class="col-sm-4">
                                         <label for="nik" class="col-form-label">NIK</label>
                                         <input type="text" class="form-control" id="NIK" name="NIK"
-                                            value="{{$data->NIK}}">
+                                            value="{{ $data->NIK }}">
                                     </div>
 
                                     <div class="col-sm-4">
                                         <label for="nkk" class="col-form-label">NKK</label>
                                         <input type="text" class="form-control" id="NKK" name="NKK"
-                                            value="{{$data->NKK}}">
+                                            value="{{ $data->NKK }}">
                                     </div>
 
                                     <div class="col-sm-4">
                                         <label for="nama" class="col-form-label">Nama Lengkap</label>
                                         <input type="text" class="form-control" id="nama" name="nama"
-                                            placeholder="Nama Sesuai KTP" value="{{$data->nama}}">
+                                            placeholder="Nama Sesuai KTP" value="{{ $data->nama }}">
                                     </div>
 
                                     <div class="col-sm-4">
                                         <label for="tmpt_lhr" class="col-form-label">Tempat Lahir</label>
                                         <input type="text" class="form-control" id="nama1" name="tempat_lahir"
-                                            placeholder="Tempat Lahir" value="{{$data->tempat_lahir}}">
+                                            placeholder="Tempat Lahir" value="{{ $data->tempat_lahir }}">
                                     </div>
 
                                     <div class="col-sm-4">
                                         <label for="tgl_lhr" class="col-form-label">Tanggal Lahir</label>
                                         <input type="date" class="form-control" id="tgl_lhr" name="tgl_lahir"
-                                            placeholder="" value="{{$data->tgl_lahir}}">
+                                            placeholder="" value="{{ $data->tgl_lahir }}">
                                     </div>
 
                                     <div class="col-sm-4">
                                         <label for="usia" class="col-form-label">Usia</label>
-                                        <input type="text" class="form-control bg-light" id="usia" name="usia" placeholder="Terisi Otomatis" disabled value="">
+                                        <input type="text" class="form-control bg-light" id="usia"
+                                            name="usia" placeholder="Terisi Otomatis" disabled value="">
                                         <!-- Input tersembunyi untuk menyimpan usia awal -->
                                         <input type="hidden" id="usia_awal" name="usia_awal">
                                     </div>
-                                    
+
 
                                     <div class="col-sm-6">
                                         <label for="jenis_kelamin" class="col-form-label">Jenis Kelamin</label>
                                         <select class="form-control" name="jenis_kelamin" id="jenis_kelamin">
                                             <option value="0">--Pilih Salah Satu--</option>
-                                            <option value="1" @if ($data->jenis_kelamin == 'laki-laki') selected @endif>Laki-Laki</option>
-                                            <option value="2" @if ($data->jenis_kelamin == 'perempuan') selected @endif>Perempuan</option>
+                                            <option value="1" @if ($data->jenis_kelamin == 'laki-laki') selected @endif>
+                                                Laki-Laki</option>
+                                            <option value="2" @if ($data->jenis_kelamin == 'perempuan') selected @endif>
+                                                Perempuan</option>
                                         </select>
                                     </div>
 
@@ -111,12 +114,18 @@
                                         <label for="agama" class="col-form-label">Agama</label>
                                         <select class="form-control" name="agama" id="agama">
                                             <option value="">--Pilih Salah Satu--</option>
-                                            <option value="1" @if ($data->agama == 'islam') selected @endif>Islam</option>
-                                            <option value="2" @if ($data->agama == 'kristen protestan') selected @endif>Kristen Protestan</option>
-                                            <option value="3" @if ($data->agama == 'kristen katholik') selected @endif>Kristen Katholik</option>
-                                            <option value="4" @if ($data->agama == 'hindu') selected @endif>Hindu</option>
-                                            <option value="5" @if ($data->agama == 'buddha') selected @endif>Buddha</option>
-                                            <option value="6" @if ($data->agama == 'khonghucu') selected @endif>Khonghucu</option>
+                                            <option value="1" @if ($data->agama == 'islam') selected @endif>Islam
+                                            </option>
+                                            <option value="2" @if ($data->agama == 'kristen protestan') selected @endif>
+                                                Kristen Protestan</option>
+                                            <option value="3" @if ($data->agama == 'kristen katholik') selected @endif>
+                                                Kristen Katholik</option>
+                                            <option value="4" @if ($data->agama == 'hindu') selected @endif>Hindu
+                                            </option>
+                                            <option value="5" @if ($data->agama == 'buddha') selected @endif>Buddha
+                                            </option>
+                                            <option value="6" @if ($data->agama == 'khonghucu') selected @endif>
+                                                Khonghucu</option>
                                         </select>
                                     </div>
 
@@ -124,9 +133,12 @@
                                         <label for="warga_negara" class="col-form-label">Warga Negara</label>
                                         <select class="form-control" name="kewarganegaraan" id="warga_negara">
                                             <option value="">--Pilih Salah Satu--</option>
-                                            <option value="1" @if ($data->kewarganegaraan == 'WNI') selected @endif>WNI</option>
-                                            <option value="2" @if ($data->kewarganegaraan == 'WNA') selected @endif>WNA</option>
-                                            <option value="3" @if ($data->kewarganegaraan == 'Kedua Kewarganegaraan') selected @endif>Kedua Kewarganegaraan</option>
+                                            <option value="1" @if ($data->kewarganegaraan == 'WNI') selected @endif>WNI
+                                            </option>
+                                            <option value="2" @if ($data->kewarganegaraan == 'WNA') selected @endif>WNA
+                                            </option>
+                                            <option value="3" @if ($data->kewarganegaraan == 'Kedua Kewarganegaraan') selected @endif>
+                                                Kedua Kewarganegaraan</option>
                                         </select>
                                     </div>
 
@@ -135,15 +147,19 @@
                                             Pernikahan</label>
                                         <select class="form-control" name="status_pernikahan" id="status_nikah">
                                             <option value="">--Pilih Salah Satu--</option>
-                                            <option value="1" @if ($data->status_pernikahan == 'belum kawin') selected @endif>Belum Kawin</option>
-                                            <option value="2" @if ($data->status_pernikahan == 'kawin') selected @endif>Kawin</option>
-                                            <option value="3" @if ($data->status_pernikahan == 'cerai hidup') selected @endif>Cerai Hidup</option>
-                                            <option value="4" @if ($data->status_pernikahan == 'cerai mati') selected @endif>Cerai Mati</option>
+                                            <option value="1" @if ($data->status_pernikahan == 'belum kawin') selected @endif>
+                                                Belum Kawin</option>
+                                            <option value="2" @if ($data->status_pernikahan == 'kawin') selected @endif>
+                                                Kawin</option>
+                                            <option value="3" @if ($data->status_pernikahan == 'cerai hidup') selected @endif>
+                                                Cerai Hidup</option>
+                                            <option value="4" @if ($data->status_pernikahan == 'cerai mati') selected @endif>
+                                                Cerai Mati</option>
                                         </select>
                                     </div>
                                 </div>
                             </div>
-                            
+
                             <hr>
                             <h5 class="text-center alamat_pribadi">Alamat Pribadi</h5>
 
@@ -155,27 +171,31 @@
                                             Dusun</label>
                                         <select class="form-control" name="dusun" id="dusun">
                                             <option value="">--Pilih Salah Satu--</option>
-                                            <option value="1" @if ($data->dusun == '1') selected @endif>Dusun 1</option>
-                                            <option value="2" @if ($data->dusun == '2') selected @endif>Dusun 2</option>
-                                            <option value="3" @if ($data->dusun == '3') selected @endif>Dusun 3</option>
+                                            <option value="1" @if ($data->dusun == '1') selected @endif>
+                                                Dusun 1</option>
+                                            <option value="2" @if ($data->dusun == '2') selected @endif>
+                                                Dusun 2</option>
+                                            <option value="3" @if ($data->dusun == '3') selected @endif>
+                                                Dusun 3</option>
                                         </select>
                                     </div>
 
                                     <div class="col-sm-4">
                                         <label for="rt" class="col-form-label">RT</label>
                                         <input type="text" class="form-control" id="rt" name="rt"
-                                            placeholder="000" value="{{$data->rt}}">
+                                            placeholder="000" value="{{ $data->rt }}">
                                     </div>
 
                                     <div class="col-sm-4">
                                         <label for="rw" class="col-form-label">RW</label>
                                         <input type="text" class="form-control" id="rw" name="rw"
-                                            placeholder="000" value="{{$data->rw}}">
+                                            placeholder="000" value="{{ $data->rw }}">
                                     </div>
 
                                     <div class="col-sm-12">
                                         <label for="alamat" class="col-form-label">Alamat</label>
-                                        <textarea type="text" class="form-control" id="alamat" name="alamat" rows="5" placeholder="Alamat Lengkap (Jl / Kampung  No.Rumah">{{$data->alamat}}</textarea>
+                                        <textarea type="text" class="form-control" id="alamat" name="alamat" rows="5"
+                                            placeholder="Alamat Lengkap (Jl / Kampung  No.Rumah">{{ $data->alamat }}</textarea>
                                     </div>
                                 </div>
                             </div>
@@ -193,17 +213,34 @@
                                             Pendidikan</label>
                                         <select class="form-control" name="pendidikan" id="pendidikan">
                                             <option value="">--Pilih Salah Satu--</option>
-                                            <option value="1" @if ($data->pendidikan == 'tidak sekolah') selected @endif >Tidak/Belum Sekolah</option>
-                                            <option value="2" @if ($data->pendidikan == 'SD') selected @endif>SD Sederajat</option>
-                                            <option value="3" @if ($data->pendidikan == 'SLTP Sederajat') selected @endif>SLTP Sederajat</option>
-                                            <option value="4" @if ($data->pendidikan == 'SLTA Sederajat') selected @endif>SLTA Sederajat</option>
-                                            <option value="5" @if ($data->pendidikan == 'Diploma 1') selected @endif>Diploma I</option>
-                                            <option value="6" @if ($data->pendidikan == 'Diploma 2') selected @endif>Diploma II</option>
-                                            <option value="7" @if ($data->pendidikan == 'Diploma 3') selected @endif>Diploma III</option>
-                                            <option value="8" @if ($data->pendidikan == 'Diploma 4') selected @endif>Diploma IV</option>
-                                            <option value="9" @if ($data->pendidikan == 'Stara 1') selected @endif>Stara I</option>
-                                            <option value="10" @if ($data->pendidikan == 'Stara 2') selected @endif>Stara II</option>
-                                            <option value="11" @if ($data->pendidikan == 'Stara 3') selected @endif>Stara III</option>
+                                            <option value="1" @if ($data->pendidikan == 'Belum Sekolah') selected @endif>
+                                                Belum Sekolah</option>
+                                            <option value="2" @if ($data->pendidikan == 'Tamat SD') selected @endif>
+                                                Tamat SD</option>
+                                            <option value="3" @if ($data->pendidikan == 'Belum Tamat SD') selected @endif>
+                                                Belum Tamat SD</option>
+                                            <option value="4" @if ($data->pendidikan == 'Akademi') selected @endif>
+                                                Akademi</option>
+                                            <option value="5" @if ($data->pendidikan == 'SD Sederajat') selected @endif>SD
+                                                Sederajat</option>
+                                            <option value="6" @if ($data->pendidikan == 'SLTP Sederajat') selected @endif>SLTP
+                                                Sederajat</option>
+                                            <option value="7" @if ($data->pendidikan == 'SLTA Sederajat') selected @endif>SLTA
+                                                Sederajat</option>
+                                            <option value="8" @if ($data->pendidikan == 'Diploma I') selected @endif>
+                                                Diploma I</option>
+                                            <option value="9" @if ($data->pendidikan == 'Diploma II') selected @endif>
+                                                Diploma II</option>
+                                            <option value="10" @if ($data->pendidikan == 'Diploma III') selected @endif>
+                                                Diploma III</option>
+                                            <option value="11" @if ($data->pendidikan == 'Diploma IV') selected @endif>
+                                                Diploma IV</option>
+                                            <option value="12" @if ($data->pendidikan == 'Stara I') selected @endif>
+                                                Stara I</option>
+                                            <option value="13" @if ($data->pendidikan == 'Stara II') selected @endif>
+                                                Stara II</option>
+                                            <option value="14" @if ($data->pendidikan == 'Stara III') selected @endif>
+                                                Stara III</option>
                                         </select>
                                     </div>
 
@@ -211,37 +248,51 @@
                                         <label for="pekerjaan" class="col-form-label">Pekerjaan</label>
                                         <select class="form-control pekerjaan" name="pekerjaan" id="pekerjaan">
                                             <option value="">--Pilih Salah Satu--</option>
-                                            <option value="1" @if(old('pekerjaan', $data->pekerjaan) == 'Karyawan Swasta') selected @endif>Karyawan Swasta</option>
-                                            <option value="2" @if(old('pekerjaan', $data->pekerjaan) == 'Pengrajin') selected @endif>Pengrajin</option>
-                                            <option value="3" @if(old('pekerjaan', $data->pekerjaan) == 'Wirausaha') selected @endif>Wirausaha</option>
-                                            <option value="4" @if(old('pekerjaan', $data->pekerjaan) == 'Guru') selected @endif>Guru</option>
-                                            <option value="5" @if(old('pekerjaan', $data->pekerjaan) == 'Petani') selected @endif>Petani</option>
+                                            <option value="1" @if (old('pekerjaan', $data->pekerjaan) == 'Karyawan Swasta') selected @endif>
+                                                Karyawan Swasta</option>
+                                            <option value="2" @if (old('pekerjaan', $data->pekerjaan) == 'Pengrajin') selected @endif>
+                                                Pengrajin</option>
+                                            <option value="3" @if (old('pekerjaan', $data->pekerjaan) == 'Wirausaha') selected @endif>
+                                                Wirausaha</option>
+                                            <option value="4" @if (old('pekerjaan', $data->pekerjaan) == 'Guru') selected @endif>Guru
+                                            </option>
+                                            <option value="5" @if (old('pekerjaan', $data->pekerjaan) == 'Petani') selected @endif>
+                                                Petani</option>
                                         </select>
                                     </div>
-                                    
-                                    
-                                    
+
+
+
 
                                     <div class="col-sm-6">
                                         <label for="bpjs" class="col-form-label">Kepemilikan BPJS</label>
                                         <select class="form-control" name="kepemilikan_bpjs" id="bpjs">
                                             <option value="">--Pilih Salah Satu--</option>
-                                            <option value="1" @if ($data->kepemilikan_bpjs == 'PPU') selected @endif>PPU</option>
-                                            <option value="2" @if ($data->kepemilikan_bpjs == 'PBPU') selected @endif>PBPU</option>
-                                            <option value="3" @if ($data->kepemilikan_bpjs == 'PD Pemda') selected @endif>PD Pemda</option>
-                                            <option value="4" @if ($data->kepemilikan_bpjs == 'Bukan pekerja') selected @endif>Bukan Pekerja</option>
-                                            <option value="5" @if ($data->kepemilikan_bpjs == 'PBI JK') selected @endif>PBI JK</option>
-                                            <option value="6" @if ($data->kepemilikan_bpjs == 'Tidak ada') selected @endif>Tidak Ada</option>
+                                            <option value="1" @if ($data->kepemilikan_bpjs == 'PPU') selected @endif>PPU
+                                            </option>
+                                            <option value="2" @if ($data->kepemilikan_bpjs == 'PBPU') selected @endif>PBPU
+                                            </option>
+                                            <option value="3" @if ($data->kepemilikan_bpjs == 'PD Pemda') selected @endif>PD
+                                                Pemda</option>
+                                            <option value="4" @if ($data->kepemilikan_bpjs == 'Bukan pekerja') selected @endif>
+                                                Bukan Pekerja</option>
+                                            <option value="5" @if ($data->kepemilikan_bpjs == 'PBI JK') selected @endif>PBI
+                                                JK</option>
+                                            <option value="6" @if ($data->kepemilikan_bpjs == 'Tidak ada') selected @endif>
+                                                Tidak Ada</option>
                                         </select>
                                     </div>
 
                                     <div class="col-sm-6">
                                         <label for="e_ktp" class="col-form-label">
                                             Kepemilikan E-KTP</label>
-                                        <select class="form-control" class="e_ktp" name="kepemilikan_e_ktp" id="e_ktp">
+                                        <select class="form-control" class="e_ktp" name="kepemilikan_e_ktp"
+                                            id="e_ktp">
                                             <option value="">--Pilih Salah Satu--</option>
-                                            <option value="1" @if ($data->kepemilikan_e_ktp == 'ada') selected @endif>Ada</option>
-                                            <option value="2" @if ($data->kepemilikan_e_ktp == 'tidak ada') selected @endif>Tidak Ada</option>
+                                            <option value="1" @if ($data->kepemilikan_e_ktp == 'ada') selected @endif>Ada
+                                            </option>
+                                            <option value="2" @if ($data->kepemilikan_e_ktp == 'tidak ada') selected @endif>
+                                                Tidak Ada</option>
                                         </select>
                                     </div>
                                 </div>
@@ -256,13 +307,13 @@
                                     <div class="col-sm-6">
                                         <label for="nama_ibu" class="col-form-label">Nama Ibu</label>
                                         <input type="text" class="form-control" id="nama_ibu" name="nama_ibu"
-                                            placeholder="Nama Ibu" value="{{$data->nama_ibu}}">
+                                            placeholder="Nama Ibu" value="{{ $data->nama_ibu }}">
                                     </div>
 
                                     <div class="col-sm-6">
                                         <label for="nama_ayah" class="col-form-label">Nama Ayah</label>
                                         <input type="text" class="form-control" id="nama_ayah" name="nama_ayah"
-                                            placeholder="Nama Ayah" value="{{$data->nama_ayah}}">
+                                            placeholder="Nama Ayah" value="{{ $data->nama_ayah }}">
                                     </div>
                                 </div>
                             </div>
@@ -311,39 +362,40 @@
         integrity="sha384-dPBGbj4Uoy1OOpM4+aRGfAOc0W37JkROT+3uynUgTHZCHZNMHfGXsmmvYTffZjYO" crossorigin="anonymous">
     </script>
 
-<script>
-    // Fungsi untuk menghitung usia berdasarkan tanggal lahir
-    function hitungUsia() {
-        // Ambil nilai dari input tanggal lahir
-        var tanggalLahir = document.getElementById('tgl_lhr').value;
+    <script>
+        // Fungsi untuk menghitung usia berdasarkan tanggal lahir
+        function hitungUsia() {
+            // Ambil nilai dari input tanggal lahir
+            var tanggalLahir = document.getElementById('tgl_lhr').value;
 
-        // Konversi string tanggal lahir menjadi objek Date
-        var dob = new Date(tanggalLahir);
+            // Konversi string tanggal lahir menjadi objek Date
+            var dob = new Date(tanggalLahir);
 
-        // Dapatkan tanggal hari ini
-        var today = new Date();
+            // Dapatkan tanggal hari ini
+            var today = new Date();
 
-        // Hitung selisih tahun antara tanggal lahir dan hari ini
-        var age = today.getFullYear() - dob.getFullYear();
+            // Hitung selisih tahun antara tanggal lahir dan hari ini
+            var age = today.getFullYear() - dob.getFullYear();
 
-        // Periksa apakah ulang tahun sudah terjadi atau belum
-        if (today.getMonth() < dob.getMonth() || (today.getMonth() === dob.getMonth() && today.getDate() < dob.getDate())) {
-            age--;
+            // Periksa apakah ulang tahun sudah terjadi atau belum
+            if (today.getMonth() < dob.getMonth() || (today.getMonth() === dob.getMonth() && today.getDate() < dob
+                .getDate())) {
+                age--;
+            }
+
+            // Set nilai usia pada input usia
+            document.getElementById('usia').value = age;
+
+            // Simpan nilai usia awal pada elemen tersembunyi
+            document.getElementById('usia_awal').value = age;
         }
 
-        // Set nilai usia pada input usia
-        document.getElementById('usia').value = age;
+        // Panggil fungsi hitungUsia saat input tanggal lahir berubah
+        document.getElementById('tgl_lhr').addEventListener('input', hitungUsia);
 
-        // Simpan nilai usia awal pada elemen tersembunyi
-        document.getElementById('usia_awal').value = age;
-    }
-
-    // Panggil fungsi hitungUsia saat input tanggal lahir berubah
-    document.getElementById('tgl_lhr').addEventListener('input', hitungUsia);
-
-    // Panggil fungsi hitungUsia untuk menginisialisasi usia awal
-    hitungUsia();
-</script>
+        // Panggil fungsi hitungUsia untuk menginisialisasi usia awal
+        hitungUsia();
+    </script>
 
 
 @endsection

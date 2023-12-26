@@ -170,7 +170,7 @@ return [
         App\Providers\RouteServiceProvider::class,
         Yajra\DataTables\DataTablesServiceProvider::class,
         Yajra\DataTables\ButtonsServiceProvider::class,
-        Barryvdh\Snappy\ServiceProvider::class,
+        Barryvdh\DomPDF\ServiceProvider::class,
     ])->toArray(),
 
     /*
@@ -185,9 +185,7 @@ return [
     */
 
     'aliases' => Facade::defaultAliases()->merge([
-        'PDF' => Barryvdh\Snappy\Facades\SnappyPdf::class,
-        'SnappyImage' => Barryvdh\Snappy\Facades\SnappyImage::class,
-        // 'Example' => App\Facades\Example::class,
-    ])->toArray(),
+        'PDF' => Barryvdh\DomPDF\Facade::class,
+        ])->toArray(),
 
 ];

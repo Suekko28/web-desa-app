@@ -57,8 +57,8 @@ class PendudukScope implements DataTableScope
         if($this->request->has('usia_mx')){
             if($this->request->get('usia_mx')!=null){
             $mx=$this->request->get('usia_mx');
-                if((int)$mx<0){
-                    $mx='0';
+                if((int)$mx>999){
+                    $mx='999';
                 }
             }
             $query->where('usia', '<=', $mx);
