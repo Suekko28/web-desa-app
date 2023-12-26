@@ -71,6 +71,7 @@ class PendudukDataTable extends DataTable
         $btn = [
             Button::make('add')->text('+ Tambah Data'),
             Button::make('csv')->text('csv'),
+            Button::make('excel')->text('excel'),
             // Button::make('filter'),
 
         ];

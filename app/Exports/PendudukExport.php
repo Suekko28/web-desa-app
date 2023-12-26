@@ -28,9 +28,6 @@ class PendudukExport implements FromQuery, withHeadings, withMapping
     
     public function query()
     {
-        // // return Penduduk::all();
-        // $req_search = (string) ($this->request->search['value'] != null ? $this->request->search['value'] : null);
-
         $query = Penduduk::query()->select(
             "penduduk.id",
             "penduduk.tgl_pindah_masuk",
@@ -87,16 +84,15 @@ class PendudukExport implements FromQuery, withHeadings, withMapping
             $query->where('usia', '>=', $mn);
         }
 
-        // if($this->request->has('usia_mx')){
-        //     if($this->request->get('usia_mx')!=null){
-        //     $mx=$this->request->get('usia_mx');
-        //         if((int)$mx<0){
-        //             $mx='0';
-        //         }
-        //     }
-        //     $query->where('usia', '<=', $mx);
-
-        // }
+        if($this->request->has('usia_mx')){
+            if($this->request->get('usia_mx')!=null and $this->request->get('usia_mx')!="?draw=1"){
+            $mx=$this->request->get('usia_mx');
+                if((int)$mx>999){
+                    $mx='999';
+                }
+            }
+            $query->where('usia', '<=', $mx);
+        }
         
 
         // order
