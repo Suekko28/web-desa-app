@@ -43,6 +43,8 @@ class PendudukFormRequest extends FormRequest
             'kepemilikan_e_ktp' => ['required', 'string', 'max:100'],
             'nama_ibu' => ['required', 'string', 'max:100'],
             'nama_ayah' => ['required', 'string', 'max:100'],
+
+
         ];
 
 
@@ -51,27 +53,29 @@ class PendudukFormRequest extends FormRequest
     public function messages(): array
     {
         return [
-            'tgl_pindah_masuk.required' => 'Tanggal Pindah Masuk harus diisi.',
-            'tgl_lapor.required' => 'Tanggal Lapor harus diisi.',
-            'NIK.required' => 'NIK harus diisi.',
-            'NKK.required' => 'NKK harus diisi.',
-            'nama.required' => 'Nama harus diisi.',
-            'tempat_lahir.required' => 'Tempat Lahir harus diisi.',
-            'tgl_lahir.required' => 'Tanggal Lahir harus diisi.',
-            'jenis_kelamin.required' => 'Jenis Kelamin harus diisi.',
-            'agama.required' => 'Agama harus diisi.',
-            'kewarganegaraan.required' => 'Kewarganegaraan harus diisi.',
-            'status_pernikahan.required' => 'Status Pernikahan harus diisi.',
-            'dusun.required' => 'Dusun harus diisi.',
-            'rt.required' => 'RT harus diisi.',
-            'rw.required' => 'RW harus diisi.',
-            'alamat.required' => 'Alamat harus diisi.',
-            'pendidikan.required' => 'Pendidikan harus diisi.',
-            'pekerjaan.required' => 'Pekerjaan harus diisi.',
-            'kepemilikan_bpjs.required' => 'Kepemilikan BPJS harus diisi.',
-            'kepemilikan_e_ktp.required' => 'Kepemilikan E-KTP harus diisi.',
-            'nama_ibu.required' => 'Nama Ibu harus diisi.',
-            'nama_ayah.required' => 'Nama Ayah harus diisi.',
+            'tgl_pindah_masuk.required' => 'Tanggal Pindah Masuk wajib diisi.',
+            'tgl_lapor.required' => 'Tanggal Lapor wajib diisi.',
+            'NIK.required' => 'NIK wajib diisi.',
+            'NKK.required' => 'NKK wajib diisi.',
+            'nama.required' => 'Nama wajib diisi.',
+            'tempat_lahir.required' => 'Tempat Lahir wajib diisi.',
+            'tgl_lahir.required' => 'Tanggal Lahir wajib diisi.',
+            'jenis_kelamin.required' => 'Jenis Kelamin wajib diisi.',
+            'agama.required' => 'Agama wajib diisi.',
+            'kewarganegaraan.required' => 'Kewarganegaraan wajib diisi.',
+            'status_pernikahan.required' => 'Status Pernikahan wajib diisi.',
+            'dusun.required' => 'Dusun wajib diisi.',
+            'rt.required' => 'RT wajib diisi.',
+            'rw.required' => 'RW wajib diisi.',
+            'alamat.required' => 'Alamat wajib diisi.',
+            'pendidikan.required' => 'Pendidikan wajib diisi.',
+            'pekerjaan.required' => 'Pekerjaan wajib diisi.',
+            'kepemilikan_bpjs.required' => 'Kepemilikan BPJS wajib diisi.',
+            'kepemilikan_e_ktp.required' => 'Kepemilikan E-KTP wajib diisi.',
+            'nama_ibu.required' => 'Nama Ibu wajib diisi.',
+            'nama_ayah.required' => 'Nama Ayah wajib diisi.',
+
+
         ];
     }
 }

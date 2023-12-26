@@ -54,9 +54,9 @@ class PemerintahanBPDDataTable extends DataTable
             'Pemerintahan_BPD.tgl_lahir as tgl_lahir',
             'Pemerintahan_BPD.alamat as alamat',
             'Pemerintahan_BPD.updated_at as updated_at',
-            'pemerintahan_BPD.no_telepon as no_telepon',
-            'pemerintahan_BPD.no_sk as no_sk',
-            'pemerintahan_BPD.tgl_sk as tgl_sk',
+            'Pemerintahan_BPD.no_telepon as no_telepon',
+            'Pemerintahan_BPD.no_sk as no_sk',
+            'Pemerintahan_BPD.tgl_sk as tgl_sk',
         );
     }
 
@@ -91,6 +91,7 @@ class PemerintahanBPDDataTable extends DataTable
     {
         return [
             Column::make('id')
+                ->title('No')
                 ->width(10),
             Column::make('nama'),
             Column::make('jabatan'),

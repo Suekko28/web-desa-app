@@ -91,7 +91,8 @@ class PemerintahDesaDataTable extends DataTable
     public function getColumns(): array
     {
         return [
-            Column::make('id'),
+            Column::make('id')
+            ->title('No'),
             Column::make('nama'),
             Column::make('jabatan'),
             Column::make('jenis_kelamin'),

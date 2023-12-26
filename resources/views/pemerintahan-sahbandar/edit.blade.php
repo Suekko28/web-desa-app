@@ -83,21 +83,21 @@
                                 </div>
 
                                 <div class="col-sm-4">
-                                    <label for="nomor_telp" class="col-form-label">Nomor Telepon</label>
-                                    <input type="number" class="form-control" id="nomor_telp" name="nomor_telp"
-                                        placeholder="Nomor Telepon" value="{{}}">
+                                    <label for="no_telepon" class="col-form-label">Nomor Telepon</label>
+                                    <input type="number" class="form-control" id="no_telepon" name="no_telepon"
+                                        placeholder="Nomor Telepon" value="{{ $data->no_telepon }}">
                                 </div>
 
                                 <div class="col-sm-4">
-                                    <label for="nomor_sk" class="col-form-label">Nomor SK</label>
-                                    <input type="text" class="form-control" id="nomor_sk" name="nomor_sk"
-                                        placeholder="Nomor SK" value="{{}}">
+                                    <label for="no_sk" class="col-form-label">Nomor SK</label>
+                                    <input type="text" class="form-control" id="no_sk" name="no_sk"
+                                        placeholder="Nomor SK" value="{{ $data->no_sk }}">
                                 </div>
 
                                 <div class="col-sm-4">
                                     <label for="tgl_sk" class="col-form-label">Tanggal SK</label>
                                     <input type="date" class="form-control" id="tgl_sk" name="tgl_sk"
-                                        placeholder="" value="{{}}">
+                                        placeholder="" value="{{ $data->tgl_sk }}">
                                 </div>
 
                                 <div class="col">
