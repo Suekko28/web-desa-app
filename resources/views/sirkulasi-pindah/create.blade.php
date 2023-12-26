@@ -32,7 +32,7 @@
 
                 <!-- Small boxes (Stat box) -->
 
-                <form action="{{ route('sirkulasi-pindah.store') }}" method="POST" enctype="multipart/form-data">
+                {{-- <form action="{{ route('sirkulasi-pindah.store') }}" method="POST" enctype="multipart/form-data"> --}}
                     @csrf
                     <div class="card">
                         <div class="card-body">
@@ -73,12 +73,12 @@
 
                             <div class="d-flex flex-row-reverse">
                                 <button type="submit" class="btn btn-primary ml-3">Simpan</button>
-                                <a href="{{ route('sirkulasi-pindah.index') }}" class="btn btn-danger">Batal</a>
+                                {{-- <a href="{{ route('sirkulasi-pindah.index') }}" class="btn btn-danger">Batal</a> --}}
                             </div>
 
 
                             <!-- /.card-body -->
-                </form>
+                {{-- </form> --}}
                 <!-- /.row (main row) -->
             </div><!-- /.container-fluid -->
         </section>
