@@ -14,6 +14,9 @@ use Yajra\DataTables\Services\DataTable;
 
 class PemerintahanBPDDataTable extends DataTable
 {
+
+    protected $rowIndex = 0;
+
     /**
      * Build DataTable class.
      *
@@ -22,15 +25,22 @@ class PemerintahanBPDDataTable extends DataTable
      */
     public function dataTable(QueryBuilder $query): EloquentDataTable
     {
-        $actionBtn='<div class="col">
+
+        $this->rowIndex = 0;
+
+        $actionBtn = '<div class="col">
         <a href="' . route('pemerintahan-BPD.index') . '/{{ $id }}/edit" name="edit" class="btn btn-warning"><i class="fa-solid fa-pen-to-square"></i></a>';
-        
+
         $actionBtn .= '<a href="javascript:void(0)" onclick="confirmDelete($(this))"
             route="' . route('pemerintahan-BPD.index') . '/{{ $id }}" class="btn btn-danger mt-2"><i class="fa-solid fa-trash-can"></i></a>';
 
-        $actionBtn.='</div>';
+        $actionBtn .= '</div>';
 
         return (new EloquentDataTable($query))
+            ->addColumn('id', function ($data) {
+                return ++$this->rowIndex;
+            })
+
             ->addColumn('action', $actionBtn)
             ->rawColumns(['action'])
             ->setRowId('id');
@@ -45,19 +55,19 @@ class PemerintahanBPDDataTable extends DataTable
     public function query(PemerintahanBPD $model): QueryBuilder
     {
         return $model->newQuery()
-        ->select(
-            'Pemerintahan_BPD.id as id',
-            'Pemerintahan_BPD.nama as nama',
-            'Pemerintahan_BPD.jabatan as jabatan',
-            \DB::raw('CASE WHEN jenis_kelamin = 1 THEN "Laki-Laki" ELSE "Perempuan" END AS jenis_kelamin'),
-            'Pemerintahan_BPD.tmpt_lahir as tmpt_lahir',
-            'Pemerintahan_BPD.tgl_lahir as tgl_lahir',
-            'Pemerintahan_BPD.alamat as alamat',
-            'Pemerintahan_BPD.updated_at as updated_at',
-            'Pemerintahan_BPD.no_telepon as no_telepon',
-            'Pemerintahan_BPD.no_sk as no_sk',
-            'Pemerintahan_BPD.tgl_sk as tgl_sk',
-        );
+            ->select(
+                'Pemerintahan_BPD.id as id',
+                'Pemerintahan_BPD.nama as nama',
+                'Pemerintahan_BPD.jabatan as jabatan',
+                \DB::raw('CASE WHEN jenis_kelamin = 1 THEN "Laki-Laki" ELSE "Perempuan" END AS jenis_kelamin'),
+                'Pemerintahan_BPD.tmpt_lahir as tmpt_lahir',
+                'Pemerintahan_BPD.tgl_lahir as tgl_lahir',
+                'Pemerintahan_BPD.alamat as alamat',
+                'Pemerintahan_BPD.updated_at as updated_at',
+                'Pemerintahan_BPD.no_telepon as no_telepon',
+                'Pemerintahan_BPD.no_sk as no_sk',
+                'Pemerintahan_BPD.tgl_sk as tgl_sk',
+            );
     }
 
     /**
@@ -74,12 +84,12 @@ class PemerintahanBPDDataTable extends DataTable
 
         ];
         return $this->builder()
-                    ->setTableId('pemerintahanBPD-table')
-                    ->columns($this->getColumns())
-                    ->minifiedAjax()
-                    ->orderBy(0,'asc')
-                    ->buttons($btn)
-                    ->lengthMenu([10, 50, 100]);
+            ->setTableId('pemerintahanBPD-table')
+            ->columns($this->getColumns())
+            ->minifiedAjax()
+            ->orderBy(0, 'asc')
+            ->buttons($btn)
+            ->lengthMenu([10, 50, 100]);
     }
 
     /**
