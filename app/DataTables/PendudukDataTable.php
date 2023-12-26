@@ -77,9 +77,18 @@ class PendudukDataTable extends DataTable
     public function html(): HtmlBuilder
     {
         $btn = [
-            Button::make('add')->text('+ Tambah Data'),
-            Button::make('csv')->text('csv'),
-            Button::make('excel')->text('excel'),
+            Button::make('add')
+            ->text('+ Tambah Data'),
+            Button::make('csv')
+            ->addClass('btn-warning')
+            ->text('CSV'),
+            Button::make('excel')
+            ->addClass('btn-success')
+            ->text('Excel'),
+            Button::make('pdf')
+            ->addClass('btn-danger')
+            ->text('PDF'),
+
             // Button::make('filter'),
 
         ];

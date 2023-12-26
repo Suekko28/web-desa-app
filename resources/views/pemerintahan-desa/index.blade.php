@@ -31,7 +31,7 @@
         <div class="col-12">
             <div class="card">
                 <div class="card-body">
-                    <div class="d-flex btn_menu">
+                    {{-- <div class="d-flex btn_menu">
                         <button class="btn btn-primary btn_tambah_data">
                             Tambah Data
                         </button>
@@ -40,12 +40,12 @@
                                 Export Data
                             </button>
                             <div class="dropdown-menu" aria-labelledby="exportDropdown">
-                                {{-- <a class="dropdown-item" href="#">Export to CSV</a> --}}
+                                <a class="dropdown-item" href="#">Export to CSV</a>
                                 <a class="dropdown-item" href="#">Export to Excel</a>
                                 <a class="dropdown-item" href="/pemerintahan-desa/cetak_pdf" type="button" target="_blank">Export to PDF</a>
                             </div>
                         </div>
-                    </div>
+                    </div> --}}
                     
                     <div id="table-default" class="table-responsive">
                         <table>

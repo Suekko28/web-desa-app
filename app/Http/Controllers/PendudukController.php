@@ -22,7 +22,7 @@ class PendudukController extends Controller
     public function index(PendudukDataTable $dataTable,Request $request)
     {
         if($dataTable->request()->action != null){
-            return Excel::download(new PendudukExport($request), 'penduduk-'. date('Y-m-d H:i:s') . ($dataTable->request()->action == 'excel' ? '.xlsx' : '.csv'));
+            return Excel::download(new PendudukExport($request), 'penduduk-'. date('Y-m-d H:i:s') . ($dataTable->request()->action == 'excel' ? '.xlsx' : '.csv' ));
         }
         return $dataTable->addScope(new PendudukScope($request))->render('penduduk.index');
     }
