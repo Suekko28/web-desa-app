@@ -42,6 +42,7 @@ Route::middleware(['auth'])->group(function(){
     Route::Get('/penduduk-import',[\App\Http\Controllers\PendudukController::class,'importPendudukView'])->name('penduduk.import-view');
     Route::Post('/penduduk-import',[\App\Http\Controllers\PendudukController::class,'importPenduduk'])->name('penduduk.import');
     Route::Resource('/penduduk',\App\Http\Controllers\PendudukController::class);
+    Route::Resource('/sirkulasi-melahirkan',\App\Http\Controllers\SirkulasiMelahirkanController::class);
 });
 
 
@@ -50,9 +51,9 @@ Route::middleware(['auth'])->group(function(){
 
 //Sirkulasi Desa
 
-Route::get('/sirkulasi-melahirkan', function(){
-    return view('sirkulasi-melahirkan.index');
-});
+// Route::get('/sirkulasi-melahirkan', function(){
+//     return view('sirkulasi-melahirkan.index');
+// });
 
 Route::get('/sirkulasi-melahirkan/create', function(){
     return view('sirkulasi-melahirkan.create');

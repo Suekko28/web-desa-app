@@ -68,7 +68,7 @@
                         <span>Data Sirkulasi Desa</span>
                     </a>
                     <ul class="sub-menu mb-2" aria-expanded="false">
-                        <li><a href="{{ route('pemerintahan-desa.index') }}">Data Melahirkan</a></li>
+                        <li><a href="{{ route('sirkulasi-melahirkan.index') }}">Data Melahirkan</a></li>
                         <li><a href="{{ route('pemerintahan-BPD.index') }}">Data Meninggal</a></li>
                         <li><a href="{{ route('pemerintahan-lpm.index') }}">Data Pendatang</a>
                         </li>

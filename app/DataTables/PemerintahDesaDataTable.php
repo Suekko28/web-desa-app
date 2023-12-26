@@ -79,8 +79,7 @@ class PemerintahDesaDataTable extends DataTable
                     ->minifiedAjax()
                     ->orderBy(0,'asc')
                     ->buttons($btn)
-                    ->lengthMenu([10, 50, 100])
-                    ->responsive(true);
+                    ->lengthMenu([10, 50, 100]);
     }
 
     /**
@@ -106,6 +105,7 @@ class PemerintahDesaDataTable extends DataTable
             Column::computed('action')
                 ->exportable(false)
                 ->printable(false)
+                ->width(60)
                 ->addClass('text-center'),
         ];
     }
