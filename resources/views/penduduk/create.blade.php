@@ -190,47 +190,51 @@
                                         <label for="pendidikan" class="col-form-label">
                                             Pendidikan</label>
                                         <select class="form-control" name="pendidikan" id="pendidikan">
-                                            <option value="">--Pilih Salah Satu--</option>
-                                            <option value="1">Tidak/Belum Sekolah</option>
-                                            <option value="2">SD Sederajat</option>
-                                            <option value="3">SLTP Sederajat</option>
-                                            <option value="4">SLTA Sederajat</option>
-                                            <option value="5">Diploma I</option>
-                                            <option value="6">Diploma II</option>
-                                            <option value="7">Diploma III</option>
-                                            <option value="8">Diploma IV</option>
-                                            <option value="9">Stara I</option>
-                                            <option value="10">Stara II</option>
-                                            <option value="11">Stara III</option>
+                                            <option value="" selected>--Pilih Salah Satu--</option>
+                                            <option value="1">Belum Sekolah</option>
+                                            <option value="2">Tamat SD</option>
+                                            <option value="3">Belum Tamat SD</option>
+                                            <option value="4">Akademi</option>
+                                            <option value="5">SD Sederajat</option>
+                                            <option value="6">SLTP Sederajat</option>
+                                            <option value="7">SLTA Sederajat</option>
+                                            <option value="8">Diploma I</option>
+                                            <option value="9">Diploma II</option>
+                                            <option value="10">Diploma III</option>
+                                            <option value="11">Diploma IV</option>
+                                            <option value="12">Stara I</option>
+                                            <option value="13">Stara II</option>
+                                            <option value="14">Stara III</option>
                                         </select>
+
                                     </div>
 
                                     <div class="col-sm-6">
                                         <label for="pekerjaan" class="col-form-label">
                                             Pekerjaan</label>
-                                            <select class="form-control" class="pekerjaan" name="pekerjaan" id="pekerjaan">
-                                                <option value="">--Pilih Salah Satu--</option>
-                                                <option value="1">Buruh Harian Lepas</option>
-                                                <option value="2">Belum Bekerja</option>
-                                                <option value="3">Pengrajin Logam</option>
-                                                <option value="4">Wiraswasta</option>
-                                                <option value="5">Guru</option>
-                                                <option value="6">Mengurus Rumah Tangga</option>
-                                                <option value="7">Pegawai Negri Sipil</option>
-                                                <option value="8">Tentara Nasional Indonesia</option>
-                                                <option value="9">Guru ngaji</option>
-                                                <option value="10">Wirausaha</option>
-                                                <option value="11">Penjahit</option>
-                                                <option value="12">Pensiun PNS</option>
-                                                <option value="13">Pemulung</option>
-                                                <option value="14">Buruh</option>
-                                                <option value="15">Linmas wilayah</option>
-                                                <option value="16">Driver</option>
-                                                <option value="17">Petani</option>
-                                                <option value="18">Amil</option>
-                                                <option value="19">Service</option>
-                                            </select>
-                                            
+                                        <select class="form-control" class="pekerjaan" name="pekerjaan" id="pekerjaan">
+                                            <option value="">--Pilih Salah Satu--</option>
+                                            <option value="1">Buruh Harian Lepas</option>
+                                            <option value="2">Belum Bekerja</option>
+                                            <option value="3">Pengrajin Logam</option>
+                                            <option value="4">Wiraswasta</option>
+                                            <option value="5">Guru</option>
+                                            <option value="6">Mengurus Rumah Tangga</option>
+                                            <option value="7">Pegawai Negri Sipil</option>
+                                            <option value="8">Tentara Nasional Indonesia</option>
+                                            <option value="9">Guru ngaji</option>
+                                            <option value="10">Wirausaha</option>
+                                            <option value="11">Penjahit</option>
+                                            <option value="12">Pensiun PNS</option>
+                                            <option value="13">Pemulung</option>
+                                            <option value="14">Buruh</option>
+                                            <option value="15">Linmas wilayah</option>
+                                            <option value="16">Driver</option>
+                                            <option value="17">Petani</option>
+                                            <option value="18">Amil</option>
+                                            <option value="19">Service</option>
+                                        </select>
+
                                     </div>
 
                                     <div class="col-sm-6">
@@ -343,7 +347,7 @@
 
             // Periksa apakah ulang tahun sudah terjadi atau belum
             if (today.getMonth() < dob.getMonth() || (today.getMonth() === dob.getMonth() && today.getDate() < dob
-                .getDate())) {
+                    .getDate())) {
                 age--;
             }
 

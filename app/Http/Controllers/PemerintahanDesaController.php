@@ -5,8 +5,8 @@ namespace App\Http\Controllers;
 use App\DataTables\PemerintahDesaDataTable;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\PemerintahanDesaFormRequest;
-use App\Http\Requests\PendudukFormRequest;
 use App\Models\PemerintahanDesa;
+use Barryvdh\DomPDF\Facade\Pdf;
 use Illuminate\Http\Request;
 
 class PemerintahanDesaController extends Controller
@@ -95,5 +95,12 @@ class PemerintahanDesaController extends Controller
         $user=PemerintahanDesa::find($id)->delete();
         return redirect()->route('pemerintahan-desa.index')->with('success','data berhasil dihapus'); 
 
+    }
+
+    public function cetak_pdf()
+    {
+        $items = PemerintahanDesa::all(); // or retrieve your data as needed
+        $pdf = Pdf::loadView('pemerintahan-desa.pdf', ['items' => $items])->setPaper('a4', 'landscape');
+        return $pdf->stream();
     }
 }

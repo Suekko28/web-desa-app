@@ -14,6 +14,9 @@ use Yajra\DataTables\Services\DataTable;
 
 class PemerintahanKarangTarunaDataTable extends DataTable
 {
+
+    protected $rowIndex = 0;
+
     /**
      * Build DataTable class.
      *
@@ -22,6 +25,8 @@ class PemerintahanKarangTarunaDataTable extends DataTable
      */
     public function dataTable(QueryBuilder $query): EloquentDataTable
     {
+        $this->rowIndex = 0;
+
         $actionBtn='<div class="col">
         <a href="' . route('pemerintahan-karang-taruna.index') . '/{{ $id }}/edit" name="edit" class="btn btn-warning"><i class="fa-solid fa-pen-to-square"></i></a>';
         
@@ -31,6 +36,10 @@ class PemerintahanKarangTarunaDataTable extends DataTable
         $actionBtn.='</div>';
 
         return (new EloquentDataTable($query))
+        ->addColumn('id', function ($data) {
+            return ++$this->rowIndex;
+        })
+
             ->addColumn('action', $actionBtn)
             ->rawColumns(['action'])
             ->setRowId('id');
