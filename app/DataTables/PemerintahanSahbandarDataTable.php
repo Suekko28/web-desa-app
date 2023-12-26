@@ -14,6 +14,8 @@ use Yajra\DataTables\Services\DataTable;
 
 class PemerintahanSahbandarDataTable extends DataTable
 {
+    protected $rowIndex = 0;
+
     /**
      * Build DataTable class.
      *
@@ -22,15 +24,21 @@ class PemerintahanSahbandarDataTable extends DataTable
      */
     public function dataTable(QueryBuilder $query): EloquentDataTable
     {
-        $actionBtn='<div class="col">
+        $this->rowIndex = 0;
+
+        $actionBtn = '<div class="col">
         <a href="' . route('pemerintahan-sahbandar.index') . '/{{ $id }}/edit" name="edit" class="btn btn-warning"><i class="fa-solid fa-pen-to-square"></i></a>';
-        
+
         $actionBtn .= '<a href="javascript:void(0)" onclick="confirmDelete($(this))"
             route="' . route('pemerintahan-sahbandar.index') . '/{{ $id }}" class="btn btn-danger mt-2"><i class="fa-solid fa-trash-can"></i></a>';
 
-        $actionBtn.='</div>';
+        $actionBtn .= '</div>';
 
         return (new EloquentDataTable($query))
+            ->addColumn('id', function ($data) {
+                return ++$this->rowIndex;
+            })
+
             ->addColumn('action', $actionBtn)
             ->rawColumns(['action'])
             ->setRowId('id');
@@ -45,19 +53,19 @@ class PemerintahanSahbandarDataTable extends DataTable
     public function query(PemerintahanSahbandar $model): QueryBuilder
     {
         return $model->newQuery()
-        ->select(
-            'pemerintahan_sahbandar.id as id',
-            'pemerintahan_sahbandar.nama as nama',
-            'pemerintahan_sahbandar.jabatan as jabatan',
-            \DB::raw('CASE WHEN jenis_kelamin = 1 THEN "Laki-Laki" ELSE "Perempuan" END AS jenis_kelamin'),
-            'pemerintahan_sahbandar.tmpt_lahir as tmpt_lahir',
-            'pemerintahan_sahbandar.tgl_lahir as tgl_lahir',
-            'pemerintahan_sahbandar.alamat as alamat',
-            'pemerintahan_sahbandar.updated_at as updated_at',
-            'pemerintahan_sahbandar.no_telepon as no_telepon',
-            'pemerintahan_sahbandar.no_sk as no_sk',
-            'pemerintahan_sahbandar.tgl_sk as tgl_sk',
-        );
+            ->select(
+                'pemerintahan_sahbandar.id as id',
+                'pemerintahan_sahbandar.nama as nama',
+                'pemerintahan_sahbandar.jabatan as jabatan',
+                \DB::raw('CASE WHEN jenis_kelamin = 1 THEN "Laki-Laki" ELSE "Perempuan" END AS jenis_kelamin'),
+                'pemerintahan_sahbandar.tmpt_lahir as tmpt_lahir',
+                'pemerintahan_sahbandar.tgl_lahir as tgl_lahir',
+                'pemerintahan_sahbandar.alamat as alamat',
+                'pemerintahan_sahbandar.updated_at as updated_at',
+                'pemerintahan_sahbandar.no_telepon as no_telepon',
+                'pemerintahan_sahbandar.no_sk as no_sk',
+                'pemerintahan_sahbandar.tgl_sk as tgl_sk',
+            );
     }
 
     /**
@@ -73,12 +81,12 @@ class PemerintahanSahbandarDataTable extends DataTable
 
         ];
         return $this->builder()
-                    ->setTableId('pemerintah-sahbandar-table')
-                    ->columns($this->getColumns())
-                    ->minifiedAjax()
-                    ->orderBy(0,'asc')
-                    ->buttons($btn)
-                    ->lengthMenu([10, 50, 100]);
+            ->setTableId('pemerintah-sahbandar-table')
+            ->columns($this->getColumns())
+            ->minifiedAjax()
+            ->orderBy(0, 'asc')
+            ->buttons($btn)
+            ->lengthMenu([10, 50, 100]);
     }
 
     /**
@@ -106,7 +114,7 @@ class PemerintahanSahbandarDataTable extends DataTable
                 ->printable(false)
                 ->width(60)
                 ->addClass('text-center'),
-        ]; 
+        ];
     }
 
     /**

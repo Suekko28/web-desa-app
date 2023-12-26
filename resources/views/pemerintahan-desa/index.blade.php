@@ -31,8 +31,26 @@
         <div class="col-12">
             <div class="card">
                 <div class="card-body">
+                    <div class="d-flex">
+                        <button class="btn btn-primary">
+                            Tambah Data
+                        </button>
+                        <div class="dropdown">
+                            <button class="btn btn-secondary dropdown-toggle" type="button" id="exportDropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                Export Data
+                            </button>
+                            <div class="dropdown-menu" aria-labelledby="exportDropdown">
+                                {{-- <a class="dropdown-item" href="#">Export to CSV</a> --}}
+                                <a class="dropdown-item" href="#">Export to Excel</a>
+                                <a class="dropdown-item" href="#">Export to PDF</a>
+                            </div>
+                        </div>
+                    </div>
+                    
                     <div id="table-default" class="table-responsive">
-                        {{ $dataTable->table() }}
+                        <table>
+                            {{ $dataTable->table()}}
+                        </table>
                     </div>
                 </div>
             </div>

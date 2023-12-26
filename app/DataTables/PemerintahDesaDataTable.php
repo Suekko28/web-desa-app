@@ -14,6 +14,8 @@ use Yajra\DataTables\Services\DataTable;
 
 class PemerintahDesaDataTable extends DataTable
 {
+
+    protected $rowIndex = 0;
     /**
      * Build DataTable class.
      *
@@ -22,16 +24,21 @@ class PemerintahDesaDataTable extends DataTable
      */
     public function dataTable(QueryBuilder $query): EloquentDataTable
     {
-        
-        $actionBtn='<div class="col">
+
+        $this->rowIndex = 0;
+
+        $actionBtn = '<div class="col">
         <a href="' . route('pemerintahan-desa.index') . '/{{ $id }}/edit" name="edit" class="btn btn-warning"><i class="fa-solid fa-pen-to-square"></i></a>';
-        
+
         $actionBtn .= '<a href="javascript:void(0)" onclick="confirmDelete($(this))"
             route="' . route('pemerintahan-desa.index') . '/{{ $id }}" class="btn btn-danger mt-2"><i class="fa-solid fa-trash-can"></i></a>';
 
-        $actionBtn.='</div>';
+        $actionBtn .= '</div>';
 
         return (new EloquentDataTable($query))
+            ->addColumn('id', function ($data) {
+                return ++$this->rowIndex;
+            })
             ->addColumn('action', $actionBtn)
             ->rawColumns(['action'])
             ->setRowId('id');
@@ -46,19 +53,19 @@ class PemerintahDesaDataTable extends DataTable
     public function query(PemerintahanDesa $model): QueryBuilder
     {
         return $model->newQuery()
-        ->select(
-            'pemerintahan_desa.id as id',
-            'pemerintahan_desa.nama as nama',
-            'pemerintahan_desa.jabatan as jabatan',
-            \DB::raw('CASE WHEN jenis_kelamin = 1 THEN "Laki-Laki" ELSE "Perempuan" END AS jenis_kelamin'),
-            'pemerintahan_desa.tmpt_lahir as tmpt_lahir',
-            'pemerintahan_desa.tgl_lahir as tgl_lahir',
-            'pemerintahan_desa.alamat as alamat',
-            'pemerintahan_desa.updated_at as updated_at',
-            'pemerintahan_desa.no_telepon as no_telepon',
-            'pemerintahan_desa.no_sk as no_sk',
-            'pemerintahan_desa.tgl_sk as tgl_sk',
-        );
+            ->select(
+                'pemerintahan_desa.id as id',
+                'pemerintahan_desa.nama as nama',
+                'pemerintahan_desa.jabatan as jabatan',
+                \DB::raw('CASE WHEN jenis_kelamin = 1 THEN "Laki-Laki" ELSE "Perempuan" END AS jenis_kelamin'),
+                'pemerintahan_desa.tmpt_lahir as tmpt_lahir',
+                'pemerintahan_desa.tgl_lahir as tgl_lahir',
+                'pemerintahan_desa.alamat as alamat',
+                'pemerintahan_desa.updated_at as updated_at',
+                'pemerintahan_desa.no_telepon as no_telepon',
+                'pemerintahan_desa.no_sk as no_sk',
+                'pemerintahan_desa.tgl_sk as tgl_sk',
+            );
     }
 
     /**
@@ -74,13 +81,13 @@ class PemerintahDesaDataTable extends DataTable
 
         ];
         return $this->builder()
-                    ->setTableId('pemerintah-desa-table')
-                    ->columns($this->getColumns())
-                    ->minifiedAjax()
-                    ->orderBy(0,'asc')
-                    ->buttons($btn)
-                    ->lengthMenu([10, 50, 100])
-                    ->responsive(true);
+            ->setTableId('pemerintah-desa-table')
+            ->columns($this->getColumns())
+            ->minifiedAjax()
+            ->orderBy(0, 'asc')
+            ->buttons($btn)
+            ->lengthMenu([10, 50, 100])
+            ->responsive(true);
     }
 
     /**
@@ -91,7 +98,8 @@ class PemerintahDesaDataTable extends DataTable
     public function getColumns(): array
     {
         return [
-            Column::make('id'),
+            Column::make('id')
+                ->title('No'),
             Column::make('nama'),
             Column::make('jabatan'),
             Column::make('jenis_kelamin'),

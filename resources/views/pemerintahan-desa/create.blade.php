@@ -81,14 +81,14 @@
                                     </div>
 
                                     <div class="col-sm-4">
-                                        <label for="nomor_telp" class="col-form-label">Nomor Telepon</label>
-                                        <input type="number" class="form-control" id="nomor_telp" name="no_telepon"
+                                        <label for="no_telepon" class="col-form-label">Nomor Telepon</label>
+                                        <input type="number" class="form-control" id="no_telepon" name="no_telepon"
                                             placeholder="Nomor Telepon">
                                     </div>
 
                                     <div class="col-sm-4">
-                                        <label for="nomor_sk" class="col-form-label">Nomor SK</label>
-                                        <input type="text" class="form-control" id="nomor_sk" name="no_sk"
+                                        <label for="no_sk" class="col-form-label">Nomor SK</label>
+                                        <input type="text" class="form-control" id="no_sk" name="no_sk"
                                             placeholder="Nomor SK">
                                     </div>
 
