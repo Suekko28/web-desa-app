@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\DataTables\LPJBarangJasaDataTable;
+use App\Http\Requests\PemerintahanLPJRequest;
+use App\Models\LPJBarangJasa;
 use App\Models\LPJKegiatan;
 use Illuminate\Http\Request;
 
@@ -27,45 +29,52 @@ class LPJBarangJasaController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(PemerintahanLPJRequest $request)
     {
         $data=$request->all();
 
-        Penduduk::create($data);
+        LPJBarangJasa::create($data);
         
-        return redirect()->route('penduduk.index')->with('success','data berhasil ditambahkan');
+        return redirect()->route('lpj-barangjasa.index')->with('success','data berhasil ditambahkan');
 
     }
 
     /**
      * Display the specified resource.
      */
-    public function show(LPJKegiatan $lPJKegiatan)
+    public function show(LPJBarangJasa $lPJKegiatan)
     {
-        //
+        abort(404);
     }
 
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(LPJKegiatan $lPJKegiatan)
+    public function edit(String $id)
     {
-        //
+        $data=LPJBarangJasa::find($id);
+        return view('lpj-barangjasa.edit',[
+                    "data"=>$data,
+            ]);
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, LPJKegiatan $lPJKegiatan)
+    public function update(Request $request, string $id)
     {
-        //
+        $user=LPJBarangJasa::find($id)->update($request->all());
+        return redirect()->route('lpj-barangjasa.index')->with('success','data berhasil diubah'); 
+
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(LPJKegiatan $lPJKegiatan)
+    public function destroy(String $id)
     {
-        //
+        $user=LPJBarangJasa::find($id)->delete();
+        return redirect()->route('lpj-barangjasa.index')->with('success','data berhasil dihapus'); 
+
     }
 }

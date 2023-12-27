@@ -83,7 +83,7 @@ class LPJBarangJasaDataTable extends DataTable
 
         ];
         return $this->builder()
-            ->setTableId('pemerintahanBPD-table')
+            ->setTableId('lpj-barang-jasa-table')
             ->columns($this->getColumns())
             ->minifiedAjax()
             ->orderBy(0, 'asc')
@@ -99,15 +99,15 @@ class LPJBarangJasaDataTable extends DataTable
     public function getColumns(): array
     {
         return [
+            Column::make('id'),
+            Column::make('no_pesanan_barang'),
+            Column::make('no_berita_acara'),
+            Column::make('nama_pelaksana_kegiatan'),
             Column::computed('action')
                   ->exportable(false)
                   ->printable(false)
                   ->width(60)
                   ->addClass('text-center'),
-            Column::make('id'),
-            Column::make('no_pesanan_barang'),
-            Column::make('no_berita_acara'),
-            Column::make('nama_pelaksana_kegiatan'),
         ];
     }
 

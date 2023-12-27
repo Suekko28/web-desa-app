@@ -22,7 +22,7 @@ class LPJBarangJasa extends Model
      * @var array<int, string>
      */
     protected $fillable = [
-        'no_pesanan_barang',
+        'no_pesanan_brg',
         'no_berita_acara',
         'nama_pelaksana_kegiatan',
         'sk_tpk',

@@ -45,20 +45,20 @@
                                         4. Tanggal Pesanan
                                         5. Nama Toko !-->
                                     <div class="col-sm-6">
-                                        <label for="no_pesan" class="col-form-label">No. Pesanan Barang</label>
-                                        <input type="text" class="form-control" id="nama" name="nama"
+                                        <label for="no_pesanan_brg" class="col-form-label">No. Pesanan Barang</label>
+                                        <input type="text" class="form-control" id="no_pesanan_brg" name="no_pesanan_brg"
                                             placeholder="001/PSB/PTPKD/15.2005/IV/2023">
                                     </div>
                                     
                                     <div class="col-sm-6">
-                                        <label for="no_berita" class="col-form-label">No. Berita Acara Serah Terima (BAST)</label>
-                                        <input type="text" class="form-control" id="nama" name="nama"
+                                        <label for="no_berita_acara" class="col-form-label">No. Berita Acara Serah Terima (BAST)</label>
+                                        <input type="text" class="form-control" id="no_berita_acara" name="no_berita_acara"
                                             placeholder="001/BAST/PTPKD/15.2005/IV/2023">
                                     </div>
 
                                     <div class="col-sm-6">
-                                        <label for="name" class="col-form-label">Nama Pelaksana Kegiatan/Pemesan (TPK)</label>
-                                        <input type="text" class="form-control" id="nama" name="nama"
+                                        <label for="nama_pelaksana_kegiatan" class="col-form-label">Nama Pelaksana Kegiatan/Pemesan (TPK)</label>
+                                        <input type="text" class="form-control" id="nama_pelaksana_kegiatan" name="nama_pelaksana_kegiatan"
                                             placeholder="Masukkan Nama TPK">
                                     </div>
 
@@ -69,14 +69,14 @@
                                     </div>
                                     
                                     <div class="col-sm-6">
-                                        <label for="nama_spp" class="col-form-label">Nama Rincian SPP</label>
-                                        <input type="text" class="form-control" id="nama_spp" name="nama_spp"
+                                        <label for="nama_rincian_spp" class="col-form-label">Nama Rincian SPP</label>
+                                        <input type="text" class="form-control" id="nama_rincian_spp" name="nama_rincian_spp"
                                             placeholder="Belanja Alat Tulis Kantor dan Benda Pos">
                                     </div>
 
                                     <div class="col-sm-6">
-                                        <label for="kwitansi" class="col-form-label">Uraian Kwitansi Sesuai SISKEUDES</label>
-                                        <input type="text" class="form-control" id="kwitansi" name="kwitansi"
+                                        <label for="uraian_kwitansi" class="col-form-label">Uraian Kwitansi Sesuai SISKEUDES</label>
+                                        <input type="text" class="form-control" id="uraian_kwitansi" name="uraian_kwitansi"
                                             placeholder="Belanja Alat Tulis Kantor dan Benda Pos">
                                     </div>
 
@@ -87,8 +87,8 @@
                                     </div>
 
                                     <div class="col-sm-6">
-                                        <label for="tgl_tempo" class="col-form-label">Jatuh Tempo</label>
-                                        <input type="date" class="form-control" id="tgl_tempo" name="tgl_tempo"
+                                        <label for="jatuh_tempo" class="col-form-label">Jatuh Tempo</label>
+                                        <input type="date" class="form-control" id="jatuh_tempo" name="jatuh_tempo"
                                             placeholder="">
                                     </div>
 
@@ -99,8 +99,8 @@
                                     </div>
 
                                     <div class="col-sm-6">
-                                        <label for="tgl_periksa" class="col-form-label">Jatuh Pemeriksaan</label>
-                                        <input type="date" class="form-control" id="tgl_periksa" name="tgl_periksa"
+                                        <label for="jatuh_pemeriksaan" class="col-form-label">Jatuh Pemeriksaan</label>
+                                        <input type="date" class="form-control" id="jatuh_pemeriksaan" name="jatuh_pemeriksaan"
                                             placeholder="">
                                     </div>
 
