@@ -40,6 +40,9 @@ Route::middleware(['auth'])->group(function(){
     Route::Resource('/pemerintahan-sahbandar',\App\Http\Controllers\PemerintahanSahbandarController::class);
     Route::Resource('/pemerintahan-karang-taruna',\App\Http\Controllers\PemerintahanKarangTarunaController::class);
     Route::Resource('/pemerintahan-posyandu',\App\Http\Controllers\PemerintahanPosyanduController::class);
+    Route::Resource('/pemerintahan-rt',\App\Http\Controllers\PemerintahanRTController::class);
+    Route::Resource('/pemerintahan-rw',\App\Http\Controllers\PemerintahanRWController::class);
+    Route::Resource('/pemerintahan-kadus',\App\Http\Controllers\PemerintahanKadusController::class);
     Route::Get('/penduduk-import',[\App\Http\Controllers\PendudukController::class,'importPendudukView'])->name('penduduk.import-view');
     Route::Post('/penduduk-import',[\App\Http\Controllers\PendudukController::class,'importPenduduk'])->name('penduduk.import');
     Route::Resource('/penduduk',\App\Http\Controllers\PendudukController::class);

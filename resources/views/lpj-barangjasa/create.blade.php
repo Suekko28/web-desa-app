@@ -31,7 +31,7 @@
                 @include('layouts.message')
 
                 <!-- Small boxes (Stat box) -->
-                {{-- <form action="{{ route('lpj-barangjasa.store') }}" method="POST" enctype="multipart/form-data"> --}}
+                <form action="{{ route('lpj-barangjasa.store') }}" method="POST" enctype="multipart/form-data">
                     @csrf
                     <div class="card">
                         <div class="card-body">
@@ -112,13 +112,13 @@
 
                                     <div class="col-sm-6">
                                         <label for="nama_toko" class="col-form-label">Nama Toko</label>
-                                        <input type="date" class="form-control" id="nama_toko" name="nama_toko"
+                                        <input type="text" class="form-control" id="nama_toko" name="nama_toko"
                                             placeholder="">
                                     </div>
 
                                     <div class="col-sm-6">
                                         <label for="pemilik_toko" class="col-form-label">Pemilik Toko</label>
-                                        <input type="date" class="form-control" id="pemilik_toko" name="pemilik_toko"
+                                        <input type="text" class="form-control" id="pemilik_toko" name="pemilik_toko"
                                             placeholder="">
                                     </div>
 
@@ -133,7 +133,7 @@
 
                             <div class="d-flex flex-row-reverse">
                                 <button type="submit" class="btn btn-primary ml-3">Simpan</button>
-                                {{-- <a href="{{ route('lpj-barangjasa.index') }}" class="btn btn-danger">Batal</a> --}}
+                                <a href="{{ route('lpj-barangjasa.index') }}" class="btn btn-danger">Batal</a>
                             </div>
 
 

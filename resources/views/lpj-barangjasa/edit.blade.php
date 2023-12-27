@@ -118,108 +118,13 @@
 
                                     <div class="col-sm-6">
                                         <label for="nama_toko" class="col-form-label">Nama Toko</label>
-                                        <input type="date" class="form-control" id="nama_toko" name="nama_toko"
+                                        <input type="text" class="form-control" id="nama_toko" name="nama_toko"
                                             placeholder="">
                                     </div>
 
                                     <div class="col-sm-6">
                                         <label for="pemilik_toko" class="col-form-label">Pemilik Toko</label>
-                                        <input type="date" class="form-control" id="pemilik_toko" name="pemilik_toko"
-                                            placeholder="">
-                                    </div>
-
-                                    <div class="col-sm-12">
-                                        <label for="alamat" class="col-form-label">Alamat</label>
-                                        <textarea type="text" class="form-control" id="alamat" name="alamat" rows="5"
-                                            placeholder="Masukkan Alamat Toko"></textarea>
-                                    </div>
-
-                                </div>
-                                <div class="row">
-                                    <!--Field yang ditampilin di table
-                                            1. No
-                                            2. Nomor Pesanan
-                                            3. TPK (Nama TPK)
-                                            4. Tanggal Pesanan
-                                            5. Nama Toko !-->
-                                    <div class="col-sm-6">
-                                        <label for="no_pesan" class="col-form-label">No. Pesanan Barang</label>
-                                        <input type="text" class="form-control" id="nama" name="nama"
-                                            placeholder="001/PSB/PTPKD/15.2005/IV/2023">
-                                    </div>
-
-                                    <div class="col-sm-6">
-                                        <label for="no_berita" class="col-form-label">No. Berita Acara Serah Terima
-                                            (BAST)</label>
-                                        <input type="text" class="form-control" id="nama" name="nama"
-                                            placeholder="001/BAST/PTPKD/15.2005/IV/2023">
-                                    </div>
-
-                                    <div class="col-sm-6">
-                                        <label for="name" class="col-form-label">Nama Pelaksana Kegiatan/Pemesan
-                                            (TPK)</label>
-                                        <input type="text" class="form-control" id="nama" name="nama"
-                                            placeholder="Masukkan Nama TPK">
-                                    </div>
-
-                                    <div class="col-sm-6">
-                                        <label for="sk_tpk" class="col-form-label">SK TPK</label>
-                                        <input type="text" class="form-control" id="sk_tpk" name="sk_tpk"
-                                            placeholder="Masukkan SK TPK">
-                                    </div>
-
-                                    <div class="col-sm-6">
-                                        <label for="nama_spp" class="col-form-label">Nama Rincian SPP</label>
-                                        <input type="text" class="form-control" id="nama_spp" name="nama_spp"
-                                            placeholder="Belanja Alat Tulis Kantor dan Benda Pos">
-                                    </div>
-
-                                    <div class="col-sm-6">
-                                        <label for="kwitansi" class="col-form-label">Uraian Kwitansi Sesuai
-                                            SISKEUDES</label>
-                                        <input type="text" class="form-control" id="kwitansi" name="kwitansi"
-                                            placeholder="Belanja Alat Tulis Kantor dan Benda Pos">
-                                    </div>
-
-                                    <div class="col-sm-6">
-                                        <label for="tgl_pesanan" class="col-form-label">Tanggal Pesanan</label>
-                                        <input type="date" class="form-control" id="tgl_pesanan" name="tgl_pesanan"
-                                            placeholder="">
-                                    </div>
-
-                                    <div class="col-sm-6">
-                                        <label for="tgl_tempo" class="col-form-label">Jatuh Tempo</label>
-                                        <input type="date" class="form-control" id="tgl_tempo" name="tgl_tempo"
-                                            placeholder="">
-                                    </div>
-
-                                    <div class="col-sm-6">
-                                        <label for="tgl_bast" class="col-form-label">Tanggal Bast</label>
-                                        <input type="date" class="form-control" id="tgl_bast" name="tgl_bast"
-                                            placeholder="">
-                                    </div>
-
-                                    <div class="col-sm-6">
-                                        <label for="tgl_periksa" class="col-form-label">Jatuh Pemeriksaan</label>
-                                        <input type="date" class="form-control" id="tgl_periksa" name="tgl_periksa"
-                                            placeholder="">
-                                    </div>
-
-                                    <div class="col-sm-12">
-                                        <label for="alamat" class="col-form-label">Keterangan</label>
-                                        <textarea type="text" class="form-control" id="alamat" name="alamat" rows="5"
-                                            placeholder="Barang-barang tersebut telah kami terima dengan baik"></textarea>
-                                    </div>
-
-                                    <div class="col-sm-6">
-                                        <label for="nama_toko" class="col-form-label">Nama Toko</label>
-                                        <input type="date" class="form-control" id="nama_toko" name="nama_toko"
-                                            placeholder="">
-                                    </div>
-
-                                    <div class="col-sm-6">
-                                        <label for="pemilik_toko" class="col-form-label">Pemilik Toko</label>
-                                        <input type="date" class="form-control" id="pemilik_toko" name="pemilik_toko"
+                                        <input type="text" class="form-control" id="pemilik_toko" name="pemilik_toko"
                                             placeholder="">
                                     </div>
 

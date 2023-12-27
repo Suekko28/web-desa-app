@@ -52,9 +52,9 @@
                                 <li><a href="{{ route('pemerintahan-sahbandar.index') }}">Sahbandar</a></li>
                                 <li><a href="{{ route('pemerintahan-karang-taruna.index') }}">Karang Taruna</a></li>
                                 <li><a href="{{ route('pemerintahan-posyandu.index') }}">Posyandu</a></li>
-                                <li><a href="#">RT</a></li>
-                                <li><a href="#">RW</a></li>
-                                <li><a href="#">Kadus</a></li>
+                                <li><a href="{{ route('pemerintahan-rt.index') }}">RT</a></li>
+                                <li><a href="{{ route('pemerintahan-rw.index') }}">RW</a></li>
+                                <li><a href="{{route('pemerintahan-kadus.index')}}">Kadus</a></li>
                             </ul>
                         </li>
 

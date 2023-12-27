@@ -13,8 +13,7 @@ class LPJBarangJasaController extends Controller
      */
     public function index(LPJBarangJasaDataTable $dataTable)
     {
-        return view('lpj-barangjasa.create');
-        return $dataTable->render('lpj-barangjasa.index');
+    return $dataTable->render('lpj-barangjasa.index');
     }
 
     /**
@@ -22,7 +21,7 @@ class LPJBarangJasaController extends Controller
      */
     public function create()
     {
-        //
+        return view('lpj-barangjasa.create');
     }
 
     /**
@@ -30,7 +29,12 @@ class LPJBarangJasaController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $data=$request->all();
+
+        Penduduk::create($data);
+        
+        return redirect()->route('penduduk.index')->with('success','data berhasil ditambahkan');
+
     }
 
     /**
