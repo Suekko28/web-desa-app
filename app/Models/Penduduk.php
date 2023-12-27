@@ -72,7 +72,7 @@ class penduduk extends Model
 
     public function getPendidikanAttribute($value)
     {
-        $arr=['tidak sekolah','SD','SLTP Sederajat','SLTA Sederajat','Diploma 1','Diploma 2','Diploma 3','Diploma 4','Stara 1','Stara 2','Stara 3'];
+        $arr=['Belum Sekolah','Tamat SD','Belum Tamat SD','Akademi','SD Sederajat','SLTP Sederajat','SLTA Sederajat','Diploma 1','Diploma 2','Diploma 3','Diploma 4','Stara 1','Stara 2','Stara 3'];
         return $arr[$value-1];
     }
     public function getKepemilikanBpjsAttribute($value)
