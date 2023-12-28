@@ -107,8 +107,8 @@ class PendudukController extends Controller
      */
     public function destroy(string $id)
     {
-        $user=Penduduk::find($id)->delete();
-        return redirect()->route('penduduk.index')->with('success','data berhasil dihapus'); 
+            $user=Penduduk::find($id)->delete();
+            return redirect()->route('penduduk.index')->with('success','data berhasil dihapus'); 
 
     }
 }

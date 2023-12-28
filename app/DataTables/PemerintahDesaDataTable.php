@@ -76,8 +76,17 @@ class PemerintahDesaDataTable extends DataTable
     public function html(): HtmlBuilder
     {
         $btn = [
-            Button::make('add')->text('+ Tambah Data'),
-            Button::make('export')->text('Export Data'),
+            Button::make('add')
+            ->text('+ Tambah Data'),
+            Button::make('csv')
+            ->addClass('btn-warning')
+            ->text('CSV'),
+            Button::make('excel')
+            ->addClass('btn-success')
+            ->text('Excel'),
+            Button::make('pdf')
+            ->addClass('btn-danger')
+            ->text('PDF'),
 
         ];
         return $this->builder()

@@ -32,7 +32,6 @@ Route::middleware(['auth'])->group(function(){
     Route::get('/index',[\App\Http\Controllers\DashboardController::class,'index'])->name('index');
 
     Route::Resource('/pemerintahan-desa',\App\Http\Controllers\PemerintahanDesaController::class);
-    Route::get('/pemerintahan-desa/cetak_pdf',[\App\Http\Controllers\PemerintahanDesaController::class,'cetak_pdf']);  
     Route::Resource('/pemerintahan-BPD',\App\Http\Controllers\PemerintahanBPDController::class);
     Route::Resource('/pemerintahan-lpm',\App\Http\Controllers\PemerintahanLPMController::class);
     Route::Resource('/pemerintahan-mui',\App\Http\Controllers\PemerintahanMUIController::class);

@@ -30,7 +30,8 @@ class LPJBarangJasaDataTable extends DataTable
         $actionBtn .= '<a href="javascript:void(0)" onclick="confirmDelete($(this))"
             route="' . route('lpj-barangjasa.index') . '/{{ $id }}" class="btn btn-danger mt-2"><i class="fa-solid fa-trash-can"></i></a>';
 
-        $actionBtn .= '<a href="' . route('lpj-barangjasa.index') . '/{{ $id }}" class="btn btn-primary mt-2"><i class="fa-solid fa-basket-shopping" style="color:white"></i></a>';
+        $actionBtn .= '<div class="col">
+        <a href="' . route('penduduk.index') . '/{{ $id }}" name="view" class="btn btn-warning mt-2"><i class="fa-solid fa-basket-shopping"></i></a>';
 
         $actionBtn .= '</div>';
 
