@@ -67,15 +67,21 @@
                                     </select>
                                 </div>
 
-                                <!-- <div class="col-sm-6">
+                                <div class="col-sm-6">
                                     <label for="keluarga" class="col-form-label">Keluarga</label>
-                                    <select id="keluarga" name="keluarga" class="form-control" required>
-                                        <option value="" selected>--Pilih Keluarga--</option>
-                                        <option value="1">(Diambil dari data penduduk(NIK+Nama))</option>
-                                        <option value="2">(Diambil dari data penduduk(NIK+Nama))</option>
-                                </select>
-                                </div> -->
-                                
+                                    <div class="dropdown">
+                                        <button class="form-control dropdown-toggle text-left" type="button"
+                                            data-bs-toggle="dropdown" aria-expanded="false" name="keluarga">
+                                            --Pilih Keluarga--
+                                        </button>
+                                        <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton" id="keluargaDropdown">
+                                            <input type="text" id="keluargaSearchInput" class="form-control" placeholder="Cari Keluarga...">
+                                            <li><a class="dropdown-item" href="#" value="">--Pilih Keluarga--</a></li>
+                                            <li><a class="dropdown-item" href="#" value="1">(Diambil dari data keluarga(NIK+Nama))</a></li>
+                                            <li><a class="dropdown-item" href="#" value="2">(Diambil dari data keluarga(NIK+Nama))</a></li>
+                                        </ul>
+                                    </div>
+                                </div>
 
 
                             </div>
@@ -91,7 +97,7 @@
                         </form>
                         <!-- /.row (main row) -->
                     </div>
-                    <!-- /.container-fluid -->
+                    <!-- /.container-fluid
         </section>
     </main>
 
@@ -125,39 +131,5 @@
     <script defer src="https://use.fontawesome.com/releases/v5.15.4/js/fontawesome.js"
         integrity="sha384-dPBGbj4Uoy1OOpM4+aRGfAOc0W37JkROT+3uynUgTHZCHZNMHfGXsmmvYTffZjYO" crossorigin="anonymous">
     </script>
-    <script>
-    // JavaScript to toggle the dropdown
-        const dropdownButton = document.getElementById('dropdown-button');
-        const dropdownMenu = document.getElementById('dropdown-menu');
-        const searchInput = document.getElementById('search-input');
-        let isOpen = false; // Set to true to open the dropdown by default
-        
-        // Function to toggle the dropdown state
-        function toggleDropdown() {
-          isOpen = !isOpen;
-          dropdownMenu.classList.toggle('hidden', !isOpen);
-        }
-        
-        // Set initial state
-        toggleDropdown();
-        
-        dropdownButton.addEventListener('click', () => {
-          toggleDropdown();
-        });
-        
-        // Add event listener to filter items based on input
-        searchInput.addEventListener('input', () => {
-          const searchTerm = searchInput.value.toLowerCase();
-          const items = dropdownMenu.querySelectorAll('a');
-        
-          items.forEach((item) => {
-            const text = item.textContent.toLowerCase();
-            if (text.includes(searchTerm)) {
-              item.style.display = 'block';
-            } else {
-              item.style.display = 'none';
-            }
-          });
-        });
-    </script>
+
 @endsection
