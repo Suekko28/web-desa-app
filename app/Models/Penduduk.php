@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Carbon\Carbon;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class penduduk extends Model
 {
@@ -46,6 +47,11 @@ class penduduk extends Model
         'nama_ibu',
         'nama_ayah',
     ];
+
+    public function anak(): HasMany{
+        return $this->hasMany(Anak::class, 'NKK','NKK');
+    }
+
     public function getAgamaAttribute($value)
     {
         $arr=['islam','kristen protestan','kristen katholik','hindu','buddha','khonghucu'];

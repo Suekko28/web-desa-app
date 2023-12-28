@@ -22,7 +22,7 @@ class SirkulasiMelahirkanController extends Controller
      */
     public function create()
     {
-        //
+        return view('sirkulasi-melahirkan.create');
     }
 
     /**
