@@ -79,15 +79,16 @@ class PemerintahanBPDDataTable extends DataTable
     {
         $btn = [
             Button::make('add')
-            ->text('+ Tambah Data'),
+            ->text('+ Tambah Data')
+            ->addClass('rounded'),
             Button::make('csv')
-            ->addClass('btn-warning')
+            ->addClass('btn-warning rounded')
             ->text('CSV'),
             Button::make('excel')
-            ->addClass('btn-success')
+            ->addClass('btn-success rounded')
             ->text('Excel'),
             Button::make('pdf')
-            ->addClass('btn-danger')
+            ->addClass('btn-danger rounded')
             ->text('PDF'),
 
         ];

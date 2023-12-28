@@ -2,17 +2,17 @@
 
 namespace App\Exports;
 
-use App\Models\PemerintahanLPM;
+use App\Models\PemerintahanKarangTaruna;
 use Maatwebsite\Excel\Concerns\FromCollection;
 
-class PemerintahanLPMExport implements FromCollection
+class PemerintahanKarangTarunaExport implements FromCollection
 {
     /**
-     * @return \Illuminate\Support\Collection
-     */
+    * @return \Illuminate\Support\Collection
+    */
     public function collection()
     {
-        return PemerintahanLPM::all([
+        return PemerintahanKarangTaruna::all([
             'nama',
             'jabatan',
             'tmpt_lahir',

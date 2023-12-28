@@ -2,17 +2,17 @@
 
 namespace App\Exports;
 
-use App\Models\PemerintahanLPM;
+use App\Models\PemerintahanMUI;
 use Maatwebsite\Excel\Concerns\FromCollection;
 
-class PemerintahanLPMExport implements FromCollection
+class PemerintahanMUIExport implements FromCollection
 {
     /**
      * @return \Illuminate\Support\Collection
      */
     public function collection()
     {
-        return PemerintahanLPM::all([
+        return PemerintahanMUI::all([
             'nama',
             'jabatan',
             'tmpt_lahir',
@@ -41,5 +41,4 @@ class PemerintahanLPMExport implements FromCollection
 
         ];
     }
-
 }

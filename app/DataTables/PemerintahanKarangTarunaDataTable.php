@@ -77,10 +77,21 @@ class PemerintahanKarangTarunaDataTable extends DataTable
     public function html(): HtmlBuilder
     {
         $btn = [
-            Button::make('add')->text('+ Tambah Data'),
-            Button::make('export')->text('Export Data'),
+            Button::make('add')
+            ->text('+ Tambah Data')
+            ->addClass('rounded'),
+            Button::make('csv')
+            ->addClass('btn-warning rounded')
+            ->text('CSV'),
+            Button::make('excel')
+            ->addClass('btn-success rounded')
+            ->text('Excel'),
+            Button::make('pdf')
+            ->addClass('btn-danger rounded')
+            ->text('PDF'),
 
         ];
+        
         return $this->builder()
                     ->setTableId('pemerintah-karang-taruna-table')
                     ->columns($this->getColumns())

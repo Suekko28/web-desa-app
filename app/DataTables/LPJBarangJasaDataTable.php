@@ -31,7 +31,7 @@ class LPJBarangJasaDataTable extends DataTable
             route="' . route('lpj-barangjasa.index') . '/{{ $id }}" class="btn btn-danger mt-2"><i class="fa-solid fa-trash-can"></i></a>';
 
         $actionBtn .= '<div class="col">
-        <a href="' . route('penduduk.index') . '/{{ $id }}" name="view" class="btn btn-warning mt-2"><i class="fa-solid fa-basket-shopping"></i></a>';
+        <a href="' . route('penduduk.index') . '/{{ $id }}" name="view" class="btn btn-primary mt-2"><i class="fa-solid fa-basket-shopping"></i></a>';
 
         $actionBtn .= '</div>';
 
@@ -103,7 +103,8 @@ class LPJBarangJasaDataTable extends DataTable
     public function getColumns(): array
     {
         return [
-            Column::make('id'),
+            Column::make('id')
+            ->title('No'),
             Column::make('no_pesanan_barang'),
             Column::make('no_berita_acara'),
             Column::make('nama_pelaksana_kegiatan'),
