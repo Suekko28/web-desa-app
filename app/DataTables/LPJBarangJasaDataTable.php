@@ -30,6 +30,8 @@ class LPJBarangJasaDataTable extends DataTable
         $actionBtn .= '<a href="javascript:void(0)" onclick="confirmDelete($(this))"
             route="' . route('lpj-barangjasa.index') . '/{{ $id }}" class="btn btn-danger mt-2"><i class="fa-solid fa-trash-can"></i></a>';
 
+        $actionBtn .= '<a href="' . route('lpj-barangjasa.index') . '/{{ $id }}" class="btn btn-primary mt-2"><i class="fa-solid fa-basket-shopping" style="color:white"></i></a>';
+
         $actionBtn .= '</div>';
 
         return (new EloquentDataTable($query))
@@ -53,7 +55,8 @@ class LPJBarangJasaDataTable extends DataTable
         return $model->newQuery()
             ->select(
                 'lpj-barang-jasa.id as id',
-                'lpj-barang-jasa.no_pesanan_brg as no_pesanan_brg',
+                'lpj-barang-jasa.no_pesanan_brg as no_pesanan_barang',
+                'lpj-barang-jasa.no_berita_acara as no_berita_acara',
                 'lpj-barang-jasa.nama_pelaksana_kegiatan as nama_pelaksana_kegiatan',
                 'lpj-barang-jasa.sk_tpk as sk_tpk',
                 'lpj-barang-jasa.nama_rincian_spp as nama_rincian_spp',
@@ -104,10 +107,10 @@ class LPJBarangJasaDataTable extends DataTable
             Column::make('no_berita_acara'),
             Column::make('nama_pelaksana_kegiatan'),
             Column::computed('action')
-                  ->exportable(false)
-                  ->printable(false)
-                  ->width(60)
-                  ->addClass('text-center'),
+                ->exportable(false)
+                ->printable(false)
+                ->width(60)
+                ->addClass('text-center'),
         ];
     }
 

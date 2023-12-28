@@ -85,8 +85,8 @@
                     <ul class="sub-menu" aria-expanded="false">
                         <li><a href="#">Data Melahirkan</a></li>
                         <li><a href="#">Data Meninggal</a></li>
-                        <li><a href="#">Data Melahirkan</a></li>
-                        <li><a href="#">Data Melahirkan</a></li>
+                        <li><a href="#">Data Pendatang</a></li>
+                        <li><a href="#">Data Pindah</a></li>
                     </ul>
                 </li>
 
