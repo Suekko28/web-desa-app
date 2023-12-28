@@ -69,11 +69,18 @@
 
                                 <div class="col-sm-6">
                                     <label for="keluarga" class="col-form-label">Keluarga</label>
-                                    <select id="keluarga" name="keluarga" class="form-control" required>
-                                        <option value="" selected>--Pilih Keluarga--</option>
-                                        <option value="1">(Diambil dari data penduduk(NIK+Nama))</option>
-                                        <option value="2">(Diambil dari data penduduk(NIK+Nama))</option>
-                                </select>
+                                    <div class="dropdown">
+                                        <button class="form-control dropdown-toggle text-left" type="button"
+                                            data-bs-toggle="dropdown" aria-expanded="false" name="keluarga">
+                                            --Pilih Keluarga--
+                                        </button>
+                                        <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton" id="keluargaDropdown">
+                                            <input type="text" id="keluargaSearchInput" class="form-control" placeholder="Cari Keluarga...">
+                                            <li><a class="dropdown-item" href="#" value="">--Pilih Keluarga--</a></li>
+                                            <li><a class="dropdown-item" href="#" value="1">(Diambil dari data keluarga(NIK+Nama))</a></li>
+                                            <li><a class="dropdown-item" href="#" value="2">(Diambil dari data keluarga(NIK+Nama))</a></li>
+                                        </ul>
+                                    </div>
                                 </div>
 
 
@@ -124,5 +131,45 @@
     <script defer src="https://use.fontawesome.com/releases/v5.15.4/js/fontawesome.js"
         integrity="sha384-dPBGbj4Uoy1OOpM4+aRGfAOc0W37JkROT+3uynUgTHZCHZNMHfGXsmmvYTffZjYO" crossorigin="anonymous">
     </script>
+
+<script>
+    function searchKeluarga() {
+        var input, filter, ul, li, a, i, txtValue;
+        input = document.getElementById("keluargaSearchInput");
+        filter = input.value.toUpperCase();
+        ul = document.getElementById("keluargaDropdown");
+        li = ul.getElementsByTagName("li");
+
+        for (i = 0; i < li.length; i++) {
+            a = li[i].getElementsByTagName("a")[0];
+            txtValue = a.textContent || a.innerText;
+
+            if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                li[i].style.display = "";
+            } else {
+                li[i].style.display = "none";
+            }
+        }
+    }
+
+    // Menambahkan event listener untuk input pencarian
+    var searchInput = document.getElementById("keluargaSearchInput");
+    searchInput.addEventListener("input", searchKeluarga);
+
+    // Menambahkan event listener untuk setiap opsi pada dropdown
+    var keluargaOptions = document.querySelectorAll("#keluargaDropdown .dropdown-item");
+    keluargaOptions.forEach(function(option) {
+        option.addEventListener("click", function() {
+            selectKeluarga(option.getAttribute("value"), option.textContent);
+        });
+    });
+
+    // Fungsi untuk menangani pemilihan pada dropdown
+    function selectKeluarga(value, label) {
+        var dropdownButton = document.querySelector(".dropdown button[name='keluarga']");
+        dropdownButton.innerHTML = label;
+        dropdownButton.value = value;
+    }
+</script>
 
 @endsection

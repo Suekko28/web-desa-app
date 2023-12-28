@@ -44,11 +44,17 @@
                                     <!-- Tampilin Semua Field Di Table Jos !-->
                                     <div class="col-sm-4">
                                         <label for="penduduk" class="col-form-label">Penduduk</label>
-                                        <select id="penduduk" name="penduduk" class="form-control" required>
-                                            <option value="" selected>--Pilih Penduduk--</option>
-                                            <option value="1">(Diambil dari data penduduk(NIK+Nama))</option>
-                                            <option value="2">(Diambil dari data penduduk(NIK+Nama))</option>
-                                        </select>
+                                        <div class="dropdown">
+                                            <button class="form-control dropdown-toggle text-left" type="button" data-bs-toggle="dropdown" aria-expanded="false" name="penduduk">
+                                                --Pilih Penduduk--
+                                            </button>
+                                            <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton" id="pendudukDropdown">
+                                                <input type="text" id="pendudukSearchInput" class="form-control" placeholder="Cari Penduduk...">
+                                                {{-- <li><a class="dropdown-item" href="#" value="">--Pilih Penduduk--</a></li> --}}
+                                                <li><a class="dropdown-item" href="#" value="1">(Diambil dari data penduduk(NIK+Nama))</a></li>
+                                                <li><a class="dropdown-item" href="#" value="2">(Diambil dari data penduduk(NIK+Nama))</a></li>
+                                            </ul>
+                                        </div>
                                     </div>
 
                                     <div class="col-sm-4">
@@ -77,36 +83,7 @@
                             </form>
                             <!-- /.row (main row) -->
                         </div>
-                            <h5 class="text-center data_diri">Data Meninggal</h5>
-                            <div class="form-group">
-                                <div class="row">
-                                    <!-- Tampilin Semua Field Di Table Jos !-->
-                                    <div class="col-sm-4">
-                                        <label for="penduduk" class="col-form-label">Penduduk</label>
-                                        <select id="penduduk" name="penduduk" class="form-control" required>
-                                            <option value="" selected>--Pilih Penduduk--</option>
-                                            <option value="1">(Diambil dari data penduduk(NIK+Nama))</option>
-                                            <option value="2">(Diambil dari data penduduk(NIK+Nama))</option>
-                                        </select>
-                                    </div>
-
-                                    <div class="col-sm-4">
-                                        <label for="tgl_meninggal" class="col-form-label">Tanggal Meninggal</label>
-                                        <input type="date" class="form-control" id="tgl_meninggal" name="tgl_meninggal"
-                                            placeholder="" value="">
-                                    </div>
-
-                                    <div class="col-sm-4">
-                                        <label for="sebab" class="col-form-label">Sebab</label>
-                                        <input type="text" class="form-control" id="sebab" name="sebab"
-                                            placeholder="Sebab Meninggal" value="">
-                                    </div>
-
-
-                                </div>
-                            </div>
                             <!-- /.card-body -->
-                </form>
                 <!-- /.row (main row) -->
             </div><!-- /.container-fluid -->
         </section>
@@ -142,6 +119,46 @@
     <script defer src="https://use.fontawesome.com/releases/v5.15.4/js/fontawesome.js"
         integrity="sha384-dPBGbj4Uoy1OOpM4+aRGfAOc0W37JkROT+3uynUgTHZCHZNMHfGXsmmvYTffZjYO" crossorigin="anonymous">
     </script>
+
+<script>
+    function searchPenduduk() {
+        var input, filter, ul, li, a, i, txtValue;
+        input = document.getElementById("pendudukSearchInput");
+        filter = input.value.toUpperCase();
+        ul = document.getElementById("pendudukDropdown");
+        li = ul.getElementsByTagName("li");
+
+        for (i = 0; i < li.length; i++) {
+            a = li[i].getElementsByTagName("a")[0];
+            txtValue = a.textContent || a.innerText;
+
+            if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                li[i].style.display = "";
+            } else {
+                li[i].style.display = "none";
+            }
+        }
+    }
+
+    // Menambahkan event listener untuk input pencarian
+    var searchInput = document.getElementById("pendudukSearchInput");
+    searchInput.addEventListener("input", searchPenduduk);
+
+    // Menambahkan event listener untuk setiap opsi pada dropdown
+    var pendudukOptions = document.querySelectorAll("#pendudukDropdown .dropdown-item");
+    pendudukOptions.forEach(function(option) {
+        option.addEventListener("click", function() {
+            selectPenduduk(option.getAttribute("value"), option.textContent);
+        });
+    });
+
+    // Fungsi untuk menangani pemilihan pada dropdown
+    function selectPenduduk(value, label) {
+        var dropdownButton = document.querySelector(".dropdown button");
+        dropdownButton.innerHTML = label;
+        dropdownButton.value = value;
+    }
+</script>
 
 
 @endsection
