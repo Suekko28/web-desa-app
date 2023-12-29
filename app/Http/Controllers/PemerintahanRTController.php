@@ -6,6 +6,8 @@ use App\DataTables\PemerintahanRTDataTable;
 use App\Http\Requests\PemerintahanRTRequest;
 use App\Models\PemerintahanRT;
 use Illuminate\Http\Request;
+use Barryvdh\DomPDF\Facade\Pdf;
+
 
 class PemerintahanRTController extends Controller
 {
@@ -98,6 +100,20 @@ class PemerintahanRTController extends Controller
     {
         $user=PemerintahanRT::find($id)->delete();
         return redirect()->route('pemerintahan-rt.index')->with('success','Data berhasil dihapus'); 
+    }
+
+    public function pdfTemplate(PemerintahanRTDataTable $dataTable)
+    {
+        // Retrieve the data directly from the query builder
+        $data = $dataTable->query(new PemerintahanRT())->get();
+    
+        // Send data to the view for PDF rendering
+        $html = view('pemerintahan-rt.generate-pdf', ['data' => $data])->render();
+    
+        // Adjust PDF options if needed
+        $pdf = PDF::loadHtml($html)->setPaper('a4', 'landscape');
+        
+        return $pdf->stream('PemerintahanRT.pdf');
     }
 
 }

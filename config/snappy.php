@@ -37,9 +37,7 @@ return [
         'enabled' => true,
         'binary' => '"C:\Program Files\wkhtmltopdf\bin\wkhtmltopdf"',
         'timeout' => false,
-        'options' => [ 
-            'view' => 'pemerintahan-bpd.pdf',
-    ],
+        'options' => [],
         'env' => [],
     ],
 

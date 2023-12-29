@@ -109,7 +109,7 @@ class PemerintahanBPDController extends Controller
         $data = $dataTable->query(new PemerintahanBPD())->get();
     
         // Send data to the view for PDF rendering
-        $html = view('pemerintahan-bpd.pdf_template', ['data' => $data])->render();
+        $html = view('pemerintahan-bpd.generate-pdf', ['data' => $data])->render();
     
         // Adjust PDF options if needed
         $pdf = PDF::loadHtml($html)->setPaper('a4', 'landscape');

@@ -6,6 +6,8 @@ use App\DataTables\PemerintahanLPMDataTable;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\PemerintahanLPMRequest;
 use App\Models\PemerintahanLPM;
+use Barryvdh\DomPDF\Facade\Pdf;
+
 
 class PemerintahanLPMController extends Controller
 {
@@ -93,5 +95,19 @@ class PemerintahanLPMController extends Controller
     {
         $user=PemerintahanLPM::find($id)->delete();
         return redirect()->route('pemerintahan-lpm.index')->with('success','data berhasil dihapus'); 
+    }
+
+    public function pdfTemplate(PemerintahanLPMDataTable $dataTable)
+    {
+        // Retrieve the data directly from the query builder
+        $data = $dataTable->query(new PemerintahanLPM())->get();
+    
+        // Send data to the view for PDF rendering
+        $html = view('pemerintahan-lpm.generate-pdf', ['data' => $data])->render();
+    
+        // Adjust PDF options if needed
+        $pdf = PDF::loadHtml($html)->setPaper('a4', 'landscape');
+        
+        return $pdf->stream('PemerintahanLPM.pdf');
     }
 }
