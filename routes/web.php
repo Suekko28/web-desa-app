@@ -59,73 +59,73 @@ Route::middleware(['auth'])->group(function(){
 //     return view('sirkulasi-melahirkan.index');
 // });
 
-Route::get('/sirkulasi-melahirkan/create', function(){
-    return view('sirkulasi-melahirkan.create');
-});
+// Route::get('/sirkulasi-melahirkan/create', function(){
+//     return view('sirkulasi-melahirkan.create');
+// });
 
-Route::get('/sirkulasi-melahirkan/edit', function(){
-    return view('sirkulasi-melahirkan.edit');
-});
+// Route::get('/sirkulasi-melahirkan/edit', function(){
+//     return view('sirkulasi-melahirkan.edit');
+// });
 
-Route::get('/sirkulasi-meninggal', function(){
-    return view('sirkulasi-meninggal.index');
-});
+// Route::get('/sirkulasi-meninggal', function(){
+//     return view('sirkulasi-meninggal.index');
+// });
 
-Route::get('/sirkulasi-meninggal/create', function(){
-    return view('sirkulasi-meninggal.create');
-});
+// Route::get('/sirkulasi-meninggal/create', function(){
+//     return view('sirkulasi-meninggal.create');
+// });
 
-Route::get('/sirkulasi-meninggal/edit', function(){
-    return view('sirkulasi-meninggal.edit');
-});
+// Route::get('/sirkulasi-meninggal/edit', function(){
+//     return view('sirkulasi-meninggal.edit');
+// });
 
-Route::get('/sirkulasi-pendatang', function(){
-    return view('sirkulasi-pendatang.index');
-});
+// Route::get('/sirkulasi-pendatang', function(){
+//     return view('sirkulasi-pendatang.index');
+// });
 
-Route::get('/sirkulasi-pendatang/create', function(){
-    return view('sirkulasi-pendatang.create');
-});
+// Route::get('/sirkulasi-pendatang/create', function(){
+//     return view('sirkulasi-pendatang.create');
+// });
 
-Route::get('/sirkulasi-pendatang/edit', function(){
-    return view('sirkulasi-pendatang.edit');
-});
+// Route::get('/sirkulasi-pendatang/edit', function(){
+//     return view('sirkulasi-pendatang.edit');
+// });
 
 
-Route::get('/sirkulasi-pindah', function(){
-    return view('sirkulasi-pindah.index');
-});
+// Route::get('/sirkulasi-pindah', function(){
+//     return view('sirkulasi-pindah.index');
+// });
 
-Route::get('/sirkulasi-pindah/create', function(){
-    return view('sirkulasi-pindah.create');
-});
+// Route::get('/sirkulasi-pindah/create', function(){
+//     return view('sirkulasi-pindah.create');
+// });
 
-Route::get('/sirkulasi-pindah/edit', function(){
-    return view('sirkulasi-pindah.edit');
-});
+// Route::get('/sirkulasi-pindah/edit', function(){
+//     return view('sirkulasi-pindah.edit');
+// });
 
-// LPJ Desa
+// // LPJ Desa
 
-Route::get('/lpj-barang-jasa', function(){
-    return view('lpj-barangjasa.index');
-});
+// Route::get('/lpj-barang-jasa', function(){
+//     return view('lpj-barangjasa.index');
+// });
 
-Route::get('/lpj-barang-jasa/create', function(){
-    return view('lpj-barangjasa.create');
-});
+// Route::get('/lpj-barang-jasa/create', function(){
+//     return view('lpj-barangjasa.create');
+// });
 
-Route::get('/lpj-barang-jasa/edit', function(){
-    return view('lpj-barangjasa.edit');
-});
+// Route::get('/lpj-barang-jasa/edit', function(){
+//     return view('lpj-barangjasa.edit');
+// });
 
-Route::get('/lpj-barang-jasa/belanja', function(){
-    return view('lpj-belanja.index');
-});
+// Route::get('/lpj-barang-jasa/belanja', function(){
+//     return view('lpj-belanja.index');
+// });
 
-Route::get('/lpj-barang-jasa/belanja/create', function(){
-    return view('lpj-belanja.create');
-});
+// Route::get('/lpj-barang-jasa/belanja/create', function(){
+//     return view('lpj-belanja.create');
+// });
 
-Route::get('/lpj-barang-jasa/belanja/edit', function(){
-    return view('lpj-belanja.edit');
-});
+// Route::get('/lpj-barang-jasa/belanja/edit', function(){
+//     return view('lpj-belanja.edit');
+// });

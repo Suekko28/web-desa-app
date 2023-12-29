@@ -26,10 +26,10 @@ class Anak extends Model
         'tmpt_lahir',
         'tgl_lahir',
         'jenis_kelamin',
-        'NKK',
+        'NKK_keluarga',
     ];
 
     public function penduduk(){
-        return $this->belongsTo(Penduduk::class,'NKK','NKK');
+        return $this->belongsTo(Penduduk::class,'NKK','NKK_keluarga');
     }
 }

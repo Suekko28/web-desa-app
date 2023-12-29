@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
+use App\Models\Anak;
 use App\Models\Penduduk;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -64,7 +65,9 @@ class DashboardController extends Controller
         $pekerjaan_wirausaha = Penduduk::where('pekerjaan', '3');
         $pekerjaan_guru = Penduduk::where('pekerjaan', '4');
         $pekerjaan_petani = Penduduk::where('pekerjaan', '5');
-
+        
+        $kelahiran = Anak::count();
+       
         return view('index', compact('penduduk',
             'jumlah_laki_laki',
             'jumlah_perempuan',
@@ -107,6 +110,7 @@ class DashboardController extends Controller
             'pekerjaan_wirausaha',
             'pekerjaan_guru',
             'pekerjaan_petani',
+            'kelahiran',
 
 
 

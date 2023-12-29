@@ -86,7 +86,7 @@
                     <div class="card-body">
                         <h5 class="mt-0 mb-4 text-white">Jumlah Kelahiran</h5>
                         <div class="d-flex justify-content-between">
-                            <h1 class="text-white">1</h1>
+                            <h1 class="text-white">{{$kelahiran}}</h1>
                             <i class="fas fa-solid fa-baby fa-3x" style="color:white;"></i>
                         </div>
                     </div>

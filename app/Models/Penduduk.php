@@ -49,7 +49,7 @@ class penduduk extends Model
     ];
 
     public function anak(): HasMany{
-        return $this->hasMany(Anak::class, 'NKK','NKK');
+        return $this->hasMany(Anak::class, 'NKK','NKK_keluarga');
     }
 
     public function getAgamaAttribute($value)

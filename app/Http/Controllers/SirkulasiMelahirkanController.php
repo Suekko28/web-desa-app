@@ -3,6 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\DataTables\SirkulasiMelahirkanDatatable;
+use App\Http\Controllers\Controller;
+use App\Models\Penduduk;
+use App\Models\Anak;
 use App\Models\SirkulasiMelahirkan;
 use Illuminate\Http\Request;
 
@@ -22,7 +25,10 @@ class SirkulasiMelahirkanController extends Controller
      */
     public function create()
     {
-        return view('sirkulasi-melahirkan.create');
+        $data=Penduduk::all()->unique('NKK');
+        return view('sirkulasi-melahirkan.create',[
+            "data"=>$data,
+        ]);
     }
 
     /**
@@ -30,7 +36,10 @@ class SirkulasiMelahirkanController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        // dd($request->all());
+        
+        Anak::create($request->all());
+        return redirect()->route('sirkulasi-melahirkan.index')->with('success','Data berhasil ditambahkan');
     }
 
     /**
@@ -44,9 +53,12 @@ class SirkulasiMelahirkanController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(SirkulasiMelahirkan $sirkulasiMelahirkan)
+    public function edit(String $id)
     {
-        //
+        $data=Anak::find($id);
+        return view('sirkulasi-melahirkan.edit',[
+            "data"=>$data,
+        ]);
     }
 
     /**

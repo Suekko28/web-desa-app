@@ -17,7 +17,7 @@ return new class extends Migration
             $table->string("tmpt_lahir");
             $table->string("tgl_lahir");
             $table->string("jenis_kelamin");
-            $table->string("NKK");
+            $table->string("NKK_keluarga");
             $table->timestamps();
         });
     }
