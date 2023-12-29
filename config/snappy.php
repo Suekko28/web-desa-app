@@ -32,22 +32,24 @@ return [
     |    The environment variables to set while running the wkhtmltopdf process.
     |
     */
-    
-    'pdf' => [
-    'enabled' => true,
-    'binary'  => "C:/Program Files/wkhtmltopdf/bin/wkhtmltopdf.exe",
-    'timeout' => false,
-    'options' => [],
-    'env'     => [],
-],
 
-'image' => [
-    'enabled' => true,
-    'binary'  =>  "C:/Program Files/wkhtmltopdf/bin/wkhtmltoimage.exe",
-    'timeout' => false,
-    'options' => [],
-    'env'     => [],
-],
+    'pdf' => [
+        'enabled' => true,
+        'binary' => '"C:\Program Files\wkhtmltopdf\bin\wkhtmltopdf"',
+        'timeout' => false,
+        'options' => [ 
+            'view' => 'pemerintahan-bpd.pdf',
+    ],
+        'env' => [],
+    ],
+
+    'image' => [
+        'enabled' => true,
+        'binary' => "C:/Program Files/wkhtmltopdf/bin/wkhtmltoimage.exe",
+        'timeout' => false,
+        'options' => [],
+        'env' => [],
+    ],
 
 
 ];
