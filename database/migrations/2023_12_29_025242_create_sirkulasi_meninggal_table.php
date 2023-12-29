@@ -11,13 +11,11 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('anak', function (Blueprint $table) {
+        Schema::create('sirkulasi_meninggal', function (Blueprint $table) {
             $table->id();
-            $table->string("nama");
-            $table->string("tmpt_lahir");
-            $table->date("tgl_lahir");
-            $table->string("jenis_kelamin");
-            $table->string("NKK_keluarga");
+            $table->string('NIK_penduduk');
+            $table->date('tgl_meninggal');
+            $table->string('sebab');
             $table->timestamps();
         });
     }
@@ -27,6 +25,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('sirkulasi_melahirkan');
+        Schema::dropIfExists('sirkulasi_meninggal');
     }
 };

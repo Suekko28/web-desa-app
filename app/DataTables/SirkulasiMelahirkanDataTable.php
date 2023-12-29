@@ -33,10 +33,6 @@ class SirkulasiMelahirkanDataTable extends DataTable
         $actionBtn .= '</div>';
 
         return (new EloquentDataTable($query))
-            ->addColumn('id', function ($data) {
-                return ++$this->rowIndex;
-            })
-
             ->addColumn('action', $actionBtn)
             ->rawColumns(['action'])
             ->setRowId('id');
@@ -50,7 +46,17 @@ class SirkulasiMelahirkanDataTable extends DataTable
      */
     public function query(Anak $model): QueryBuilder
     {
-        return $model->newQuery();
+        return $model->newQuery()
+            ->select(
+                'anak.id as id',
+                'anak.nama as nama',
+                'anak.tmpt_lahir as tmpt_lahir',
+                'anak.tgl_lahir as tgl_lahir',
+                \DB::raw('CASE WHEN jenis_kelamin = 1 THEN "Laki-Laki" ELSE "Perempuan" END AS jenis_kelamin'),
+                'anak.NKK_keluarga as NKK_keluarga',
+                'anak.created_at as created_at',
+                'anak.updated_at as updated_at',
+            );
     }
 
     /**

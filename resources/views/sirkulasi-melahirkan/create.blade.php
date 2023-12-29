@@ -78,7 +78,7 @@
                                             <input type="text" id="keluargaSearchInput" name="NKK_keluarga" class="form-control" placeholder="Cari Keluarga...">
                                             <li><div class="dropdown-item" value="">--Pilih Keluarga--</div></li>
                                             @foreach ( $data as $i )
-                                            <li><div class="dropdown-item" value="{{ $i->NKK }}">{{ $i->NKK . "-" . $i->nama }}</div></li>
+                                            <li><div class="dropdown-item" value="{{ $i->NKK }}">{{ $i->NKK . " - " . $i->nama }}</div></li>
                                             @endforeach
                                         </ul>
                                     </div>

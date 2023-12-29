@@ -84,7 +84,7 @@
                     </a>
                     <ul class="sub-menu" aria-expanded="false">
                         <li><a href="{{ route('sirkulasi-melahirkan.index') }}">Data Melahirkan</a></li>
-                        <li><a href="#">Data Meninggal</a></li>
+                        <li><a href="{{ route('sirkulasi-meninggal.index') }}">Data Meninggal</a></li>
                         <li><a href="#">Data Pendatang</a></li>
                         <li><a href="#">Data Pindah</a></li>
                     </ul>

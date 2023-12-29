@@ -36,10 +36,6 @@ class LPJBarangJasaDataTable extends DataTable
         $actionBtn .= '</div>';
 
         return (new EloquentDataTable($query))
-            ->addColumn('id', function ($data) {
-                return ++$this->rowIndex;
-            })
-
             ->addColumn('action', $actionBtn)
             ->rawColumns(['action'])
             ->setRowId('id');

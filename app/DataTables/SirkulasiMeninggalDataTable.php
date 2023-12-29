@@ -2,7 +2,7 @@
 
 namespace App\DataTables;
 
-use App\Models\PemerintahanRT;
+use App\Models\SirkulasiMeninggal;
 use Illuminate\Database\Eloquent\Builder as QueryBuilder;
 use Yajra\DataTables\EloquentDataTable;
 use Yajra\DataTables\Html\Builder as HtmlBuilder;
@@ -12,11 +12,8 @@ use Yajra\DataTables\Html\Editor\Editor;
 use Yajra\DataTables\Html\Editor\Fields;
 use Yajra\DataTables\Services\DataTable;
 
-class PemerintahanRTDataTable extends DataTable
+class SirkulasiMeninggalDataTable extends DataTable
 {
-
-    protected $rowIndex = 0;
-
     /**
      * Build DataTable class.
      *
@@ -26,13 +23,11 @@ class PemerintahanRTDataTable extends DataTable
     public function dataTable(QueryBuilder $query): EloquentDataTable
     {
 
-        $this->rowIndex = 0;
-
         $actionBtn = '<div class="col">
-        <a href="' . route('pemerintahan-rt.index') . '/{{ $id }}/edit" name="edit" class="btn btn-warning"><i class="fa-solid fa-pen-to-square"></i></a>';
+        <a href="' . route('sirkulasi-meninggal.index') . '/{{ $id }}/edit" name="edit" class="btn btn-warning"><i class="fa-solid fa-pen-to-square"></i></a>';
 
         $actionBtn .= '<a href="javascript:void(0)" onclick="confirmDelete($(this))"
-            route="' . route('pemerintahan-rt.index') . '/{{ $id }}" class="btn btn-danger mt-2"><i class="fa-solid fa-trash-can"></i></a>';
+            route="' . route('sirkulasi-meninggal.index') . '/{{ $id }}" class="btn btn-danger mt-2"><i class="fa-solid fa-trash-can"></i></a>';
 
         $actionBtn .= '</div>';
 
@@ -45,25 +40,24 @@ class PemerintahanRTDataTable extends DataTable
     /**
      * Get query source of dataTable.
      *
-     * @param \App\Models\PemerintahanRT $model
+     * @param \App\Models\SirkulasiMeninggal $model
      * @return \Illuminate\Database\Eloquent\Builder
      */
-    public function query(PemerintahanRT $model): QueryBuilder
+    public function query(SirkulasiMeninggal $model): QueryBuilder
     {
         return $model->newQuery()
             ->select(
-                'pemerintahan_RT.id as id',
-                'pemerintahan_RT.nama as nama',
-                'pemerintahan_RT.jabatan as jabatan',
-                \DB::raw('CASE WHEN jenis_kelamin = 1 THEN "Laki-Laki" ELSE "Perempuan" END AS jenis_kelamin'),
-                'pemerintahan_RT.tmpt_lahir as tmpt_lahir',
-                'pemerintahan_RT.tgl_lahir as tgl_lahir',
-                'pemerintahan_RT.alamat as alamat',
-                'pemerintahan_RT.updated_at as updated_at',
-                'pemerintahan_RT.no_telepon as no_telepon',
-                'pemerintahan_RT.no_sk as no_sk',
-                'pemerintahan_RT.tgl_sk as tgl_sk',
-            );
+                'sirkulasi_meninggal.id as id',
+                'sirkulasi_meninggal.NIK_penduduk as NIK_penduduk',
+                'sirkulasi_meninggal.tgl_meninggal as tgl_meninggal',
+                'sirkulasi_meninggal.sebab as sebab',
+                'sirkulasi_meninggal.created_at as created_at',
+                'sirkulasi_meninggal.updated_at as updated_at',
+                'penduduk.nama as nama'
+            )
+            ->join('penduduk', function ($q) {
+                $q->on('penduduk.NIK', '=', 'sirkulasi_meninggal.NIK_penduduk');
+            });
     }
 
     /**
@@ -85,20 +79,17 @@ class PemerintahanRTDataTable extends DataTable
             ->text('Excel'),
             Button::make('pdf')
             ->addClass('btn-danger rounded')
-            ->text('PDF')
-            ->action('function() {
-                window.location.href = "'.route('pemerintahan-rt.generate-pdf').'";
-            }'),
+            ->text('PDF'),
 
         ];
-        
         return $this->builder()
-            ->setTableId('pemerintahan_RT-table')
+            ->setTableId('sirkulasi-meninggal-table')
             ->columns($this->getColumns())
             ->minifiedAjax()
             ->orderBy(0, 'asc')
             ->buttons($btn)
-            ->lengthMenu([10, 50, 100]);
+            ->lengthMenu([10, 50, 100])
+            ->responsive(true);
     }
 
     /**
@@ -109,24 +100,18 @@ class PemerintahanRTDataTable extends DataTable
     public function getColumns(): array
     {
         return [
-            Column::make('id')
-                ->title('No')
-                ->width(10),
-            Column::make('nama'),
-            Column::make('jabatan'),
-            Column::make('jenis_kelamin'),
-            Column::make('tmpt_lahir'),
-            Column::make('tgl_lahir'),
-            Column::make('alamat'),
-            Column::make('no_telepon'),
-            Column::make('no_sk'),
-            Column::make('tgl_sk'),
-            Column::make('updated_at'),
             Column::computed('action')
-                ->exportable(false)
-                ->printable(false)
-                ->width(60)
-                ->addClass('text-center'),
+                  ->exportable(false)
+                  ->printable(false)
+                  ->width(60)
+                  ->addClass('text-center'),
+            Column::make('id'),
+            Column::make('nama'),
+            Column::make('NIK_penduduk'),
+            Column::make('tgl_meninggal'),
+            Column::make('sebab'),
+            Column::make('created_at'),
+            Column::make('updated_at'),
         ];
     }
 
@@ -137,6 +122,6 @@ class PemerintahanRTDataTable extends DataTable
      */
     protected function filename(): string
     {
-        return 'PemerintahanRT_' . date('YmdHis');
+        return 'SirkulasiMeninggal_' . date('YmdHis');
     }
 }

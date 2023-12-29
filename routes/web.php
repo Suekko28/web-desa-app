@@ -69,6 +69,24 @@ Route::middleware(['auth'])->group(function () {
     Route::Resource('/penduduk', \App\Http\Controllers\PendudukController::class);
     Route::Resource('/sirkulasi-melahirkan', \App\Http\Controllers\SirkulasiMelahirkanController::class);
     Route::Resource('/lpj-barangjasa', \App\Http\Controllers\LPJBarangJasaController::class);
+    ->name('pemerintahan-BPD.pdf-template');
+    Route::Resource('/pemerintahan-lpm',\App\Http\Controllers\PemerintahanLPMController::class);
+    Route::Resource('/pemerintahan-mui',\App\Http\Controllers\PemerintahanMUIController::class);
+    Route::Resource('/pemerintahan-pkk',\App\Http\Controllers\PemerintahanPKKController::class);
+    Route::Resource('/pemerintahan-sahbandar',\App\Http\Controllers\PemerintahanSahbandarController::class);
+    Route::Resource('/pemerintahan-karang-taruna',\App\Http\Controllers\PemerintahanKarangTarunaController::class);
+    Route::Resource('/pemerintahan-posyandu',\App\Http\Controllers\PemerintahanPosyanduController::class);
+    Route::Resource('/pemerintahan-rt',\App\Http\Controllers\PemerintahanRTController::class);
+    Route::Resource('/pemerintahan-rw',\App\Http\Controllers\PemerintahanRWController::class);
+    Route::Resource('/pemerintahan-kadus',\App\Http\Controllers\PemerintahanKadusController::class);
+    Route::Get('/penduduk-import',[\App\Http\Controllers\PendudukController::class,'importPendudukView'])->name('penduduk.import-view');
+    Route::Post('/penduduk-import',[\App\Http\Controllers\PendudukController::class,'importPenduduk'])->name('penduduk.import');
+    Route::Resource('/penduduk',\App\Http\Controllers\PendudukController::class);
+    Route::Resource('/sirkulasi-melahirkan',\App\Http\Controllers\SirkulasiMelahirkanController::class);
+    Route::Resource('/lpj-barangjasa',\App\Http\Controllers\LPJBarangJasaController::class);
+    Route::Resource('/sirkulasi-meninggal',\App\Http\Controllers\SirkulasiMeninggalController::class);
+
+
 });
 
 
