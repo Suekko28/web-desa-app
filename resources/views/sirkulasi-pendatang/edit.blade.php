@@ -45,41 +45,45 @@
                                     <!-- Tampilin Semua Field Di Table Jos !-->
                                     <div class="col-sm-6">
                                         <label for="nik" class="col-form-label">NIK</label>
-                                        <input type="number" class="form-control" id="nik" name="nik"
-                                            placeholder="Masukkan NIK" value="">
+                                        <input type="number" class="form-control" id="nik" name="NIK"
+                                            placeholder="Masukkan NIK" value="{{$data->NIK}}">
                                     </div>
 
                                     <div class="col-sm-6">
                                         <label for="nama" class="col-form-label">Nama Lengkap</label>
                                         <input type="text" class="form-control" id="nama" name="nama"
-                                            placeholder="Nama Pendatang" value="">
+                                            placeholder="Nama Pendatang" value="{{$data->nama}}">
                                     </div>
 
                                     <div class="col-sm-6">
                                         <label for="jenis_kelamin" class="col-form-label">Jenis Kelamin</label>
                                         <select class="form-control" name="jenis_kelamin" id="jenis_kelamin">
                                             <option value="0">--Pilih Salah Satu--</option>
-                                            <option value="1">Laki-Laki</option>
-                                            <option value="2">Perempuan</option>
+                                            <option value="1" @if ($data->jenis_kelamin=='1')
+                                                SELECTED
+                                            @endif>Laki-Laki</option>
+                                            <option value="2" @if ($data->jenis_kelamin=='2')
+                                                SELECTED
+                                            @endif>Perempuan</option>
                                         </select>
                                     </div>
 
                                     <div class="col-sm-6">
                                         <label for="tgl_datang" class="col-form-label">Tanggal Datang</label>
                                         <input type="date" class="form-control" id="tgl_datang" name="tgl_datang"
-                                            placeholder="" value="">
+                                            placeholder="" value="{{ $data->tgl_datang}}">
                                     </div>
 
                                     <div class="col-sm-12">
                                         <label for="alamat_sblm" class="col-form-label">Alamat Sebelum</label>
                                         <textarea type="text" class="form-control" id="alamat_sblm" name="alamat_sblm" rows="5"
-                                            placeholder="Alamat Lengkap (Jl / Kampung  No.Rumah)" value=""></textarea>
+                                            placeholder="Alamat Lengkap (Jl / Kampung  No.Rumah)" value="">{{$data->alamat_sblm}}</textarea>
                                     </div>
 
                                     <div class="col-sm-12">
                                         <label for="alamat_skrng" class="col-form-label">Alamat Sekarang</label>
-                                        <textarea type="text" class="form-control" id="alamat_skrng" name="alamat_skrng" rows="5"
-                                            placeholder="Alamat Lengkap (Jl / Kampung  No.Rumah)" value=""></textarea>
+                                        <textarea type="text" class="form-control" id="alamat_skrg" name="alamat_skrg" rows="5"
+                                            placeholder="Alamat Lengkap (Jl / Kampung  No.Rumah)" value="">{{$data->alamat_skrg}}</textarea>
                                     </div>
                                 </div>
                             </div>

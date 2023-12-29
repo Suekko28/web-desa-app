@@ -50,6 +50,8 @@ Route::middleware(['auth'])->group(function(){
     Route::Resource('/sirkulasi-melahirkan',\App\Http\Controllers\SirkulasiMelahirkanController::class);
     Route::Resource('/lpj-barangjasa',\App\Http\Controllers\LPJBarangJasaController::class);
     Route::Resource('/sirkulasi-meninggal',\App\Http\Controllers\SirkulasiMeninggalController::class);
+    Route::Resource('/sirkulasi-pendatang',\App\Http\Controllers\SirkulasiPendatangController::class);
+    Route::Resource('/sirkulasi-pindah',\App\Http\Controllers\SirkulasiPindahController::class);
 
 });
 

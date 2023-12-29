@@ -32,7 +32,7 @@
 
                 <!-- Small boxes (Stat box) -->
 
-                {{-- <form action="{{ route('sirkulasi-pindah.store') }}" method="POST" enctype="multipart/form-data"> --}}
+                <form action="{{ route('sirkulasi-pindah.store') }}" method="POST" enctype="multipart/form-data">
                 @csrf
                 <div class="card">
                     <div class="card-body">
@@ -52,10 +52,9 @@
                                             <input type="text" id="pendudukSearchInput" class="form-control"
                                                 placeholder="Cari Penduduk...">
                                             {{-- <li><a class="dropdown-item" href="#" value="">--Pilih Penduduk--</a></li> --}}
-                                            <li><a class="dropdown-item" href="#" value="1">(Diambil dari data
-                                                    penduduk(NIK+Nama))</a></li>
-                                            <li><a class="dropdown-item" href="#" value="2">(Diambil dari data
-                                                    penduduk(NIK+Nama))</a></li>
+                                            @foreach ( $data_penduduk as $i )
+                                                    <li><div class="dropdown-item" value="{{ $i->NIK }}">{{ $i->NIK . " - " . $i->nama }}</div></li>
+                                            @endforeach
                                         </ul>
                                     </div>
                                 </div>
@@ -84,7 +83,7 @@
 
                         <div class="d-flex flex-row-reverse">
                             <button type="submit" class="btn btn-primary ml-3">Simpan</button>
-                            {{-- <a href="{{ route('sirkulasi-pindah.index') }}" class="btn btn-danger">Batal</a> --}}
+                            <a href="{{ route('sirkulasi-pindah.index') }}" class="btn btn-danger">Batal</a>
                         </div>
 
 
