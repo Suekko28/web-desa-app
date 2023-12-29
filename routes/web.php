@@ -33,6 +33,8 @@ Route::middleware(['auth'])->group(function(){
 
     Route::Resource('/pemerintahan-desa',\App\Http\Controllers\PemerintahanDesaController::class);
     Route::Resource('/pemerintahan-BPD',\App\Http\Controllers\PemerintahanBPDController::class);
+    Route::get('/pemerintahan-bpd/generate-pdf', [\App\Http\Controllers\PemerintahanBPDController::class, 'pdfTemplate'])
+    ->name('pemerintahan-BPD.pdf-template');
     Route::Resource('/pemerintahan-lpm',\App\Http\Controllers\PemerintahanLPMController::class);
     Route::Resource('/pemerintahan-mui',\App\Http\Controllers\PemerintahanMUIController::class);
     Route::Resource('/pemerintahan-pkk',\App\Http\Controllers\PemerintahanPKKController::class);

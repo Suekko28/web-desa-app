@@ -278,7 +278,16 @@ return array(
          * @var bool
          */
         "enable_html5_parser" => true,
+
+        
     ),
 
+    'pdf' => [
+        'enabled' => true,
+        'binary'  => '/path/to/wkhtmltopdf',
+        // ...
+    ],
+
+    
 
 );
