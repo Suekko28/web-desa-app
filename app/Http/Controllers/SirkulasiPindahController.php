@@ -48,24 +48,30 @@ class SirkulasiPindahController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(SirkulasiPindah $sirkulasiPindah)
+    public function edit(String $id)
     {
-        //
+        $data=SirkulasiPindah::find($id);
+        return view('sirkulasi-pindah.edit',[
+            'data'=>$data,
+        ]);
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, SirkulasiPindah $sirkulasiPindah)
+    public function update(Request $request, String $id)
     {
-        //
+        $data=SirkulasiPindah::find($id);
+        $data->update($request->all());
+        return redirect()->route('sirkulasi-pindah.index')->with('success','Data berhasil diupdate');
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(SirkulasiPindah $sirkulasiPindah)
+    public function destroy(String $id)
     {
-        //
+        $data=SirkulasiPindah::find($id)->delete();
+        return redirect()->route('sirkulasi-pindah.index')->with('success','Data berhasil dihapus');
     }
 }
