@@ -68,7 +68,7 @@
                         <span>Data Sirkulasi Desa</span>
                     </a>
                     <ul class="sub-menu mb-2" aria-expanded="false">
-                        <li><a href="">Data Melahirkan</a></li>
+                        <li><a href="{{ route('sirkulasi-melahirkan.index') }}">Data Melahirkan</a></li>
                         <li><a href="">Data Meninggal</a></li>
                         <li><a href="">Data Pendatang</a>
                         </li>
@@ -83,7 +83,7 @@
                         <span>Data Sirkulasi Desa</span>
                     </a>
                     <ul class="sub-menu" aria-expanded="false">
-                        <li><a href="#">Data Melahirkan</a></li>
+                        <li><a href="{{ route('sirkulasi-melahirkan.index') }}">Data Melahirkan</a></li>
                         <li><a href="#">Data Meninggal</a></li>
                         <li><a href="#">Data Pendatang</a></li>
                         <li><a href="#">Data Pindah</a></li>
