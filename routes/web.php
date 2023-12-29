@@ -69,7 +69,6 @@ Route::middleware(['auth'])->group(function () {
     Route::Resource('/penduduk', \App\Http\Controllers\PendudukController::class);
     Route::Resource('/sirkulasi-melahirkan', \App\Http\Controllers\SirkulasiMelahirkanController::class);
     Route::Resource('/lpj-barangjasa', \App\Http\Controllers\LPJBarangJasaController::class);
-    ->name('pemerintahan-BPD.pdf-template');
     Route::Resource('/pemerintahan-lpm',\App\Http\Controllers\PemerintahanLPMController::class);
     Route::Resource('/pemerintahan-mui',\App\Http\Controllers\PemerintahanMUIController::class);
     Route::Resource('/pemerintahan-pkk',\App\Http\Controllers\PemerintahanPKKController::class);
