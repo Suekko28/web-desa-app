@@ -46,27 +46,31 @@
                                     <div class="col-sm-6">
                                         <label for="name" class="col-form-label">Nama</label>
                                         <input type="text" class="form-control" id="nama" name="nama"
-                                            placeholder="Nama Bayi" value="">
+                                            placeholder="Nama Bayi" value="{{ $data->nama }}">
                                     </div>
 
                                     <div class="col-sm-6">
                                         <label for="tmpt_lahir" class="col-form-label">Tempat Lahir</label>
                                         <input type="text" class="form-control" id="tmpt_lahir" name="tmpt_lahir"
-                                            placeholder="Tempat Lahir" value="">
+                                            placeholder="Tempat Lahir" value="{{ $data->tmpt_lahir }}">
                                     </div>
 
                                     <div class="col-sm-6">
                                         <label for="tgl_lahir" class="col-form-label">Tanggal Lahir</label>
                                         <input type="date" class="form-control" id="tgl_lahir" name="tgl_lahir"
-                                            placeholder="" value="">
+                                            placeholder="" value="{{ $data->tgl_lahir }}">
                                     </div>
 
                                     <div class="col-sm-6">
                                         <label for="jenis_kelamin" class="col-form-label">Jenis Kelamin</label>
                                         <select id="jenis_kelamin" name="jenis_kelamin" class="form-control" required>
                                             <option value="" selected>--Pilih Salah Satu--</option>
-                                            <option value="1">Laki-Laki</option>
-                                            <option value="2">Perempuan</option>
+                                            <option value="1" @if ($data->jenis_kelamin=='1')
+                                                SELECTED
+                                            @endif>Laki-Laki</option>
+                                            <option value="2" @if ($data->jenis_kelamin=='2')
+                                                SELECTED
+                                            @endif>Perempuan</option>
                                         </select>
                                     </div>
 
@@ -75,13 +79,14 @@
                                         <div class="dropdown">
                                             <button class="form-control dropdown-toggle text-left" type="button"
                                                 data-bs-toggle="dropdown" aria-expanded="false" name="keluarga">
-                                                --Pilih Keluarga--
+                                                {{ $data_keluarga->NKK . ' - ' . $data_keluarga->nama }}
                                             </button>
                                             <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton" id="keluargaDropdown">
-                                                <input type="text" id="keluargaSearchInput" class="form-control" placeholder="Cari Keluarga...">
-                                                <li><a class="dropdown-item" href="#" value="">--Pilih Keluarga--</a></li>
-                                                <li><a class="dropdown-item" href="#" value="1">(Diambil dari data keluarga(NIK+Nama))</a></li>
-                                                <li><a class="dropdown-item" href="#" value="2">(Diambil dari data keluarga(NIK+Nama))</a></li>
+                                                <input type="text" id="keluargaSearchInput" name="NKK_keluarga" class="form-control" placeholder="Cari Keluarga..." value="{{ $data_keluarga->NKK . ' - ' . $data_keluarga->nama }}">
+                                                <li><div class="dropdown-item" value="">--Pilih Keluarga--</div></li>
+                                                @foreach ( $data_penduduk as $i )
+                                                <li><div class="dropdown-item" value="{{ $i->NKK }}">{{ $i->NKK . " - " . $i->nama }}</div></li>
+                                                @endforeach
                                             </ul>
                                         </div>
                                     </div>
@@ -143,7 +148,7 @@
         li = ul.getElementsByTagName("li");
 
         for (i = 0; i < li.length; i++) {
-            a = li[i].getElementsByTagName("a")[0];
+            a = li[i].getElementsByTagName("div")[0];
             txtValue = a.textContent || a.innerText;
 
             if (txtValue.toUpperCase().indexOf(filter) > -1) {
@@ -170,7 +175,8 @@
     function selectKeluarga(value, label) {
         var dropdownButton = document.querySelector(".dropdown button[name='keluarga']");
         dropdownButton.innerHTML = label;
-        dropdownButton.value = value;
+        var inputVal = document.querySelector("[name='NKK_keluarga']");
+        inputVal.value = value;
     }
 </script>
 

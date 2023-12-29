@@ -60,13 +60,13 @@
                                     <div class="col-sm-4">
                                         <label for="tgl_meninggal" class="col-form-label">Tanggal Meninggal</label>
                                         <input type="date" class="form-control" id="tgl_meninggal" name="tgl_meninggal"
-                                            placeholder="">
+                                            value="{{ $data->tgl_meninggal }}">
                                     </div>
 
                                     <div class="col-sm-4">
                                         <label for="sebab" class="col-form-label">Sebab</label>
                                         <input type="text" class="form-control" id="sebab" name="sebab"
-                                            placeholder="Sebab Meninggal">
+                                            value="{{ $data->sebab }}">
                                     </div>
 
 

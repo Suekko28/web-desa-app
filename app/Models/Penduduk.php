@@ -52,6 +52,10 @@ class penduduk extends Model
         return $this->hasMany(Anak::class, 'NKK','NKK_keluarga');
     }
 
+    public function sirkulasiMeninggal(): HasOne{
+        return $this->hasOne(SirkulasiMeninggal::class,'NIK_penduduk','NIK');
+    }      
+
     public function getAgamaAttribute($value)
     {
         $arr=['islam','kristen protestan','kristen katholik','hindu','buddha','khonghucu'];

@@ -47,6 +47,8 @@ Route::middleware(['auth'])->group(function(){
     Route::Resource('/penduduk',\App\Http\Controllers\PendudukController::class);
     Route::Resource('/sirkulasi-melahirkan',\App\Http\Controllers\SirkulasiMelahirkanController::class);
     Route::Resource('/lpj-barangjasa',\App\Http\Controllers\LPJBarangJasaController::class);
+    Route::Resource('/sirkulasi-meninggal',\App\Http\Controllers\SirkulasiMeninggalController::class);
+
 });
 
 

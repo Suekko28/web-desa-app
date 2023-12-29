@@ -2,7 +2,7 @@
 
 namespace App\DataTables;
 
-use App\Models\Anak;
+use App\Models\SirkulasiMeninggal;
 use Illuminate\Database\Eloquent\Builder as QueryBuilder;
 use Yajra\DataTables\EloquentDataTable;
 use Yajra\DataTables\Html\Builder as HtmlBuilder;
@@ -12,7 +12,7 @@ use Yajra\DataTables\Html\Editor\Editor;
 use Yajra\DataTables\Html\Editor\Fields;
 use Yajra\DataTables\Services\DataTable;
 
-class SirkulasiMelahirkanDataTable extends DataTable
+class SirkulasiMeninggalDataTable extends DataTable
 {
     /**
      * Build DataTable class.
@@ -25,10 +25,10 @@ class SirkulasiMelahirkanDataTable extends DataTable
         $this->rowIndex = 0;
 
         $actionBtn = '<div class="col">
-        <a href="' . route('sirkulasi-melahirkan.index') . '/{{ $id }}/edit" name="edit" class="btn btn-warning"><i class="fa-solid fa-pen-to-square"></i></a>';
+        <a href="' . route('sirkulasi-meninggal.index') . '/{{ $id }}/edit" name="edit" class="btn btn-warning"><i class="fa-solid fa-pen-to-square"></i></a>';
 
         $actionBtn .= '<a href="javascript:void(0)" onclick="confirmDelete($(this))"
-            route="' . route('sirkulasi-melahirkan.index') . '/{{ $id }}" class="btn btn-danger mt-2"><i class="fa-solid fa-trash-can"></i></a>';
+            route="' . route('sirkulasi-meninggal.index') . '/{{ $id }}" class="btn btn-danger mt-2"><i class="fa-solid fa-trash-can"></i></a>';
 
         $actionBtn .= '</div>';
 
@@ -45,21 +45,23 @@ class SirkulasiMelahirkanDataTable extends DataTable
     /**
      * Get query source of dataTable.
      *
-     * @param \App\Models\Anak $model
+     * @param \App\Models\SirkulasiMeninggal $model
      * @return \Illuminate\Database\Eloquent\Builder
      */
-    public function query(Anak $model): QueryBuilder
+    public function query(SirkulasiMeninggal $model): QueryBuilder
     {
         return $model->newQuery()
             ->select(
-                'anak.nama as nama',
-                'anak.tmpt_lahir as tmpt_lahir',
-                'anak.tgl_lahir as tgl_lahir',
-                \DB::raw('CASE WHEN jenis_kelamin = 1 THEN "Laki-Laki" ELSE "Perempuan" END AS jenis_kelamin'),
-                'anak.NKK_keluarga as NKK_keluarga',
-                'anak.created_at as created_at',
-                'anak.updated_at as updated_at',
-            );
+                'sirkulasi_meninggal.NIK_penduduk as NIK_penduduk',
+                'sirkulasi_meninggal.tgl_meninggal as tgl_meninggal',
+                'sirkulasi_meninggal.sebab as sebab',
+                'sirkulasi_meninggal.created_at as created_at',
+                'sirkulasi_meninggal.updated_at as updated_at',
+                'penduduk.nama as nama'
+            )
+            ->join('penduduk', function ($q) {
+                $q->on('penduduk.NIK', '=', 'sirkulasi_meninggal.NIK_penduduk');
+            });
     }
 
     /**
@@ -85,7 +87,7 @@ class SirkulasiMelahirkanDataTable extends DataTable
 
         ];
         return $this->builder()
-            ->setTableId('sirkulasi-melahirkan-table')
+            ->setTableId('sirkulasi-meninggal-table')
             ->columns($this->getColumns())
             ->minifiedAjax()
             ->orderBy(0, 'asc')
@@ -109,10 +111,9 @@ class SirkulasiMelahirkanDataTable extends DataTable
                   ->addClass('text-center'),
             Column::make('id'),
             Column::make('nama'),
-            Column::make('tmpt_lahir'),
-            Column::make('tgl_lahir'),
-            Column::make('jenis_kelamin'),
-            Column::make('NKK_keluarga'),
+            Column::make('NIK_penduduk'),
+            Column::make('tgl_meninggal'),
+            Column::make('sebab'),
             Column::make('created_at'),
             Column::make('updated_at'),
         ];
@@ -125,6 +126,6 @@ class SirkulasiMelahirkanDataTable extends DataTable
      */
     protected function filename(): string
     {
-        return 'SirkulasiMelahirkan_' . date('YmdHis');
+        return 'SirkulasiMeninggal_' . date('YmdHis');
     }
 }

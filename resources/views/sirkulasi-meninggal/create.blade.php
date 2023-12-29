@@ -32,7 +32,7 @@
 
                 <!-- Small boxes (Stat box) -->
 
-                {{-- <form action="{{ route('sirkulasi-meninggal.store') }}" method="POST" enctype="multipart/form-data"> --}}
+                <form action="{{ route('sirkulasi-meninggal.store') }}" method="POST" enctype="multipart/form-data">
                     @csrf
                     <div class="card">
                         <div class="card-body">
@@ -47,10 +47,11 @@
                                                 --Pilih Penduduk--
                                             </button>
                                             <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton" id="pendudukDropdown">
-                                                <input type="text" id="pendudukSearchInput" class="form-control" placeholder="Cari Penduduk...">
-                                                {{-- <li><a class="dropdown-item" href="#" value="">--Pilih Penduduk--</a></li> --}}
-                                                <li><a class="dropdown-item" href="#" value="1">(Diambil dari data penduduk(NIK+Nama))</a></li>
-                                                <li><a class="dropdown-item" href="#" value="2">(Diambil dari data penduduk(NIK+Nama))</a></li>
+                                                <input type="text" id="pendudukSearchInput" name="NIK_penduduk" class="form-control" placeholder="Cari Penduduk...">
+                                                <li><a class="dropdown-item" href="#" value="">--Pilih Penduduk--</a></li>
+                                                @foreach ( $data as $i )
+                                                    <li><div class="dropdown-item" value="{{ $i->NIK }}">{{ $i->NIK . " - " . $i->nama }}</div></li>
+                                                @endforeach
                                             </ul>
                                         </div>
                                     </div>
@@ -73,7 +74,7 @@
     
                             <div class="d-flex flex-row-reverse">
                                 <button type="submit" class="btn btn-primary ml-3">Simpan</button>
-                                {{-- <a href="{{ route('sirkulasi-melahirkan.index') }}" class="btn btn-danger">Batal</a> --}}
+                                <a href="{{ route('sirkulasi-meninggal.index') }}" class="btn btn-danger">Batal</a>
                             </div>
     
     
@@ -130,7 +131,7 @@
         li = ul.getElementsByTagName("li");
 
         for (i = 0; i < li.length; i++) {
-            a = li[i].getElementsByTagName("a")[0];
+            a = li[i].getElementsByTagName("div")[0];
             txtValue = a.textContent || a.innerText;
 
             if (txtValue.toUpperCase().indexOf(filter) > -1) {
@@ -155,9 +156,10 @@
 
     // Fungsi untuk menangani pemilihan pada dropdown
     function selectPenduduk(value, label) {
-        var dropdownButton = document.querySelector(".dropdown button");
+        var dropdownButton = document.querySelector(".dropdown button[name='penduduk']");
         dropdownButton.innerHTML = label;
-        dropdownButton.value = value;
+        var inputVal = document.querySelector("[name='NIK_penduduk']");
+        inputVal.value = value;
     }
 </script>
 
