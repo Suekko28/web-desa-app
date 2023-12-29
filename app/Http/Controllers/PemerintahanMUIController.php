@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\DataTables\PemerintahanMUIDataTable;
 use App\Http\Requests\PemerintahanMUIRequest;
 use App\Models\PemerintahanMUI;
+use Barryvdh\DomPDF\Facade\Pdf;
+
 
 class PemerintahanMUIController extends Controller
 {
@@ -90,9 +92,17 @@ class PemerintahanMUIController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function pdfTemplate(PemerintahanMUIDataTable $dataTable)
     {
-        $user=PemerintahanMUI::find($id)->delete();
-        return redirect()->route('pemerintahan-mui.index')->with('success','data berhasil dihapus'); 
+        // Retrieve the data directly from the query builder
+        $data = $dataTable->query(new PemerintahanMUI())->get();
+    
+        // Send data to the view for PDF rendering
+        $html = view('pemerintahan-mui.generate-pdf', ['data' => $data])->render();
+    
+        // Adjust PDF options if needed
+        $pdf = PDF::loadHtml($html)->setPaper('a4', 'landscape');
+        
+        return $pdf->stream('PemerintahanMUI.pdf');
     }
 }
