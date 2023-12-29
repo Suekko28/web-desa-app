@@ -45,14 +45,15 @@
                                     <div class="col-sm-4">
                                         <label for="penduduk" class="col-form-label">Penduduk</label>
                                         <div class="dropdown">
-                                            <button class="form-control dropdown-toggle text-left" type="button" data-bs-toggle="dropdown" aria-expanded="false" name="penduduk">
-                                                --Pilih Penduduk--
+                                        <button class="form-control dropdown-toggle text-left" type="button" data-bs-toggle="dropdown" aria-expanded="false" name="penduduk">
+                                            {{ $data->NIK_penduduk . ' - ' . $data->nama }}
                                             </button>
                                             <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton" id="pendudukDropdown">
-                                                <input type="text" id="pendudukSearchInput" class="form-control" placeholder="Cari Penduduk...">
-                                                {{-- <li><a class="dropdown-item" href="#" value="">--Pilih Penduduk--</a></li> --}}
-                                                <li><a class="dropdown-item" href="#" value="1">(Diambil dari data penduduk(NIK+Nama))</a></li>
-                                                <li><a class="dropdown-item" href="#" value="2">(Diambil dari data penduduk(NIK+Nama))</a></li>
+                                                <input type="text" id="pendudukSearchInput" name="NIK_penduduk" class="form-control" placeholder="Cari Penduduk..." value="{{ $data->NIK_penduduk}}">
+                                                <li><a class="dropdown-item" href="" value="">--Pilih Penduduk--</a></li>
+                                                @foreach ( $data_penduduk as $i )
+                                                    <li><div class="dropdown-item" value="{{ $i->NIK }}">{{ $i->NIK . " - " . $i->nama }}</div></li>
+                                                @endforeach
                                             </ul>
                                         </div>
                                     </div>
@@ -75,7 +76,7 @@
     
                             <div class="d-flex flex-row-reverse">
                                 <button type="submit" class="btn btn-primary ml-3">Simpan</button>
-                                {{-- <a href="{{ route('sirkulasi-melahirkan.index') }}" class="btn btn-danger">Batal</a> --}}
+                                <a href="{{ route('sirkulasi-meninggal.index') }}" class="btn btn-danger">Batal</a>
                             </div>
     
     
@@ -129,7 +130,7 @@
         li = ul.getElementsByTagName("li");
 
         for (i = 0; i < li.length; i++) {
-            a = li[i].getElementsByTagName("a")[0];
+            a = li[i].getElementsByTagName("div")[0];
             txtValue = a.textContent || a.innerText;
 
             if (txtValue.toUpperCase().indexOf(filter) > -1) {
@@ -154,9 +155,10 @@
 
     // Fungsi untuk menangani pemilihan pada dropdown
     function selectPenduduk(value, label) {
-        var dropdownButton = document.querySelector(".dropdown button");
+        var dropdownButton = document.querySelector(".dropdown button[name='penduduk']");
         dropdownButton.innerHTML = label;
-        dropdownButton.value = value;
+        var inputVal = document.querySelector("[name='NIK_penduduk']");
+        inputVal.value = value;
     }
 </script>
 

@@ -33,10 +33,6 @@ class SirkulasiMelahirkanDataTable extends DataTable
         $actionBtn .= '</div>';
 
         return (new EloquentDataTable($query))
-            ->addColumn('id', function ($data) {
-                return ++$this->rowIndex;
-            })
-
             ->addColumn('action', $actionBtn)
             ->rawColumns(['action'])
             ->setRowId('id');
@@ -52,6 +48,7 @@ class SirkulasiMelahirkanDataTable extends DataTable
     {
         return $model->newQuery()
             ->select(
+                'anak.id as id',
                 'anak.nama as nama',
                 'anak.tmpt_lahir as tmpt_lahir',
                 'anak.tgl_lahir as tgl_lahir',

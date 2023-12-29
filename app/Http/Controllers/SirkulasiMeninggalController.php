@@ -15,6 +15,7 @@ class SirkulasiMeninggalController extends Controller
      */
     public function index(SirkulasiMeninggalDataTable $dataTable)
     {
+
         return $dataTable->render('sirkulasi-meninggal.index');
     }
 
@@ -35,7 +36,7 @@ class SirkulasiMeninggalController extends Controller
     public function store(Request $request)
     {
         SirkulasiMeninggal::create($request->all());
-        return view('sirkulasi-meninggal.index')->with('success','Data berhasil ditambahkan');
+        return redirect()->route('sirkulasi-meninggal.index')->with('success','Data berhasil ditambahkan');
     }
 
     /**
@@ -52,24 +53,35 @@ class SirkulasiMeninggalController extends Controller
     public function edit(String $id)
     {
         $data=SirkulasiMeninggal::find($id);
+        $nkk=$data->NIK_penduduk;
+        $data['nama']=Penduduk::where('NIK','=',$nkk)->first()->nama;
+        $data_penduduk=Penduduk::all();
+
         return view('sirkulasi-meninggal.edit',[
             'data'=>$data,
+            'data_penduduk'=>$data_penduduk,
         ]);
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, SirkulasiMeninggal $sirkulasiMeninggal)
-    {
-        //
+    public function update(Request $request, String $id)
+    {  
+        $data=SirkulasiMeninggal::find($id);
+        
+        $data->update($request->all());
+        return redirect()->route('sirkulasi-meninggal.index')->with('success','data berhasil diupdate'); 
+
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(SirkulasiMeninggal $sirkulasiMeninggal)
+    public function destroy(string $id)
     {
-        //
+        $user=SirkulasiMeninggal::find($id)->delete();
+        return redirect()->route('sirkulasi-meninggal.index')->with('success','data berhasil dihapus'); 
+
     }
 }

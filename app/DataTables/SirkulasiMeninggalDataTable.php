@@ -22,7 +22,6 @@ class SirkulasiMeninggalDataTable extends DataTable
      */
     public function dataTable(QueryBuilder $query): EloquentDataTable
     {
-        $this->rowIndex = 0;
 
         $actionBtn = '<div class="col">
         <a href="' . route('sirkulasi-meninggal.index') . '/{{ $id }}/edit" name="edit" class="btn btn-warning"><i class="fa-solid fa-pen-to-square"></i></a>';
@@ -33,10 +32,6 @@ class SirkulasiMeninggalDataTable extends DataTable
         $actionBtn .= '</div>';
 
         return (new EloquentDataTable($query))
-            ->addColumn('id', function ($data) {
-                return ++$this->rowIndex;
-            })
-
             ->addColumn('action', $actionBtn)
             ->rawColumns(['action'])
             ->setRowId('id');
@@ -52,6 +47,7 @@ class SirkulasiMeninggalDataTable extends DataTable
     {
         return $model->newQuery()
             ->select(
+                'sirkulasi_meninggal.id as id',
                 'sirkulasi_meninggal.NIK_penduduk as NIK_penduduk',
                 'sirkulasi_meninggal.tgl_meninggal as tgl_meninggal',
                 'sirkulasi_meninggal.sebab as sebab',

@@ -82,7 +82,7 @@
                                                 {{ $data_keluarga->NKK . ' - ' . $data_keluarga->nama }}
                                             </button>
                                             <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton" id="keluargaDropdown">
-                                                <input type="text" id="keluargaSearchInput" name="NKK_keluarga" class="form-control" placeholder="Cari Keluarga..." value="{{ $data_keluarga->NKK . ' - ' . $data_keluarga->nama }}">
+                                                <input type="text" id="keluargaSearchInput" name="NKK_keluarga" class="form-control" placeholder="Cari Keluarga..." value="{{ $data_keluarga->NKK }}">
                                                 <li><div class="dropdown-item" value="">--Pilih Keluarga--</div></li>
                                                 @foreach ( $data_penduduk as $i )
                                                 <li><div class="dropdown-item" value="{{ $i->NKK }}">{{ $i->NKK . " - " . $i->nama }}</div></li>
