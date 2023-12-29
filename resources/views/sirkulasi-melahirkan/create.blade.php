@@ -76,7 +76,6 @@
                                         </button>
                                         <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton" id="keluargaDropdown">
                                             <input type="text" id="keluargaSearchInput" name="NKK_keluarga" class="form-control" placeholder="Cari Keluarga...">
-                                            <li><div class="dropdown-item" value="">--Pilih Keluarga--</div></li>
                                             @foreach ( $data as $i )
                                             <li><div class="dropdown-item" value="{{ $i->NKK }}">{{ $i->NKK . " - " . $i->nama }}</div></li>
                                             @endforeach
@@ -108,7 +107,7 @@
     <script src="{{ asset('assets/libs/simplebar/simplebar.min.js') }}"></script>
     <script src="{{ asset('assets/libs/node-waves/waves.min.js') }}"></script>
 
-    <!-- Required datatable js -->
+     Required datatable js -->
     <script src="{{ asset('assets/libs/datatables.net/js/jquery.dataTables.min.js') }}"></script>
     <script src="{{ asset('assets/libs/datatables.net-bs4/js/dataTables.bootstrap4.min.js') }}"></script>
     <!-- Buttons examples -->

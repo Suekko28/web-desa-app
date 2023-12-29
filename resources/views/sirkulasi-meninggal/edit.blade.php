@@ -45,14 +45,13 @@
                                     <div class="col-sm-4">
                                         <label for="penduduk" class="col-form-label">Penduduk</label>
                                         <div class="dropdown">
-                                        <button class="form-control dropdown-toggle text-left" type="button" data-bs-toggle="dropdown" aria-expanded="false" name="penduduk">
-                                            {{ $data->NIK_penduduk . ' - ' . $data->nama }}
+                                            <button class="form-control dropdown-toggle text-left" type="button" data-bs-toggle="dropdown" aria-expanded="false" name="penduduk">
+                                                --Pilih Penduduk--
                                             </button>
                                             <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton" id="pendudukDropdown">
-                                                <input type="text" id="pendudukSearchInput" name="NIK_penduduk" class="form-control" placeholder="Cari Penduduk..." value="{{ $data->NIK_penduduk}}">
-                                                <li><a class="dropdown-item" href="" value="">--Pilih Penduduk--</a></li>
-                                                @foreach ( $data_penduduk as $i )
-                                                    <li><div class="dropdown-item" value="{{ $i->NIK }}">{{ $i->NIK . " - " . $i->nama }}</div></li>
+                                                <input type="text" id="pendudukSearchInput" name="NIK_penduduk" class="form-control" placeholder="Cari Penduduk...">
+                                                @foreach ( $data as $i )
+                                                    <li><a class="dropdown-item penduduk-option" href="#" value="{{ $i->NIK }}">{{ $i->NIK . " - " . $i->nama }}</a></li>
                                                 @endforeach
                                             </ul>
                                         </div>
@@ -127,10 +126,10 @@
         input = document.getElementById("pendudukSearchInput");
         filter = input.value.toUpperCase();
         ul = document.getElementById("pendudukDropdown");
-        li = ul.getElementsByTagName("li");
+        li = ul.getElementsByClassName("penduduk-option");
 
         for (i = 0; i < li.length; i++) {
-            a = li[i].getElementsByTagName("div")[0];
+            a = li[i];
             txtValue = a.textContent || a.innerText;
 
             if (txtValue.toUpperCase().indexOf(filter) > -1) {
@@ -141,19 +140,19 @@
         }
     }
 
-    // Menambahkan event listener untuk input pencarian
+    // Adding event listener for input search
     var searchInput = document.getElementById("pendudukSearchInput");
     searchInput.addEventListener("input", searchPenduduk);
 
-    // Menambahkan event listener untuk setiap opsi pada dropdown
-    var pendudukOptions = document.querySelectorAll("#pendudukDropdown .dropdown-item");
+    // Adding event listener for each option in the dropdown
+    var pendudukOptions = document.querySelectorAll("#pendudukDropdown .penduduk-option");
     pendudukOptions.forEach(function(option) {
         option.addEventListener("click", function() {
             selectPenduduk(option.getAttribute("value"), option.textContent);
         });
     });
 
-    // Fungsi untuk menangani pemilihan pada dropdown
+    // Handling selection in the dropdown
     function selectPenduduk(value, label) {
         var dropdownButton = document.querySelector(".dropdown button[name='penduduk']");
         dropdownButton.innerHTML = label;
