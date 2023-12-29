@@ -113,7 +113,7 @@ class PemerintahanBPDController extends Controller
     
         // Adjust PDF options if needed
         $pdf = PDF::loadHtml($html)->setPaper('a4', 'landscape');
-            
+        
         return $pdf->stream('PemerintahanBPD.pdf');
     }
     
