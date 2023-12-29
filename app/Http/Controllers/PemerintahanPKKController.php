@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\DataTables\PemerintahanPKKDataTable;
 use App\Http\Requests\PemerintahanPKKRequest;
 use App\Models\PemerintahanPKK;
+use Barryvdh\DomPDF\Facade\Pdf;
+
 
 class PemerintahanPKKController extends Controller
 {
@@ -92,5 +94,19 @@ class PemerintahanPKKController extends Controller
     {
         $user=PemerintahanPKK::find($id)->delete();
         return redirect()->route('pemerintahan-pkk.index')->with('success','data berhasil dihapus'); 
+    }
+
+    public function pdfTemplate(PemerintahanPKKDataTable $dataTable)
+    {
+        // Retrieve the data directly from the query builder
+        $data = $dataTable->query(new PemerintahanPKK())->get();
+    
+        // Send data to the view for PDF rendering
+        $html = view('pemerintahan-pkk.generate-pdf', ['data' => $data])->render();
+    
+        // Adjust PDF options if needed
+        $pdf = PDF::loadHtml($html)->setPaper('a4', 'landscape');
+        
+        return $pdf->stream('PemerintahanPKK.pdf');
     }
 }

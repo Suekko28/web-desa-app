@@ -83,7 +83,12 @@ class PemerintahanPosyanduDataTable extends DataTable
             ->text('Excel'),
             Button::make('pdf')
             ->addClass('btn-danger rounded')
-            ->text('PDF'),
+            ->text('PDF')
+            ->action('function() {
+                window.location.href = "'.route('pemerintahan-posyandu.generate-pdf').'";
+            }'),
+
+
 
         ];
         

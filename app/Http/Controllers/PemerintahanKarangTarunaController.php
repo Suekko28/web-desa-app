@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\DataTables\PemerintahanKarangTarunaDataTable;
 use App\Http\Requests\PemerintahanKarangTarunaRequest;
 use App\Models\PemerintahanKarangTaruna;
+use Barryvdh\DomPDF\Facade\Pdf;
+
 
 class PemerintahanKarangTarunaController extends Controller
 {
@@ -94,4 +96,19 @@ class PemerintahanKarangTarunaController extends Controller
         $user = PemerintahanKarangTaruna::find($id)->delete();
         return redirect()->route('pemerintahan-karang-taruna.index')->with('success', 'data berhasil dihapus');
     }
+
+    public function pdfTemplate(PemerintahanKarangTarunaDataTable $dataTable)
+    {
+        // Retrieve the data directly from the query builder
+        $data = $dataTable->query(new PemerintahanKarangTaruna())->get();
+    
+        // Send data to the view for PDF rendering
+        $html = view('pemerintahan-karangtaruna.generate-pdf', ['data' => $data])->render();
+    
+        // Adjust PDF options if needed
+        $pdf = PDF::loadHtml($html)->setPaper('a4', 'landscape');
+        
+        return $pdf->stream('PemerintahanKarangTaruna.pdf');
+    }
 }
+

@@ -6,6 +6,8 @@ use App\DataTables\PemerintahanKadusDataTable;
 use App\Http\Requests\PemerintahanKadusRequest;
 use App\Models\PemerintahanKadus;
 use Illuminate\Http\Request;
+use Barryvdh\DomPDF\Facade\Pdf;
+
 
 class PemerintahanKadusController extends Controller
 {
@@ -99,5 +101,19 @@ class PemerintahanKadusController extends Controller
         $user=PemerintahanKadus::find($id)->delete();
         return redirect()->route('pemerintahan-kadus.index')->with('success','Data berhasil dihapus'); 
 
+    }
+
+    public function pdfTemplate(PemerintahanKadusDataTable $dataTable)
+    {
+        // Retrieve the data directly from the query builder
+        $data = $dataTable->query(new PemerintahanKadus())->get();
+    
+        // Send data to the view for PDF rendering
+        $html = view('pemerintahan-kadus.generate-pdf', ['data' => $data])->render();
+    
+        // Adjust PDF options if needed
+        $pdf = PDF::loadHtml($html)->setPaper('a4', 'landscape');
+        
+        return $pdf->stream('PemerintahanKadus.pdf');
     }
 }

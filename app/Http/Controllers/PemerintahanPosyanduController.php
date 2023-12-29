@@ -5,6 +5,9 @@ namespace App\Http\Controllers;
 use App\DataTables\PemerintahanPosyanduDataTable;
 use App\Http\Requests\PemerintahanPosyanduRequest;
 use App\Models\PemerintahanPosyandu;
+use Barryvdh\DomPDF\Facade\Pdf;
+
+
 
 class PemerintahanPosyanduController extends Controller
 {
@@ -93,5 +96,19 @@ class PemerintahanPosyanduController extends Controller
     {
         $user=PemerintahanPosyandu::find($id)->delete();
         return redirect()->route('pemerintahan-posyandu.index')->with('success','data berhasil dihapus'); 
+    }
+
+    public function pdfTemplate(PemerintahanPosyanduDataTable $dataTable)
+    {
+        // Retrieve the data directly from the query builder
+        $data = $dataTable->query(new PemerintahanPosyandu())->get();
+    
+        // Send data to the view for PDF rendering
+        $html = view('pemerintahan-posyandu.generate-pdf', ['data' => $data])->render();
+    
+        // Adjust PDF options if needed
+        $pdf = PDF::loadHtml($html)->setPaper('a4', 'landscape');
+        
+        return $pdf->stream('PemerintahanPosyandu.pdf');
     }
 }
