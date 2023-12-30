@@ -8,6 +8,7 @@ use App\Models\Penduduk;
 use App\Models\Anak;
 use App\Models\SirkulasiMelahirkan;
 use Illuminate\Http\Request;
+use Barryvdh\DomPDF\Facade\Pdf;
 
 class SirkulasiMelahirkanController extends Controller
 {
@@ -84,5 +85,19 @@ class SirkulasiMelahirkanController extends Controller
         $user=Anak::find($id)->delete();
         return redirect()->route('sirkulasi-melahirkan.index')->with('success','data berhasil dihapus'); 
         
+    }
+
+    public function pdfTemplate(SirkulasiMelahirkanDatatable $dataTable)
+    {
+        // Retrieve the data directly from the query builder
+        $data = $dataTable->query(new Anak())->get();
+    
+        // Send data to the view for PDF rendering
+        $html = view('sirkulasi-melahirkan.generate-pdf', ['data' => $data])->render();
+   
+        // Adjust PDF options including setting paper to landscape
+        $pdf = PDF::loadHtml($html)->setPaper('a4', 'landscape');
+    
+        return $pdf->stream('SirkulasiMelahirkan.pdf');
     }
 }

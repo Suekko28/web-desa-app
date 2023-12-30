@@ -67,7 +67,6 @@ Route::middleware(['auth'])->group(function () {
     Route::Get('/penduduk-import', [\App\Http\Controllers\PendudukController::class, 'importPendudukView'])->name('penduduk.import-view');
     Route::Post('/penduduk-import', [\App\Http\Controllers\PendudukController::class, 'importPenduduk'])->name('penduduk.import');
     Route::Resource('/penduduk', \App\Http\Controllers\PendudukController::class);
-    Route::Resource('/sirkulasi-melahirkan', \App\Http\Controllers\SirkulasiMelahirkanController::class);
     Route::Resource('/lpj-barangjasa', \App\Http\Controllers\LPJBarangJasaController::class);
     Route::Resource('/pemerintahan-lpm',\App\Http\Controllers\PemerintahanLPMController::class);
     Route::Resource('/pemerintahan-mui',\App\Http\Controllers\PemerintahanMUIController::class);
@@ -81,11 +80,17 @@ Route::middleware(['auth'])->group(function () {
     Route::Get('/penduduk-import',[\App\Http\Controllers\PendudukController::class,'importPendudukView'])->name('penduduk.import-view');
     Route::Post('/penduduk-import',[\App\Http\Controllers\PendudukController::class,'importPenduduk'])->name('penduduk.import');
     Route::Resource('/penduduk',\App\Http\Controllers\PendudukController::class);
+    Route::get('/sirkulasi-melahirkan/generate-pdf', [\App\Http\Controllers\SirkulasiMelahirkanController::class, 'pdfTemplate'])
+    ->name('sirkulasi-melahirkan.generate-pdf');
     Route::Resource('/sirkulasi-melahirkan',\App\Http\Controllers\SirkulasiMelahirkanController::class);
-    Route::Resource('/lpj-barangjasa',\App\Http\Controllers\LPJBarangJasaController::class);
+    Route::get('/sirkulasi-meninggal/generate-pdf', [\App\Http\Controllers\SirkulasiMeninggalController::class, 'pdfTemplate'])
+    ->name('sirkulasi-meninggal.generate-pdf');
     Route::Resource('/sirkulasi-meninggal',\App\Http\Controllers\SirkulasiMeninggalController::class);
+    Route::get('/sirkulasi-pendatang/generate-pdf', [\App\Http\Controllers\SirkulasiPendatangController::class, 'pdfTemplate'])
+    ->name('sirkulasi-pendatang.generate-pdf');
     Route::Resource('/sirkulasi-pendatang',\App\Http\Controllers\SirkulasiPendatangController::class);
     Route::Resource('/sirkulasi-pindah',\App\Http\Controllers\SirkulasiPindahController::class);
+    Route::Resource('/lpj-barangjasa',\App\Http\Controllers\LPJBarangJasaController::class);
 
 
 });

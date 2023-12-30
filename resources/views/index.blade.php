@@ -101,7 +101,7 @@
                     <div class="card-body">
                         <h5 class="mt-0 mb-4 text-white">Jumlah Pindah Masuk</h5>
                         <div class="d-flex justify-content-between">
-                            <h1 class="text-white">1</h1>
+                            <h1 class="text-white">{{$pindah_masuk}}</h1>
                             <i class="fas fa-user-plus fa-3x" style="color:white;"></i>
                         </div>
                     </div>
@@ -113,7 +113,7 @@
                     <div class="card-body">
                         <h5 class="mt-0 mb-4 text-white">Jumlah Pindah Keluar</h5>
                         <div class="d-flex justify-content-between">
-                            <h1 class="text-white">1</h1>
+                            <h1 class="text-white">{{$pindah_keluar}}</h1>
                             <i class="fas fa-user-xmark fa-3x" style="color:white;"></i>
                         </div>
                     </div>
