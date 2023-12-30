@@ -100,17 +100,17 @@ class SirkulasiPindahDataTable extends DataTable
     public function getColumns(): array
     {
         return [
-            Column::computed('action')
-                  ->exportable(false)
-                  ->printable(false)
-                  ->width(60)
-                  ->addClass('text-center'),
             Column::make('id'),
             Column::make('tgl_pindah'),
             Column::make('alasan'),
             Column::make('alamat_pindah'),
             Column::make('created_at'),
             Column::make('updated_at'),
+            Column::computed('action')
+                  ->exportable(false)
+                  ->printable(false)
+                  ->width(60)
+                  ->addClass('text-center'),
         ];
     }
 

@@ -100,11 +100,6 @@ class SirkulasiMeninggalDataTable extends DataTable
     public function getColumns(): array
     {
         return [
-            Column::computed('action')
-                  ->exportable(false)
-                  ->printable(false)
-                  ->width(60)
-                  ->addClass('text-center'),
             Column::make('id'),
             Column::make('nama'),
             Column::make('NIK_penduduk'),
@@ -112,6 +107,11 @@ class SirkulasiMeninggalDataTable extends DataTable
             Column::make('sebab'),
             Column::make('created_at'),
             Column::make('updated_at'),
+            Column::computed('action')
+                  ->exportable(false)
+                  ->printable(false)
+                  ->width(60)
+                  ->addClass('text-center'),
         ];
     }
 

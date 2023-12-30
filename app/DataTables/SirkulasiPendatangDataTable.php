@@ -98,11 +98,6 @@ class SirkulasiPendatangDataTable extends DataTable
     public function getColumns(): array
     {
         return [
-            Column::computed('action')
-                  ->exportable(false)
-                  ->printable(false)
-                  ->width(60)
-                  ->addClass('text-center'),
             Column::make('id'),
             Column::make('nama'),
             Column::make('NIK'),
@@ -112,6 +107,11 @@ class SirkulasiPendatangDataTable extends DataTable
             Column::make('alamat_skrg'),
             Column::make('created_at'),
             Column::make('updated_at'),
+            Column::computed('action')
+                  ->exportable(false)
+                  ->printable(false)
+                  ->width(60)
+                  ->addClass('text-center'),
         ];
     }
 
