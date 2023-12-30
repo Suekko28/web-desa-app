@@ -25,7 +25,7 @@ class PendudukExport implements FromQuery, withHeadings, withMapping
     {
         $this->request = $request;
     }
-    
+
     public function query()
     {
         $query = Penduduk::query()->select(
@@ -63,7 +63,7 @@ class PendudukExport implements FromQuery, withHeadings, withMapping
             'agama',
             'rt',
             'rw',
-            
+
         ];
         foreach ($filters as $field) {
             if ($this->request->has($field)) {
@@ -93,7 +93,7 @@ class PendudukExport implements FromQuery, withHeadings, withMapping
             }
             $query->where('usia', '<=', $mx);
         }
-        
+
 
         // order
         $order_column = [
@@ -122,7 +122,7 @@ class PendudukExport implements FromQuery, withHeadings, withMapping
             "penduduk.nama_ayah"
         ];
 
-        
+
         return $query;
     }
 
@@ -175,6 +175,7 @@ class PendudukExport implements FromQuery, withHeadings, withMapping
             $row->rt,
             $row->rw,
             $row->alamat,
+            $row->pendidikan,
             $row->pekerjaan,
             $row->kepemilikan_bpjs,
             $row->kepemilikan_e_ktp,
