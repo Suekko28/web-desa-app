@@ -32,7 +32,7 @@
 
                 <!-- Small boxes (Stat box) -->
 
-                {{-- <form action="{{ route('sirkulasi-pendatang.store') }}" method="POST" enctype="multipart/form-data"> --}}
+                <form action="{{ route('sirkulasi-pendatang.store') }}" method="POST" enctype="multipart/form-data">
                     @csrf
                     <div class="card">
                         <div class="card-body">
@@ -42,7 +42,7 @@
                             <!-- Tampilin Semua Field Di Table Jos !-->
                                     <div class="col-sm-6">
                                         <label for="nik" class="col-form-label">NIK</label>
-                                        <input type="number" class="form-control" id="nik" name="nik"
+                                        <input type="number" class="form-control" id="nik" name="NIK"
                                             placeholder="Masukkan NIK">
                                     </div>
 
@@ -75,7 +75,7 @@
 
                                     <div class="col-sm-12">
                                         <label for="alamat_skrng" class="col-form-label">Alamat Sekarang</label>
-                                        <textarea type="text" class="form-control" id="alamat_skrng" name="alamat_skrng" rows="5"
+                                        <textarea type="text" class="form-control" id="alamat_skrg" name="alamat_skrg" rows="5"
                                             placeholder="Alamat Lengkap (Jl / Kampung  No.Rumah)"></textarea>
                                     </div>
 
@@ -85,7 +85,7 @@
 
                             <div class="d-flex flex-row-reverse">
                                 <button type="submit" class="btn btn-primary ml-3">Simpan</button>
-                                {{-- <a href="{{ route('sirkulasi-pendatang.index') }}" class="btn btn-danger">Batal</a> --}}
+                                    {{-- <a href="{{ route('sirkulasi-pendatang.index') }}" class="btn btn-danger">Batal</a> --}}
                             </div>
 
 

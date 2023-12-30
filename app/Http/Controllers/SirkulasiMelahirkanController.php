@@ -3,6 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\DataTables\SirkulasiMelahirkanDatatable;
+use App\Http\Controllers\Controller;
+use App\Models\Penduduk;
+use App\Models\Anak;
 use App\Models\SirkulasiMelahirkan;
 use Illuminate\Http\Request;
 
@@ -22,7 +25,10 @@ class SirkulasiMelahirkanController extends Controller
      */
     public function create()
     {
-        //
+        $data=Penduduk::all()->unique('NKK');
+        return view('sirkulasi-melahirkan.create',[
+            "data"=>$data,
+        ]);
     }
 
     /**
@@ -30,7 +36,9 @@ class SirkulasiMelahirkanController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        
+        Anak::create($request->all());
+        return redirect()->route('sirkulasi-melahirkan.index')->with('success','Data berhasil ditambahkan');
     }
 
     /**
@@ -44,24 +52,37 @@ class SirkulasiMelahirkanController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(SirkulasiMelahirkan $sirkulasiMelahirkan)
+    public function edit(String $id)
     {
-        //
+        $data=Anak::find($id);
+        $nkk=$data->NKK_keluarga;
+        $data_keluarga=Penduduk::where('NKK','=',$nkk)->first();
+        $data_penduduk=Penduduk::all();
+        
+        return view('sirkulasi-melahirkan.edit',[
+            "data"=>$data,
+            "data_keluarga"=>$data_keluarga,
+            "data_penduduk"=>$data_penduduk,
+        ]);
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, SirkulasiMelahirkan $sirkulasiMelahirkan)
+    public function update(Request $request, String $id)
     {
-        //
+        $user = Anak::find($id);
+        $user->update($request->all());
+        return redirect()->route('sirkulasi-melahirkan.index')->with('success','data berhasil diupdate'); 
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(SirkulasiMelahirkan $sirkulasiMelahirkan)
+    public function destroy(String $id)
     {
-        //
+        $user=Anak::find($id)->delete();
+        return redirect()->route('sirkulasi-melahirkan.index')->with('success','data berhasil dihapus'); 
+        
     }
 }

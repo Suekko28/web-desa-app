@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Support\Facades\File; 
 use App\Exports\PendudukExport;
 use App\DataTables\Scopes\PendudukScope;
 use App\DataTables\PendudukDataTable;
@@ -22,7 +23,7 @@ class PendudukController extends Controller
     public function index(PendudukDataTable $dataTable,Request $request)
     {
         if($dataTable->request()->action != null){
-            return Excel::download(new PendudukExport($request), 'penduduk-'. date('Y-m-d H:i:s') . ($dataTable->request()->action == 'excel' ? '.xlsx' : '.csv'));
+            return Excel::download(new PendudukExport($request), 'penduduk-'. date('Y-m-d H:i:s') . ($dataTable->request()->action == 'excel' ? '.xlsx' : '.csv' ));
         }
         return $dataTable->addScope(new PendudukScope($request))->render('penduduk.index');
     }
@@ -98,6 +99,7 @@ class PendudukController extends Controller
         $nama_file = rand().$request->file_import->getClientOriginalName();
         $request->file_import->move('file_penduduk',$nama_file);
         Excel::import(new PendudukImport, public_path("/file_penduduk/".$nama_file));
+        File::delete(public_path("/file_penduduk/".$nama_file));
         return redirect()->route('penduduk.index')->with('success', 'User Imported Successfully');
     }
     /**
@@ -105,8 +107,8 @@ class PendudukController extends Controller
      */
     public function destroy(string $id)
     {
-        $user=Penduduk::find($id)->delete();
-        return redirect()->route('penduduk.index')->with('success','data berhasil dihapus'); 
+            $user=Penduduk::find($id)->delete();
+            return redirect()->route('penduduk.index')->with('success','data berhasil dihapus'); 
 
     }
 }

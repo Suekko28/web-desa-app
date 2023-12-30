@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Carbon\Carbon;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class penduduk extends Model
 {
@@ -46,6 +47,15 @@ class penduduk extends Model
         'nama_ibu',
         'nama_ayah',
     ];
+
+    public function anak(): HasMany{
+        return $this->hasMany(Anak::class, 'NKK','NKK_keluarga');
+    }
+
+    public function sirkulasiMeninggal(): HasOne{
+        return $this->hasOne(SirkulasiMeninggal::class,'NIK_penduduk','NIK');
+    }      
+
     public function getAgamaAttribute($value)
     {
         $arr=['islam','kristen protestan','kristen katholik','hindu','buddha','khonghucu'];
@@ -72,7 +82,7 @@ class penduduk extends Model
 
     public function getPendidikanAttribute($value)
     {
-        $arr=['tidak sekolah','SD','SLTP Sederajat','SLTA Sederajat','Diploma 1','Diploma 2','Diploma 3','Diploma 4','Stara 1','Stara 2','Stara 3'];
+        $arr=['Belum Sekolah','Tamat SD','Belum Tamat SD','Akademi','SD Sederajat','SLTP Sederajat','SLTA Sederajat','Diploma 1','Diploma 2','Diploma 3','Diploma 4','Stara 1','Stara 2','Stara 3'];
         return $arr[$value-1];
     }
     public function getKepemilikanBpjsAttribute($value)

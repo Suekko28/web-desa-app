@@ -2,7 +2,7 @@
 
 namespace App\DataTables;
 
-use App\Models\SirkulasiMelahirkan;
+use App\Models\Anak;
 use Illuminate\Database\Eloquent\Builder as QueryBuilder;
 use Yajra\DataTables\EloquentDataTable;
 use Yajra\DataTables\Html\Builder as HtmlBuilder;
@@ -22,20 +22,41 @@ class SirkulasiMelahirkanDataTable extends DataTable
      */
     public function dataTable(QueryBuilder $query): EloquentDataTable
     {
+        $this->rowIndex = 0;
+
+        $actionBtn = '<div class="col">
+        <a href="' . route('sirkulasi-melahirkan.index') . '/{{ $id }}/edit" name="edit" class="btn btn-warning"><i class="fa-solid fa-pen-to-square"></i></a>';
+
+        $actionBtn .= '<a href="javascript:void(0)" onclick="confirmDelete($(this))"
+            route="' . route('sirkulasi-melahirkan.index') . '/{{ $id }}" class="btn btn-danger mt-2"><i class="fa-solid fa-trash-can"></i></a>';
+
+        $actionBtn .= '</div>';
+
         return (new EloquentDataTable($query))
-            ->addColumn('action', 'sirkulasimelahirkan.action')
+            ->addColumn('action', $actionBtn)
+            ->rawColumns(['action'])
             ->setRowId('id');
     }
 
     /**
      * Get query source of dataTable.
      *
-     * @param \App\Models\SirkulasiMelahirkan $model
+     * @param \App\Models\Anak $model
      * @return \Illuminate\Database\Eloquent\Builder
      */
-    public function query(SirkulasiMelahirkan $model): QueryBuilder
+    public function query(Anak $model): QueryBuilder
     {
-        return $model->newQuery();
+        return $model->newQuery()
+            ->select(
+                'anak.id as id',
+                'anak.nama as nama',
+                'anak.tmpt_lahir as tmpt_lahir',
+                'anak.tgl_lahir as tgl_lahir',
+                \DB::raw('CASE WHEN jenis_kelamin = 1 THEN "Laki-Laki" ELSE "Perempuan" END AS jenis_kelamin'),
+                'anak.NKK_keluarga as NKK_keluarga',
+                'anak.created_at as created_at',
+                'anak.updated_at as updated_at',
+            );
     }
 
     /**
@@ -45,21 +66,29 @@ class SirkulasiMelahirkanDataTable extends DataTable
      */
     public function html(): HtmlBuilder
     {
+        $btn = [
+            Button::make('add')
+            ->text('+ Tambah Data')
+            ->addClass('rounded'),
+            Button::make('csv')
+            ->addClass('btn-warning rounded')
+            ->text('CSV'),
+            Button::make('excel')
+            ->addClass('btn-success rounded')
+            ->text('Excel'),
+            Button::make('pdf')
+            ->addClass('btn-danger rounded')
+            ->text('PDF'),
+
+        ];
         return $this->builder()
-                    ->setTableId('sirkulasimelahirkan-table')
-                    ->columns($this->getColumns())
-                    ->minifiedAjax()
-                    //->dom('Bfrtip')
-                    ->orderBy(1)
-                    ->selectStyleSingle()
-                    ->buttons([
-                        Button::make('excel'),
-                        Button::make('csv'),
-                        Button::make('pdf'),
-                        Button::make('print'),
-                        Button::make('reset'),
-                        Button::make('reload')
-                    ]);
+            ->setTableId('sirkulasi-melahirkan-table')
+            ->columns($this->getColumns())
+            ->minifiedAjax()
+            ->orderBy(0, 'asc')
+            ->buttons($btn)
+            ->lengthMenu([10, 50, 100])
+            ->responsive(true);
     }
 
     /**
@@ -70,15 +99,19 @@ class SirkulasiMelahirkanDataTable extends DataTable
     public function getColumns(): array
     {
         return [
+            Column::make('id'),
+            Column::make('nama'),
+            Column::make('tmpt_lahir'),
+            Column::make('tgl_lahir'),
+            Column::make('jenis_kelamin'),
+            Column::make('NKK_keluarga'),
+            Column::make('created_at'),
+            Column::make('updated_at'),
             Column::computed('action')
                   ->exportable(false)
                   ->printable(false)
                   ->width(60)
                   ->addClass('text-center'),
-            Column::make('id'),
-            Column::make('add your columns'),
-            Column::make('created_at'),
-            Column::make('updated_at'),
         ];
     }
 

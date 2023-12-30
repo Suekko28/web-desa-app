@@ -150,12 +150,8 @@
                                     <div class="col-sm-4">
                                         <label for="dusun" class="col-form-label">
                                             Dusun</label>
-                                        <select class="form-control" name="dusun" id="dusun">
-                                            <option value="">--Pilih Salah Satu--</option>
-                                            <option value="1">Dusun 1</option>
-                                            <option value="2">Dusun 2</option>
-                                            <option value="3">Dusun 3</option>
-                                        </select>
+                                            <input type="text" class="form-control" id="nama1" name="dusun"
+                                            placeholder="Dusun">
                                     </div>
 
                                     <div class="col-sm-4">

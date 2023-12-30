@@ -7,6 +7,9 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\PemerintahanDesaFormRequest;
 use App\Models\PemerintahanDesa;
 use Barryvdh\DomPDF\Facade\Pdf;
+use Illuminate\Support\Facades\View;
+use Illuminate\Support\Str;
+
 use Illuminate\Http\Request;
 
 class PemerintahanDesaController extends Controller
@@ -14,8 +17,9 @@ class PemerintahanDesaController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index(PemerintahDesaDataTable $dataTable)
+    public function index(PemerintahDesaDataTable $dataTable, Request $request)
     {
+
         return $dataTable->render('pemerintahan-desa.index');
     }
 
@@ -32,15 +36,15 @@ class PemerintahanDesaController extends Controller
      */
     public function store(PemerintahanDesaFormRequest $request)
     {
-        $image=$request->file('profile');
-        $nama_image=rand().$image->getClientOriginalName();
+        $image = $request->file('profile');
+        $nama_image = rand() . $image->getClientOriginalName();
         $image->storeAs('public/desa', $nama_image);
 
-        $data=$request->all();
-        $data['profile']=$nama_image;
+        $data = $request->all();
+        $data['profile'] = $nama_image;
 
         PemerintahanDesa::create($data);
-        return redirect()->route('pemerintahan-desa.index')->with('success','data berhasil ditambahkan');
+        return redirect()->route('pemerintahan-desa.index')->with('success', 'data berhasil ditambahkan');
     }
 
     /**
@@ -56,10 +60,10 @@ class PemerintahanDesaController extends Controller
      */
     public function edit(string $id)
     {
-        $user=PemerintahanDesa::find($id);
-        return view('pemerintahan-desa.edit',[
-                    "data"=>$user,
-            ]);
+        $user = PemerintahanDesa::find($id);
+        return view('pemerintahan-desa.edit', [
+            "data" => $user,
+        ]);
     }
 
     /**
@@ -84,7 +88,7 @@ class PemerintahanDesaController extends Controller
 
         // Update other fields based on the request
         $user->update($request->except('profile'));
-        return redirect()->route('pemerintahan-desa.index')->with('success','data berhasil diubah');
+        return redirect()->route('pemerintahan-desa.index')->with('success', 'data berhasil diubah');
     }
 
     /**
@@ -92,15 +96,24 @@ class PemerintahanDesaController extends Controller
      */
     public function destroy(string $id)
     {
-        $user=PemerintahanDesa::find($id)->delete();
-        return redirect()->route('pemerintahan-desa.index')->with('success','data berhasil dihapus');
+        $user = PemerintahanDesa::find($id)->delete();
+        return redirect()->route('pemerintahan-desa.index')->with('success', 'data berhasil dihapus');
 
     }
 
-    public function cetak_pdf()
+    public function pdfTemplate(PemerintahDesaDataTable $dataTable)
     {
-        $items = PemerintahanDesa::all(); // or retrieve your data as needed
-        $pdf = Pdf::loadView('pemerintahan-desa.pdf', ['items' => $items])->setPaper('a4', 'landscape');
-        return $pdf->stream();
+        // Retrieve the data directly from the query builder
+        $data = $dataTable->query(new PemerintahanDesa())->get();
+    
+        // Send data to the view for PDF rendering
+        $html = view('pemerintahan-desa.generate-pdf', ['data' => $data])->render();
+   
+        // Adjust PDF options including setting paper to landscape
+        $pdf = PDF::loadHtml($html)->setPaper('a4', 'landscape');
+    
+        return $pdf->stream('PemerintahanDesa.pdf');
     }
+
+   
 }

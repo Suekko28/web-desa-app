@@ -1,80 +1,109 @@
-@extends('layouts.app')
-@section('master-title', 'Dashboard/')
-@section('page-title', 'Pemerintahan BPD')
-@section('contents')
-    <link rel="shortcut icon" href="{{ asset('assets/images/favicon.ico') }}">
+<!-- resources/views/pdf/pdf_template.blade.php -->
+<!DOCTYPE html>
+<html lang="en">
 
-    <!-- DataTables -->
-    <link href="{{ asset('assets/libs/datatables.net-bs4/css/dataTables.bootstrap4.min.css') }}" rel="stylesheet"
-        type="text/css" />
-    <link href="{{ asset('assets/libs/datatables.net-buttons-bs4/css/buttons.bootstrap4.min.css') }}" rel="stylesheet"
-        type="text/css" />
-
-    <!-- Responsive datatable examples -->
-    <link href="{{ asset('assets/libs/datatables.net-responsive-bs4/css/responsive.bootstrap4.min.css') }}" rel="stylesheet"
-        type="text/css" />
-
-    <!-- Bootstrap Css -->
-    <link href="{{ asset('assets/css/bootstrap.min.css') }}" id="bootstrap-style" rel="stylesheet" type="text/css" />
-    <!-- Icons Css -->
-    <link href="{{ asset('assets/css/icons.min.css') }}" rel="stylesheet" type="text/css" />
-    <!-- App Css-->
-    <link href="{{ asset('assets/css/app.min.css') }}" id="app-style" rel="stylesheet" type="text/css" />
-    <link rel="stylesheet" href="{{ asset('/css/app.css') }}">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
-        integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA=="
-        crossorigin="anonymous" referrerpolicy="no-referrer" />
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pemerintahan BPD as PDF</title>
+    <!-- Add any additional CSS styling if needed -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 
 
-    <main>
-        <div class="row">
-            <div class="col-12">
-                <div class="card">
-                    <div class="card-body">
-                        <div id="table-default" class="table-responsive">
-                            {{ $dataTable->table() }}
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
+    <style>
+        .pemerintahan,
+        .kecamatan {
+            font-size: 16px;
+            margin: 0;
+        }
+
+        .desa {
+            font-size: 22px;
+            margin: 0;
+        }
+
+        .alamat {
+            font-size: 12px
+        }
+
+
+        .text_header {
+            margin: -10px;
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <table  style="width:90%;">
+            <tbody>
+                <tr>
+                    <td> <img src="{{ public_path('assets/images/logo.png') }}" alt="Logo Sawitri" height="100">
+                    </td>
+                    <td class="text-center text_header">
+                        <h1 class="pemerintahan">PEMERINTAH KABUPATEN BOGOR</h1>
+                        <h1 class="kecamatan">KECAMATAN CITEREUP</h1>
+                        <h1 class="desa">DESA TARIKOLOT</h1>
+                        <p class="alamat">Alamat: Jl. Industri No.65 Desa Tarikolot Citereup Bogor 16810 Telp. (021)
+                            87943708
+                            <br>
+                            Website: <a
+                                href="http://www.tarikolot-citereup.desa.id">http://www.tarikolot-citereup.desa.id</a>
+                            <br>
+                            Email: <a href="mailto:desatarikolotsawitri@gmail.com">desatarikolotsawitri@gmail.com</a>
+                        </p>
+                    </td>
+                </tr>
+            <tbody>
+        </table>
+    </header>
+    <hr style="height:4px;border-width:0;color:black;background-color:black" class="my-2">
+    <hr style="height:2px;border-width:0;color:black;background-color:black" class="my-2">
+    <main class="flex-grow-1">
+        <h5 class="text-center mt-3 mb-3">Data Pemerintahan BPD</h5>
+        <table class="table table-bordered text-center vw-100 mw-100">
+            <thead>
+                <tr>
+                    <th scope="col">No</th>
+                    <th scope="col">Nama</th>
+                    <th scope="col">Jabatan</th>
+                    <th scope="col">Tempat Lahir</th>
+                    <th scope="col">Alamat</th>
+                    <th scope="col">No Telepon</th>
+                    <th scope="col">No SK</th>
+                    <th scope="col">Tanggal SK</th>
+                </tr>
+            </thead>
+            <tbody>
+                @php $i=1 @endphp
+                @foreach ($data as $row)
+                    <tr>
+                        <td>{{ $i++ }}</td>
+                        <td>{{ $row->nama }}</td>
+                        <td>{{ $row->jabatan }}</td>
+                        <td>{{ $row->tmpt_lahir }}</td>
+                        <td>{{ $row->alamat }}</td>
+                        <td>{{ $row->no_telepon }}</td>
+                        <td>{{ $row->no_sk }}</td>
+                        <td>{{ $row->tgl_sk }}</td>
+                    </tr>
+                @endforeach
+            </tbody>
+        </table>
     </main>
 
+    <!-- Include Bootstrap JS (optional) -->
 
-
-    <script src="{{ asset('assets/libs/jquery/jquery.min.js') }}"></script>
-    <script src="{{ asset('assets/libs/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
-    <script src="{{ asset('assets/libs/metismenu/metisMenu.min.js') }}"></script>
-    <script src="{{ asset('assets/libs/simplebar/simplebar.min.js') }}"></script>
-    <script src="{{ asset('assets/libs/node-waves/waves.min.js') }}"></script>
-
-    <!-- Required datatable js -->
-    <script src="{{ asset('assets/libs/datatables.net/js/jquery.dataTables.min.js') }}"></script>
-    <script src="{{ asset('assets/libs/datatables.net-bs4/js/dataTables.bootstrap4.min.js') }}"></script>
-    <!-- Buttons examples -->
-    <script src="{{ asset('assets/libs/datatables.net-buttons/js/dataTables.buttons.min.js') }}"></script>
-    <script src="{{ asset('assets/libs/datatables.net-buttons-bs4/js/buttons.bootstrap4.min.js') }}"></script>
-    <script src="{{ asset('assets/libs/jszip/jszip.min.js') }}"></script>
-    <script src="{{ asset('assets/libs/pdfmake/build/pdfmake.min.js') }}"></script>
-    <script src="{{ asset('assets/libs/pdfmake/build/vfs_fonts.js') }}"></script>
-    <script src="{{ asset('assets/libs/datatables.net-buttons/js/buttons.html5.min.js') }}"></script>
-    <script src="{{ asset('assets/libs/datatables.net-buttons/js/buttons.print.min.js') }}"></script>
-    <script src="{{ asset('assets/libs/datatables.net-buttons/js/buttons.colVis.min.js') }}"></script>
-    <!-- Responsive examples -->
-    <script src="{{ asset('assets/libs/datatables.net-responsive/js/dataTables.responsive.min.js') }}"></script>
-    <script src="{{ asset('assets/libs/datatables.net-responsive-bs4/js/responsive.bootstrap4.min.js') }}"></script>
-
-    <!-- Datatable init js -->
-    <script src="{{ asset('assets/js/pages/datatables.init.js') }}"></script>
-
-    <!-- App js -->
-    <script src="{{ asset('assets/js/app.js') }}"></script>
-    <script defer src="https://use.fontawesome.com/releases/v5.15.4/js/fontawesome.js"
-        integrity="sha384-dPBGbj4Uoy1OOpM4+aRGfAOc0W37JkROT+3uynUgTHZCHZNMHfGXsmmvYTffZjYO" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous">
     </script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.14.7/dist/umd/popper.min.js"
+        integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous">
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/js/bootstrap.min.js"
+        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous">
+    </script>
+</body>
 
-@endsection
-
-@push('scripts')
-    {{ $dataTable->scripts(attributes: ['type' => 'module']) }}
-@endpush
+</html>

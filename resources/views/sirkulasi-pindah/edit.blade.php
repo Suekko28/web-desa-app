@@ -45,29 +45,38 @@
                                     <!-- Tampilin Semua Field Di Table Jos !-->
                                     <div class="col-sm-6">
                                         <label for="penduduk" class="col-form-label">Penduduk</label>
-                                        <select id="penduduk" name="penduduk" class="form-control" required>
-                                            <option value="" selected>--Pilih Penduduk--</option>
-                                            <option value="1">(Diambil dari data penduduk(NIK+Nama))</option>
-                                            <option value="2">(Diambil dari data penduduk(NIK+Nama))</option>
-                                        </select>
+                                        <div class="dropdown">
+                                            <button class="form-control dropdown-toggle text-left" type="button"
+                                                data-bs-toggle="dropdown" aria-expanded="false" name="penduduk">
+                                                --Pilih Penduduk--
+                                            </button>
+                                            <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton"
+                                                id="pendudukDropdown">
+                                                <input type="text" id="pendudukSearchInput" class="form-control"
+                                                    placeholder="Cari Penduduk...">
+                                                {{-- <li><a class="dropdown-item" href="#" value="">--Pilih Penduduk--</a></li> --}}
+                                                @foreach ( $data_penduduk as $i )
+                                                    <li><div class="dropdown-item" value="{{ $i->NIK }}">{{ $i->NIK . " - " . $i->nama }}</div></li>
+                                                @endforeach
+                                            </ul>
+                                        </div>
                                     </div>
-
 
                                     <div class="col-sm-6">
                                         <label for="tgl_pindah" class="col-form-label">Tanggal Pindah</label>
                                         <input type="date" class="form-control" id="tgl_pindah" name="tgl_pindah"
-                                            placeholder="">
+                                            placeholder="" value="{{$data->tgl_pindah}}">
                                     </div>
 
                                     <div class="col-sm-12">
                                         <label for="alasan" class="col-form-label">Alasan</label>
-                                        <textarea type="text" class="form-control" id="alasan" name="alasan" rows="5" placeholder="Alasan Pindah"></textarea>
+                                        <textarea type="text" class="form-control" id="alasan" name="alasan" rows="5" placeholder="Alasan Pindah">{{$data->alasan}}</textarea>
                                     </div>
 
                                     <div class="col-sm-12">
                                         <label for="alamat_pindah" class="col-form-label">Alamat Pindah</label>
                                         <textarea type="text" class="form-control" id="alamat_pindah" name="alamat_pindah" rows="5"
-                                            placeholder="Alamat Lengkap (Jl / Kampung  No.Rumah"></textarea>
+                                            placeholder="Alamat Lengkap (Jl / Kampung  No.Rumah">{{$data->alamat_pindah}}</textarea>
                                     </div>
 
 
@@ -117,6 +126,47 @@
     <script defer src="https://use.fontawesome.com/releases/v5.15.4/js/fontawesome.js"
         integrity="sha384-dPBGbj4Uoy1OOpM4+aRGfAOc0W37JkROT+3uynUgTHZCHZNMHfGXsmmvYTffZjYO" crossorigin="anonymous">
     </script>
+
+    <script>
+        function searchPenduduk() {
+            var input, filter, ul, li, a, i, txtValue;
+            input = document.getElementById("pendudukSearchInput");
+            filter = input.value.toUpperCase();
+            ul = document.getElementById("pendudukDropdown");
+            li = ul.getElementsByTagName("li");
+
+            for (i = 0; i < li.length; i++) {
+                a = li[i].getElementsByTagName("a")[0];
+                txtValue = a.textContent || a.innerText;
+
+                if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                    li[i].style.display = "";
+                } else {
+                    li[i].style.display = "none";
+                }
+            }
+        }
+
+        // Menambahkan event listener untuk input pencarian
+        var searchInput = document.getElementById("pendudukSearchInput");
+        searchInput.addEventListener("input", searchPenduduk);
+
+        // Menambahkan event listener untuk setiap opsi pada dropdown
+        var pendudukOptions = document.querySelectorAll("#pendudukDropdown .dropdown-item");
+        pendudukOptions.forEach(function(option) {
+            option.addEventListener("click", function() {
+                selectPenduduk(option.getAttribute("value"), option.textContent);
+            });
+        });
+
+        // Fungsi untuk menangani pemilihan pada dropdown
+        function selectPenduduk(value, label) {
+            var dropdownButton = document.querySelector(".dropdown button");
+            dropdownButton.innerHTML = label;
+            dropdownButton.value = value;
+        }
+    </script>
+
 
 
 @endsection

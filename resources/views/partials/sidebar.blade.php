@@ -52,9 +52,9 @@
                                 <li><a href="{{ route('pemerintahan-sahbandar.index') }}">Sahbandar</a></li>
                                 <li><a href="{{ route('pemerintahan-karang-taruna.index') }}">Karang Taruna</a></li>
                                 <li><a href="{{ route('pemerintahan-posyandu.index') }}">Posyandu</a></li>
-                                <li><a href="#">RT</a></li>
-                                <li><a href="#">RW</a></li>
-                                <li><a href="#">Kadus</a></li>
+                                <li><a href="{{ route('pemerintahan-rt.index') }}">RT</a></li>
+                                <li><a href="{{ route('pemerintahan-rw.index') }}">RW</a></li>
+                                <li><a href="{{route('pemerintahan-kadus.index')}}">Kadus</a></li>
                             </ul>
                         </li>
 
@@ -68,7 +68,7 @@
                         <span>Data Sirkulasi Desa</span>
                     </a>
                     <ul class="sub-menu mb-2" aria-expanded="false">
-                        <li><a href="">Data Melahirkan</a></li>
+                        <li><a href="{{ route('sirkulasi-melahirkan.index') }}">Data Melahirkan</a></li>
                         <li><a href="">Data Meninggal</a></li>
                         <li><a href="">Data Pendatang</a>
                         </li>
@@ -83,10 +83,10 @@
                         <span>Data Sirkulasi Desa</span>
                     </a>
                     <ul class="sub-menu" aria-expanded="false">
-                        <li><a href="#">Data Melahirkan</a></li>
-                        <li><a href="#">Data Meninggal</a></li>
-                        <li><a href="#">Data Melahirkan</a></li>
-                        <li><a href="#">Data Melahirkan</a></li>
+                        <li><a href="{{ route('sirkulasi-melahirkan.index') }}">Data Melahirkan</a></li>
+                        <li><a href="{{ route('sirkulasi-meninggal.index') }}">Data Meninggal</a></li>
+                        <li><a href="{{ route('sirkulasi-pendatang.index') }}">Data Pendatang</a></li>
+                        <li><a href="{{ route('sirkulasi-pindah.index') }}">Data Pindah</a></li>
                     </ul>
                 </li>
 
@@ -96,7 +96,7 @@
                         <span>LPJ Kegiatan</span>
                     </a>
                     <ul class="sub-menu" aria-expanded="false">
-                        <li><a href="#">Barang dan Jasa</a></li>
+                        <li><a href="{{ route('lpj-barangjasa.index') }}">Barang dan Jasa</a></li>
                     </ul>
                 </li>
 

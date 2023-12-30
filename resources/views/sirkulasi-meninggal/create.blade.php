@@ -32,7 +32,7 @@
 
                 <!-- Small boxes (Stat box) -->
 
-                {{-- <form action="{{ route('sirkulasi-meninggal.store') }}" method="POST" enctype="multipart/form-data"> --}}
+                <form action="{{ route('sirkulasi-meninggal.store') }}" method="POST" enctype="multipart/form-data">
                     @csrf
                     <div class="card">
                         <div class="card-body">
@@ -42,11 +42,17 @@
                                     <!-- Tampilin Semua Field Di Table Jos !-->
                                     <div class="col-sm-4">
                                         <label for="penduduk" class="col-form-label">Penduduk</label>
-                                        <select id="penduduk" name="penduduk" class="form-control" required>
-                                            <option value="" selected>--Pilih Penduduk--</option>
-                                            <option value="1">(Diambil dari data penduduk(NIK+Nama))</option>
-                                            <option value="2">(Diambil dari data penduduk(NIK+Nama))</option>
-                                        </select>
+                                        <div class="dropdown">
+                                            <button class="form-control dropdown-toggle text-left" type="button" data-bs-toggle="dropdown" aria-expanded="false" name="penduduk">
+                                                --Pilih Penduduk--
+                                            </button>
+                                            <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton" id="pendudukDropdown">
+                                                <input type="text" id="pendudukSearchInput" name="NIK_penduduk" class="form-control" placeholder="Cari Penduduk...">
+                                                @foreach ( $data as $i )
+                                                    <li><a class="dropdown-item penduduk-option" href="#" value="{{ $i->NIK }}">{{ $i->NIK . " - " . $i->nama }}</a></li>
+                                                @endforeach
+                                            </ul>
+                                        </div>
                                     </div>
 
                                     <div class="col-sm-4">
@@ -67,7 +73,7 @@
     
                             <div class="d-flex flex-row-reverse">
                                 <button type="submit" class="btn btn-primary ml-3">Simpan</button>
-                                {{-- <a href="{{ route('sirkulasi-melahirkan.index') }}" class="btn btn-danger">Batal</a> --}}
+                                <a href="{{ route('sirkulasi-meninggal.index') }}" class="btn btn-danger">Batal</a>
                             </div>
     
     
@@ -114,5 +120,46 @@
     <script defer src="https://use.fontawesome.com/releases/v5.15.4/js/fontawesome.js"
         integrity="sha384-dPBGbj4Uoy1OOpM4+aRGfAOc0W37JkROT+3uynUgTHZCHZNMHfGXsmmvYTffZjYO" crossorigin="anonymous">
     </script>
+
+<script>
+    function searchPenduduk() {
+        var input, filter, ul, li, a, i, txtValue;
+        input = document.getElementById("pendudukSearchInput");
+        filter = input.value.toUpperCase();
+        ul = document.getElementById("pendudukDropdown");
+        li = ul.getElementsByClassName("penduduk-option");
+
+        for (i = 0; i < li.length; i++) {
+            a = li[i];
+            txtValue = a.textContent || a.innerText;
+
+            if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                li[i].style.display = "";
+            } else {
+                li[i].style.display = "none";
+            }
+        }
+    }
+
+    // Adding event listener for input search
+    var searchInput = document.getElementById("pendudukSearchInput");
+    searchInput.addEventListener("input", searchPenduduk);
+
+    // Adding event listener for each option in the dropdown
+    var pendudukOptions = document.querySelectorAll("#pendudukDropdown .penduduk-option");
+    pendudukOptions.forEach(function(option) {
+        option.addEventListener("click", function() {
+            selectPenduduk(option.getAttribute("value"), option.textContent);
+        });
+    });
+
+    // Handling selection in the dropdown
+    function selectPenduduk(value, label) {
+        var dropdownButton = document.querySelector(".dropdown button[name='penduduk']");
+        dropdownButton.innerHTML = label;
+        var inputVal = document.querySelector("[name='NIK_penduduk']");
+        inputVal.value = value;
+    }
+</script>
 
 @endsection

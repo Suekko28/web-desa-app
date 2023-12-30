@@ -50,7 +50,7 @@
                                         <input type="file" class="form-control" id="profile" name="profile"
                                             placeholder="">
                                         <div>current : <a
-                                                href="{{ asset('storage/posyandu/' . $data->profile) }}">{{ $data->profile }}</a>
+                                                href="{{ asset('storage/rt/' . $data->profile) }}">{{ $data->profile }}</a>
                                         </div>
                                     </div>
                                     <div class="col-sm-4">
