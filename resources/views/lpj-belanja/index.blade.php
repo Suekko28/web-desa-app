@@ -1,6 +1,6 @@
 @extends('layouts.app')
 @section('master-title', 'Data Perbelanjaan/')
-@section('page-title', 'Data Melahirkan')
+@section('page-title', 'Data Perbelanjaan')
 @section('contents')
 
     <link rel="shortcut icon" href="{{ asset('assets/images/favicon.ico') }}">

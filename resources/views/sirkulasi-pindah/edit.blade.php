@@ -48,12 +48,12 @@
                                         <div class="dropdown">
                                             <button class="form-control dropdown-toggle text-left" type="button"
                                                 data-bs-toggle="dropdown" aria-expanded="false" name="penduduk">
-                                                --Pilih Penduduk--
+                                                {{ $data->NIK .' - ' . $nama}}
                                             </button>
                                             <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton"
                                                 id="pendudukDropdown">
-                                                <input type="text" id="pendudukSearchInput" class="form-control"
-                                                    placeholder="Cari Penduduk...">
+                                                <input type="text" id="pendudukSearchInput" name="NIK" class="form-control"
+                                                    placeholder="Cari Penduduk..." value="{{ $data->NIK .' - ' . $nama}}">
                                                 {{-- <li><a class="dropdown-item" href="#" value="">--Pilih Penduduk--</a></li> --}}
                                                 @foreach ( $data_penduduk as $i )
                                                     <li><div class="dropdown-item" value="{{ $i->NIK }}">{{ $i->NIK . " - " . $i->nama }}</div></li>
@@ -161,9 +161,10 @@
 
         // Fungsi untuk menangani pemilihan pada dropdown
         function selectPenduduk(value, label) {
-            var dropdownButton = document.querySelector(".dropdown button");
-            dropdownButton.innerHTML = label;
-            dropdownButton.value = value;
+        var dropdownButton = document.querySelector(".dropdown button[name='penduduk']");
+        dropdownButton.innerHTML = label;
+        var inputVal = document.querySelector("[name='NIK']");
+        inputVal.value = value;
         }
     </script>
 

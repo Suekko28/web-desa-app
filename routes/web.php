@@ -91,8 +91,10 @@ Route::middleware(['auth'])->group(function () {
     Route::Resource('/sirkulasi-pendatang',\App\Http\Controllers\SirkulasiPendatangController::class);
     Route::Resource('/sirkulasi-pindah',\App\Http\Controllers\SirkulasiPindahController::class);
     Route::Resource('/lpj-barangjasa',\App\Http\Controllers\LPJBarangJasaController::class);
-
-
+    Route::Resource('/lpj-belanja',\App\Http\Controllers\LPJBelanjaController::class)->parameters([
+        'create'=>
+    ]);
+    Route::get('/lpj-belanja/{id}/create','\App\Http\Controllers\LPJBelanjaController@create')->name('lpj-belanja.create');
 });
 
 

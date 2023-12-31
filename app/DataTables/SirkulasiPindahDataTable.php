@@ -2,6 +2,7 @@
 
 namespace App\DataTables;
 
+use App\Models\Penduduk;
 use App\Models\SirkulasiPindah;
 use Illuminate\Database\Eloquent\Builder as QueryBuilder;
 use Yajra\DataTables\EloquentDataTable;
@@ -79,17 +80,20 @@ class SirkulasiPindahDataTable extends DataTable
             ->text('Excel'),
             Button::make('pdf')
             ->addClass('btn-danger rounded')
-            ->text('PDF'),
+            ->text('PDF')
+            ->action('function() {
+                window.location.href = "'.route('sirkulasi-meninggal.generate-pdf').'";
+            }'),
+
 
         ];
         return $this->builder()
-            ->setTableId('sirkulasi-pindah-table')
+            ->setTableId('sirkulasi-pendatang')
             ->columns($this->getColumns())
             ->minifiedAjax()
             ->orderBy(0, 'asc')
             ->buttons($btn)
-            ->lengthMenu([10, 50, 100])
-            ->responsive(true);
+            ->lengthMenu([10, 50, 100]);
     }
 
     /**
@@ -101,6 +105,8 @@ class SirkulasiPindahDataTable extends DataTable
     {
         return [
             Column::make('id'),
+            Column::make('NIK'),
+            Column::make('nama'),
             Column::make('tgl_pindah'),
             Column::make('alasan'),
             Column::make('alamat_pindah'),

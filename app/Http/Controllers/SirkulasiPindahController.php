@@ -51,8 +51,12 @@ class SirkulasiPindahController extends Controller
     public function edit(String $id)
     {
         $data=SirkulasiPindah::find($id);
+        $data_penduduk=Penduduk::all();
+        $nama=Penduduk::where('NIK','=',$data->NIK)->first()->nama;
         return view('sirkulasi-pindah.edit',[
             'data'=>$data,
+            'data_penduduk'=>$data_penduduk,
+            'nama'=>$nama,
         ]);
     }
 
