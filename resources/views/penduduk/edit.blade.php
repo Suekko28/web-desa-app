@@ -170,7 +170,7 @@
                                         <label for="dusun" class="col-form-label">
                                             Dusun</label>
                                         <input type="text" class="form-control" id="dusun" name="dusun"
-                                        placeholder="Dusun">
+                                        placeholder="Dusun" value="{{$data->dusun}}">
                                     </div>
 
                                     <div class="col-sm-4">

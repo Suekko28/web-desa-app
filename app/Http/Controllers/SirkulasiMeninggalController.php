@@ -9,6 +9,8 @@ use App\Models\SirkulasiMeninggal;
 use Illuminate\Http\Request;
 use Barryvdh\DomPDF\Facade\Pdf;
 
+
+
 class SirkulasiMeninggalController extends Controller
 {
     /**
