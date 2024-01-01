@@ -6,6 +6,7 @@ use Illuminate\Support\Facades\File;
 use App\Exports\PendudukExport;
 use App\DataTables\Scopes\PendudukScope;
 use App\DataTables\PendudukDataTable;
+use App\DataTables\PendudukFullDataTable;
 use App\Http\Controllers\Controllers;
 use App\Http\Requests\PemerintahanDesaFormRequest;
 use App\Models\Penduduk;
@@ -114,13 +115,13 @@ class PendudukController extends Controller
         return redirect()->route('penduduk.index')->with('success', 'User Imported Successfully');
     }
 
-    public function pdfTemplate(PendudukDataTable $dataTable,Request $request)
+    public function pdfTemplate(PendudukFullDataTable $dataTable,Request $request)
     {
         // Retrieve the data directly from the query builder
         // return $dataTable->addScope(new PendudukScope($request))->render('penduduk.index');
         // $data = $dataTable->query(new Anak())->get();
-        $data = $dataTable->query(new PendudukScope($request))->get();
-        dd($data);
+        $data = $dataTable->query(new Penduduk())->get();
+
         // $data->where('NIK','=','3201035403890005');
         // dd($data);
         // Send data to the view for PDF rendering

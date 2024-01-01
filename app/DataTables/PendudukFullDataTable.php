@@ -2,7 +2,7 @@
 
 namespace App\DataTables;
 
-use App\Models\PendudukFull;
+use App\Models\Penduduk;
 use Illuminate\Database\Eloquent\Builder as QueryBuilder;
 use Yajra\DataTables\EloquentDataTable;
 use Yajra\DataTables\Html\Builder as HtmlBuilder;
@@ -44,20 +44,36 @@ class PendudukFullDataTable extends DataTable
     /**
      * Get query source of dataTable.
      *
-     * @param \App\Models\PendudukFull $model
+     * @param \App\Models\Penduduk $model
      * @return \Illuminate\Database\Eloquent\Builder
      */
-    public function query(PendudukFull $model): QueryBuilder
+    public function query(Penduduk $model): QueryBuilder
     {
         return $model->newQuery()
             ->select(
                 'penduduk.id as id',
+                'penduduk.tgl_pindah_masuk as tgl_pindah_masuk',
+                'penduduk.tgl_lapor as tgl_lapor',
                 'penduduk.NIK as NIK',
                 'penduduk.NKK as NKK',
+                'penduduk.rw as tempat_lahir',
+                'penduduk.rw as tgl_lahir',
                 'penduduk.nama as nama',
                 'penduduk.usia as usia',
+                'penduduk.jenis_kelamin as jenis_kelamin',
+                'penduduk.agama as agama',
+                'penduduk.kewarganegaraan as kewarganegaraan',
+                'penduduk.status_pernikahan as status_pernikahan',
+                'penduduk.dusun as dusun',
                 'penduduk.rt as rt',
                 'penduduk.rw as rw',
+                'penduduk.alamat as alamat',
+                'penduduk.pendidikan as pendidikan',
+                'penduduk.pekerjaan as pekerjaan',
+                'penduduk.kepemilikan_bpjs',
+                'penduduk.kepemilikan_e_ktp',
+                'penduduk.nama_ibu',
+                'penduduk.nama_ayah',
             );
     }
 
@@ -68,21 +84,33 @@ class PendudukFullDataTable extends DataTable
      */
     public function html(): HtmlBuilder
     {
+        $btn = [
+            Button::make('add')
+            ->text('+ Tambah Data')
+            ->addClass('rounded'),
+            Button::make('csv')
+            ->addClass('btn-warning rounded')
+            ->text('CSV'),
+            Button::make('excel')
+            ->addClass('btn-success rounded')
+            ->text('Excel'),
+            Button::make('pdf')
+            ->addClass('btn-danger rounded')
+            ->text('PDF'),
+
+        ];
+        array_push($btn, Button::raw('Import Data')
+            ->addClass('btn-info rounded')
+            ->action("window.location = '" . route('penduduk.import-view') . "';"));
+
+
         return $this->builder()
-                    ->setTableId('pendudukfull-table')
-                    ->columns($this->getColumns())
-                    ->minifiedAjax()
-                    //->dom('Bfrtip')
-                    ->orderBy(1)
-                    ->selectStyleSingle()
-                    ->buttons([
-                        Button::make('excel'),
-                        Button::make('csv'),
-                        Button::make('pdf'),
-                        Button::make('print'),
-                        Button::make('reset'),
-                        Button::make('reload')
-                    ]);
+            ->setTableId('penduduk-desa-table')
+            ->columns($this->getColumns())
+            ->minifiedAjax()
+            ->orderBy(0, 'asc')
+            ->buttons($btn)
+            ->lengthMenu([10, 50, 100]);
     }
 
     /**
@@ -96,10 +124,30 @@ class PendudukFullDataTable extends DataTable
             Column::computed('action')
                   ->exportable(false)
                   ->printable(false)
-                  ->width(60)
+                  ->width(20)
                   ->addClass('text-center'),
             Column::make('id'),
-            Column::make('add your columns'),
+            Column::make('NIK'),
+            Column::make('NKK'),
+            Column::make('nama'),
+            Column::make('tgl_pindah_masuk'),
+            Column::make('tgl_lapor'),
+            Column::make('tempat_lahir'),
+            Column::make('tgl_lahir'),
+            Column::make('usia'),
+            Column::make('jenis_kelamin'),
+            Column::make('agama'),
+            Column::make('kewarganegaraan'),
+            Column::make('dusun'),
+            Column::make('RT'),
+            Column::make('RW'),
+            Column::make('alamat'),
+            Column::make('pendidikan'),
+            Column::make('pekerjaan'),
+            Column::make('kepemilikan_bpjs'),
+            Column::make('kepemilikan_e_ktp'),
+            Column::make('nama_ibu'),
+            Column::make('nama_ayah'),
             Column::make('created_at'),
             Column::make('updated_at'),
         ];
