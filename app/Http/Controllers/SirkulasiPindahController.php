@@ -6,6 +6,8 @@ use App\DataTables\SirkulasiPindahDataTable;
 use App\Models\SirkulasiPindah;
 use Illuminate\Http\Request;
 use App\Models\Penduduk;
+use Barryvdh\DomPDF\Facade\Pdf;
+
 
 class SirkulasiPindahController extends Controller
 {
@@ -77,5 +79,19 @@ class SirkulasiPindahController extends Controller
     {
         $data=SirkulasiPindah::find($id)->delete();
         return redirect()->route('sirkulasi-pindah.index')->with('success','Data berhasil dihapus');
+    }
+
+    public function pdfTemplate(SirkulasiPindahDataTable $dataTable)
+    {
+        // Retrieve the data directly from the query builder
+        $data = $dataTable->query(new SirkulasiPindah())->get();
+    
+        // Send data to the view for PDF rendering
+        $html = view('sirkulasi-pindah.generate-pdf', ['data' => $data])->render();
+   
+        // Adjust PDF options including setting paper to landscape
+        $pdf = PDF::loadHtml($html)->setPaper('a4', 'landscape');
+    
+        return $pdf->stream('SirkulasiPindah.pdf');
     }
 }

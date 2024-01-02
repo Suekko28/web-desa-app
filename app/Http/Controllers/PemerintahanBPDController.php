@@ -112,7 +112,7 @@ class PemerintahanBPDController extends Controller
         $html = view('pemerintahan-bpd.generate-pdf', ['data' => $data])->render();
     
         // Adjust PDF options if needed
-        $pdf = PDF::loadHtml($html)->setPaper('a4', 'landscape');
+        $pdf = PDF::loadHtml($html)->setPaper('f4', 'landscape');
         
         return $pdf->stream('PemerintahanBPD.pdf');
     }

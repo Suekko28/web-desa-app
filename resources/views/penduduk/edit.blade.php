@@ -1,6 +1,6 @@
 @extends('layouts.app')
 @section('master-title', 'Data Penduduk/')
-@section('page-title', 'Create')
+@section('page-title', 'Edit')
 @section('contents')
     <link rel="shortcut icon" href="{{ asset('assets/images/favicon.ico') }}">
 
@@ -170,7 +170,7 @@
                                         <label for="dusun" class="col-form-label">
                                             Dusun</label>
                                         <input type="text" class="form-control" id="dusun" name="dusun"
-                                        placeholder="Dusun" value="{{$data->dusun}}">
+                                            placeholder="Dusun" value="{{ $data->dusun }}">
                                     </div>
 
                                     <div class="col-sm-4">
@@ -238,22 +238,51 @@
                                     </div>
 
                                     <div class="col-sm-6">
-                                        <label for="pekerjaan" class="col-form-label">Pekerjaan</label>
-                                        <select class="form-control pekerjaan" name="pekerjaan" id="pekerjaan">
+                                        <label for="pekerjaan" class="col-form-label">
+                                            Pekerjaan</label>
+                                        <select class="form-control" name="pekerjaan" id="pekerjaan">
                                             <option value="">--Pilih Salah Satu--</option>
-                                            <option value="1" @if (old('pekerjaan', $data->pekerjaan) == 'Karyawan Swasta') selected @endif>
-                                                Karyawan Swasta</option>
-                                            <option value="2" @if (old('pekerjaan', $data->pekerjaan) == 'Pengrajin') selected @endif>
-                                                Pengrajin</option>
-                                            <option value="3" @if (old('pekerjaan', $data->pekerjaan) == 'Wirausaha') selected @endif>
+                                            <option value="1" @if ($data->pekerjaan == 'Buruh Harian Lepas') selected @endif>
+                                                Buruh Harian Lepas</option>
+                                            <option value="2" @if ($data->pekerjaan == 'Belum Bekerja') selected @endif>
+                                                Belum Bekerja</option>
+                                            <option value="3" @if ($data->pekerjaan == 'Pengrajin Logam') selected @endif>
+                                                Pengrajin Logam</option>
+                                            <option value="4" @if ($data->pekerjaan == 'Wiraswasta') selected @endif>
+                                                Wiraswasta</option>
+                                            <option value="5" @if ($data->pekerjaan == 'Guru') selected @endif>
+                                                Guru</option>
+                                            <option value="6" @if ($data->pekerjaan == 'Mengurus Rumah Tangga') selected @endif>
+                                                Mengurus Rumah Tangga</option>
+                                            <option value="7" @if ($data->pekerjaan == 'Pegawai Negri Sipil') selected @endif>
+                                                Pegawai Negri Sipil</option>
+                                            <option value="8" @if ($data->pekerjaan == 'Tentara Nasional Indonesia') selected @endif>
+                                                Tentara Nasional Indonesia</option>
+                                            <option value="9" @if ($data->pekerjaan == 'Guru ngaji') selected @endif>
+                                                Guru ngaji</option>
+                                            <option value="10" @if ($data->pekerjaan == 'Wirausaha') selected @endif>
                                                 Wirausaha</option>
-                                            <option value="4" @if (old('pekerjaan', $data->pekerjaan) == 'Guru') selected @endif>Guru
-                                            </option>
-                                            <option value="5" @if (old('pekerjaan', $data->pekerjaan) == 'Petani') selected @endif>
+                                            <option value="11" @if ($data->pekerjaan == 'Penjahit') selected @endif>
+                                                Penjahit</option>
+                                            <option value="12" @if ($data->pekerjaan == 'Pensiun PNS') selected @endif>
+                                                Pensiun PNS</option>
+                                            <option value="13" @if ($data->pekerjaan == 'Pemulung') selected @endif>
+                                                Pemulung</option>
+                                            <option value="14" @if ($data->pekerjaan == 'Buruh') selected @endif>
+                                                Buruh</option>
+                                            <option value="15" @if ($data->pekerjaan == 'Linmas wilayah') selected @endif>
+                                                Linmas wilayah</option>
+                                            <option value="16" @if ($data->pekerjaan == 'Driver') selected @endif>
+                                                Driver</option>
+                                            <option value="17" @if ($data->pekerjaan == 'Petani') selected @endif>
                                                 Petani</option>
+                                            <option value="18" @if ($data->pekerjaan == 'Amil') selected @endif>
+                                                Amil</option>
+                                            <option value="19" @if ($data->pekerjaan == 'Service') selected @endif>
+                                                Service</option>
                                         </select>
                                     </div>
-
+                                    
 
 
 
@@ -277,10 +306,10 @@
                                     </div>
 
                                     <div class="col-sm-6">
-                                        <label for="e_ktp" class="col-form-label">
+                                        <label for="kepemilikan_e_ktp" class="col-form-label">
                                             Kepemilikan E-KTP</label>
-                                        <select class="form-control" class="e_ktp" name="kepemilikan_e_ktp"
-                                            id="e_ktp">
+                                        <select class="form-control" class="kepemilikan_e_ktp" name="kepemilikan_e_ktp"
+                                            id="kepemilikan_e_ktp">
                                             <option value="">--Pilih Salah Satu--</option>
                                             <option value="1" @if ($data->kepemilikan_e_ktp == 'ada') selected @endif>Ada
                                             </option>
@@ -372,7 +401,7 @@
 
             // Periksa apakah ulang tahun sudah terjadi atau belum
             if (today.getMonth() < dob.getMonth() || (today.getMonth() === dob.getMonth() && today.getDate() < dob
-                .getDate())) {
+                    .getDate())) {
                 age--;
             }
 

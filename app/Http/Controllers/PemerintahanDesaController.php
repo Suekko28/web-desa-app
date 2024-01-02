@@ -110,7 +110,7 @@ class PemerintahanDesaController extends Controller
         $html = view('pemerintahan-desa.generate-pdf', ['data' => $data])->render();
    
         // Adjust PDF options including setting paper to landscape
-        $pdf = PDF::loadHtml($html)->setPaper('a4', 'landscape');
+        $pdf = PDF::loadHtml($html)->setPaper('f4', 'landscape');
     
         return $pdf->stream('PemerintahanDesa.pdf');
     }

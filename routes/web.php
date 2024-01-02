@@ -91,7 +91,11 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/sirkulasi-pendatang/generate-pdf', [\App\Http\Controllers\SirkulasiPendatangController::class, 'pdfTemplate'])
     ->name('sirkulasi-pendatang.generate-pdf');
     Route::Resource('/sirkulasi-pendatang',\App\Http\Controllers\SirkulasiPendatangController::class);
+    Route::get('/sirkulasi-pindah/generate-pdf', [\App\Http\Controllers\SirkulasiPindahController::class, 'pdfTemplate'])
+    ->name('sirkulasi-pindah.generate-pdf');
     Route::Resource('/sirkulasi-pindah',\App\Http\Controllers\SirkulasiPindahController::class);
+    Route::get('/lpj-barangjasa/generate-pdf', [\App\Http\Controllers\LPJBarangJasaController::class, 'pdfTemplate'])
+    ->name('lpj-barangjasa.generate-pdf');
     Route::Resource('/lpj-barangjasa',\App\Http\Controllers\LPJBarangJasaController::class);
     Route::Resource('/lpj-belanja',\App\Http\Controllers\LPJBelanjaController::class);
     Route::get('/lpj-belanja/{id}/create','\App\Http\Controllers\LPJBelanjaController@create')->name('lpj-belanja.create');

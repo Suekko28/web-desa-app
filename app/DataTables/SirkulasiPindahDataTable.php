@@ -82,13 +82,13 @@ class SirkulasiPindahDataTable extends DataTable
             ->addClass('btn-danger rounded')
             ->text('PDF')
             ->action('function() {
-                window.location.href = "'.route('sirkulasi-meninggal.generate-pdf').'";
+                window.location.href = "'.route('sirkulasi-pindah.generate-pdf').'";
             }'),
 
 
         ];
         return $this->builder()
-            ->setTableId('sirkulasi-pendatang')
+            ->setTableId('sirkulasi-pindah')
             ->columns($this->getColumns())
             ->minifiedAjax()
             ->orderBy(0, 'asc')

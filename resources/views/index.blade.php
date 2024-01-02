@@ -128,7 +128,7 @@
                         <i class="fas fa-solid fa-user fa-2x mr-3 p-3 bg-primary rounded" style="color:white;"></i>
                         <div class="d-flex flex-column">
                             <h5 class="">Total Penduduk</h5>
-                            <h5 class="">{{ $penduduk->count() }}</h5>
+                            <h5 class="">{{ $penduduk_all->count() }}</h5>
                         </div>
                     </div>
                 </div>

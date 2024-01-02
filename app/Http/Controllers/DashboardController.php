@@ -62,6 +62,7 @@ class DashboardController extends Controller
 
         $penduduk = Penduduk::doesntHave('sirkulasimeninggal')->doesntHave('sirkulasipindah');
 
+        $penduduk_all = Penduduk::get();
 
         $pekerjaan_swasta = Penduduk::where('pekerjaan', '1');
         $pekerjaan_pengrajin = Penduduk::where('pekerjaan', '2');
@@ -75,7 +76,9 @@ class DashboardController extends Controller
         $pindah_masuk = SirkulasiPendatang::count();
         $pindah_keluar = SirkulasiPindah::count();
        
-        return view('index', compact('penduduk',
+        return view('index', compact(
+            'penduduk',
+            'penduduk_all',
             'jumlah_laki_laki',
             'jumlah_perempuan',
             'jumlah_kepemilikan_e_ktp_ada',

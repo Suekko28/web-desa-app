@@ -7,6 +7,8 @@ use App\Http\Requests\PemerintahanLPJRequest;
 use App\Models\LPJBarangJasa;
 use App\Models\LPJKegiatan;
 use Illuminate\Http\Request;
+use Barryvdh\DomPDF\Facade\Pdf;
+
 
 class LPJBarangJasaController extends Controller
 {
@@ -44,11 +46,11 @@ class LPJBarangJasaController extends Controller
      */
     public function show(LPJBarangJasa $lPJKegiatan)
     {
-        $data=LPJBarangJasa::find($id);
+        // $data=LPJBarangJasa::find($id);
      
-        return view('lpj-barangjasa.view',[
-            "data"=>$data,
-        ]); 
+        // return view('lpj-barangjasa.view',[
+        //     "data"=>$data,
+        // ]); 
     }
 
     /**
@@ -80,5 +82,19 @@ class LPJBarangJasaController extends Controller
         $user=LPJBarangJasa::find($id)->delete();
         return redirect()->route('lpj-barangjasa.index')->with('success','data berhasil dihapus'); 
 
+    }
+
+    public function pdfTemplate(LPJBarangJasaDataTable $dataTable)
+    {
+        // Retrieve the data directly from the query builder
+        $data = $dataTable->query(new LPJBarangJasa())->get();
+    
+        // Send data to the view for PDF rendering
+        $html = view('lpj-barangjasa.generate-pdf', ['data' => $data])->render();
+   
+        // Adjust PDF options including setting paper to landscape
+        $pdf = PDF::loadHtml($html)->setPaper('f4', 'landscape');
+    
+        return $pdf->stream('BarangdanJasa.pdf');
     }
 }

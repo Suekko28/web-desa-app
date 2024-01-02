@@ -16,7 +16,6 @@ use Carbon\Carbon;
 use Illuminate\Http\Request;
 use App\Http\Requests\PendudukFormRequest;
 use App\Imports\PendudukImport;
-use App\Http\Controllers\PendudukController;
 use Maatwebsite\Excel\Facades\Excel;
 use Barryvdh\DomPDF\Facade\Pdf;
 
@@ -128,7 +127,7 @@ class PendudukController extends Controller
         $html = view('penduduk.generate-pdf', ['data' => $data])->render();
    
         // Adjust PDF options including setting paper to landscape
-        $pdf = PDF::loadHtml($html)->setPaper('a4', 'landscape');
+        $pdf = PDF::loadHtml($html)->setPaper('f4', 'landscape');
     
         return $pdf->stream('Penduduk.pdf');
     }

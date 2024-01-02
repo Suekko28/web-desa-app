@@ -111,7 +111,7 @@ class PemerintahanRWController extends Controller
         $html = view('pemerintahan-rw.generate-pdf', ['data' => $data])->render();
     
         // Adjust PDF options if needed
-        $pdf = PDF::loadHtml($html)->setPaper('a4', 'landscape');
+        $pdf = PDF::loadHtml($html)->setPaper('f4', 'landscape');
         
         return $pdf->stream('PemerintahanRW.pdf');
     }

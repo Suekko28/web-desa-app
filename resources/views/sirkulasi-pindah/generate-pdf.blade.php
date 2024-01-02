@@ -5,7 +5,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Data Penduduk as PDF</title>
+    <title>Pemerintahan Pindah as PDF</title>
     <!-- Add any additional CSS styling if needed -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
         integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
@@ -31,13 +31,7 @@
         .text_header {
             margin: -10px;
         }
-
-        table, td,th {
-        font-size: 4px;
-        
-    }
     </style>
-    
 </head>
 
 <body>
@@ -67,39 +61,15 @@
     <hr style="height:4px;border-width:0;color:black;background-color:black" class="my-2">
     <hr style="height:2px;border-width:0;color:black;background-color:black" class="my-2">
     <main class="flex-grow-1">
-        <h5 class="text-center mt-3 mb-3">Data Penduduk</h5>
-        <div class="table-responsive">
-        <table class="table table-bordered text-center">
+        <h5 class="text-center mt-3 mb-3">Data Pindah</h5>
+        <table class="table table-bordered text-center vw-100 mw-100">
             <thead>
                 <tr>
                     <th scope="col">No</th>
-                    <th scope="col">Nama Lengkap</th>
-                    <th scope="col">Tanggal Pindah Masuk</th>
-                    <th scope="col">Tanggal Lapor</th>
+                    <th scope="col">Nama</th>
                     <th scope="col">NIK</th>
-                    <th scope="col">NKK</th>
-                    <th scope="col">Tanggal Lahir</th>
-                    <th scope="col">Usia</th>
-                    <th scope="col">Tempat Lahir</th>
-                    <th scope="col">Jenis Kelamin</th>
-                    <th scope="col">Agama</th>
-                    <th scope="col">Warga Negara</th>
-                    <th scope="col">Status Pernikahan</th>
-                    <th scope="col">Dusun</th>
-                    <th scope="col">RT</th>
-                    <th scope="col">RW</th>
-                    <th scope="col">Alamat</th>
-                    <th scope="col">Pendidikan</th>
-                    <th scope="col">Pekerjaan</th>
-                    <th scope="col">Kepemilikan BPJS</th>
-                    <th scope="col">Kepemilikan E-KTP</th>
-                    <th scope="col">Nama Ibu</th>
-                    <th scope="col">Nama Ayah</th>
-
-
-
-
-                    
+                    <th scope="col">Alasan</th>
+                    <th scope="col">Alamat Pindah</th>
                 </tr>
             </thead>
             <tbody>
@@ -108,35 +78,13 @@
                     <tr>
                         <td>{{ $i++ }}</td>
                         <td>{{ $row->nama }}</td>
-                        <td>{{ $row->tgl_pindah_masuk }}</td>
-                        <td>{{ $row->tgl_lapor }}</td>
                         <td>{{ $row->NIK }}</td>
-                        <td>{{ $row->NKK }}</td>
-                        <td>{{ $row->tgl_lahir }}</td>
-                        <td>{{ $row->usia }}</td>
-                        <td>{{ $row->tempat_lahir }}</td>
-                        <td>{{ $row->jenis_kelamin }}</td>
-                        <td>{{ $row->agama }}</td>
-                        <td>{{ $row->kewarganegaraan }}</td>
-                        <td>{{ $row->status_pernikahan }}</td>
-                        <td>{{ $row->dusun }}</td>
-                        <td>{{ $row->rt }}</td>
-                        <td>{{ $row->rw }}</td>
-                        <td>{{ $row->alamat }}</td>
-                        <td>{{ $row->pendidikan }}</td>
-                        <td>{{ $row->pekerjaan }}</td>
-                        <td>{{ $row->kepemilikan_bpjs }}</td>
-                        <td>{{ $row->kepemilikan_e_ktp }}</td>
-                        <td>{{ $row->nama_ibu }}</td>
-                        <td>{{ $row->nama_ayah }}</td>
-
-
-
+                        <td>{{ $row->alasan }}</td>
+                        <td>{{ $row->alamat_pindah }}</td>
                     </tr>
                 @endforeach
             </tbody>
         </table>
-    </div>
     </main>
 
     <!-- Include Bootstrap JS (optional) -->
