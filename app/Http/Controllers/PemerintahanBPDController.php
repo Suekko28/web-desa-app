@@ -86,7 +86,7 @@ class PemerintahanBPDController extends Controller
             // Update the profile field with the new filename
             $user->update(['profile' => $nama_image]);
         }
-
+            
         // Update other fields based on the request
         $user->update($request->except('profile'));
 
