@@ -6,14 +6,19 @@ use Illuminate\Support\Facades\File;
 use App\Exports\PendudukExport;
 use App\DataTables\Scopes\PendudukScope;
 use App\DataTables\PendudukDataTable;
-use App\Http\Controllers\Controller;
+use App\DataTables\PendudukFullDataTable;
+use App\Http\Controllers\Controllers;
 use App\Http\Requests\PemerintahanDesaFormRequest;
 use App\Models\Penduduk;
+use App\Models\Anak;
+
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use App\Http\Requests\PendudukFormRequest;
 use App\Imports\PendudukImport;
+use App\Http\Controllers\PendudukController;
 use Maatwebsite\Excel\Facades\Excel;
+use Barryvdh\DomPDF\Facade\Pdf;
 
 class PendudukController extends Controller
 {
@@ -22,6 +27,13 @@ class PendudukController extends Controller
      */
     public function index(PendudukDataTable $dataTable,Request $request)
     {
+        // dd($request);
+
+        if($dataTable->request()->action =='pdf'){
+
+            return redirect()->route('penduduk.generate-pdf',[$request]);
+        }
+
         if($dataTable->request()->action != null){
             return Excel::download(new PendudukExport($request), 'penduduk-'. date('Y-m-d H:i:s') . ($dataTable->request()->action == 'excel' ? '.xlsx' : '.csv' ));
         }
@@ -102,6 +114,25 @@ class PendudukController extends Controller
         File::delete(public_path("/file_penduduk/".$nama_file));
         return redirect()->route('penduduk.index')->with('success', 'User Imported Successfully');
     }
+
+    public function pdfTemplate(PendudukFullDataTable $dataTable,Request $request)
+    {
+        // Retrieve the data directly from the query builder
+        // return $dataTable->addScope(new PendudukScope($request))->render('penduduk.index');
+        // $data = $dataTable->query(new Anak())->get();
+        $data = $dataTable->query(new Penduduk())->get();
+
+        // $data->where('NIK','=','3201035403890005');
+        // dd($data);
+        // Send data to the view for PDF rendering
+        $html = view('penduduk.generate-pdf', ['data' => $data])->render();
+   
+        // Adjust PDF options including setting paper to landscape
+        $pdf = PDF::loadHtml($html)->setPaper('a4', 'landscape');
+    
+        return $pdf->stream('Penduduk.pdf');
+    }
+
     /**
      * Remove the specified resource from storage.
      */

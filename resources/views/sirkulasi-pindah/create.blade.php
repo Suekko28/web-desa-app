@@ -48,7 +48,7 @@
                                             --Pilih Penduduk--
                                         </button>
                                         <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton" id="pendudukDropdown">
-                                            <input type="text" id="pendudukSearchInput" class="form-control"
+                                            <input type="text" id="pendudukSearchInput" name="NIK" class="form-control"
                                                 placeholder="Cari Penduduk...">
                                             @foreach ($data_penduduk as $i)
                                                 <li><a class="dropdown-item penduduk-option" href="#" value="{{ $i->NIK }}">{{ $i->NIK . " - " . $i->nama }}</a></li>
@@ -159,7 +159,7 @@
     function selectPenduduk(value, label) {
         var dropdownButton = document.querySelector(".dropdown button[name='penduduk']");
         dropdownButton.innerHTML = label;
-        var inputVal = document.querySelector("[name='NIK_penduduk']");
+        var inputVal = document.querySelector("[name='NIK']");
         inputVal.value = value;
     }
 </script>

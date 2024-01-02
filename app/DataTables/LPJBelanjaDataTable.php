@@ -2,7 +2,7 @@
 
 namespace App\DataTables;
 
-use App\Models\LPJBarangJasa;
+use App\Models\LPJBelanja;
 use Illuminate\Database\Eloquent\Builder as QueryBuilder;
 use Yajra\DataTables\EloquentDataTable;
 use Yajra\DataTables\Html\Builder as HtmlBuilder;
@@ -12,7 +12,7 @@ use Yajra\DataTables\Html\Editor\Editor;
 use Yajra\DataTables\Html\Editor\Fields;
 use Yajra\DataTables\Services\DataTable;
 
-class LPJBarangJasaDataTable extends DataTable
+class LPJBelanjaDataTable extends DataTable
 {
     /**
      * Build DataTable class.
@@ -22,8 +22,6 @@ class LPJBarangJasaDataTable extends DataTable
      */
     public function dataTable(QueryBuilder $query): EloquentDataTable
     {
-        $this->rowIndex = 0;
-
         $actionBtn = '<div class="col">
         <a href="' . route('lpj-barangjasa.index') . '/{{ $id }}/edit" name="edit" class="btn btn-warning"><i class="fa-solid fa-pen-to-square"></i></a>';
 
@@ -44,28 +42,18 @@ class LPJBarangJasaDataTable extends DataTable
     /**
      * Get query source of dataTable.
      *
-     * @param \App\Models\LPJBarangJasa $model
+     * @param \App\Models\LPJBelanja $model
      * @return \Illuminate\Database\Eloquent\Builder
      */
-    public function query(LPJBarangJasa $model): QueryBuilder
+    public function query(LPJBelanja $model): QueryBuilder
     {
         return $model->newQuery()
             ->select(
-                'lpj-barang-jasa.id as id',
-                'lpj-barang-jasa.no_pesanan_brg as no_pesanan_barang',
-                'lpj-barang-jasa.no_berita_acara as no_berita_acara',
-                'lpj-barang-jasa.nama_pelaksana_kegiatan as nama_pelaksana_kegiatan',
-                'lpj-barang-jasa.sk_tpk as sk_tpk',
-                'lpj-barang-jasa.nama_rincian_spp as nama_rincian_spp',
-                'lpj-barang-jasa.uraian_kwitansi as uraian_kwitansi',
-                'lpj-barang-jasa.tgl_pesanan as tgl_pesanan',
-                'lpj-barang-jasa.tgl_bast as tgl_bast',
-                'lpj-barang-jasa.jatuh_tempo as jatuh_tempo',
-                'lpj-barang-jasa.jatuh_pemeriksaan as jatuh_pemeriksaan',
-                'lpj-barang-jasa.keterangan as keterangan',
-                'lpj-barang-jasa.nama_toko as nama_toko',
-                'lpj-barang-jasa.pemilik_toko as pemilik_toko',
-                'lpj-barang-jasa.alamat as alamat',
+                'lpj-belanja.id as id',
+                'lpj-belanja.nama_barang as nama_barang',
+                'lpj-belanja.volume_qty as volume_qty',
+                'lpj-belanja.satuan as satuan',
+                'lpj-belanja.harga as harga',
             );
     }
 
@@ -77,13 +65,26 @@ class LPJBarangJasaDataTable extends DataTable
     public function html(): HtmlBuilder
     {
         $btn = [
-            Button::make('add')->text('+ Tambah Data'),
-            Button::make('export')->text('Export Data'),
-
+            Button::make('add')
+            ->text('+ Tambah Data')
+            ->addClass('rounded'),
+            Button::make('csv')
+            ->addClass('btn-warning rounded')
+            ->text('CSV'),
+            Button::make('excel')
+            ->addClass('btn-success rounded')
+            ->text('Excel'),
+            Button::make('pdf')
+            ->addClass('btn-danger rounded')
+            ->text('PDF')
+            ->action('function() {
+                window.location.href = "'.route('pemerintahan-kadus.generate-pdf').'";
+            }'),
 
         ];
+        
         return $this->builder()
-            ->setTableId('lpj-barang-jasa-table')
+            ->setTableId('pembelanjaan-table')
             ->columns($this->getColumns())
             ->minifiedAjax()
             ->orderBy(0, 'asc')
@@ -100,12 +101,13 @@ class LPJBarangJasaDataTable extends DataTable
     {
         return [
             Column::make('id')
-            ->title('No'),
-            Column::make('no_pesanan_barang'),
-            Column::make('no_berita_acara'),
-            Column::make('nama_pelaksana_kegiatan'),
-            Column::make('tgl_pesanan'),
-            Column::make('nama_toko'),
+                ->title('No')
+                ->width(10),
+            Column::make('nama_barang'),
+            Column::make('volume_qty'),
+            Column::make('satuan'),
+            Column::make('harga'),
+            Column::make('updated_at'),
             Column::computed('action')
                 ->exportable(false)
                 ->printable(false)
@@ -121,6 +123,6 @@ class LPJBarangJasaDataTable extends DataTable
      */
     protected function filename(): string
     {
-        return 'LPJBarangJasa_' . date('YmdHis');
+        return 'LPJBelanja_' . date('YmdHis');
     }
 }

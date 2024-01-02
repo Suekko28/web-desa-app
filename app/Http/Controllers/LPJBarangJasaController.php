@@ -44,7 +44,11 @@ class LPJBarangJasaController extends Controller
      */
     public function show(LPJBarangJasa $lPJKegiatan)
     {
-        abort(404);
+        $data=LPJBarangJasa::find($id);
+     
+        return view('lpj-barangjasa.view',[
+            "data"=>$data,
+        ]); 
     }
 
     /**
