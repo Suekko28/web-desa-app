@@ -119,12 +119,61 @@ class PendudukController extends Controller
         // Retrieve the data directly from the query builder
         // return $dataTable->addScope(new PendudukScope($request))->render('penduduk.index');
         // $data = $dataTable->query(new Anak())->get();
-        $data = $dataTable->query(new Penduduk())->get();
+        
+        $query = $dataTable->query(new Penduduk());
+        $request['agama']=$request['GET_/penduduk?agama'];
+        
+        $filters =  [
+            'pendidikan',
+            'pekerjaan',
+            'kepemilikan_bpjs',
+            'kepemilikan_e_ktp',
+            'jenis_kelamin',
+            'status_pernikahan',
+            'agama',
+            'rt',
+            'rw',
+            
+        ];
+        $agama=[];
 
-        // $data->where('NIK','=','3201035403890005');
-        // dd($data);
+        foreach ($filters as $field) {
+            if ($request->has($field)) {
+                if($request->get($field) !== null){
+                    $query->where($field, '=', $request->get($field));
+                    
+                }
+            }
+        }
+
+
+        $mn='0';
+        $mx='999';
+        if($request->has('usia_mn')){
+            if($request->get('usia_mn')!=null){
+            $mn=$request->get('usia_mn');
+                if((int)$mn<0){
+                    $mn='0';
+                }
+            }
+            $query=$query->where('usia', '>=', $mn);
+
+        }
+
+        if($request->has('usia_mx')){
+            if($request->get('usia_mx')!=null){
+            $mx=$request->get('usia_mx');
+                if((int)$mx>999){
+                    $mx='999';
+                }
+            }
+            $query=$query->where('usia', '<=', $mx);
+
+        }
+        
+
         // Send data to the view for PDF rendering
-        $html = view('penduduk.generate-pdf', ['data' => $data])->render();
+        $html = view('penduduk.generate-pdf', ['data' => $query->get()])->render();
    
         // Adjust PDF options including setting paper to landscape
         $pdf = PDF::loadHtml($html)->setPaper('f4', 'landscape');

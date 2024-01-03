@@ -19,9 +19,9 @@ class LPJBelanjaController extends Controller
     /**
      * Show the form for creating a new resource.
      */
-    public function create()
+    public function create(Request $request)
     {
-        //
+        dd($request);
     }
 
     /**
@@ -37,8 +37,10 @@ class LPJBelanjaController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(LPJBelanjaDataTable $dataTable)
+    public function show(LPJBelanjaDataTable $dataTable,Request $request)
     {
+        dd($request->all());
+        // $dataTable=new LPJBelanjaDataTable($dataTable->request->id);
            return $dataTable->render('lpj-belanja.index');
     }
 

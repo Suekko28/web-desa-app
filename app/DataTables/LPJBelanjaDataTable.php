@@ -14,6 +14,10 @@ use Yajra\DataTables\Services\DataTable;
 
 class LPJBelanjaDataTable extends DataTable
 {
+    // public function __construct($dynamicId)
+    // {
+    //     $this->id = $id;
+    // }
     /**
      * Build DataTable class.
      *
@@ -67,7 +71,10 @@ class LPJBelanjaDataTable extends DataTable
         $btn = [
             Button::make('add')
             ->text('+ Tambah Data')
-            ->addClass('rounded'),
+            ->addClass('rounded')
+            ->action('function() {
+                window.location.href = "'.route('lpj-belanja.create',['id'=>$id]).'";
+            }'),
             Button::make('csv')
             ->addClass('btn-warning rounded')
             ->text('CSV'),
