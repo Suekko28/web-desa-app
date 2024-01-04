@@ -37,4 +37,7 @@ class LPJBarangJasa extends Model
         'pemilik_toko',
         'alamat',
     ];
+    public function LPJBelanja(): HasMany{
+        return $this->hasOne(LPJBelanja::class,'id_barang_jasa','id');
+    }  
 }

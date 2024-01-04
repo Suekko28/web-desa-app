@@ -99,5 +99,8 @@ Route::middleware(['auth'])->group(function () {
     Route::Resource('/lpj-barangjasa',\App\Http\Controllers\LPJBarangJasaController::class);
     Route::Resource('/lpj-belanja',\App\Http\Controllers\LPJBelanjaController::class);
     Route::get('/lpj-belanja/{id}/create','\App\Http\Controllers\LPJBelanjaController@create')->name('lpj-belanja.create');
+    Route::get('/lpj-belanja/{id_barang_jasa}/{id}/edit','\App\Http\Controllers\LPJBelanjaController@edit')->name('lpj-belanja.edit');
+    Route::put('/lpj-belanja/{id_barang_jasa}/{id}', '\App\Http\Controllers\LPJBelanjaController@update')->name('lpj-belanja.update');
+    Route::delete('/lpj-belanja/{id_barang_jasa}/{id}','\App\Http\Controllers\LPJBelanjaController@destroy')->name('lpj-belanja.destroy');
 });
 

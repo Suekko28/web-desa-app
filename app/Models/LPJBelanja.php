@@ -22,9 +22,13 @@ class LPJBelanja extends Model
      * @var array<int, string>
      */
     protected $fillable = [
+        'id_barang_jasa',
         'nama_barang',
         'volume_qty',
         'satuan',
         'harga',
     ];
+    public function LPJBarangJasa(): HasOne{
+        return $this->hasOne(LPJBarangJasa::class,'id_barang_jasa','id');
+    }  
 }

@@ -13,10 +13,11 @@ return new class extends Migration
     {
         Schema::create('lpj-belanja', function (Blueprint $table) {
             $table->id();
+            $table->integer('id_barang_jasa');
             $table->string('nama_barang');
-            $table->string('volume_qty');
+            $table->integer('volume_qty');
             $table->string('satuan');
-            $table->string('harga');
+            $table->integer('harga');
             $table->timestamps();
         });
     }

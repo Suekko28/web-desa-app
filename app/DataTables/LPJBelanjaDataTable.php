@@ -14,10 +14,11 @@ use Yajra\DataTables\Services\DataTable;
 
 class LPJBelanjaDataTable extends DataTable
 {
-    // public function __construct($dynamicId)
-    // {
-    //     $this->id = $id;
-    // }
+    private $id_barang_jasa;
+    public function __construct($id)
+    {
+        $this->id_barang_jasa = $id;
+    }
     /**
      * Build DataTable class.
      *
@@ -26,21 +27,22 @@ class LPJBelanjaDataTable extends DataTable
      */
     public function dataTable(QueryBuilder $query): EloquentDataTable
     {
+        //.$this->id_barang_jasa;
         $actionBtn = '<div class="col">
-        <a href="' . route('lpj-barangjasa.index') . '/{{ $id }}/edit" name="edit" class="btn btn-warning"><i class="fa-solid fa-pen-to-square"></i></a>';
+        <a href="' . route('lpj-belanja.index').'/'.$this->id_barang_jasa.'/{{ $id }}/edit" name="edit" class="btn btn-warning"><i class="fa-solid fa-pen-to-square"></i></a>';
 
         $actionBtn .= '<a href="javascript:void(0)" onclick="confirmDelete($(this))"
-            route="' . route('lpj-barangjasa.index') . '/{{ $id }}" class="btn btn-danger mt-2"><i class="fa-solid fa-trash-can"></i></a>';
-
-        $actionBtn .= '<div class="col">
-        <a href="' . route('lpj-belanja.index') . '/{{ $id }}" name="view" class="btn btn-primary mt-2"><i class="fa-solid fa-basket-shopping"></i></a>';
+            route="' . route('lpj-belanja.index') .'/'.$this->id_barang_jasa .'/{{ $id }}" class="btn btn-danger mt-2"><i class="fa-solid fa-trash-can"></i></a>';
 
         $actionBtn .= '</div>';
-
-        return (new EloquentDataTable($query))
-            ->addColumn('action', $actionBtn)
-            ->rawColumns(['action'])
-            ->setRowId('id');
+        $dataTable=(new EloquentDataTable($query))
+        ->addColumn('action', $actionBtn)
+        ->rawColumns(['action'])
+        ->setRowId('id');
+        $dataTable->filter(function($query){
+            $query->where('id_barang_jasa','=',$this->id_barang_jasa);
+        });
+        return $dataTable;
     }
 
     /**
@@ -73,7 +75,7 @@ class LPJBelanjaDataTable extends DataTable
             ->text('+ Tambah Data')
             ->addClass('rounded')
             ->action('function() {
-                window.location.href = "'.route('lpj-belanja.create',['id'=>$id]).'";
+                window.location.href = "'.route('lpj-belanja.create',['id'=>$this->id_barang_jasa]).'";
             }'),
             Button::make('csv')
             ->addClass('btn-warning rounded')
@@ -114,7 +116,6 @@ class LPJBelanjaDataTable extends DataTable
             Column::make('volume_qty'),
             Column::make('satuan'),
             Column::make('harga'),
-            Column::make('updated_at'),
             Column::computed('action')
                 ->exportable(false)
                 ->printable(false)
