@@ -7,6 +7,9 @@ use App\Http\Controllers\Controller;
 use App\Models\Penduduk;
 use App\Models\SirkulasiMeninggal;
 use Illuminate\Http\Request;
+use Barryvdh\DomPDF\Facade\Pdf;
+
+
 
 class SirkulasiMeninggalController extends Controller
 {
@@ -83,5 +86,19 @@ class SirkulasiMeninggalController extends Controller
         $user=SirkulasiMeninggal::find($id)->delete();
         return redirect()->route('sirkulasi-meninggal.index')->with('success','data berhasil dihapus'); 
 
+    }
+
+    public function pdfTemplate(SirkulasiMeninggalDatatable $dataTable)
+    {
+        // Retrieve the data directly from the query builder
+        $data = $dataTable->query(new SirkulasiMeninggal())->get();
+    
+        // Send data to the view for PDF rendering
+        $html = view('sirkulasi-meninggal.generate-pdf', ['data' => $data])->render();
+   
+        // Adjust PDF options including setting paper to landscape
+        $pdf = PDF::loadHtml($html)->setPaper('a4', 'landscape');
+    
+        return $pdf->stream('SirkulasiMeninggal.pdf');
     }
 }

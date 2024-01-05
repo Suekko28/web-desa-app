@@ -6,14 +6,18 @@ use Illuminate\Support\Facades\File;
 use App\Exports\PendudukExport;
 use App\DataTables\Scopes\PendudukScope;
 use App\DataTables\PendudukDataTable;
-use App\Http\Controllers\Controller;
+use App\DataTables\PendudukFullDataTable;
+use App\Http\Controllers\Controllers;
 use App\Http\Requests\PemerintahanDesaFormRequest;
 use App\Models\Penduduk;
+use App\Models\Anak;
+
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use App\Http\Requests\PendudukFormRequest;
 use App\Imports\PendudukImport;
 use Maatwebsite\Excel\Facades\Excel;
+use Barryvdh\DomPDF\Facade\Pdf;
 
 class PendudukController extends Controller
 {
@@ -22,6 +26,13 @@ class PendudukController extends Controller
      */
     public function index(PendudukDataTable $dataTable,Request $request)
     {
+        // dd($request);
+
+        if($dataTable->request()->action =='pdf'){
+
+            return redirect()->route('penduduk.generate-pdf',[$request]);
+        }
+
         if($dataTable->request()->action != null){
             return Excel::download(new PendudukExport($request), 'penduduk-'. date('Y-m-d H:i:s') . ($dataTable->request()->action == 'excel' ? '.xlsx' : '.csv' ));
         }
@@ -102,6 +113,74 @@ class PendudukController extends Controller
         File::delete(public_path("/file_penduduk/".$nama_file));
         return redirect()->route('penduduk.index')->with('success', 'User Imported Successfully');
     }
+
+    public function pdfTemplate(PendudukFullDataTable $dataTable,Request $request)
+    {
+        // Retrieve the data directly from the query builder
+        // return $dataTable->addScope(new PendudukScope($request))->render('penduduk.index');
+        // $data = $dataTable->query(new Anak())->get();
+        
+        $query = $dataTable->query(new Penduduk());
+        $request['agama']=$request['GET_/penduduk?agama'];
+        
+        $filters =  [
+            'pendidikan',
+            'pekerjaan',
+            'kepemilikan_bpjs',
+            'kepemilikan_e_ktp',
+            'jenis_kelamin',
+            'status_pernikahan',
+            'agama',
+            'rt',
+            'rw',
+            
+        ];
+        $agama=[];
+
+        foreach ($filters as $field) {
+            if ($request->has($field)) {
+                if($request->get($field) !== null){
+                    $query->where($field, '=', $request->get($field));
+                    
+                }
+            }
+        }
+
+
+        $mn='0';
+        $mx='999';
+        if($request->has('usia_mn')){
+            if($request->get('usia_mn')!=null){
+            $mn=$request->get('usia_mn');
+                if((int)$mn<0){
+                    $mn='0';
+                }
+            }
+            $query=$query->where('usia', '>=', $mn);
+
+        }
+
+        if($request->has('usia_mx')){
+            if($request->get('usia_mx')!=null){
+            $mx=$request->get('usia_mx');
+                if((int)$mx>999){
+                    $mx='999';
+                }
+            }
+            $query=$query->where('usia', '<=', $mx);
+
+        }
+        
+
+        // Send data to the view for PDF rendering
+        $html = view('penduduk.generate-pdf', ['data' => $query->get()])->render();
+   
+        // Adjust PDF options including setting paper to landscape
+        $pdf = PDF::loadHtml($html)->setPaper('f4', 'landscape');
+    
+        return $pdf->stream('Penduduk.pdf');
+    }
+
     /**
      * Remove the specified resource from storage.
      */

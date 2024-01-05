@@ -31,7 +31,7 @@ class LPJBarangJasaDataTable extends DataTable
             route="' . route('lpj-barangjasa.index') . '/{{ $id }}" class="btn btn-danger mt-2"><i class="fa-solid fa-trash-can"></i></a>';
 
         $actionBtn .= '<div class="col">
-        <a href="' . route('penduduk.index') . '/{{ $id }}" name="view" class="btn btn-primary mt-2"><i class="fa-solid fa-basket-shopping"></i></a>';
+        <a href="' . route('lpj-belanja.index') . '/{{ $id }}" name="view" class="btn btn-primary mt-2"><i class="fa-solid fa-basket-shopping"></i></a>';
 
         $actionBtn .= '</div>';
 
@@ -77,11 +77,25 @@ class LPJBarangJasaDataTable extends DataTable
     public function html(): HtmlBuilder
     {
         $btn = [
-            Button::make('add')->text('+ Tambah Data'),
-            Button::make('export')->text('Export Data'),
+            Button::make('add')
+            ->text('+ Tambah Data')
+            ->addClass('rounded'),
+            Button::make('csv')
+            ->addClass('btn-warning rounded')
+            ->text('CSV'),
+            Button::make('excel')
+            ->addClass('btn-success rounded')
+            ->text('Excel'),
+            Button::make('pdf')
+            ->addClass('btn-danger rounded')
+            ->text('PDF')
+            ->action('function() {
+                window.location.href = "'.route('lpj-barangjasa.generate-pdf').'";
+            }'),
 
 
         ];
+
         return $this->builder()
             ->setTableId('lpj-barang-jasa-table')
             ->columns($this->getColumns())
@@ -104,6 +118,8 @@ class LPJBarangJasaDataTable extends DataTable
             Column::make('no_pesanan_barang'),
             Column::make('no_berita_acara'),
             Column::make('nama_pelaksana_kegiatan'),
+            Column::make('tgl_pesanan'),
+            Column::make('nama_toko'),
             Column::computed('action')
                 ->exportable(false)
                 ->printable(false)

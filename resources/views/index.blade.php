@@ -74,7 +74,7 @@
                     <div class="card-body">
                         <h5 class="mt-0 mb-4 text-white">Jumlah Meninggal</h5>
                         <div class="d-flex justify-content-between">
-                            <h1 class="text-white">1</h1>
+                            <h1 class="text-white">{{$meninggal}}</h1>
                             <i class="fas fa-book-dead fa-3x" style="color:white;"></i>
                         </div>
                     </div>
@@ -101,7 +101,7 @@
                     <div class="card-body">
                         <h5 class="mt-0 mb-4 text-white">Jumlah Pindah Masuk</h5>
                         <div class="d-flex justify-content-between">
-                            <h1 class="text-white">1</h1>
+                            <h1 class="text-white">{{$pindah_masuk}}</h1>
                             <i class="fas fa-user-plus fa-3x" style="color:white;"></i>
                         </div>
                     </div>
@@ -113,7 +113,7 @@
                     <div class="card-body">
                         <h5 class="mt-0 mb-4 text-white">Jumlah Pindah Keluar</h5>
                         <div class="d-flex justify-content-between">
-                            <h1 class="text-white">1</h1>
+                            <h1 class="text-white">{{$pindah_keluar}}</h1>
                             <i class="fas fa-user-xmark fa-3x" style="color:white;"></i>
                         </div>
                     </div>
@@ -128,7 +128,7 @@
                         <i class="fas fa-solid fa-user fa-2x mr-3 p-3 bg-primary rounded" style="color:white;"></i>
                         <div class="d-flex flex-column">
                             <h5 class="">Total Penduduk</h5>
-                            <h5 class="">{{ $penduduk->count() }}</h5>
+                            <h5 class="">{{ $penduduk_all->count() }}</h5>
                         </div>
                     </div>
                 </div>

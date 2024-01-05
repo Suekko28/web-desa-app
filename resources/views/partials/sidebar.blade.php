@@ -58,7 +58,9 @@
                             </ul>
                         </li>
 
-                        <li><a href="{{ route('penduduk.index') }}">Data Penduduk</a></li>
+                        <li><a href="{{ route('penduduk.index') }}">
+                            <i class="fas fa-solid fa-users"></i>
+                            Data Penduduk</a></li>
                     </ul>
                 </li>
 

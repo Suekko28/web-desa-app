@@ -2,8 +2,7 @@
 
 namespace App\DataTables;
 
-use App\Models\Penduduk;
-use App\Models\SirkulasiPindah;
+use App\Models\LPJBelanja;
 use Illuminate\Database\Eloquent\Builder as QueryBuilder;
 use Yajra\DataTables\EloquentDataTable;
 use Yajra\DataTables\Html\Builder as HtmlBuilder;
@@ -13,8 +12,13 @@ use Yajra\DataTables\Html\Editor\Editor;
 use Yajra\DataTables\Html\Editor\Fields;
 use Yajra\DataTables\Services\DataTable;
 
-class SirkulasiPindahDataTable extends DataTable
+class LPJBelanjaDataTable extends DataTable
 {
+    private $id_barang_jasa;
+    public function __construct($id)
+    {
+        $this->id_barang_jasa = $id;
+    }
     /**
      * Build DataTable class.
      *
@@ -23,42 +27,40 @@ class SirkulasiPindahDataTable extends DataTable
      */
     public function dataTable(QueryBuilder $query): EloquentDataTable
     {
+        //.$this->id_barang_jasa;
         $actionBtn = '<div class="col">
-        <a href="' . route('sirkulasi-pindah.index') . '/{{ $id }}/edit" name="edit" class="btn btn-warning"><i class="fa-solid fa-pen-to-square"></i></a>';
+        <a href="' . route('lpj-belanja.index').'/'.$this->id_barang_jasa.'/{{ $id }}/edit" name="edit" class="btn btn-warning"><i class="fa-solid fa-pen-to-square"></i></a>';
 
         $actionBtn .= '<a href="javascript:void(0)" onclick="confirmDelete($(this))"
-            route="' . route('sirkulasi-pindah.index') . '/{{ $id }}" class="btn btn-danger mt-2"><i class="fa-solid fa-trash-can"></i></a>';
+            route="' . route('lpj-belanja.index') .'/'.$this->id_barang_jasa .'/{{ $id }}" class="btn btn-danger mt-2"><i class="fa-solid fa-trash-can"></i></a>';
 
         $actionBtn .= '</div>';
-
-        return (new EloquentDataTable($query))
-            ->addColumn('action', $actionBtn)
-            ->rawColumns(['action'])
-            ->setRowId('id');
+        $dataTable=(new EloquentDataTable($query))
+        ->addColumn('action', $actionBtn)
+        ->rawColumns(['action'])
+        ->setRowId('id');
+        $dataTable->filter(function($query){
+            $query->where('id_barang_jasa','=',$this->id_barang_jasa);
+        });
+        return $dataTable;
     }
 
     /**
      * Get query source of dataTable.
      *
-     * @param \App\Models\SirkulasiPindah $model
+     * @param \App\Models\LPJBelanja $model
      * @return \Illuminate\Database\Eloquent\Builder
      */
-    public function query(SirkulasiPindah $model): QueryBuilder
+    public function query(LPJBelanja $model): QueryBuilder
     {
         return $model->newQuery()
             ->select(
-                'sirkulasi_pindah.id as id',
-                'sirkulasi_pindah.NIK as NIK',
-                'sirkulasi_pindah.tgl_pindah as tgl_pindah',
-                'sirkulasi_pindah.alasan as alasan',
-                'sirkulasi_pindah.alamat_pindah as alamat_pindah',
-                'sirkulasi_pindah.created_at as created_at',
-                'sirkulasi_pindah.updated_at as updated_at',
-                'penduduk.nama as nama'
-            )
-            ->join('penduduk', function ($q) {
-                $q->on('penduduk.NIK', '=', 'sirkulasi_pindah.NIK');
-            });
+                'lpj-belanja.id as id',
+                'lpj-belanja.nama_barang as nama_barang',
+                'lpj-belanja.volume_qty as volume_qty',
+                'lpj-belanja.satuan as satuan',
+                'lpj-belanja.harga as harga',
+            );
     }
 
     /**
@@ -71,7 +73,10 @@ class SirkulasiPindahDataTable extends DataTable
         $btn = [
             Button::make('add')
             ->text('+ Tambah Data')
-            ->addClass('rounded'),
+            ->addClass('rounded')
+            ->action('function() {
+                window.location.href = "'.route('lpj-belanja.create',['id'=>$this->id_barang_jasa]).'";
+            }'),
             Button::make('csv')
             ->addClass('btn-warning rounded')
             ->text('CSV'),
@@ -82,13 +87,13 @@ class SirkulasiPindahDataTable extends DataTable
             ->addClass('btn-danger rounded')
             ->text('PDF')
             ->action('function() {
-                window.location.href = "'.route('sirkulasi-pindah.generate-pdf').'";
+                window.location.href = "'.route('pemerintahan-kadus.generate-pdf').'";
             }'),
 
-
         ];
+        
         return $this->builder()
-            ->setTableId('sirkulasi-pindah')
+            ->setTableId('pembelanjaan-table')
             ->columns($this->getColumns())
             ->minifiedAjax()
             ->orderBy(0, 'asc')
@@ -104,19 +109,18 @@ class SirkulasiPindahDataTable extends DataTable
     public function getColumns(): array
     {
         return [
-            Column::make('id'),
-            Column::make('NIK'),
-            Column::make('nama'),
-            Column::make('tgl_pindah'),
-            Column::make('alasan'),
-            Column::make('alamat_pindah'),
-            Column::make('created_at'),
-            Column::make('updated_at'),
+            Column::make('id')
+                ->title('No')
+                ->width(10),
+            Column::make('nama_barang'),
+            Column::make('volume_qty'),
+            Column::make('satuan'),
+            Column::make('harga'),
             Column::computed('action')
-                  ->exportable(false)
-                  ->printable(false)
-                  ->width(60)
-                  ->addClass('text-center'),
+                ->exportable(false)
+                ->printable(false)
+                ->width(60)
+                ->addClass('text-center'),
         ];
     }
 
@@ -127,6 +131,6 @@ class SirkulasiPindahDataTable extends DataTable
      */
     protected function filename(): string
     {
-        return 'SirkulasiPindah_' . date('YmdHis');
+        return 'LPJBelanja_' . date('YmdHis');
     }
 }

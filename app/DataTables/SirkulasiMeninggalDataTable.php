@@ -79,7 +79,11 @@ class SirkulasiMeninggalDataTable extends DataTable
             ->text('Excel'),
             Button::make('pdf')
             ->addClass('btn-danger rounded')
-            ->text('PDF'),
+            ->text('PDF')
+            ->action('function() {
+                window.location.href = "'.route('sirkulasi-meninggal.generate-pdf').'";
+            }'),
+
 
         ];
         return $this->builder()
@@ -100,11 +104,6 @@ class SirkulasiMeninggalDataTable extends DataTable
     public function getColumns(): array
     {
         return [
-            Column::computed('action')
-                  ->exportable(false)
-                  ->printable(false)
-                  ->width(60)
-                  ->addClass('text-center'),
             Column::make('id'),
             Column::make('nama'),
             Column::make('NIK_penduduk'),
@@ -112,6 +111,11 @@ class SirkulasiMeninggalDataTable extends DataTable
             Column::make('sebab'),
             Column::make('created_at'),
             Column::make('updated_at'),
+            Column::computed('action')
+                  ->exportable(false)
+                  ->printable(false)
+                  ->width(60)
+                  ->addClass('text-center'),
         ];
     }
 

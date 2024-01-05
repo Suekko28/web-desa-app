@@ -12,6 +12,7 @@ use Yajra\DataTables\Html\Editor\Editor;
 use Yajra\DataTables\Html\Editor\Fields;
 use Yajra\DataTables\Services\DataTable;
 
+
 class SirkulasiMelahirkanDataTable extends DataTable
 {
     /**
@@ -78,7 +79,11 @@ class SirkulasiMelahirkanDataTable extends DataTable
             ->text('Excel'),
             Button::make('pdf')
             ->addClass('btn-danger rounded')
-            ->text('PDF'),
+            ->text('PDF')
+            ->action('function() {
+                window.location.href = "'.route('sirkulasi-melahirkan.generate-pdf').'";
+            }'),
+
 
         ];
         return $this->builder()

@@ -5,7 +5,9 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Carbon\Carbon;
-use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\HasOne;
+
+
 
 class penduduk extends Model
 {
@@ -49,12 +51,16 @@ class penduduk extends Model
     ];
 
     public function anak(): HasMany{
-        return $this->hasMany(Anak::class, 'NKK','NKK_keluarga');
+        return $this->hasMany(Anak::class, 'NKK_keluarga','NKK');
     }
 
     public function sirkulasiMeninggal(): HasOne{
         return $this->hasOne(SirkulasiMeninggal::class,'NIK_penduduk','NIK');
     }      
+
+    public function sirkulasiPindah(): HasOne{
+        return $this->hasOne(SirkulasiPindah::class,'NIK','NIK');
+    }
 
     public function getAgamaAttribute($value)
     {

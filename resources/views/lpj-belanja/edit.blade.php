@@ -33,7 +33,7 @@
 
                 <!-- Small boxes (Stat box) -->
 
-                <form action="{{ route('lpj-belanja.update', $data->id) }}" method="post" enctype="multipart/form-data">
+                <form action="{{ route('lpj-belanja.update', ['id'=>$id,'id_barang_jasa'=>$id_barang_jasa]) }}" method="post" enctype="multipart/form-data">
                     @method('PUT')
                     @csrf
                     <div class="card">
@@ -46,25 +46,25 @@
                                     <div class="col-sm-6">
                                         <label for="nama_barang" class="col-form-label">Nama Barang / Jasa</label>
                                         <input type="text" class="form-control" id="nama_barang" name="nama_barang"
-                                            placeholder="Buku/Pena/dll">
+                                            placeholder="Buku/Pena/dll" value="{{$data->nama_barang}}">
                                     </div>
 
                                     <div class="col-sm-6">
                                         <label for="volume_qty" class="col-form-label">Volume / QTY</label>
                                         <input type="number" class="form-control" id="volume_qty" name="volume_qty"
-                                            placeholder="50">
+                                            placeholder="50" value="{{$data->volume_qty}}">
                                     </div>
 
                                     <div class="col-sm-6">
                                         <label for="satuan" class="col-form-label">Satuan</label>
                                         <input type="text" class="form-control" id="satuan" name="satuan"
-                                            placeholder="Masukkan Nama Satuan">
+                                            placeholder="Masukkan Nama Satuan" value="{{$data->satuan}}">
                                     </div>
 
                                     <div class="col-sm-6">
                                         <label for="harga" class="col-form-label">Harga</label>
                                         <input type="number" class="form-control" id="harga" name="harga"
-                                            placeholder="Masukkan Harga">
+                                            placeholder="Masukkan Harga" value="{{$data->harga}}">
                                     </div>
 
                                 </div>
@@ -73,7 +73,7 @@
 
                             <div class="d-flex flex-row-reverse">
                                 <button type="submit" class="btn btn-primary ml-3">Simpan</button>
-                                <a href="{{ route('lpj-belanja.index') }}" class="btn btn-danger">Batal</a>
+                                <a href="{{ route('lpj-belanja.show',['lpj_belanja'=>$id]) }}" class="btn btn-danger">Batal</a>
                             </div>
 
 

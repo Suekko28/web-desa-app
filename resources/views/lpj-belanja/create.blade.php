@@ -32,7 +32,7 @@
 
                 <!-- Small boxes (Stat box) -->
 
-                <form action="{{ route('lpj-belanja.store') }}" method="POST" enctype="multipart/form-data">
+                <form action="{{ route('lpj-belanja.store',['id'=>$id]) }}" method="POST" enctype="multipart/form-data">
                     @csrf
                     <div class="card">
                         <div class="card-body">
@@ -69,7 +69,7 @@
 
                             <div class="d-flex flex-row-reverse">
                                 <button type="submit" class="btn btn-primary ml-3">Simpan</button>
-                                <a href="{{ route('lpj-belanja.index') }}" class="btn btn-danger">Batal</a>
+                                <a href="{{ route('lpj-belanja.show',['lpj_belanja'=>$id]) }}" class="btn btn-danger">Batal</a>
                             </div>
 
 

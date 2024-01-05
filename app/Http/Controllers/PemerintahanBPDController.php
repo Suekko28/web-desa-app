@@ -86,7 +86,7 @@ class PemerintahanBPDController extends Controller
             // Update the profile field with the new filename
             $user->update(['profile' => $nama_image]);
         }
-
+            
         // Update other fields based on the request
         $user->update($request->except('profile'));
 
@@ -112,7 +112,7 @@ class PemerintahanBPDController extends Controller
         $html = view('pemerintahan-bpd.generate-pdf', ['data' => $data])->render();
     
         // Adjust PDF options if needed
-        $pdf = PDF::loadHtml($html)->setPaper('a4', 'landscape');
+        $pdf = PDF::loadHtml($html)->setPaper('f4', 'landscape');
         
         return $pdf->stream('PemerintahanBPD.pdf');
     }

@@ -5,6 +5,9 @@ namespace App\Http\Controllers;
 use App\Http\Controllers\Controller;
 use App\Models\Anak;
 use App\Models\Penduduk;
+use App\Models\SirkulasiPendatang;
+use App\Models\SirkulasiPindah;
+use App\Models\SirkulasiMeninggal;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -57,8 +60,9 @@ class DashboardController extends Controller
 
         $usia = DB::table('penduduk')->get();
 
-        $penduduk = DB::table('penduduk')->get();
-        $jumlah_penduduk = Penduduk::count();
+        $penduduk = Penduduk::doesntHave('sirkulasimeninggal')->doesntHave('sirkulasipindah');
+
+        $penduduk_all = Penduduk::get();
 
         $pekerjaan_swasta = Penduduk::where('pekerjaan', '1');
         $pekerjaan_pengrajin = Penduduk::where('pekerjaan', '2');
@@ -67,8 +71,14 @@ class DashboardController extends Controller
         $pekerjaan_petani = Penduduk::where('pekerjaan', '5');
         
         $kelahiran = Anak::count();
+        $meninggal = SirkulasiMeninggal::count();
+
+        $pindah_masuk = SirkulasiPendatang::count();
+        $pindah_keluar = SirkulasiPindah::count();
        
-        return view('index', compact('penduduk',
+        return view('index', compact(
+            'penduduk',
+            'penduduk_all',
             'jumlah_laki_laki',
             'jumlah_perempuan',
             'jumlah_kepemilikan_e_ktp_ada',
@@ -111,6 +121,9 @@ class DashboardController extends Controller
             'pekerjaan_guru',
             'pekerjaan_petani',
             'kelahiran',
+            'meninggal',
+            'pindah_masuk',
+            'pindah_keluar',
 
 
 
