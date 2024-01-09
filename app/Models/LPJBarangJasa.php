@@ -39,5 +39,5 @@ class LPJBarangJasa extends Model
     ];
     public function LPJBelanja(): HasMany{
         return $this->hasOne(LPJBelanja::class,'id_barang_jasa','id');
-    }  
+    }
 }

@@ -67,7 +67,6 @@ Route::middleware(['auth'])->group(function () {
     Route::Get('/penduduk-import', [\App\Http\Controllers\PendudukController::class, 'importPendudukView'])->name('penduduk.import-view');
     Route::Post('/penduduk-import', [\App\Http\Controllers\PendudukController::class, 'importPenduduk'])->name('penduduk.import');
     Route::Resource('/penduduk', \App\Http\Controllers\PendudukController::class);
-    Route::Resource('/lpj-barangjasa', \App\Http\Controllers\LPJBarangJasaController::class);
     Route::Resource('/pemerintahan-lpm',\App\Http\Controllers\PemerintahanLPMController::class);
     Route::Resource('/pemerintahan-mui',\App\Http\Controllers\PemerintahanMUIController::class);
     Route::Resource('/pemerintahan-pkk',\App\Http\Controllers\PemerintahanPKKController::class);
@@ -97,6 +96,8 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/lpj-barangjasa/generate-pdf', [\App\Http\Controllers\LPJBarangJasaController::class, 'pdfTemplate'])
     ->name('lpj-barangjasa.generate-pdf');
     Route::Resource('/lpj-barangjasa',\App\Http\Controllers\LPJBarangJasaController::class);
+    Route::get('/lpj-belanja/generate-pdf', [\App\Http\Controllers\LPJBelanjaController::class, 'pdfTemplate'])
+    ->name('lpj-belanja.generate-pdf');
     Route::Resource('/lpj-belanja',\App\Http\Controllers\LPJBelanjaController::class);
     Route::get('/lpj-belanja/{id}/create','\App\Http\Controllers\LPJBelanjaController@create')->name('lpj-belanja.create');
     Route::get('/lpj-belanja/{id_barang_jasa}/{id}/edit','\App\Http\Controllers\LPJBelanjaController@edit')->name('lpj-belanja.edit');

@@ -37,7 +37,7 @@ class LPJBarangJasaController extends Controller
         $data=$request->all();
 
         LPJBarangJasa::create($data);
-        
+
         return redirect()->route('lpj-barangjasa.index')->with('success','data berhasil ditambahkan');
 
     }
@@ -48,10 +48,10 @@ class LPJBarangJasaController extends Controller
     public function show(LPJBarangJasa $lPJKegiatan)
     {
         // $data=LPJBarangJasa::find($id);
-     
+
         // return view('lpj-barangjasa.view',[
         //     "data"=>$data,
-        // ]); 
+        // ]);
     }
 
     /**
@@ -70,10 +70,10 @@ class LPJBarangJasaController extends Controller
      * Update the specified resource in storage.
      */
     public function update(Request $request, string $id)
-    {   
+    {
 
         $user=LPJBarangJasa::find($id)->update($request->all());
-        return redirect()->route('lpj-barangjasa.index')->with('success','data berhasil diubah'); 
+        return redirect()->route('lpj-barangjasa.index')->with('success','data berhasil diubah');
 
     }
 
@@ -84,7 +84,7 @@ class LPJBarangJasaController extends Controller
     {
         $user=LPJBarangJasa::find($id)->delete();
         $anak=LPJBelanja::where('id_barang_jasa','=',$id)->delete();
-        return redirect()->route('lpj-barangjasa.index')->with('success','data berhasil dihapus'); 
+        return redirect()->route('lpj-barangjasa.index')->with('success','data berhasil dihapus');
 
     }
 
@@ -92,13 +92,13 @@ class LPJBarangJasaController extends Controller
     {
         // Retrieve the data directly from the query builder
         $data = $dataTable->query(new LPJBarangJasa())->get();
-    
+
         // Send data to the view for PDF rendering
         $html = view('lpj-barangjasa.generate-pdf', ['data' => $data])->render();
-   
-        // Adjust PDF options including setting paper to landscape
+
+        // Adjust PDF options if needed
         $pdf = PDF::loadHtml($html)->setPaper('f4', 'landscape');
-    
-        return $pdf->stream('BarangdanJasa.pdf');
+
+        return $pdf->stream('LPJBarangJasa.pdf');
     }
 }

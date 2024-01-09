@@ -10,7 +10,7 @@ use Yajra\DataTables\Html\Button;
 use Yajra\DataTables\Html\Column;
 use Yajra\DataTables\Html\Editor\Editor;
 use Yajra\DataTables\Html\Editor\Fields;
-use Yajra\DataTables\Services\DataTable;    
+use Yajra\DataTables\Services\DataTable;
 
 class PemerintahanBPDDataTable extends DataTable
 {
@@ -129,8 +129,8 @@ class PemerintahanBPDDataTable extends DataTable
         ];
     }
 
-    
-    
+
+
 
     /**
      * Get filename for export.

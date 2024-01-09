@@ -118,7 +118,8 @@ class PendudukDataTable extends DataTable
     {
         return [
             Column::make('id')
-                ->width(10),
+            ->title('No')
+            ->width(10),
             Column::make('nama'),
             Column::make('NIK'),
             Column::make('NKK'),

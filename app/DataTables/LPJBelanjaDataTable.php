@@ -15,10 +15,11 @@ use Yajra\DataTables\Services\DataTable;
 class LPJBelanjaDataTable extends DataTable
 {
     private $id_barang_jasa;
-    public function __construct($id)
+    public function __construct($id = null)
     {
         $this->id_barang_jasa = $id;
     }
+
     /**
      * Build DataTable class.
      *
@@ -87,11 +88,11 @@ class LPJBelanjaDataTable extends DataTable
             ->addClass('btn-danger rounded')
             ->text('PDF')
             ->action('function() {
-                window.location.href = "'.route('pemerintahan-kadus.generate-pdf').'";
+                window.location.href = "'.route('lpj-belanja.generate-pdf').'";
             }'),
 
         ];
-        
+
         return $this->builder()
             ->setTableId('pembelanjaan-table')
             ->columns($this->getColumns())

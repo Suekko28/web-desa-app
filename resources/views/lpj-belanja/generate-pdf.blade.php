@@ -5,7 +5,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Barang dan Jasa as PDF</title>
+    <title>Barang dan Jasa Belanja as PDF</title>
     <!-- Add any additional CSS styling if needed -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
         integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
@@ -61,16 +61,15 @@
     <hr style="height:4px;border-width:0;color:black;background-color:black" class="my-2">
     <hr style="height:2px;border-width:0;color:black;background-color:black" class="my-2">
     <main class="flex-grow-1">
-        <h5 class="text-center mt-3 mb-3">Barang dan Jasa</h5>
+        <h5 class="text-center mt-3 mb-3">Barang dan Jasa Belanja</h5>
         <table class="table table-bordered text-center vw-100 mw-100">
             <thead>
                 <tr>
                     <th scope="col">No</th>
-                    <th scope="col">No Pesan Barang</th>
-                    <th scope="col">No Berita Acara</th>
-                    <th scope="col">Nama Pelaksana Kegiatan</th>
-                    <th scope="col">Tanggal Pesanan</th>
-                    <th scope="col">Nama Toko</th>
+                    <th scope="col">Nama Barang</th>
+                    <th scope="col">Volume QTY</th>
+                    <th scope="col">Satuan</th>
+                    <th scope="col">Harga</th>
                 </tr>
             </thead>
             <tbody>
@@ -78,11 +77,10 @@
                 @foreach ($data as $row)
                     <tr>
                         <td>{{ $i++ }}</td>
-                        <td>{{ $row->no_pesanan_barang }}</td>
-                        <td>{{ $row->no_berita_acara }}</td>
-                        <td>{{ $row->nama_pelaksana_kegiatan }}</td>
-                        <td>{{ $row->tgl_pesanan }}</td>
-                        <td>{{ $row->nama_toko }}</td>
+                        <td>{{ $row->nama_barang }}</td>
+                        <td>{{ $row->volume_qty }}</td>
+                        <td>{{ $row->satuan }}</td>
+                        <td>{{ $row->harga }}</td>
                     </tr>
                 @endforeach
             </tbody>

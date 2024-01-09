@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\DataTables\LPJBelanjaDataTable;
 use App\Models\LPJBelanja;
 use Illuminate\Http\Request;
+use Barryvdh\DomPDF\Facade\Pdf;
+
 
 class LPJBelanjaController extends Controller
 {
@@ -79,5 +81,19 @@ class LPJBelanjaController extends Controller
     {
         $user=LPJBelanja::find($id)->delete();
         return redirect()->route('lpj-belanja.show',['lpj_belanja'=>$id_barang_jasa])->with('success','Berhasil menghapus data');
+    }
+
+    public function pdfTemplate(LPJBelanjaDataTable $dataTable)
+    {
+        // Retrieve the data directly from the query builder
+        $data = $dataTable->query(new LPJBelanja())->get();
+
+        // Send data to the view for PDF rendering
+        $html = view('lpj-belanja.generate-pdf', ['data' => $data])->render();
+
+        // Adjust PDF options if needed
+        $pdf = PDF::loadHtml($html)->setPaper('f4', 'landscape');
+
+        return $pdf->stream('LPJBelanja.pdf');
     }
 }
