@@ -64,18 +64,19 @@ class DashboardController extends Controller
 
         $penduduk_all = Penduduk::get();
 
+
         $pekerjaan_swasta = Penduduk::where('pekerjaan', '1');
         $pekerjaan_pengrajin = Penduduk::where('pekerjaan', '2');
         $pekerjaan_wirausaha = Penduduk::where('pekerjaan', '3');
         $pekerjaan_guru = Penduduk::where('pekerjaan', '4');
         $pekerjaan_petani = Penduduk::where('pekerjaan', '5');
-        
+
         $kelahiran = Anak::count();
         $meninggal = SirkulasiMeninggal::count();
 
         $pindah_masuk = SirkulasiPendatang::count();
         $pindah_keluar = SirkulasiPindah::count();
-       
+
         return view('index', compact(
             'penduduk',
             'penduduk_all',
