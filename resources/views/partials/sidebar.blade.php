@@ -100,10 +100,13 @@
                     <ul class="sub-menu" aria-expanded="false">
                         <li><a href="{{ route('lpj-barangjasa.index') }}">Barang dan Jasa</a></li>
                     </ul>
+                    <ul class="sub-menu" aria-expanded="false">
+                        <li><a href="">Tim Pemeriksa</a></li>
+                    </ul>
                 </li>
 
                 
-                <li>
+                {{-- <li>
                     <a href="javascript: void(0);" class="has-arrow waves-effect">
                         <i class="fas fa-solid fa-envelope-open-text"></i>
                         <span>Surat Menyurat</span>
@@ -112,7 +115,7 @@
                         <li><a href="#">Surat Kependudukan</a></li>
                         <li><a href="form-validation.html">Surat Keluar</a></li>
                     </ul>
-                </li>
+                </li> --}}
 
                 <li>
                     <form method="POST" action="{{ route('logout') }}">
