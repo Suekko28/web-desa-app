@@ -105,3 +105,8 @@ Route::middleware(['auth'])->group(function () {
     Route::delete('/lpj-belanja/{id_barang_jasa}/{id}','\App\Http\Controllers\LPJBelanjaController@destroy')->name('lpj-belanja.destroy');
 });
 
+
+Route::get('/lpj-timpemeriksa', function(){
+    return view('lpj-timpemeriksa.create');  
+});
+

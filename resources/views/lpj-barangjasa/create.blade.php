@@ -113,13 +113,13 @@
                                     <div class="col-sm-6">
                                         <label for="nama_toko" class="col-form-label">Nama Toko</label>
                                         <input type="text" class="form-control" id="nama_toko" name="nama_toko"
-                                            placeholder="">
+                                            placeholder="Nama Toko">
                                     </div>
 
                                     <div class="col-sm-6">
                                         <label for="pemilik_toko" class="col-form-label">Pemilik Toko</label>
                                         <input type="text" class="form-control" id="pemilik_toko" name="pemilik_toko"
-                                            placeholder="">
+                                            placeholder="Nama Pemilik Toko">
                                     </div>
 
                                     <div class="col-sm-12">
