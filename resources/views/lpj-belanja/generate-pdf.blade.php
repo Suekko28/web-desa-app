@@ -31,12 +31,14 @@
         .text_header {
             margin: -10px;
         }
+
+        
     </style>
 </head>
 
 <body>
     <header>
-        <table  style="width:90%;">
+        <table style="width:90%;">
             <tbody>
                 <tr>
                     <td> <img src="{{ public_path('assets/images/logo.png') }}" alt="Logo Sawitri" height="100">
@@ -61,15 +63,38 @@
     <hr style="height:4px;border-width:0;color:black;background-color:black" class="my-2">
     <hr style="height:2px;border-width:0;color:black;background-color:black" class="my-2">
     <main class="flex-grow-1">
+
+        <table style="width: 100%;">
+            <tbody>
+                <tr>
+                    <td style="width: 50%;">
+                        adsassdads
+                    </td>
+                    <td style="width: 50%; text-align:right;">
+                        adsassdads
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        
+
+       <div>
+        <p style="text-align: left">adassadsasd <span  style="text-align: right">8u8u8u8</span></p>
+        
+       </div>
         <h5 class="text-center mt-3 mb-3">Barang dan Jasa Belanja</h5>
+        <p>Untuk kebutuhan Pelaksanaan Kegiatan Penyuluhan dan Pelatihan Pendidikan Bagi Masyarakat (dari Nama Rincian
+            SPP) Sumber Dana Desa (DD) di wilayah Desa Tarikolot Kecamatan Citeureup Kabupaten Bogor, dengan ini Kami
+            sebagai Pelaksana Kegiatan memesan Barang dengan rincian sebagai berikut:
+
+        </p>
+
         <table class="table table-bordered text-center vw-100 mw-100">
             <thead>
                 <tr>
                     <th scope="col">No</th>
                     <th scope="col">Nama Barang</th>
-                    <th scope="col">Volume QTY</th>
-                    <th scope="col">Satuan</th>
-                    <th scope="col">Harga</th>
+                    <th scope="col">Banyaknya</th>
                 </tr>
             </thead>
             <tbody>
@@ -79,60 +104,13 @@
                         <td>{{ $i++ }}</td>
                         <td>{{ $row->nama_barang }}</td>
                         <td>{{ $row->volume_qty }}</td>
-                        <td>{{ $row->satuan }}</td>
-                        <td>{{ $row->harga }}</td>
                     </tr>
                 @endforeach
             </tbody>
         </table>
 
-        <div>
-        <p>1. KEPADA</p>
-        <p>2. DARI</p>
-        <p>3. TANGGAL</p>
-        <p>4. PERIHAL</p>
-        <p>5. Sehubungan telah cairnya <<Dana Desa (DD)>> dan telah siapnya Tim Pelaksana Kegiatan, dengan ini Kami sampaikan Permohonan Pencairan <<Dana Desa (DD)>> untuk kegiatan sebagai berikut:</p>
-        <p>6. JABATAN, TTD, NAMA</p>
-    </div>
-
-    <!-- Lembar Disposisi -->
-    <div>
-        <p>LEMBAR DISPOSISI</p>
-        <p>1. INPUT MANUAL</p>
-    </div>
-
-    <!-- Surat Kesanggupan Menyelesaikan Pekerjaan -->
-    <div>
-        <p>1. NAMA</p>
-        <p>2. JABATAN</p>
-        <p>3. ALAMAT</p>
-        <p>4. Dengan ini menyatakan bahwa saya sebagai Pelaksana Pengelola Keuangan Desa (PPKD), akan melaksanakan kegiatan <<Peningkatan Kapasitas Badan Permusyawaratan Desa (BPD)>> yang bersumber dari <<Dana Desa (DD)>> sesuai dengan RAB dan pelaksanaannya akan mematuhi peraturan perundang–undangan yang berlaku, serta saya akan bertanggung jawab terhadap penggunaan anggaran keuangan dimaksud.</p>
-        <p>5. TGL, TTD, NAMA</p>
-    </div>
-
-    <!-- Pesanan Barang -->
-    <div>
-        <p>Tarikolot, 04 Januari 2023</p>
-        <p>Nomor: 001 / XI / 2023- SP TPK</p>
-        <p>Lampiran: -</p>
-        <p>Perihal: Pesanan Barang</p>
-        <p>Yth. CV. SINDORO</p>
-        <p>Di ___Tempat___</p>
-        <p>Untuk kebutuhan Pelaksanaan Kegiatan <<Belanja Perjalanan Dinas>> yang bersumber dari <<Dana Desa (DD)>> di wilayah Desa Tarikolot Kecamatan Citeureup Kabupaten Bogor, dengan ini Kami sebagai Pelaksana Kegiatan memesan Barang dengan rincian sebagai berikut:</p>
-        <!-- Tambahkan rincian pesanan barang sesuai dengan format -->
-    </div>
-
-    <!-- Berita Acara Pemeriksaan Barang -->
-    <div>
-        <p>Nomor: 001 / BAPB / 2023</p>
-        <!-- Tambahkan rincian Berita Acara Pemeriksaan Barang sesuai dengan format -->
-    </div>
-
-    <!-- Berita Acara Serah Terima Barang -->
-    <div>
-        <p>Nomor: 001 / BASTB / 2023</p>
-        <!-- Tambahkan rincian Berita Acara Serah Terima Barang sesuai dengan format -->
-    </div>
+        <p>Demikian untuk menjadi Perhatiannya dan atas kerjasamanya yang baik, Kami ucapkan Terimakasih.</p>
+        <p style="text-align:right;">PELAKSANA KEGIATAN,<br>SYAWALUDDIN</p>
 
     </main>
 
