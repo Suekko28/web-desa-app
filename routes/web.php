@@ -103,10 +103,11 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/lpj-belanja/{id_barang_jasa}/{id}/edit','\App\Http\Controllers\LPJBelanjaController@edit')->name('lpj-belanja.edit');
     Route::put('/lpj-belanja/{id_barang_jasa}/{id}', '\App\Http\Controllers\LPJBelanjaController@update')->name('lpj-belanja.update');
     Route::delete('/lpj-belanja/{id_barang_jasa}/{id}','\App\Http\Controllers\LPJBelanjaController@destroy')->name('lpj-belanja.destroy');
+    Route::Resource('/lpj-timpemeriksa',\App\Http\Controllers\LPJTimPemeriksaController::class);
 });
 
 
-Route::get('/lpj-timpemeriksa', function(){
-    return view('lpj-timpemeriksa.create');  
-});
+// Route::get('/lpj-timpemeriksa', function(){
+//     return view('lpj-timpemeriksa.create');  
+// });
 

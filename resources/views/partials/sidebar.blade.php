@@ -101,7 +101,7 @@
                         <li><a href="{{ route('lpj-barangjasa.index') }}">Barang dan Jasa</a></li>
                     </ul>
                     <ul class="sub-menu" aria-expanded="false">
-                        <li><a href="">Tim Pemeriksa</a></li>
+                        <li><a href="{{ route('lpj-timpemeriksa.index') }}">Tim Pemeriksa</a></li>
                     </ul>
                 </li>
 
