@@ -68,7 +68,9 @@
             <tbody>
                 <tr>
                     <td style="width: 50%;">
-                        adsassdads
+                        <p>Nomor : </p>
+                        <p>Lampiran : - </p>
+                        <p></p>
                     </td>
                     <td style="width: 50%; text-align:right;">
                         adsassdads

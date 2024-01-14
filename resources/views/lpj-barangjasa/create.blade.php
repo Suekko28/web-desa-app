@@ -110,22 +110,28 @@
                                             placeholder="Barang-barang tersebut telah kami terima dengan baik"></textarea>
                                     </div>
 
-                                    <div class="col-sm-4">
+                                    <div class="col-sm-6">
+                                        <label for="lampiran" class="col-form-label">Lampiran</label>
+                                        <input type="text" class="form-control" id="lampiran" name="lampiran"
+                                            placeholder="Masukkan Lampiran">
+                                    </div>
+
+                                    <div class="col-sm-6">
+                                        <label for="perihal" class="col-form-label">Perihal</label>
+                                        <input type="text" class="form-control" id="perihal" name="perihal"
+                                            placeholder="Masukkan Perihal">
+                                    </div>
+
+                                    <div class="col-sm-6">
                                         <label for="nama_toko" class="col-form-label">Nama Toko</label>
                                         <input type="text" class="form-control" id="nama_toko" name="nama_toko"
                                             placeholder="Nama Toko">
                                     </div>
 
-                                    <div class="col-sm-4">
+                                    <div class="col-sm-6">
                                         <label for="pemilik_toko" class="col-form-label">Pemilik Toko</label>
                                         <input type="text" class="form-control" id="pemilik_toko" name="pemilik_toko"
                                             placeholder="Nama Pemilik Toko">
-                                    </div>
-
-                                    <div class="col-sm-4">
-                                        <label for="perihal" class="col-form-label">Perihal</label>
-                                        <input type="text" class="form-control" id="perihal" name="perihal"
-                                            placeholder="Masukkan Perihal">
                                     </div>
 
                                     <div class="col-sm-12">
