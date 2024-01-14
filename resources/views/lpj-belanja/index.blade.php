@@ -1,5 +1,5 @@
 @extends('layouts.app')
-@section('master-title', 'Data Perbelanjaan/')
+@section('master-title', 'Dashboard/')
 @section('page-title', 'Data Perbelanjaan')
 @section('contents')
 

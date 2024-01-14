@@ -32,7 +32,7 @@
 
                 <!-- Small boxes (Stat box) -->
 
-                <form action="{{ route('lpj-belanja.store',['id'=>$id]) }}" method="POST" enctype="multipart/form-data">
+                <form action="{{ route('lpj-belanja.store', ['id' => $id]) }}" method="POST" enctype="multipart/form-data">
                     @csrf
                     <div class="card">
                         <div class="card-body">
@@ -70,12 +70,40 @@
                                             placeholder="Masukkan Harga">
                                     </div>
 
+                                    <div class="col-sm-4">
+                                        <label for="tim_pemeriksa" class="col-form-label">Tim Pemeriksa</label>
+                                        <div class="dropdown">
+                                            <button class="form-control dropdown-toggle text-left" type="button"
+                                                data-bs-toggle="dropdown" aria-expanded="false" name="tim_pemeriksa">
+                                                --Pilih Tim Pemeriksa--
+                                            </button>
+                                            <!-- Data diambil dari TIM PEMERIKSA !-->
+                                            <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton"
+                                                id="timPemeriksaDropdown">
+                                                <input type="text" id="timPemeriksaSearchInput" class="form-control"
+                                                    placeholder="Cari Tim Pemeriksa..." oninput="searchTimPemeriksa()">
+                                                {{-- @foreach ($data as $i)
+                                                    <li><a class="dropdown-item penduduk-option" href="#" value="{{ $i->NIK }}">{{ $i->NIK . " - " . $i->nama }}</a></li>
+                                                @endforeach --}}
+                                                <!-- Tambahkan opsi ketua, sekretaris, dan anggota -->
+                                                <li><a class="dropdown-item penduduk-option" href="#"
+                                                        value="ketua">Ketua</a></li>
+                                                <li><a class="dropdown-item penduduk-option" href="#"
+                                                        value="sekretaris">Sekretaris</a></li>
+                                                <li><a class="dropdown-item penduduk-option" href="#"
+                                                        value="anggota">Anggota</a></li>
+                                            </ul>
+                                        </div>
+                                    </div>
+
+
                                 </div>
                             </div>
 
                             <div class="d-flex flex-row-reverse">
                                 <button type="submit" class="btn btn-primary ml-3">Simpan</button>
-                                <a href="{{ route('lpj-belanja.show',['lpj_belanja'=>$id]) }}" class="btn btn-danger">Batal</a>
+                                <a href="{{ route('lpj-belanja.show', ['lpj_belanja' => $id]) }}"
+                                    class="btn btn-danger">Batal</a>
                             </div>
 
 
@@ -115,6 +143,43 @@
     <script src="{{ asset('assets/js/app.js') }}"></script>
     <script defer src="https://use.fontawesome.com/releases/v5.15.4/js/fontawesome.js"
         integrity="sha384-dPBGbj4Uoy1OOpM4+aRGfAOc0W37JkROT+3uynUgTHZCHZNMHfGXsmmvYTffZjYO" crossorigin="anonymous">
+    </script>
+
+    <script>
+        function searchTimPemeriksa() {
+            var input, filter, ul, li, a, i, txtValue;
+            input = document.getElementById("timPemeriksaSearchInput");
+            filter = input.value.toUpperCase();
+            ul = document.getElementById("timPemeriksaDropdown");
+            li = ul.getElementsByClassName("penduduk-option");
+
+            for (i = 0; i < li.length; i++) {
+                a = li[i];
+                txtValue = a.textContent || a.innerText;
+
+                if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                    li[i].style.display = "";
+                } else {
+                    li[i].style.display = "none";
+                }
+            }
+        }
+
+        // Adding event listener for each option in the dropdown
+        var timPemeriksaOptions = document.querySelectorAll("#timPemeriksaDropdown .penduduk-option");
+        timPemeriksaOptions.forEach(function(option) {
+            option.addEventListener("click", function() {
+                selectTimPemeriksa(option.getAttribute("value"), option.textContent);
+            });
+        });
+
+        // Handling selection in the dropdown
+        function selectTimPemeriksa(value, label) {
+            var dropdownButton = document.querySelector(".dropdown button[name='tim_pemeriksa']");
+            dropdownButton.innerHTML = label;
+            var inputVal = document.querySelector("[name='tim_pemeriksa']");
+            inputVal.value = value;
+        }
     </script>
 
 @endsection

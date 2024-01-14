@@ -85,6 +85,55 @@
                 @endforeach
             </tbody>
         </table>
+
+        <div>
+        <p>1. KEPADA</p>
+        <p>2. DARI</p>
+        <p>3. TANGGAL</p>
+        <p>4. PERIHAL</p>
+        <p>5. Sehubungan telah cairnya <<Dana Desa (DD)>> dan telah siapnya Tim Pelaksana Kegiatan, dengan ini Kami sampaikan Permohonan Pencairan <<Dana Desa (DD)>> untuk kegiatan sebagai berikut:</p>
+        <p>6. JABATAN, TTD, NAMA</p>
+    </div>
+
+    <!-- Lembar Disposisi -->
+    <div>
+        <p>LEMBAR DISPOSISI</p>
+        <p>1. INPUT MANUAL</p>
+    </div>
+
+    <!-- Surat Kesanggupan Menyelesaikan Pekerjaan -->
+    <div>
+        <p>1. NAMA</p>
+        <p>2. JABATAN</p>
+        <p>3. ALAMAT</p>
+        <p>4. Dengan ini menyatakan bahwa saya sebagai Pelaksana Pengelola Keuangan Desa (PPKD), akan melaksanakan kegiatan <<Peningkatan Kapasitas Badan Permusyawaratan Desa (BPD)>> yang bersumber dari <<Dana Desa (DD)>> sesuai dengan RAB dan pelaksanaannya akan mematuhi peraturan perundang–undangan yang berlaku, serta saya akan bertanggung jawab terhadap penggunaan anggaran keuangan dimaksud.</p>
+        <p>5. TGL, TTD, NAMA</p>
+    </div>
+
+    <!-- Pesanan Barang -->
+    <div>
+        <p>Tarikolot, 04 Januari 2023</p>
+        <p>Nomor: 001 / XI / 2023- SP TPK</p>
+        <p>Lampiran: -</p>
+        <p>Perihal: Pesanan Barang</p>
+        <p>Yth. CV. SINDORO</p>
+        <p>Di ___Tempat___</p>
+        <p>Untuk kebutuhan Pelaksanaan Kegiatan <<Belanja Perjalanan Dinas>> yang bersumber dari <<Dana Desa (DD)>> di wilayah Desa Tarikolot Kecamatan Citeureup Kabupaten Bogor, dengan ini Kami sebagai Pelaksana Kegiatan memesan Barang dengan rincian sebagai berikut:</p>
+        <!-- Tambahkan rincian pesanan barang sesuai dengan format -->
+    </div>
+
+    <!-- Berita Acara Pemeriksaan Barang -->
+    <div>
+        <p>Nomor: 001 / BAPB / 2023</p>
+        <!-- Tambahkan rincian Berita Acara Pemeriksaan Barang sesuai dengan format -->
+    </div>
+
+    <!-- Berita Acara Serah Terima Barang -->
+    <div>
+        <p>Nomor: 001 / BASTB / 2023</p>
+        <!-- Tambahkan rincian Berita Acara Serah Terima Barang sesuai dengan format -->
+    </div>
+
     </main>
 
     <!-- Include Bootstrap JS (optional) -->

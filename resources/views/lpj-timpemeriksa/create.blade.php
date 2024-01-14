@@ -41,13 +41,19 @@
                             <div class="form-group">
                                 <div class="row">
                                     <!-- Tampilin Semua Field Di Table Jos !-->
-                                    <div class="col-sm-6">
+                                    <div class="col-sm-4">
+                                        <label for="nip" class="col-form-label">NIP</label>
+                                        <input type="text" class="form-control" id="nip" name="nip"
+                                            placeholder="Nomor Identitas Pemeriksa">
+                                    </div>
+
+                                    <div class="col-sm-4">
                                         <label for="nama" class="col-form-label">Nama</label>
                                         <input type="text" class="form-control" id="nama" name="nama"
                                             placeholder="Nama Lengkap">
                                     </div>
 
-                                    <div class="col-sm-6">
+                                    <div class="col-sm-4">
                                         <label for="jabatan" class="col-form-label">Jabatan</label>
                                         <div class="input-group">
                                             <select class="form-control" id="jabatan" name="jabatan">
@@ -59,6 +65,7 @@
                                         </div>
                                     </div>
                                 </div>
+                                
                                 <button class="btn btn-primary mt-3" type="button" id="addDataBtn">Tambah Data</button>
                             </div>
 
@@ -182,7 +189,7 @@
                 <div class="row added-data-row">
                     <div class="col-sm-6">
                         <label for="nama_${counter}" class="col-form-label">Nama</label>
-                        <input type="text" class="form-control" id="nama_${counter}" name="nama[]" placeholder="Buku/Pena/dll">
+                        <input type="text" class="form-control" id="nama_${counter}" name="nama[]" placeholder="Nama Lengkap">
                     </div>
 
                     <div class="col-sm-6">
