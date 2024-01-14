@@ -12,6 +12,10 @@
 
 
     <style>
+        main {
+            font-size: 11px;
+        }
+
         .pemerintahan,
         .kecamatan {
             font-size: 16px;
@@ -34,6 +38,21 @@
 
         .page-break {
             page-break-before: always;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        td {
+            vertical-align: top;
+            padding: 10px;
+            font-family: Arial, sans-serif;
+        }
+
+        p {
+            margin: 0;
         }
     </style>
 </head>
@@ -69,25 +88,26 @@
                 <tr style="margin:-2em;">
                     <td style="width: 50%;">
                         <p>Nomor : </p>
-                        <p style="margin-top: -15px">Lampiran : - </p>
-                        <p style="margin-top: -15px">Perihal : </p>
+                        <p>Lampiran : - </p>
+                        <p>Perihal : </p>
                     </td>
                     <td style="width: 50%; text-align:right;">
                         <p>Tarikolot , </p>
-                        <p style="margin-top: -15px">Kepada</p>
-                        <p style="margin-top: -15px">Yth. </p>
-                        <p style="margin-top: -15px">____Tempat____</p>
+                        <p>Kepada</p>
+                        <p>Yth. </p>
+                        <p>____Tempat____</p>
                     </td>
                 </tr>
             </tbody>
         </table>
 
-        <p>Untuk kebutuhan Pelaksanaan Kegiatan Penyuluhan dan Pelatihan Pendidikan Bagi Masyarakat (dari Nama Rincian
+        <p style="margin-top: 2em; text-indent: 20px;">Untuk kebutuhan Pelaksanaan Kegiatan Penyuluhan dan Pelatihan
+            Pendidikan Bagi Masyarakat (dari Nama Rincian
             SPP) Sumber Dana Desa (DD) di wilayah Desa Tarikolot Kecamatan Citeureup Kabupaten Bogor, dengan ini Kami
             sebagai Pelaksana Kegiatan memesan Barang dengan rincian sebagai berikut:
         </p>
 
-        <table class="table table-bordered text-center vw-100 mw-100">
+        <table class="table table-bordered text-center vw-100 mw-100 mt-3">
             <thead>
                 <tr>
                     <th scope="col">No</th>
@@ -107,23 +127,213 @@
             </tbody>
         </table>
 
-        <p>Demikian untuk menjadi Perhatiannya dan atas kerjasamanya yang baik, Kami ucapkan Terimakasih.</p>
-        <p style="text-align:right;">PELAKSANA KEGIATAN,
+        <p style="text-indent: 20px;">Demikian untuk menjadi Perhatiannya dan atas kerjasamanya yang baik, Kami ucapkan
+            Terimakasih.</p>
+        <p class="mt-3" style="text-align:right;">PELAKSANA KEGIATAN,
             <br>
             <br>
             <br>
             <br>
             <br>
             <br>
-            SYAWALUDDIN</p>
-            
-            <div class="page-break"></div> 
-            <h5 class="text-center mt-3 mb-3 berita_acara"><u>BERITA ACARA PEMERIKSAAN BARANG</u></h5>
-            <p class="alamat text-center" style="margin-top: -10px">Alamat: Jl. Industri No.65 Desa Tarikolot Citereup Bogor 16810 Telp. (021)
-                87943708></p>
+            SYAWALUDDIN
+        </p>
+
+        <div class="page-break"></div>
+        <h5 class="text-center mt-3 mb-3 berita_acara"><u>BERITA ACARA PEMERIKSAAN BARANG</u></h5>
+        <p class="alamat text-center" style="margin-top: -10px">Alamat: Jl. Industri No.65 Desa Tarikolot Citereup Bogor
+            16810 Telp. (021)
+            87943708></p>
+        <p class="text-wrap" style="margin-top: 2em; text-indent: 20px;">Pada hari ini, Sabtu tanggal Dua Puluh Empat
+            Bulan Juni Tahun Dua Ribu Dua Puluh Tiga, Kami yang
+            bertandatangan dibawah ini:</p>
+
+        <div class="container">
+            <table style="width: 100%;">
+                <tbody>
+                    <tr style="margin:-2em;">
+                        <td style="width: 50%;">
+                            <ol>
+                                <li>Nama : DIAN RAMADAN</li>
+                                <li>Nama : DIAN RAMADAN</li>
+                                <li>Nama : DIAN RAMADAN</li>
+                            </ol>
+                        </td>
+                        <td style="width: 50%;">
+                            <ul style="list-style: none;">
+                                <li>Jabatan : Ketua </li>
+                                <li>Jabatan : Sekretaris </li>
+                                <li>Jabatan : Anggota </li>
+                            </ul>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <br>
+        <br>
+        <p style="text-indent: 20px;">Berdasarkan Surat Keputusan Kepala Desa Tarikolot Nomor ... Tahun 2023 tanggal ...
+            ................ 2023
+            tentang Penetapan Tim Pemeriksa Pekerjaan/Penerima Barang/Jasa Desa Tarikolot Tahun 2023, Kami selaku Tim
+            Pemeriksa Pekerjaan/Penerima Barang/Jasa telah melaksanakan Pemeriksaan Barang yang diserahkan oleh: EXTRA
+            FOTO COPY</p>
+        <br>
+        <p style="text-indent: 20px;">Berdasarkan Surat Pesanan Nomor 002 / VI / 2023- SP TPK tanggal 23 Juni 2023,
+            hasil pemeriksaan tersebut Kami simpulkan terhadap barang yang kondisinya Baik Kami beri tanda √, sedangkan
+            barang yang kondisinya Tidak Baik/Rusak/Tidak Sesuai Dengan Pesanan kami beri tanda x.</p>
+        <table class="table table-bordered text-center vw-100 mw-100 mt-3">
+            <thead>
+                <tr>
+                    <th scope="col" rowspan="2" class="text-center">No</th>
+                    <th scope="col" rowspan="2" class="text-center">Nama Barang</th>
+                    <th scope="col" rowspan="2" class="text-center">Banyaknya</th>
+                    <th scope="col" colspan="2" class="text-center">Kondisi</th>
+
+                </tr>
 
 
+            </thead>
+            <tbody>
+                <tr>
+                    <th>Baik</th>
+                    <th>Tidak Baik</th>
+                </tr>
+                @php $i=1 @endphp
+                @foreach ($data as $row)
+                    <tr>
+                        <td>{{ $i++ }}</td>
+                        <td>{{ $row->nama_barang }}</td>
+                        <td>{{ $row->volume_qty }}</td>
+                        <td><span>Ya</span></td>
+                        <!-- Simbol ceklis (√) -->
+                        <td><span>Tidak</span></td> <!-- Simbol silang (✗) -->
+                        <!-- Tambahkan kolom "Baik" dan "Tidak Baik" sesuai dengan kebutuhan -->
+                    </tr>
+                @endforeach
+            </tbody>
+        </table>
 
+        <p style="text-indent: 20px;">Demikan Berita Acara Pemeriksaan Barang ini Kami buat pada hari dan tanggal
+            tersebut diatas.</p>
+
+        <div class="container mt-3">
+            <table style="width: 100%;">
+                <tbody>
+                    <tr>
+                        <td style="width: 50%;">
+                            <p>REKANAN</p>
+                            <p>EXTRA FOTO COPY</p>
+                            <p style="margin-top: 5em">MIFTAHUDIN</p>
+                        </td>
+                        <td style="width: 50%;">
+                            <p class="text-center">PANITIA PEMERIKSA BARANG</p>
+                            <p></p>
+                            <ol class="mt-3">
+                                <li>Nama : DIAN RAMADAN (................)</li>
+                                <li>Nama : DIAN RAMADAN (................)</li>
+                                <li>Nama : DIAN RAMADAN (................)</li>
+                            </ol>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="page-break"></div>
+        <h5 class="text-center mt-3 mb-3 berita_acara"><u>BERITA ACARA SERAH TERIMA BARANG</u></h5>
+        <p class="alamat text-center" style="margin-top: -10px">Alamat: Jl. Industri No.65 Desa Tarikolot Citereup Bogor
+            16810 Telp. (021)
+            87943708></p>
+
+        <p style="text-indent: 20px; margin-top:2em;">Pada hari ini, Sabtu tanggal Dua Puluh Empat Bulan Juni Tahun Dua
+            Ribu Dua Puluh Tiga, Kami yang
+            bertandatangan dibawah ini:</p>
+
+        <table style="width: 100%;">
+            <tbody>
+                <tr>
+                    <td style="width: 50%;">
+                        <ol type="i">
+                            <li>Nama : </li>
+                            <p>Jabatan : </p>
+                            <p>Alamat : </p>
+                        </ol>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+
+        <p style="text-indent: 20px;">Dalam hal ini bertindak untuk dan atas nama EXTRA FOTO COPY selaku
+            Penjual/Penyedia barang yang selanjutnya
+            disebut sebagai PIHAK PERTAMA.</p>
+
+        <table style="width: 100%;">
+            <tbody>
+                <tr>
+                    <td style="width: 50%;">
+                        <ol type="i" start="2">
+                            <li>Nama : </li>
+                            <p>Jabatan : </p>
+                            <p>Alamat : </p>
+                        </ol>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+
+        <p style="text-indent: 20px;">Dalam hal ini bertindak untuk dan atas nama Tim Pemeriksa Pekerjaan/Penerima
+            Barang/Jasa Kegiatan Penyuluhan
+            dan Pelatihan Pendidikan Bagi Masyarakat Sumber Dana Desa (DD) Desa Tarikolot selaku Pemesan/Pembeli/
+            Pengguna Barang yang selanjutnya disebut sebagai PIHAK KEDUA.</p>
+        <br>
+
+        <p style="text-indent: 20px;">Dengan ini PIHAK PERTAMA menyerahkan Bahan Baku/Material/Barang untuk Kegiatan
+            Penyuluhan dan Pelatihan
+            Pendidikan Bagi Masyarakat Sumber Dana Desa (DD) Desa Tarikolot kepada PIHAK KEDUA dan PIHAK KEDUA menerima
+            sebagai berikut:</p>
+
+        <table class="table table-bordered text-center vw-100 mw-100 mt-3">
+            <thead>
+                <tr>
+                    <th scope="col">No</th>
+                    <th scope="col">Nama Barang</th>
+                    <th scope="col">Banyaknya</th>
+                </tr>
+            </thead>
+            <tbody>
+                @php $i=1 @endphp
+                @foreach ($data as $row)
+                    <tr>
+                        <td>{{ $i++ }}</td>
+                        <td>{{ $row->nama_barang }}</td>
+                        <td>{{ $row->volume_qty }}</td>
+                    </tr>
+                @endforeach
+            </tbody>
+        </table>
+        <p style="text-indent: 20px;">Demikan Berita Acara Serah Terima Barang ini dibuat sebagai Bukti yang Sah dan
+            mempuyai kekuatan hukum yang
+            sama bagi PIHAK PERTAMA dan PIHAK KEDUA.</p>
+        <div class="container mt-3">
+            <table>
+                <tbody>
+                    <tr>
+                        <td style="width: 50%;">
+                            <p>PIHAK KEDUA</p>
+                            <p>Yang menerima</p>
+                            <p>KETUA TIM PEMERIKSA PEKERJAAN/PENERIMAAN BARANG/JASA</p>
+                            <p style="margin-top: 5em">MIFTAHUDIN</p>
+                        </td>
+                        <td style="width: 50%; text-align:right;">
+                            <p>PIHAK PERTAMA</p>
+                            <p>Yang menyerahkan</p>
+                            <p>CV. SINDORO</p>
+                            <p style="margin-top: 8em">MIFTAHUDIN</p>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
     </main>
 
     <!-- Include Bootstrap JS (optional) -->
@@ -138,7 +348,7 @@
         integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous">
     </script>
 
-    
+
 </body>
 
 </html>
