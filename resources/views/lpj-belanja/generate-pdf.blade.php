@@ -32,7 +32,9 @@
             margin: -10px;
         }
 
-        
+        .page-break {
+            page-break-before: always;
+        }
     </style>
 </head>
 
@@ -46,14 +48,12 @@
                     <td class="text-center text_header">
                         <h1 class="pemerintahan">PEMERINTAH KABUPATEN BOGOR</h1>
                         <h1 class="kecamatan">KECAMATAN CITEREUP</h1>
+                        <h1 class="desa">TIM PENGEOLLA KEGIATAN (TPK)</h1>
                         <h1 class="desa">DESA TARIKOLOT</h1>
                         <p class="alamat">Alamat: Jl. Industri No.65 Desa Tarikolot Citereup Bogor 16810 Telp. (021)
                             87943708
                             <br>
-                            Website: <a
-                                href="http://www.tarikolot-citereup.desa.id">http://www.tarikolot-citereup.desa.id</a>
-                            <br>
-                            Email: <a href="mailto:desatarikolotsawitri@gmail.com">desatarikolotsawitri@gmail.com</a>
+                            Email: <a href="mailto:desatarikolotsawitri@gmail.com">tpkdesatarikolotsawitri@gmail.com</a>
                         </p>
                     </td>
                 </tr>
@@ -66,29 +66,25 @@
 
         <table style="width: 100%;">
             <tbody>
-                <tr>
+                <tr style="margin:-2em;">
                     <td style="width: 50%;">
                         <p>Nomor : </p>
-                        <p>Lampiran : - </p>
-                        <p></p>
+                        <p style="margin-top: -15px">Lampiran : - </p>
+                        <p style="margin-top: -15px">Perihal : </p>
                     </td>
                     <td style="width: 50%; text-align:right;">
-                        adsassdads
+                        <p>Tarikolot , </p>
+                        <p style="margin-top: -15px">Kepada</p>
+                        <p style="margin-top: -15px">Yth. </p>
+                        <p style="margin-top: -15px">____Tempat____</p>
                     </td>
                 </tr>
             </tbody>
         </table>
-        
 
-       <div>
-        <p style="text-align: left">adassadsasd <span  style="text-align: right">8u8u8u8</span></p>
-        
-       </div>
-        <h5 class="text-center mt-3 mb-3">Barang dan Jasa Belanja</h5>
         <p>Untuk kebutuhan Pelaksanaan Kegiatan Penyuluhan dan Pelatihan Pendidikan Bagi Masyarakat (dari Nama Rincian
             SPP) Sumber Dana Desa (DD) di wilayah Desa Tarikolot Kecamatan Citeureup Kabupaten Bogor, dengan ini Kami
             sebagai Pelaksana Kegiatan memesan Barang dengan rincian sebagai berikut:
-
         </p>
 
         <table class="table table-bordered text-center vw-100 mw-100">
@@ -112,7 +108,21 @@
         </table>
 
         <p>Demikian untuk menjadi Perhatiannya dan atas kerjasamanya yang baik, Kami ucapkan Terimakasih.</p>
-        <p style="text-align:right;">PELAKSANA KEGIATAN,<br>SYAWALUDDIN</p>
+        <p style="text-align:right;">PELAKSANA KEGIATAN,
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            SYAWALUDDIN</p>
+            
+            <div class="page-break"></div> 
+            <h5 class="text-center mt-3 mb-3 berita_acara"><u>BERITA ACARA PEMERIKSAAN BARANG</u></h5>
+            <p class="alamat text-center" style="margin-top: -10px">Alamat: Jl. Industri No.65 Desa Tarikolot Citereup Bogor 16810 Telp. (021)
+                87943708></p>
+
+
 
     </main>
 
@@ -127,6 +137,8 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/js/bootstrap.min.js"
         integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous">
     </script>
+
+    
 </body>
 
 </html>

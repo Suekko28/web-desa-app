@@ -92,7 +92,7 @@ class LPJBelanjaController extends Controller
         $html = view('lpj-belanja.generate-pdf', ['data' => $data])->render();
 
         // Adjust PDF options if needed
-        $pdf = PDF::loadHtml($html)->setPaper('f4', 'landscape');
+        $pdf = PDF::loadHtml($html)->setPaper('f4', 'portrait');
 
         return $pdf->stream('LPJBelanja.pdf');
     }

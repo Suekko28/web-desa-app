@@ -60,6 +60,25 @@
                                             placeholder="Jabatan">
                                         </div>
                                     </div>
+
+                                    <div class="col-sm-4">
+                                        <label for="tgl_pemeriksa" class="col-form-label">Tanggal Pemeriksa</label>
+                                        <input type="date" class="form-control" id="tgl_pemeriksa" name="tgl_pemeriksa"
+                                            placeholder="">
+                                    </div>
+
+                                    <div class="col-sm-4">
+                                        <label for="nomor" class="col-form-label">Nomor</label>
+                                        <input type="number" class="form-control" id="nomor" name="nomor"
+                                            placeholder="Nomor">
+                                    </div>
+
+                                    <div class="col-sm-4">
+                                        <label for="tahun" class="col-form-label">Tahun</label>
+                                        <input type="number" class="form-control" id="tahun" name="tahun"
+                                            placeholder="Tahun">
+                                    </div>
+
                                     <div class="col-sm-12">
                                         <label for="alamat" class="col-form-label">Alamat</label>
                                         <textarea type="text" class="form-control" id="alamat" name="alamat" rows="5"
