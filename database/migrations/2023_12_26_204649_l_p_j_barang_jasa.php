@@ -26,6 +26,8 @@ return new class extends Migration
             $table->string('keterangan');
             $table->string('nama_toko');
             $table->string('pemilik_toko');
+            $table->string('lampiran');
+            $table->string('perihal');
             $table->string('alamat');
             $table->timestamps();
         });

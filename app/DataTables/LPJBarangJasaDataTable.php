@@ -65,6 +65,8 @@ class LPJBarangJasaDataTable extends DataTable
                 'lpj-barang-jasa.keterangan as keterangan',
                 'lpj-barang-jasa.nama_toko as nama_toko',
                 'lpj-barang-jasa.pemilik_toko as pemilik_toko',
+                'lpj-barang-jasa.lampiran as lampiran',
+                'lpj-barang-jasa.perihal as perihal',
                 'lpj-barang-jasa.alamat as alamat',
             );
     }

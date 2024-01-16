@@ -35,6 +35,8 @@ class LPJBarangJasa extends Model
         'keterangan',
         'nama_toko',
         'pemilik_toko',
+        'lampiran',
+        'perihal',
         'alamat',
     ];
     public function LPJBelanja(): HasMany{
