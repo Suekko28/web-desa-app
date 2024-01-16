@@ -25,10 +25,10 @@ class LPJTimPemeriksaDataTable extends DataTable
         $this->rowIndex = 0;
 
         $actionBtn = '<div class="col">
-        <a href="' . route('lpj_timpemeriksa.index') . '/{{ $id }}/edit" name="edit" class="btn btn-warning"><i class="fa-solid fa-pen-to-square"></i></a>';
+        <a href="' . route('lpj-timpemeriksa.index') . '/{{ $id }}/edit" name="edit" class="btn btn-warning"><i class="fa-solid fa-pen-to-square"></i></a>';
 
         $actionBtn .= '<a href="javascript:void(0)" onclick="confirmDelete($(this))"
-            route="' . route('lpj_timpemeriksa.index') . '/{{ $id }}" class="btn btn-danger mt-2"><i class="fa-solid fa-trash-can"></i></a>';
+            route="' . route('lpj-timpemeriksa.index') . '/{{ $id }}" class="btn btn-danger mt-2"><i class="fa-solid fa-trash-can"></i></a>';
 
         $actionBtn .= '</div>';
 
@@ -49,6 +49,7 @@ class LPJTimPemeriksaDataTable extends DataTable
         return $model->newQuery()
         ->select(
             'lpj_timpemeriksa.id as id',
+            'lpj_timpemeriksa.NIP as NIP',
             'lpj_timpemeriksa.nama as nama',
             'lpj_timpemeriksa.jabatan as jabatan',
             'lpj_timpemeriksa.tgl_pemeriksa as tgl_pemeriksa',
@@ -69,10 +70,7 @@ class LPJTimPemeriksaDataTable extends DataTable
         $btn = [
             Button::make('add')
             ->text('+ Tambah Data')
-            ->addClass('rounded')
-            ->action('function() {
-                window.location.href = "'.route('lpj-timpemeriksa.create',['id'=>$this->id_barang_jasa]).'";
-            }'),
+            ->addClass('rounded'),
             Button::make('csv')
             ->addClass('btn-warning rounded')
             ->text('CSV'),
@@ -80,8 +78,11 @@ class LPJTimPemeriksaDataTable extends DataTable
             ->addClass('btn-success rounded')
             ->text('Excel'),
             Button::make('pdf')
-            ->addClass('btn-danger rounded'),
-
+            ->addClass('btn-danger rounded')
+            ->text('PDF')
+            ->action('function() {
+                window.location.href = "'.route('pemerintahan-BPD.pdf-template').'";
+            }'),
         ];
 
         return $this->builder()

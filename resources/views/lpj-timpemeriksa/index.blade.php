@@ -74,6 +74,6 @@
 
 @endsection
 
-{{-- @push('scripts')
+@push('scripts')
     {{ $dataTable->scripts(attributes: ['type' => 'module']) }}
-@endpush --}}
+@endpush

@@ -21,7 +21,7 @@ class LPJTimPemeriksaController extends Controller
      */
     public function create()
     {
-        //
+        return view('lpj-timpemeriksa.create');
     }
 
     /**
@@ -29,7 +29,8 @@ class LPJTimPemeriksaController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        LPJTimPemeriksa::create($request->all());
+        return redirect()->route('lpj-timpemeriksa.index')->with('success','Data berhasil ditambahkan');
     }
 
     /**
@@ -59,8 +60,9 @@ class LPJTimPemeriksaController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(LPJTimPemeriksa $lPJTimPemeriksa)
+    public function destroy(String $id)
     {
-        //
+       $user=LPJTimPemeriksa::find($id)->delete();
+       return redirect()->route('lpj-timpemeriksa.index')->with('success', 'Data berhasil dihapus');
     }
 }
