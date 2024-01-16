@@ -49,14 +49,14 @@
 
                                     <div class="col-sm-4">
                                         <label for="nama" class="col-form-label">Nama</label>
-                                        <input type="text" class="form-control" id="nama" name="nama"
+                                        <input type="text" class="form-control" id="nama" name="nama_ketua"
                                             placeholder="Nama Lengkap">
                                     </div>
 
                                     <div class="col-sm-4">
                                         <label for="jabatan" class="col-form-label">Jabatan</label>
                                         <div class="input-group">
-                                            <input type="text" class="form-control" id="jabatan" name="jabatan"
+                                            <input type="text" class="form-control" id="jabatan" name="jabatan_ketua"
                                             placeholder="Jabatan">
                                         </div>
                                     </div>

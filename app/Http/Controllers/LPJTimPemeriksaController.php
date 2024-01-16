@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\DataTables\LPJTimPemeriksaDataTable;
 use App\Models\LPJTimPemeriksa;
+use App\Models\AnggotaLPJTimPemeriksa;
 use Illuminate\Http\Request;
 
 class LPJTimPemeriksaController extends Controller
@@ -29,7 +30,27 @@ class LPJTimPemeriksaController extends Controller
      */
     public function store(Request $request)
     {
-        LPJTimPemeriksa::create($request->all());
+        $data_ketua=[
+            'NIP'=>$request->NIP,
+            'nama'=>$request->nama_ketua,
+            'jabatan'=>$request->jabatan_ketua,
+            'tgl_pemeriksa'=>$request->tgl_pemeriksa,
+            'nomor'=>$request->nomor,
+            'tahun'=>$request->tahun,
+            'alamat'=>$request->alamat,
+        ];
+
+        LPJTimPemeriksa::create($data_ketua);
+        $id_ketua=LPJTimPemeriksa::where('NIP','=',$data_ketua['NIP'])->where('jabatan','=',$data_ketua['jabatan'])->where('tgl_pemeriksa','=',$data_ketua['tgl_pemeriksa'])->first();
+        for($i=0;$i<sizeof($request->nama);$i++){
+            $data=[
+                'id_ketua'=>$id_ketua->id,
+                'nama'=>$request->nama[$i],
+                'jabatan'=>$request->jabatan[$i],
+            ];
+            AnggotaLPJTimPemeriksa::create($data);
+        }
+
         return redirect()->route('lpj-timpemeriksa.index')->with('success','Data berhasil ditambahkan');
     }
 
@@ -44,9 +65,12 @@ class LPJTimPemeriksaController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(LPJTimPemeriksa $lPJTimPemeriksa)
+    public function edit(LPJTimPemeriksa $lPJTimPemeriksa,String $id)
     {
-        //
+        
+        $data_ketua=LPJTimPemeriksa::find($id)->first();
+        $data_anggota=$data_ketua->AnggotaLPJTimPemeriksa;
+        return view('lpj-timpemeriksa.edit',['data_ketua'=>$data_ketua,'data_anggota'=>$data_anggota]);
     }
 
     /**

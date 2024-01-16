@@ -33,7 +33,8 @@
 
                 <!-- Small boxes (Stat box) -->
 
-                <form action="" method="POST" enctype="multipart/form-data">
+                <form action="{{ route('lpj-timpemeriksa.update',$data_ketua->id) }}" method="POST" enctype="multipart/form-data">
+                    @method('PUT')
                     @csrf
                     <div class="card">
                         <div class="card-body">
@@ -41,97 +42,58 @@
                             <div class="form-group">
                                 <div class="row">
                                     <!-- Tampilin Semua Field Di Table Jos !-->
-                                    <div class="col-sm-6">
+                                    <div class="col-sm-4">
+                                        <label for="nip" class="col-form-label">NIP</label>
+                                        <input type="text" class="form-control" id="NIP" name="NIP"
+                                            placeholder="Nomor Identitas Pemeriksa" value="{{$data_ketua->NIP}}">
+                                    </div>
+
+                                    <div class="col-sm-4">
                                         <label for="nama" class="col-form-label">Nama</label>
                                         <input type="text" class="form-control" id="nama" name="nama"
-                                            placeholder="Nama Lengkap">
+                                            placeholder="Nama Lengkap" value="{{$data_ketua->nama}}">
                                     </div>
 
-                                    <div class="col-sm-6">
+                                    <div class="col-sm-4">
                                         <label for="jabatan" class="col-form-label">Jabatan</label>
                                         <div class="input-group">
-                                            <select class="form-control" id="jabatan" name="jabatan">
-                                                <option value="">--Pilih Jabatan--</option>
-                                                <option value="1">Ketua</option>
-                                                <option value="2">Sekretaris</option>
-                                                <option value="3">Anggota</option>
-                                            </select>
+                                            <input type="text" class="form-control" id="jabatan" name="jabatan"
+                                            placeholder="Jabatan" value="{{$data_ketua->jabatan}}">
                                         </div>
                                     </div>
+
+                                    <div class="col-sm-4">
+                                        <label for="tgl_pemeriksa" class="col-form-label">Tanggal Pemeriksa</label>
+                                        <input type="date" class="form-control" id="tgl_pemeriksa" name="tgl_pemeriksa"
+                                            placeholder="" value="{{$data_ketua->tgl_pemeriksa}}">
+                                    </div>
+
+                                    <div class="col-sm-4">
+                                        <label for="nomor" class="col-form-label">Nomor</label>
+                                        <input type="number" class="form-control" id="nomor" name="nomor"
+                                            placeholder="Nomor" value="{{$data_ketua->nomor}}">
+                                    </div>
+
+                                    <div class="col-sm-4">
+                                        <label for="tahun" class="col-form-label">Tahun</label>
+                                        <input type="number" class="form-control" id="tahun" name="tahun"
+                                            placeholder="Tahun" value="{{$data_ketua->tahun}}">
+                                    </div>
+
+                                    <div class="col-sm-12">
+                                        <label for="alamat" class="col-form-label">Alamat</label>
+                                        <textarea type="text" class="form-control" id="alamat" name="alamat" rows="5"
+                                            placeholder="Masukkan Alamat">{{$data_ketua->alamat}}</textarea>
+                                    </div>
                                 </div>
+                                
                                 <button class="btn btn-primary mt-3" type="button" id="addDataBtn">Tambah Data</button>
                             </div>
-
+                            
                             <div class="d-flex flex-row-reverse">
                                 <button type="submit" class="btn btn-primary ml-3">Simpan</button>
                                 <a href="" class="btn btn-danger">Batal</a>
                             </div>
-
-                            <div class="form-group">
-                                <div class="row">
-                                    <!-- Tampilin Semua Field Di Table Jos !-->
-                                    <div class="col-sm-6">
-                                        <label for="nama" class="col-form-label">Nama Tim Pemeriksa 1</label>
-                                        <input type="text" class="form-control" id="nama" name="nama"
-                                            placeholder="Nama Lengkap">
-                                    </div>
-
-                                    <div class="col-sm-6">
-                                        <label for="jabatan" class="col-form-label">Jabatan</label>
-                                        <div class="input-group">
-                                            <select class="form-control" id="jabatan" name="jabatan">
-                                                <option value="">--Pilih Jabatan--</option>
-                                                <option value="1">Ketua</option>
-                                                <option value="2">Sekretaris</option>
-                                                <option value="3">Anggota</option>
-                                            </select>
-                                        </div>
-                                    </div>
-
-                                    <div class="col-sm-6">
-                                        <label for="nama" class="col-form-label">Nama Tim Pemeriksa 1</label>
-                                        <input type="text" class="form-control" id="nama" name="nama"
-                                            placeholder="Nama Lengkap">
-                                    </div>
-
-                                    <div class="col-sm-6">
-                                        <label for="jabatan" class="col-form-label">Jabatan</label>
-                                        <div class="input-group">
-                                            <select class="form-control" id="jabatan" name="jabatan">
-                                                <option value="">--Pilih Jabatan--</option>
-                                                <option value="1">Ketua</option>
-                                                <option value="2">Sekretaris</option>
-                                                <option value="3">Anggota</option>
-                                            </select>
-                                        </div>
-                                    </div>
-
-                                     <div class="col-sm-6">
-                                        <label for="nama" class="col-form-label">Nama Tim Pemeriksa 1</label>
-                                        <input type="text" class="form-control" id="nama" name="nama"
-                                            placeholder="Nama Lengkap">
-                                    </div>
-
-                                    <div class="col-sm-6">
-                                        <label for="jabatan" class="col-form-label">Jabatan</label>
-                                        <div class="input-group">
-                                            <select class="form-control" id="jabatan" name="jabatan">
-                                                <option value="">--Pilih Jabatan--</option>
-                                                <option value="1">Ketua</option>
-                                                <option value="2">Sekretaris</option>
-                                                <option value="3">Anggota</option>
-                                            </select>
-                                        </div>
-                                    </div>
-
-
-                                    </div>
-
-
-                                </div>
-
-
-
                                 <!-- /.card-body -->
                 </form>
                 <!-- /.row (main row) -->
@@ -182,18 +144,13 @@
                 <div class="row added-data-row">
                     <div class="col-sm-6">
                         <label for="nama_${counter}" class="col-form-label">Nama</label>
-                        <input type="text" class="form-control" id="nama_${counter}" name="nama[]" placeholder="Buku/Pena/dll">
+                        <input type="text" class="form-control" id="nama_${counter}" name="nama[]" placeholder="Nama Lengkap">
                     </div>
 
                     <div class="col-sm-6">
                       <label for="jabatan_${counter}" class="col-form-label">Jabatan</label>
                         <div class="input-group">
-                            <select class="form-control" id="jabatan_${counter}" name="jabatan[]">
-                                <option value="">--Pilih Jabatan--</option>
-                                <option value="Ketua">Ketua</option>
-                                <option value="Sekretaris">Sekretaris</option>
-                                <option value="Anggota">Anggota</option>
-                            </select>
+                            <input type="text" class="form-control" id="jabatan${counter}" name="jabatan[]" placeholder="Jabatan">
                         <div class="input-group-append">
                          <button class="btn btn-danger rounded ml-2 remove-data-btn" type="button" data-counter="${counter}">
                             <i class="fas fa-trash-alt"></i>

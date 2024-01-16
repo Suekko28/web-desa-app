@@ -4,10 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Relations\HasMany;
-
-
-class LPJTimPemeriksa extends Model
+class AnggotaLPJTimPemeriksa extends Model
 {
     use HasFactory;
 
@@ -16,7 +13,7 @@ class LPJTimPemeriksa extends Model
      *
      * @var string
      */
-    protected $table = 'lpj_timpemeriksa';
+    protected $table = 'anggota_lpj_tim_pemeriksa';
 
     /**
      * The attributes that are mass assignable.
@@ -24,15 +21,11 @@ class LPJTimPemeriksa extends Model
      * @var array<int, string>
      */
     protected $fillable = [
-        'NIP',
+        'id_ketua',
         'nama',
         'jabatan',
-        'tgl_pemeriksa',
-        'nomor',
-        'tahun',
-        'alamat',
     ];
-    public function AnggotaLPJTimPemeriksa(): HasMany{
-        return $this->hasMany(AnggotaLPJTimPemeriksa::class,'id_ketua','id');
+    public function KetuaLPJTimPemeriksa(): BelongsTo{
+        return $this->belongsTo(LPJTimPemeriksa::class,'id_ketua','id');
     }
 }
