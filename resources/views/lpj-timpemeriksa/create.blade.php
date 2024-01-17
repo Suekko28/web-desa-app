@@ -33,7 +33,7 @@
 
                 <!-- Small boxes (Stat box) -->
 
-                <form action="" method="POST" enctype="multipart/form-data">
+                <form action="{{ route('lpj-timpemeriksa.store') }}" method="POST" enctype="multipart/form-data">
                     @csrf
                     <div class="card">
                         <div class="card-body">
@@ -43,20 +43,20 @@
                                     <!-- Tampilin Semua Field Di Table Jos !-->
                                     <div class="col-sm-4">
                                         <label for="nip" class="col-form-label">NIP</label>
-                                        <input type="text" class="form-control" id="nip" name="nip"
+                                        <input type="text" class="form-control" id="NIP" name="NIP"
                                             placeholder="Nomor Identitas Pemeriksa">
                                     </div>
 
                                     <div class="col-sm-4">
                                         <label for="nama" class="col-form-label">Nama</label>
-                                        <input type="text" class="form-control" id="nama" name="nama"
+                                        <input type="text" class="form-control" id="nama" name="nama_ketua"
                                             placeholder="Nama Lengkap">
                                     </div>
 
                                     <div class="col-sm-4">
                                         <label for="jabatan" class="col-form-label">Jabatan</label>
                                         <div class="input-group">
-                                            <input type="text" class="form-control" id="Jabatan" name="Jabatan"
+                                            <input type="text" class="form-control" id="jabatan" name="jabatan_ketua"
                                             placeholder="Jabatan">
                                         </div>
                                     </div>

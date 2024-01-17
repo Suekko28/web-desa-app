@@ -33,7 +33,7 @@
                     <div class="card-body">
                         <div id="table-default" class="table-responsive">
                             <!-- Tampilin Semua Field Di Table Jos !-->
-                            {{-- {{ $dataTable->table() }} --}}
+                            {{ $dataTable->table() }}
                         </div>
                     </div>
                 </div>
@@ -74,6 +74,6 @@
 
 @endsection
 
-{{-- @push('scripts')
+@push('scripts')
     {{ $dataTable->scripts(attributes: ['type' => 'module']) }}
-@endpush --}}
+@endpush

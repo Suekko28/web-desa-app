@@ -2,7 +2,7 @@
 
 namespace App\DataTables;
 
-use App\Models\LPJBarangJasa;
+use App\Models\LPJTimPemeriksa;
 use Illuminate\Database\Eloquent\Builder as QueryBuilder;
 use Yajra\DataTables\EloquentDataTable;
 use Yajra\DataTables\Html\Builder as HtmlBuilder;
@@ -12,7 +12,7 @@ use Yajra\DataTables\Html\Editor\Editor;
 use Yajra\DataTables\Html\Editor\Fields;
 use Yajra\DataTables\Services\DataTable;
 
-class LPJBarangJasaDataTable extends DataTable
+class LPJTimPemeriksaDataTable extends DataTable
 {
     /**
      * Build DataTable class.
@@ -25,13 +25,10 @@ class LPJBarangJasaDataTable extends DataTable
         $this->rowIndex = 0;
 
         $actionBtn = '<div class="col">
-        <a href="' . route('lpj-barangjasa.index') . '/{{ $id }}/edit" name="edit" class="btn btn-warning"><i class="fa-solid fa-pen-to-square"></i></a>';
+        <a href="' . route('lpj-timpemeriksa.index') . '/{{ $id }}/edit" name="edit" class="btn btn-warning"><i class="fa-solid fa-pen-to-square"></i></a>';
 
         $actionBtn .= '<a href="javascript:void(0)" onclick="confirmDelete($(this))"
-            route="' . route('lpj-barangjasa.index') . '/{{ $id }}" class="btn btn-danger mt-2"><i class="fa-solid fa-trash-can"></i></a>';
-
-        $actionBtn .= '<div class="col">
-        <a href="' . route('lpj-belanja.index') . '/{{ $id }}" name="view" class="btn btn-primary mt-2"><i class="fa-solid fa-basket-shopping"></i></a>';
+            route="' . route('lpj-timpemeriksa.index') . '/{{ $id }}" class="btn btn-danger mt-2"><i class="fa-solid fa-trash-can"></i></a>';
 
         $actionBtn .= '</div>';
 
@@ -44,31 +41,23 @@ class LPJBarangJasaDataTable extends DataTable
     /**
      * Get query source of dataTable.
      *
-     * @param \App\Models\LPJBarangJasa $model
+     * @param \App\Models\LPJTimPemeriksa $model
      * @return \Illuminate\Database\Eloquent\Builder
      */
-    public function query(LPJBarangJasa $model): QueryBuilder
+    public function query(LPJTimPemeriksa $model): QueryBuilder
     {
         return $model->newQuery()
-            ->select(
-                'lpj-barang-jasa.id as id',
-                'lpj-barang-jasa.no_pesanan_brg as no_pesanan_barang',
-                'lpj-barang-jasa.no_berita_acara as no_berita_acara',
-                'lpj-barang-jasa.nama_pelaksana_kegiatan as nama_pelaksana_kegiatan',
-                'lpj-barang-jasa.sk_tpk as sk_tpk',
-                'lpj-barang-jasa.nama_rincian_spp as nama_rincian_spp',
-                'lpj-barang-jasa.uraian_kwitansi as uraian_kwitansi',
-                'lpj-barang-jasa.tgl_pesanan as tgl_pesanan',
-                'lpj-barang-jasa.tgl_bast as tgl_bast',
-                'lpj-barang-jasa.jatuh_tempo as jatuh_tempo',
-                'lpj-barang-jasa.jatuh_pemeriksaan as jatuh_pemeriksaan',
-                'lpj-barang-jasa.keterangan as keterangan',
-                'lpj-barang-jasa.nama_toko as nama_toko',
-                'lpj-barang-jasa.pemilik_toko as pemilik_toko',
-                'lpj-barang-jasa.lampiran as lampiran',
-                'lpj-barang-jasa.perihal as perihal',
-                'lpj-barang-jasa.alamat as alamat',
-            );
+        ->select(
+            'lpj_timpemeriksa.id as id',
+            'lpj_timpemeriksa.NIP as NIP',
+            'lpj_timpemeriksa.nama as nama',
+            'lpj_timpemeriksa.jabatan as jabatan',
+            'lpj_timpemeriksa.tgl_pemeriksa as tgl_pemeriksa',
+            'lpj_timpemeriksa.nomor as nomor',
+            'lpj_timpemeriksa.tahun as tahun',
+            'lpj_timpemeriksa.alamat as alamat',
+            'lpj_timpemeriksa.updated_at as updated_at',
+        );
     }
 
     /**
@@ -92,14 +81,12 @@ class LPJBarangJasaDataTable extends DataTable
             ->addClass('btn-danger rounded')
             ->text('PDF')
             ->action('function() {
-                window.location.href = "'.route('lpj-barangjasa.generate-pdf').'";
+                window.location.href = "'.route('pemerintahan-BPD.pdf-template').'";
             }'),
-
-
         ];
 
         return $this->builder()
-            ->setTableId('lpj-barang-jasa-table')
+            ->setTableId('lpj_timpemeriksa-table')
             ->columns($this->getColumns())
             ->minifiedAjax()
             ->orderBy(0, 'asc')
@@ -116,12 +103,16 @@ class LPJBarangJasaDataTable extends DataTable
     {
         return [
             Column::make('id')
-            ->title('No'),
-            Column::make('no_pesanan_barang'),
-            Column::make('no_berita_acara'),
-            Column::make('nama_pelaksana_kegiatan'),
-            Column::make('tgl_pesanan'),
-            Column::make('nama_toko'),
+                ->title('No')
+                ->width(10),
+            Column::make('NIP'),
+            Column::make('nama'),
+            Column::make('jabatan'),
+            Column::make('tgl_pemeriksa'),
+            Column::make('nomor'),
+            Column::make('tahun'),
+            Column::make('alamat'),
+            Column::make('updated_at'),
             Column::computed('action')
                 ->exportable(false)
                 ->printable(false)
@@ -137,6 +128,6 @@ class LPJBarangJasaDataTable extends DataTable
      */
     protected function filename(): string
     {
-        return 'LPJBarangJasa_' . date('YmdHis');
+        return 'LPJTimPemeriksa_' . date('YmdHis');
     }
 }
