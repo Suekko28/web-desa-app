@@ -33,7 +33,8 @@
 
                 <!-- Small boxes (Stat box) -->
 
-                <form action="{{ route('lpj-timpemeriksa.update',$data_ketua->id) }}" method="POST" enctype="multipart/form-data">
+                <form action="{{ route('lpj-timpemeriksa.update', $data_ketua->id) }}" method="POST"
+                    enctype="multipart/form-data">
                     @method('PUT')
                     @csrf
                     <div class="card">
@@ -45,56 +46,79 @@
                                     <div class="col-sm-4">
                                         <label for="nip" class="col-form-label">NIP</label>
                                         <input type="text" class="form-control" id="NIP" name="NIP"
-                                            placeholder="Nomor Identitas Pemeriksa" value="{{$data_ketua->NIP}}">
+                                            placeholder="Nomor Identitas Pemeriksa" value="{{ $data_ketua->NIP }}">
                                     </div>
 
                                     <div class="col-sm-4">
                                         <label for="nama" class="col-form-label">Nama</label>
                                         <input type="text" class="form-control" id="nama" name="nama"
-                                            placeholder="Nama Lengkap" value="{{$data_ketua->nama}}">
+                                            placeholder="Nama Lengkap" value="{{ $data_ketua->nama }}">
                                     </div>
 
                                     <div class="col-sm-4">
                                         <label for="jabatan" class="col-form-label">Jabatan</label>
                                         <div class="input-group">
                                             <input type="text" class="form-control" id="jabatan" name="jabatan"
-                                            placeholder="Jabatan" value="{{$data_ketua->jabatan}}">
+                                                placeholder="Jabatan" value="{{ $data_ketua->jabatan }}">
                                         </div>
                                     </div>
 
                                     <div class="col-sm-4">
                                         <label for="tgl_pemeriksa" class="col-form-label">Tanggal Pemeriksa</label>
                                         <input type="date" class="form-control" id="tgl_pemeriksa" name="tgl_pemeriksa"
-                                            placeholder="" value="{{$data_ketua->tgl_pemeriksa}}">
+                                            placeholder="" value="{{ $data_ketua->tgl_pemeriksa }}">
                                     </div>
 
                                     <div class="col-sm-4">
                                         <label for="nomor" class="col-form-label">Nomor</label>
                                         <input type="number" class="form-control" id="nomor" name="nomor"
-                                            placeholder="Nomor" value="{{$data_ketua->nomor}}">
+                                            placeholder="Nomor" value="{{ $data_ketua->nomor }}">
                                     </div>
 
                                     <div class="col-sm-4">
                                         <label for="tahun" class="col-form-label">Tahun</label>
                                         <input type="number" class="form-control" id="tahun" name="tahun"
-                                            placeholder="Tahun" value="{{$data_ketua->tahun}}">
+                                            placeholder="Tahun" value="{{ $data_ketua->tahun }}">
                                     </div>
 
                                     <div class="col-sm-12">
                                         <label for="alamat" class="col-form-label">Alamat</label>
                                         <textarea type="text" class="form-control" id="alamat" name="alamat" rows="5"
-                                            placeholder="Masukkan Alamat">{{$data_ketua->alamat}}</textarea>
+                                            placeholder="Masukkan Alamat">{{ $data_ketua->alamat }}</textarea>
                                     </div>
+
+                                    @foreach ($data_anggota as $anggota)
+                                        <div class="col-sm-6">
+                                            <label for="nama_{{ $anggota->id }}" class="col-form-label">Nama</label>
+                                            <input type="text" class="form-control" id="nama_{{ $anggota->id }}"
+                                                name="nama[]" value="{{ $anggota->nama }}" placeholder="Nama Lengkap">
+                                        </div>
+                                        <div class="col-sm-6">
+                                            <label for="jabatan_{{ $anggota->id }}"
+                                                class="col-form-label">Jabatan</label>
+                                            <div class="input-group">
+                                                <input type="text" class="form-control"
+                                                    id="jabatan_{{ $anggota->id }}" name="jabatan[]"
+                                                    value="{{ $anggota->jabatan }}" placeholder="Jabatan">
+                                                <div class="input-group-append">
+                                                    <button class="btn btn-danger rounded ml-2 remove-data-btn"
+                                                        type="button" data-counter="{{ $anggota->id }}">
+                                                        <i class="fas fa-trash-alt"></i>
+                                                    </button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    @endforeach
                                 </div>
-                                
+
                                 <button class="btn btn-primary mt-3" type="button" id="addDataBtn">Tambah Data</button>
                             </div>
-                            
+
                             <div class="d-flex flex-row-reverse">
                                 <button type="submit" class="btn btn-primary ml-3">Simpan</button>
                                 <a href="" class="btn btn-danger">Batal</a>
                             </div>
-                                <!-- /.card-body -->
+                            <!-- /.card-body -->
                 </form>
                 <!-- /.row (main row) -->
             </div><!-- /.container-fluid -->
@@ -184,4 +208,17 @@
         });
     </script>
 
+    <script>
+        $(document).ready(function() {
+            // Event listener untuk tombol remove-data-btn
+            $('.remove-data-btn').on('click', function() {
+                // Dapatkan counter dari data-counter atribut tombol yang ditekan
+                var counter = $(this).data('counter');
+
+                // Hapus elemen dengan ID yang sesuai
+                $('#nama_' + counter).closest('.col-sm-6').remove();
+                $('#jabatan_' + counter).closest('.col-sm-6').remove();
+            });
+        });
+    </script>
 @endsection

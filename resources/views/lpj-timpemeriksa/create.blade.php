@@ -80,7 +80,7 @@
                                     </div>
 
                                     <div class="col-sm-12">
-                                        <label for="alamat" class="col-form-label">Alamat</label>
+                                        <label for=" alamat" class="col-form-label">Alamat</label>
                                         <textarea type="text" class="form-control" id="alamat" name="alamat" rows="5"
                                             placeholder="Masukkan Alamat"></textarea>
                                     </div>
