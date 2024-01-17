@@ -106,6 +106,20 @@
                                             placeholder="" value="{{$data->jatuh_pemeriksaan}}">
                                     </div>
 
+                                    
+
+                                    <div class="col-sm-6">
+                                        <label for="lampiran" class="col-form-label">Lampiran</label>
+                                        <input type="text" class="form-control" id="lampiran" name="lampiran"
+                                            placeholder="Masukkan Lampiran" value="{{$data->lampiran}}">
+                                    </div>
+
+                                    <div class="col-sm-6">
+                                        <label for="perihal" class="col-form-label">Perihal</label>
+                                        <input type="text" class="form-control" id="perihal" name="perihal"
+                                            placeholder="Masukkan Perihal" value="{{$data->perihal}}">
+                                    </div>
+
                                     <div class="col-sm-12">
                                         <label for="keterangan" class="col-form-label">Keterangan</label>
                                         <textarea type="text" class="form-control" id="keterangan" name="keterangan" rows="5"

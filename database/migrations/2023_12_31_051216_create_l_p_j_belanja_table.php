@@ -11,13 +11,16 @@ return new class extends Migration
      */
     public function up(): void
     {
+        // Schema::dropIfExists('lpj-belanja');
         Schema::create('lpj-belanja', function (Blueprint $table) {
             $table->id();
             $table->integer('id_barang_jasa');
             $table->string('nama_barang');
+            $table->integer('dana_desa');
             $table->integer('volume_qty');
             $table->string('satuan');
             $table->integer('harga');
+            $table->integer('tim_pemeriksa');
             $table->timestamps();
         });
     }

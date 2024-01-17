@@ -42,6 +42,7 @@ class LPJTimPemeriksaController extends Controller
 
         LPJTimPemeriksa::create($data_ketua);
         $id_ketua=LPJTimPemeriksa::where('NIP','=',$data_ketua['NIP'])->where('jabatan','=',$data_ketua['jabatan'])->where('tgl_pemeriksa','=',$data_ketua['tgl_pemeriksa'])->first();
+        if($request->nama!=null){
         for($i=0;$i<sizeof($request->nama);$i++){
             $data=[
                 'id_ketua'=>$id_ketua->id,
@@ -50,7 +51,7 @@ class LPJTimPemeriksaController extends Controller
             ];
             AnggotaLPJTimPemeriksa::create($data);
         }
-
+        }
         return redirect()->route('lpj-timpemeriksa.index')->with('success','Data berhasil ditambahkan');
     }
 
@@ -90,13 +91,15 @@ class LPJTimPemeriksaController extends Controller
         ];
         $data->update($data_ketua);
         $data->AnggotaLPJTimPemeriksa()->delete();
-        for($i=0;$i<sizeof($request->nama);$i++){
-            $data=[
-                'id_ketua'=>$id,
-                'nama'=>$request->nama[$i],
-                'jabatan'=>$request->jabatan[$i],
-            ];
-            AnggotaLPJTimPemeriksa::create($data);
+        if($request->nama!=null){
+            for($i=0;$i<sizeof($request->nama);$i++){
+                $data=[
+                    'id_ketua'=>$id,
+                    'nama'=>$request->nama[$i],
+                    'jabatan'=>$request->jabatan[$i],
+                ];
+                AnggotaLPJTimPemeriksa::create($data);
+            }
         }
         return redirect()->route('lpj-timpemeriksa.index')->with('success','Data berhasil diperbarui');
 
@@ -107,11 +110,25 @@ class LPJTimPemeriksaController extends Controller
      */
     public function destroy(String $id)
     {
-       $user=LPJTimPemeriksa::find($id)->delete();
+        $user=LPJTimPemeriksa::find($id);
+        if($user->AnggotaLPJTimPemeriksa()->exists()){
+            $user->AnggotaLPJTimPemeriksa()->delete();
+        }
+       $user->delete();
        return redirect()->route('lpj-timpemeriksa.index')->with('success', 'Data berhasil dihapus');
     }
 
-    public function destroy_child(String $id){
-
+    public function pdfTemplate(LPJTimPemeriksaDataTable $dataTable)
+    {
+        // Retrieve the data directly from the query builder
+        $data = $dataTable->query(new LPJTimPemeriksa())->get();
+    
+        // Send data to the view for PDF rendering
+        $html = view('lpj-timpemeriksa.generate-pdf', ['data' => $data])->render();
+    
+        // Adjust PDF options if needed
+        $pdf = PDF::loadHtml($html)->setPaper('f4', 'landscape');
+        
+        return $pdf->stream('LPJTimPemeriksa.pdf');
     }
 }

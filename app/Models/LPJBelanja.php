@@ -4,6 +4,8 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\HasOne;
+
 
 class LPJBelanja extends Model
 {
@@ -25,6 +27,8 @@ class LPJBelanja extends Model
         'id_barang_jasa',
         'nama_barang',
         'volume_qty',
+        'dana_desa',
+        'tim_pemeriksa',
         'satuan',
         'harga',
     ];

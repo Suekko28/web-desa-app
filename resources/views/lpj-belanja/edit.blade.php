@@ -53,7 +53,7 @@
                                     <div class="col-sm-4">
                                         <label for="dana_desa" class="col-form-label">Dana Desa</label>
                                         <input type="number" class="form-control" id="dana_desa" name="dana_desa"
-                                            placeholder="Dana Desa" value="">
+                                            placeholder="Dana Desa" value="{{$data->dana_desa}}">
                                     </div>
 
                                     <div class="col-sm-4">
@@ -78,24 +78,24 @@
                                         <label for="tim_pemeriksa" class="col-form-label">Tim Pemeriksa</label>
                                         <div class="dropdown">
                                             <button class="form-control dropdown-toggle text-left" type="button"
-                                                data-bs-toggle="dropdown" aria-expanded="false" name="tim_pemeriksa">
-                                                --Pilih Tim Pemeriksa--
+                                                data-bs-toggle="dropdown" aria-expanded="false" name="tim_pemeriksa_show">
+                                                {{$data->tim_pemeriksa .' - '.$data->nama_pemeriksa}}
                                             </button>
                                             <!-- Data diambil dari TIM PEMERIKSA !-->
                                             <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton"
                                                 id="timPemeriksaDropdown">
                                                 <input type="text" id="timPemeriksaSearchInput" class="form-control"
-                                                    placeholder="Cari Tim Pemeriksa..." oninput="searchTimPemeriksa()">
-                                                {{-- @foreach ($data as $i)
-                                                    <li><a class="dropdown-item penduduk-option" href="#" value="{{ $i->NIK }}">{{ $i->NIK . " - " . $i->nama }}</a></li>
-                                                @endforeach --}}
+                                                    placeholder="Cari Tim Pemeriksa..." oninput="searchTimPemeriksa()" name="tim_pemeriksa" value="{{$data->tim_pemeriksa}}">
+                                                @foreach ($data_pemeriksa as $i)
+                                                    <li><a class="dropdown-item penduduk-option" href="#" value="{{ $i->NIP }}">{{ $i->NIP . " - " . $i->nama }}</a></li>
+                                                @endforeach
                                                 <!-- Tambahkan opsi ketua, sekretaris, dan anggota -->
-                                                <li><a class="dropdown-item penduduk-option" href="#"
+                                                <!-- <li><a class="dropdown-item penduduk-option" href="#"
                                                         value="ketua">Ketua</a></li>
                                                 <li><a class="dropdown-item penduduk-option" href="#"
                                                         value="sekretaris">Sekretaris</a></li>
                                                 <li><a class="dropdown-item penduduk-option" href="#"
-                                                        value="anggota">Anggota</a></li>
+                                                        value="anggota">Anggota</a></li> -->
                                             </ul>
                                         </div>
                                     </div>
@@ -179,7 +179,7 @@
 
         // Handling selection in the dropdown
         function selectTimPemeriksa(value, label) {
-            var dropdownButton = document.querySelector(".dropdown button[name='tim_pemeriksa']");
+            var dropdownButton = document.querySelector(".dropdown button[name='tim_pemeriksa_show']");
             dropdownButton.innerHTML = label;
             var inputVal = document.querySelector("[name='tim_pemeriksa']");
             inputVal.value = value;

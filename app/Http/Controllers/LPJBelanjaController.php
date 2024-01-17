@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\DataTables\LPJBelanjaDataTable;
 use App\Models\LPJBelanja;
+use App\Models\LPJTimPemeriksa;
+use App\Models\LPJBarangJasa;
 use Illuminate\Http\Request;
 use Barryvdh\DomPDF\Facade\Pdf;
 
@@ -23,8 +25,11 @@ class LPJBelanjaController extends Controller
      */
     public function create(String $id,Request $request)
     {
+        $data_pemeriksa=LPJTimPemeriksa::all();
+
         return view('lpj-belanja.create',[
             'id'=>$id,
+            'data_pemeriksa'=>$data_pemeriksa,
         ]);
     }
 
@@ -34,7 +39,6 @@ class LPJBelanjaController extends Controller
     public function store(Request $request)
     {
         $request['id_barang_jasa']=$request->id;
-
         LPJBelanja::create($request->all());
         return redirect()->route('lpj-belanja.show',['lpj_belanja'=>$request->id])->with('success','Berhasil menambahkan data');
     }
@@ -55,10 +59,13 @@ class LPJBelanjaController extends Controller
     public function edit(String $id_barang_jasa,String $id)
     {
         $data=LPJBelanja::where('id','=',$id)->where('id_barang_jasa','=',$id_barang_jasa)->first();
+        $data_pemeriksa=LPJTimPemeriksa::all();
+        $data['nama_pemeriksa']=LPJTimPemeriksa::where('NIP','=',$data['tim_pemeriksa'])->first()->nama;
 
         return view('lpj-belanja.edit',[
             'data'=>$data,
             'id'=>$id,
+            'data_pemeriksa'=>$data_pemeriksa,
             'id_barang_jasa'=>$id_barang_jasa,
         ]);
     }
@@ -83,13 +90,15 @@ class LPJBelanjaController extends Controller
         return redirect()->route('lpj-belanja.show',['lpj_belanja'=>$id_barang_jasa])->with('success','Berhasil menghapus data');
     }
 
-    public function pdfTemplate(LPJBelanjaDataTable $dataTable)
+    public function pdfTemplate(LPJBelanjaDataTable $dataTable,String $id)
     {
         // Retrieve the data directly from the query builder
         $data = $dataTable->query(new LPJBelanja())->get();
+        $data_belanja=LPJBarangJasa::find($id);
+        $data_barang=$data_belanja->LPJBelanja()->get();
 
         // Send data to the view for PDF rendering
-        $html = view('lpj-belanja.generate-pdf', ['data' => $data])->render();
+        $html = view('lpj-belanja.generate-pdf', ['data' => $data,'data_belanja'=>$data_belanja,'data_barang'=>$data_barang])->render();
 
         // Adjust PDF options if needed
         $pdf = PDF::loadHtml($html)->setPaper('f4', 'portrait');

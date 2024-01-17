@@ -87,23 +87,21 @@
             <tbody>
                 <tr style="margin:-2em;">
                     <td style="width: 50%;">
-                        <p>Nomor : </p>
+                        <p>Nomor : {{$data_belanja->no_berita_acara}}</p>
                         <p>Lampiran : - </p>
-                        <p>Perihal : </p>
+                        <p>Perihal : {{$data_belanja->perihal}}</p>
                     </td>
                     <td style="width: 50%; text-align:right;">
                         <p>Tarikolot , </p>
                         <p>Kepada</p>
-                        <p>Yth. </p>
+                        <p>Yth. {{$data_belanja->nama_toko}}</p>
                         <p>____Tempat____</p>
                     </td>
                 </tr>
             </tbody>
         </table>
 
-        <p style="margin-top: 2em; text-indent: 20px;">Untuk kebutuhan Pelaksanaan Kegiatan Penyuluhan dan Pelatihan
-            Pendidikan Bagi Masyarakat (dari Nama Rincian
-            SPP) Sumber Dana Desa (DD) di wilayah Desa Tarikolot Kecamatan Citeureup Kabupaten Bogor, dengan ini Kami
+        <p style="margin-top: 2em; text-indent: 20px;">Untuk kebutuhan Pelaksanaan Kegiatan {{ $data_belanja->nama_pelaksana_kegiatan }} Sumber Dana Desa (DD) di wilayah Desa Tarikolot Kecamatan Citeureup Kabupaten Bogor, dengan ini Kami
             sebagai Pelaksana Kegiatan memesan Barang dengan rincian sebagai berikut:
         </p>
 
@@ -117,7 +115,7 @@
             </thead>
             <tbody>
                 @php $i=1 @endphp
-                @foreach ($data as $row)
+                @foreach ($data_barang as $row)
                     <tr>
                         <td>{{ $i++ }}</td>
                         <td>{{ $row->nama_barang }}</td>
@@ -136,7 +134,7 @@
             <br>
             <br>
             <br>
-            SYAWALUDDIN
+            {{ $data_belanja->nama_pelaksana_kegiatan }}
         </p>
 
         <div class="page-break"></div>
@@ -144,8 +142,7 @@
         <p class="alamat text-center" style="margin-top: -10px">Alamat: Jl. Industri No.65 Desa Tarikolot Citereup Bogor
             16810 Telp. (021)
             87943708></p>
-        <p class="text-wrap" style="margin-top: 2em; text-indent: 20px;">Pada hari ini, Sabtu tanggal Dua Puluh Empat
-            Bulan Juni Tahun Dua Ribu Dua Puluh Tiga, Kami yang
+        <p class="text-wrap" style="margin-top: 2em; text-indent: 20px;">Pada hari ini, {{ $data_belanja->tgl_bast }}, Kami yang
             bertandatangan dibawah ini:</p>
 
         <div class="container">
@@ -154,6 +151,7 @@
                     <tr style="margin:-2em;">
                         <td style="width: 50%;">
                             <ol>
+                                
                                 <li>Nama : DIAN RAMADAN</li>
                                 <li>Nama : DIAN RAMADAN</li>
                                 <li>Nama : DIAN RAMADAN</li>
@@ -172,8 +170,7 @@
         </div>
         <br>
         <br>
-        <p style="text-indent: 20px;">Berdasarkan Surat Keputusan Kepala Desa Tarikolot Nomor ... Tahun 2023 tanggal ...
-            ................ 2023
+        <p style="text-indent: 20px;">Berdasarkan Surat Keputusan Kepala Desa Tarikolot Nomor {{ $data_belanja->no_berita_acara }} Tahun 2023 tanggal {{ $data_belanja->tgl_bast }}
             tentang Penetapan Tim Pemeriksa Pekerjaan/Penerima Barang/Jasa Desa Tarikolot Tahun 2023, Kami selaku Tim
             Pemeriksa Pekerjaan/Penerima Barang/Jasa telah melaksanakan Pemeriksaan Barang yang diserahkan oleh: EXTRA
             FOTO COPY</p>
@@ -199,7 +196,7 @@
                     <th>Tidak Baik</th>
                 </tr>
                 @php $i=1 @endphp
-                @foreach ($data as $row)
+                @foreach ($data_barang as $row)
                     <tr>
                         <td>{{ $i++ }}</td>
                         <td>{{ $row->nama_barang }}</td>
@@ -222,8 +219,8 @@
                     <tr>
                         <td style="width: 50%;">
                             <p>REKANAN</p>
-                            <p>EXTRA FOTO COPY</p>
-                            <p style="margin-top: 5em">MIFTAHUDIN</p>
+                            <p>{{ $data_belanja->nama_toko }}</p>
+                            <p style="margin-top: 5em">{{$data_belanja->pemilik_toko}}</p>
                         </td>
                         <td style="width: 50%;">
                             <p class="text-center">PANITIA PEMERIKSA BARANG</p>
