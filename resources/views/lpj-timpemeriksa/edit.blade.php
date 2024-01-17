@@ -51,14 +51,14 @@
 
                                     <div class="col-sm-4">
                                         <label for="nama" class="col-form-label">Nama</label>
-                                        <input type="text" class="form-control" id="nama" name="nama"
+                                        <input type="text" class="form-control" id="nama_ketua" name="nama_ketua"
                                             placeholder="Nama Lengkap" value="{{ $data_ketua->nama }}">
                                     </div>
 
                                     <div class="col-sm-4">
                                         <label for="jabatan" class="col-form-label">Jabatan</label>
                                         <div class="input-group">
-                                            <input type="text" class="form-control" id="jabatan" name="jabatan"
+                                            <input type="text" class="form-control" id="jabatan_ketua" name="jabatan_ketua"
                                                 placeholder="Jabatan" value="{{ $data_ketua->jabatan }}">
                                         </div>
                                     </div>

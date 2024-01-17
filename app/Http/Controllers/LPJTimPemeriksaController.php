@@ -76,9 +76,30 @@ class LPJTimPemeriksaController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, LPJTimPemeriksa $lPJTimPemeriksa)
+    public function update(Request $request, String $id)
     {
-        //
+        $data=LPJTimPemeriksa::find($id);
+        $data_ketua=[
+            'NIP'=>$request->NIP,
+            'nama'=>$request->nama_ketua,
+            'jabatan'=>$request->jabatan_ketua,
+            'tgl_pemeriksa'=>$request->tgl_pemeriksa,
+            'nomor'=>$request->nomor,
+            'tahun'=>$request->tahun,
+            'alamat'=>$request->alamat,
+        ];
+        $data->update($data_ketua);
+        $data->AnggotaLPJTimPemeriksa()->delete();
+        for($i=0;$i<sizeof($request->nama);$i++){
+            $data=[
+                'id_ketua'=>$id,
+                'nama'=>$request->nama[$i],
+                'jabatan'=>$request->jabatan[$i],
+            ];
+            AnggotaLPJTimPemeriksa::create($data);
+        }
+        return redirect()->route('lpj-timpemeriksa.index')->with('success','Data berhasil diperbarui');
+
     }
 
     /**
@@ -88,5 +109,9 @@ class LPJTimPemeriksaController extends Controller
     {
        $user=LPJTimPemeriksa::find($id)->delete();
        return redirect()->route('lpj-timpemeriksa.index')->with('success', 'Data berhasil dihapus');
+    }
+
+    public function destroy_child(String $id){
+
     }
 }
