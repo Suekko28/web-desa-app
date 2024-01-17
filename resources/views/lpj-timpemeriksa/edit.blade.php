@@ -215,9 +215,14 @@
                 // Dapatkan counter dari data-counter atribut tombol yang ditekan
                 var counter = $(this).data('counter');
 
-                // Hapus elemen dengan ID yang sesuai
-                $('#nama_' + counter).closest('.col-sm-6').remove();
-                $('#jabatan_' + counter).closest('.col-sm-6').remove();
+                // Tampilkan konfirmasi alert
+                var confirmation = confirm("Apakah Anda yakin ingin menghapus data?");
+
+                // Hapus elemen jika konfirmasi positif
+                if (confirmation) {
+                    $('#nama_' + counter).closest('.col-sm-6').remove();
+                    $('#jabatan_' + counter).closest('.col-sm-6').remove();
+                }
             });
         });
     </script>
