@@ -135,6 +135,32 @@
                                     </div>
 
                                     <div class="col-sm-12">
+                                        <label for="tim_pemeriksa" class="col-form-label">Tim Pemeriksa</label>
+                                        <div class="dropdown">
+                                            <button class="form-control dropdown-toggle text-left" type="button"
+                                                data-bs-toggle="dropdown" aria-expanded="false" name="tim_pemeriksa_show">
+                                                --Pilih Tim Pemeriksa--
+                                            </button>
+                                            <!-- Data diambil dari TIM PEMERIKSA !-->
+                                            <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton"
+                                                id="timPemeriksaDropdown">
+                                                <input type="text" id="timPemeriksaSearchInput" class="form-control"
+                                                    placeholder="Cari Tim Pemeriksa..." oninput="searchTimPemeriksa()" name="tim_pemeriksa">
+                                                {{-- @foreach ($data_pemeriksa as $i)
+                                                    <li><a class="dropdown-item penduduk-option" href="#" value="{{ $i->NIP }}">{{ $i->NIP . " - " . $i->nama }}</a></li>
+                                                @endforeach --}}
+                                                <!-- Tambahkan opsi ketua, sekretaris, dan anggota -->
+                                                {{-- <!-- <li><a class="dropdown-item penduduk-option" href="#"
+                                                        value="ketua">Ketua</a></li>
+                                                <li><a class="dropdown-item penduduk-option" href="#"
+                                                        value="sekretaris">Sekretaris</a></li>
+                                                <li><a class="dropdown-item penduduk-option" href="#"
+                                                        value="anggota">Anggota</a></li> --> --}}
+                                            </ul>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-sm-12">
                                         <label for="alamat" class="col-form-label">Alamat</label>
                                         <textarea type="text" class="form-control" id="alamat" name="alamat" rows="5"
                                             placeholder="Masukkan Alamat Toko"></textarea>
@@ -186,5 +212,43 @@
     <script defer src="https://use.fontawesome.com/releases/v5.15.4/js/fontawesome.js"
         integrity="sha384-dPBGbj4Uoy1OOpM4+aRGfAOc0W37JkROT+3uynUgTHZCHZNMHfGXsmmvYTffZjYO" crossorigin="anonymous">
     </script>
+
+<script>
+    function searchTimPemeriksa() {
+        var input, filter, ul, li, a, i, txtValue;
+        input = document.getElementById("timPemeriksaSearchInput");
+        filter = input.value.toUpperCase();
+        ul = document.getElementById("timPemeriksaDropdown");
+        li = ul.getElementsByClassName("penduduk-option");
+
+        for (i = 0; i < li.length; i++) {
+            a = li[i];
+            txtValue = a.textContent || a.innerText;
+
+            if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                li[i].style.display = "";
+            } else {
+                li[i].style.display = "none";
+            }
+        }
+    }
+
+    // Adding event listener for each option in the dropdown
+    var timPemeriksaOptions = document.querySelectorAll("#timPemeriksaDropdown .penduduk-option");
+    timPemeriksaOptions.forEach(function(option) {
+        option.addEventListener("click", function() {
+            selectTimPemeriksa(option.getAttribute("value"), option.textContent);
+        });
+    });
+
+    // Handling selection in the dropdown
+    function selectTimPemeriksa(value, label) {
+        var dropdownButton = document.querySelector(".dropdown button[name='tim_pemeriksa_show']");
+        dropdownButton.innerHTML = label;
+        var inputVal = document.querySelector("[name='tim_pemeriksa']");
+        inputVal.value = value;
+    }
+</script>
+
 
 @endsection
