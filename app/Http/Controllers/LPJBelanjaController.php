@@ -3,12 +3,14 @@
 namespace App\Http\Controllers;
 
 use App\DataTables\LPJBelanjaDataTable;
-use App\Models\LPJBelanja;
-use App\Models\LPJTimPemeriksa;
 use App\Models\LPJBarangJasa;
+use App\Models\LPJTimPemeriksa;
+use App\Models\LPJBelanja;
+use App\Models\LPJKegiatan;
 use Illuminate\Http\Request;
 use Barryvdh\DomPDF\Facade\Pdf;
-
+use Riskihajar\Terbilang\Facades\Terbilang;
+use Carbon\Carbon;
 
 class LPJBelanjaController extends Controller
 {
@@ -90,16 +92,52 @@ class LPJBelanjaController extends Controller
         return redirect()->route('lpj-belanja.show',['lpj_belanja'=>$id_barang_jasa])->with('success','Berhasil menghapus data');
     }
 
-    public function pdfTemplate(LPJBelanjaDataTable $dataTable)
+    public function pdfTemplate(LPJBelanjaDataTable $dataTable,String $id)
     {
-        // Retrieve the data directly from the query builder
-        $data = $dataTable->query(new LPJBelanja())->get();
 
+        // Retrieve the data directly from the query builder
+        $date=date('Y-m-d');
+        $tanggal=Terbilang::date($date);
+        $hari=Carbon::now()->isoFormat('dddd');
+        $tahun=Carbon::now()->isoFormat('Y');
+
+        $data = $dataTable->query(new LPJBelanja())->get();
+        $data_belanja=LPJBarangJasa::find($id);
+
+        $data_barang=$data_belanja->LPJBelanja()->get();
         // Send data to the view for PDF rendering
-        $html = view('lpj-belanja.generate-pdf', ['data' => $data])->render();
+        if(sizeof($data_barang)==0){
+            return redirect()->route('lpj-barangjasa.index')->with('error',"tidak ada data belanja untuk toko ini");
+        }
+        $date_pesanan=$data->first()->tgl_pesanan;
+        $date_pesanan=strtotime($date_pesanan);
+        $tahun_terbilang=Terbilang::make(date('Y'));
+
+        $bulan_pesanan_terbilang=Carbon::create()->month(date('m',$date_pesanan))->isoFormat('MMMM');
+        $tahun_pesanan=Carbon::create()->year(date('Y',$date_pesanan))->isoFormat('Y');
+        $date_pesanan=date('d',$date_pesanan).' '.$bulan_pesanan_terbilang.' '.$tahun_pesanan;
+
+        $date_pemeriksa= LPJTimPemeriksa::first()->tgl_pemeriksa;
+        $date_pemeriksa=strtotime($date_pemeriksa);
+        $tahun_terbilang=Terbilang::make(date('Y'));
+
+        $bulan_pesanan_terbilang=Carbon::create()->month(date('m',$date_pemeriksa))->isoFormat('MMMM');
+        $tahun_pesanan=Carbon::create()->year(date('Y',$date_pemeriksa))->isoFormat('Y');
+        $date_pemeriksa=date('d',$date_pemeriksa).' '.$bulan_pesanan_terbilang.' '.$tahun_pesanan;
+        $total_dana=0;
+        foreach($data_barang as $i){
+
+            $total_dana+=$i->dana_desa;
+        }
+        $data_belanja['dana_desa']=$total_dana;
+
+        $data_pemeriksa=LPJTimPemeriksa::where('NIP','=',$data_belanja->tim_pemeriksa)->get();
+        $data_anggota_pemeriksa=$data_pemeriksa->first()->AnggotaLPJTimPemeriksa()->get();
+        $html = view('lpj-belanja.generate-pdf', ['date_pemeriksa' => $date_pemeriksa,'tahun'=>$tahun_terbilang,'date_pesanan'=>$date_pesanan,'hari'=>$hari,'tanggal_hari_ini'=>$tanggal,'data_anggota_pemeriksa'=>$data_anggota_pemeriksa,'data_pemeriksa'=>$data_pemeriksa->first(),'data' => $data,'data_belanja'=>$data_belanja,'data_barang'=>$data_barang])->render();
+        
 
         // Adjust PDF options if needed
-        $pdf = PDF::loadHtml($html)->setPaper('f4', 'portrait');
+        $pdf = PDF::loadHtml($html)->setPaper('f4', 'landscape');
 
         return $pdf->stream('LPJBelanja.pdf');
     }
