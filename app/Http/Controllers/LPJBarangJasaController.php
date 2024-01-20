@@ -122,10 +122,20 @@ class LPJBarangJasaController extends Controller
         $tahun_pesanan=Carbon::create()->year(date('Y',$date_pesanan))->isoFormat('Y');
         $date_pesanan=date('d',$date_pesanan).' '.$bulan_pesanan_terbilang.' '.$tahun_pesanan;
 
+        $date_pemeriksa= LPJTimPemeriksa::first()->tgl_pemeriksa;
+        $date_pemeriksa=strtotime($date_pemeriksa);
+        $tahun_terbilang=Terbilang::make(date('Y'));
+
+        $bulan_pesanan_terbilang=Carbon::create()->month(date('m',$date_pemeriksa))->isoFormat('MMMM');
+        $tahun_pesanan=Carbon::create()->year(date('Y',$date_pemeriksa))->isoFormat('Y');
+        $date_pemeriksa=date('d',$date_pemeriksa).' '.$bulan_pesanan_terbilang.' '.$tahun_pesanan;
+
+
 
         $data_pemeriksa=LPJTimPemeriksa::where('NIP','=',$data->first()->tim_pemeriksa)->get();
         $data_anggota_pemeriksa=$data_pemeriksa->first()->AnggotaLPJTimPemeriksa()->get();
-        $html = view('lpj-barangjasa.generate-pdf', ['tahun'=>$tahun_terbilang,'date_pesanan'=>$date_pesanan,'hari'=>$hari,'tanggal_hari_ini'=>$tanggal,'data_anggota_pemeriksa'=>$data_anggota_pemeriksa,'data_pemeriksa'=>$data_pemeriksa->first(),'data' => $data,'data_belanja'=>$data_belanja,'data_barang'=>$data_barang])->render();
+        $html = view('lpj-barangjasa.generate-pdf', ['date_pemeriksa' => $date_pemeriksa,'tahun'=>$tahun_terbilang,'date_pesanan'=>$date_pesanan,'hari'=>$hari,'tanggal_hari_ini'=>$tanggal,'data_anggota_pemeriksa'=>$data_anggota_pemeriksa,'data_pemeriksa'=>$data_pemeriksa->first(),'data' => $data,'data_belanja'=>$data_belanja,'data_barang'=>$data_barang])->render();
+        
 
         // Adjust PDF options if needed
         $pdf = PDF::loadHtml($html)->setPaper('f4', 'landscape');
