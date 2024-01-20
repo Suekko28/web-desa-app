@@ -99,7 +99,7 @@ Route::middleware(['auth'])->group(function () {
     // Route::get('/lpj-belanja/generate-pdf', [\App\Http\Controllers\LPJBelanjaController::class, 'pdfTemplate'])
     // ->name('lpj-belanja.generate-pdf');
     Route::Resource('/lpj-belanja',\App\Http\Controllers\LPJBelanjaController::class);
-    Route::get('/lpj-belanja/generate_pdf/{id}','\App\Http\Controllers\LPJBelanjaController@pdfTemplate')->name('lpj-belanja.generate-pdf');
+    Route::get('/lpj-belanja/generate_pdf','\App\Http\Controllers\LPJBarangJasaController@pdfTemplate')->name('lpj-belanja.generate-pdf');
     Route::get('/lpj-belanja/{id}/create','\App\Http\Controllers\LPJBelanjaController@create')->name('lpj-belanja.create');
     Route::get('/lpj-belanja/{id_barang_jasa}/{id}/edit','\App\Http\Controllers\LPJBelanjaController@edit')->name('lpj-belanja.edit');
     Route::put('/lpj-belanja/{id_barang_jasa}/{id}', '\App\Http\Controllers\LPJBelanjaController@update')->name('lpj-belanja.update');

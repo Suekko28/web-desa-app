@@ -2,14 +2,17 @@
 
 namespace App\Http\Controllers;
 
+use Carbon\Carbon;
 use App\DataTables\LPJBarangJasaDataTable;
 use App\Http\Requests\PemerintahanLPJRequest;
 use App\Models\LPJBarangJasa;
+use App\Models\LPJTimPemeriksa;
 use App\Models\LPJBelanja;
 use App\Models\LPJKegiatan;
 use Illuminate\Http\Request;
 use Barryvdh\DomPDF\Facade\Pdf;
-
+use App\Http\Controllers\Controller;
+use Riskihajar\Terbilang\Facades\Terbilang;
 
 class LPJBarangJasaController extends Controller
 {
@@ -18,6 +21,7 @@ class LPJBarangJasaController extends Controller
      */
     public function index(LPJBarangJasaDataTable $dataTable)
     {
+    
     return $dataTable->render('lpj-barangjasa.index');
     }
 
@@ -26,7 +30,9 @@ class LPJBarangJasaController extends Controller
      */
     public function create()
     {
-        return view('lpj-barangjasa.create');
+        $data_pemeriksa=LPJTimPemeriksa::all();
+
+        return view('lpj-barangjasa.create',['data_pemeriksa'=>$data_pemeriksa]);
     }
 
     /**
@@ -60,9 +66,12 @@ class LPJBarangJasaController extends Controller
     public function edit(String $id)
     {
         $data=LPJBarangJasa::find($id)->first();
+        $data_pemeriksa=LPJTimPemeriksa::all();
+        $data['nama_pemeriksa']=LPJTimPemeriksa::where('NIP','=',$data['tim_pemeriksa'])->first()->nama;
 
         return view('lpj-barangjasa.edit',[
                     "data"=>$data,
+                    "data_pemeriksa"=>$data_pemeriksa,
             ]);
     }
 
@@ -82,6 +91,7 @@ class LPJBarangJasaController extends Controller
      */
     public function destroy(String $id)
     {
+
         $user=LPJBarangJasa::find($id)->delete();
         $anak=LPJBelanja::where('id_barang_jasa','=',$id)->delete();
         return redirect()->route('lpj-barangjasa.index')->with('success','data berhasil dihapus');
@@ -91,10 +101,31 @@ class LPJBarangJasaController extends Controller
     public function pdfTemplate(LPJBarangJasaDataTable $dataTable)
     {
         // Retrieve the data directly from the query builder
-        $data = $dataTable->query(new LPJBarangJasa())->get();
+        $date=date('Y-m-d');
+        $tanggal=Terbilang::date($date);
+        $hari=Carbon::now()->isoFormat('dddd');
+        $tahun=Carbon::now()->isoFormat('Y');
 
+        $data = $dataTable->query(new LPJBarangJasa())->get();
+        $data_belanja=LPJBarangJasa::find($data->first()->id);
+
+        $data_barang=$data_belanja->LPJBelanja()->get();
         // Send data to the view for PDF rendering
-        $html = view('lpj-barangjasa.generate-pdf', ['data' => $data])->render();
+        if(sizeof($data_barang)==0){
+            return redirect()->route('lpj-barangjasa.index')->with('error',"tidak ada data belanja untuk toko ini");
+        }
+        $date_pesanan=$data->first()->tgl_pesanan;
+        $date_pesanan=strtotime($date_pesanan);
+        $tahun_terbilang=Terbilang::make(date('Y'));
+
+        $bulan_pesanan_terbilang=Carbon::create()->month(date('m',$date_pesanan))->isoFormat('MMMM');
+        $tahun_pesanan=Carbon::create()->year(date('Y',$date_pesanan))->isoFormat('Y');
+        $date_pesanan=date('d',$date_pesanan).' '.$bulan_pesanan_terbilang.' '.$tahun_pesanan;
+
+
+        $data_pemeriksa=LPJTimPemeriksa::where('NIP','=',$data->first()->tim_pemeriksa)->get();
+        $data_anggota_pemeriksa=$data_pemeriksa->first()->AnggotaLPJTimPemeriksa()->get();
+        $html = view('lpj-barangjasa.generate-pdf', ['tahun'=>$tahun_terbilang,'date_pesanan'=>$date_pesanan,'hari'=>$hari,'tanggal_hari_ini'=>$tanggal,'data_anggota_pemeriksa'=>$data_anggota_pemeriksa,'data_pemeriksa'=>$data_pemeriksa->first(),'data' => $data,'data_belanja'=>$data_belanja,'data_barang'=>$data_barang])->render();
 
         // Adjust PDF options if needed
         $pdf = PDF::loadHtml($html)->setPaper('f4', 'landscape');

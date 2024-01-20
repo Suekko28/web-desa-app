@@ -90,15 +90,13 @@ class LPJBelanjaController extends Controller
         return redirect()->route('lpj-belanja.show',['lpj_belanja'=>$id_barang_jasa])->with('success','Berhasil menghapus data');
     }
 
-    public function pdfTemplate(LPJBelanjaDataTable $dataTable,String $id)
+    public function pdfTemplate(LPJBelanjaDataTable $dataTable)
     {
         // Retrieve the data directly from the query builder
         $data = $dataTable->query(new LPJBelanja())->get();
-        $data_belanja=LPJBarangJasa::find($id);
-        $data_barang=$data_belanja->LPJBelanja()->get();
 
         // Send data to the view for PDF rendering
-        $html = view('lpj-belanja.generate-pdf', ['data' => $data,'data_belanja'=>$data_belanja,'data_barang'=>$data_barang])->render();
+        $html = view('lpj-belanja.generate-pdf', ['data' => $data])->render();
 
         // Adjust PDF options if needed
         $pdf = PDF::loadHtml($html)->setPaper('f4', 'portrait');

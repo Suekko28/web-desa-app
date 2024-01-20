@@ -38,6 +38,7 @@ class LPJBarangJasa extends Model
         'nama_toko',
         'pemilik_toko',
         'lampiran',
+        'tim_pemeriksa',
         'perihal',
         'alamat',
     ];

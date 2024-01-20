@@ -62,7 +62,6 @@ class LPJBelanjaDataTable extends DataTable
                 'lpj-belanja.volume_qty as volume_qty',
                 'lpj-belanja.satuan as satuan',
                 'lpj-belanja.harga as harga',
-                'lpj-belanja.nama_barang as tim_pemeriksa',
             );
     }
 
@@ -120,7 +119,6 @@ class LPJBelanjaDataTable extends DataTable
             Column::make('satuan'),
             Column::make('harga'),
             Column::make('dana_desa'),
-            Column::make('tim_pemeriksa'),
             Column::computed('action')
                 ->exportable(false)
                 ->printable(false)

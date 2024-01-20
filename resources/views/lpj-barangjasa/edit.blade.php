@@ -1,6 +1,6 @@
 @extends('layouts.app')
 @section('master-title', 'Barang dan Jasa/')
-@section('page-title', 'Create')
+@section('page-title', 'Edit')
 @section('contents')
     <link rel="shortcut icon" href="{{ asset('assets/images/favicon.ico') }}">
 
@@ -143,16 +143,16 @@
                                         <div class="dropdown">
                                             <button class="form-control dropdown-toggle text-left" type="button"
                                                 data-bs-toggle="dropdown" aria-expanded="false" name="tim_pemeriksa_show">
-                                                --Pilih Tim Pemeriksa--
+                                                {{ $data->tim_pemeriksa }} - {{$data->nama_pemeriksa}}
                                             </button>
                                             <!-- Data diambil dari TIM PEMERIKSA !-->
                                             <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton"
                                                 id="timPemeriksaDropdown">
                                                 <input type="text" id="timPemeriksaSearchInput" class="form-control"
-                                                    placeholder="Cari Tim Pemeriksa..." oninput="searchTimPemeriksa()" name="tim_pemeriksa">
-                                                {{-- @foreach ($data_pemeriksa as $i)
+                                                        placeholder="Cari Tim Pemeriksa..." oninput="searchTimPemeriksa()" name="tim_pemeriksa" value="{{$data->tim_pemeriksa}}">
+                                                @foreach ($data_pemeriksa as $i)
                                                     <li><a class="dropdown-item penduduk-option" href="#" value="{{ $i->NIP }}">{{ $i->NIP . " - " . $i->nama }}</a></li>
-                                                @endforeach --}}
+                                                @endforeach
                                                 <!-- Tambahkan opsi ketua, sekretaris, dan anggota -->
                                                 <!-- <li><a class="dropdown-item penduduk-option" href="#"
                                                         value="ketua">Ketua</a></li>

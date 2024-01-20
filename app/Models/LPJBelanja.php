@@ -28,7 +28,6 @@ class LPJBelanja extends Model
         'nama_barang',
         'volume_qty',
         'dana_desa',
-        'tim_pemeriksa',
         'satuan',
         'harga',
     ];

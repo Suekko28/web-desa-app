@@ -66,6 +66,7 @@ class LPJBarangJasaDataTable extends DataTable
                 'lpj-barang-jasa.nama_toko as nama_toko',
                 'lpj-barang-jasa.pemilik_toko as pemilik_toko',
                 'lpj-barang-jasa.lampiran as lampiran',
+                'lpj-barang-jasa.tim_pemeriksa as tim_pemeriksa',
                 'lpj-barang-jasa.perihal as perihal',
                 'lpj-barang-jasa.alamat as alamat',
             );
@@ -121,6 +122,7 @@ class LPJBarangJasaDataTable extends DataTable
             Column::make('no_berita_acara'),
             Column::make('nama_pelaksana_kegiatan'),
             Column::make('tgl_pesanan'),
+            Column::make('tim_pemeriksa'),
             Column::make('nama_toko'),
             Column::computed('action')
                 ->exportable(false)

@@ -146,9 +146,9 @@
                                                 id="timPemeriksaDropdown">
                                                 <input type="text" id="timPemeriksaSearchInput" class="form-control"
                                                     placeholder="Cari Tim Pemeriksa..." oninput="searchTimPemeriksa()" name="tim_pemeriksa">
-                                                {{-- @foreach ($data_pemeriksa as $i)
+                                                    @foreach ($data_pemeriksa as $i)
                                                     <li><a class="dropdown-item penduduk-option" href="#" value="{{ $i->NIP }}">{{ $i->NIP . " - " . $i->nama }}</a></li>
-                                                @endforeach --}}
+                                                    @endforeach 
                                                 <!-- Tambahkan opsi ketua, sekretaris, dan anggota -->
                                                 {{-- <!-- <li><a class="dropdown-item penduduk-option" href="#"
                                                         value="ketua">Ketua</a></li>
