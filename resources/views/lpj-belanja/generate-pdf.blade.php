@@ -103,8 +103,12 @@
             </tbody>
         </table>
 
+
+
         <p style="margin-top: 2em; text-indent: 20px;">Untuk kebutuhan Pelaksanaan Kegiatan
-            {{ $data_belanja->nama_rincian_spp }} Sumber Dana {{$data_belanja->dana_desa}} di wilayah Desa Tarikolot Kecamatan
+            {{ $data_belanja->nama_rincian_spp }} Sumber Dana
+            Rp.{{ number_format($data_belanja->dana_desa, 0, ',', '.') }} di wilayah Desa
+            Tarikolot Kecamatan
             Citeureup Kabupaten Bogor, dengan ini Kami
             sebagai Pelaksana Kegiatan memesan Barang dengan rincian sebagai berikut:
         </p>
@@ -191,7 +195,8 @@
         <br>
         <p style="text-indent: 20px;">Berdasarkan Surat Pesanan Nomor {{ $data_belanja->no_pesanan_brg }} tanggal
             {{ $date_pesanan }},
-            hasil pemeriksaan tersebut Kami simpulkan terhadap barang yang kondisinya Baik Kami beri kalimat Ya, sedangkan
+            hasil pemeriksaan tersebut Kami simpulkan terhadap barang yang kondisinya Baik Kami beri kalimat Ya,
+            sedangkan
             barang yang kondisinya Tidak Baik/Rusak/Tidak Sesuai Dengan Pesanan kami beri kalimat Tidak.</p>
         <table class="table table-bordered text-center vw-100 mw-100 mt-3">
             <thead>
@@ -286,9 +291,9 @@
                 <tr>
                     <td style="width: 50%;">
                         <ol type="i" start="2">
-                            <li>Nama : {{$data_pemeriksa->nama}} </li>
-                            <p>Jabatan : {{$data_pemeriksa->jabatan}} </p>
-                            <p>Alamat : {{$data_pemeriksa->alamat}}</p>
+                            <li>Nama : {{ $data_pemeriksa->nama }} </li>
+                            <p>Jabatan : {{ $data_pemeriksa->jabatan }} </p>
+                            <p>Alamat : {{ $data_pemeriksa->alamat }}</p>
                         </ol>
                     </td>
                 </tr>
@@ -297,13 +302,15 @@
 
         <p style="text-indent: 20px;">Dalam hal ini bertindak untuk dan atas nama Tim Pemeriksa Pekerjaan/Penerima
             Barang/Jasa Kegiatan Penyuluhan
-            dan Pelatihan Pendidikan Bagi Masyarakat Sumber Dana Rp.{{number_format($data_belanja->dana_desa,0,',','.')}} Desa Tarikolot selaku Pemesan/Pembeli/
+            dan Pelatihan Pendidikan Bagi Masyarakat Sumber Dana
+            Rp.{{ number_format($data_belanja->dana_desa, 0, ',', '.') }} Desa Tarikolot selaku Pemesan/Pembeli/
             Pengguna Barang yang selanjutnya disebut sebagai PIHAK KEDUA.</p>
         <br>
 
         <p style="text-indent: 20px;">Dengan ini PIHAK PERTAMA menyerahkan Bahan Baku/Material/Barang untuk Kegiatan
             Penyuluhan dan Pelatihan
-            Pendidikan Bagi Masyarakat Sumber Dana Rp.{{number_format($data_belanja->dana_desa,0,',','.')}} Desa Tarikolot kepada PIHAK KEDUA dan PIHAK KEDUA menerima
+            Pendidikan Bagi Masyarakat Sumber Dana Rp.{{ number_format($data_belanja->dana_desa, 0, ',', '.') }} Desa
+            Tarikolot kepada PIHAK KEDUA dan PIHAK KEDUA menerima
             sebagai berikut:</p>
 
         <table class="table table-bordered text-center vw-100 mw-100 mt-3">

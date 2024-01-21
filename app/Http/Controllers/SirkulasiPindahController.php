@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\DataTables\SirkulasiPindahDataTable;
+use App\Http\Requests\DataPindahFormRequest;
 use App\Models\SirkulasiPindah;
 use Illuminate\Http\Request;
 use App\Models\Penduduk;
@@ -33,7 +34,7 @@ class SirkulasiPindahController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(DataPindahFormRequest $request)
     {
         $user=SirkulasiPindah::create($request->all());
         return redirect()->route('sirkulasi-pindah.index')->with('success','Data Berhasil Ditambahkan');

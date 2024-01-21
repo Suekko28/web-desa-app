@@ -109,7 +109,7 @@ class LPJBelanjaController extends Controller
         if(sizeof($data_barang)==0){
             return redirect()->route('lpj-barangjasa.index')->with('error',"tidak ada data belanja untuk toko ini");
         }
-        $date_pesanan=$data->first()->tgl_pesanan;
+        $date_pesanan=LPJBarangJasa::first()->tgl_pesanan;
         $date_pesanan=strtotime($date_pesanan);
         $tahun_terbilang=Terbilang::make(date('Y'));
 

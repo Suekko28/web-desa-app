@@ -71,18 +71,18 @@ class LPJTimPemeriksaDataTable extends DataTable
             Button::make('add')
             ->text('+ Tambah Data')
             ->addClass('rounded'),
-            Button::make('csv')
-            ->addClass('btn-warning rounded')
-            ->text('CSV'),
-            Button::make('excel')
-            ->addClass('btn-success rounded')
-            ->text('Excel'),
-            Button::make('pdf')
-            ->addClass('btn-danger rounded')
-            ->text('PDF')
-            ->action('function() {
-                window.location.href = "'.route('pemerintahan-BPD.pdf-template').'";
-            }'),
+            // Button::make('csv')
+            // ->addClass('btn-warning rounded')
+            // ->text('CSV'),
+            // Button::make('excel')
+            // ->addClass('btn-success rounded')
+            // ->text('Excel'),
+            // Button::make('pdf')
+            // ->addClass('btn-danger rounded')
+            // ->text('PDF')
+            // ->action('function() {
+            //     window.location.href = "'.route('pemerintahan-BPD.pdf-template').'";
+            // }'),
         ];
 
         return $this->builder()

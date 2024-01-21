@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\DataTables\SirkulasiMelahirkanDatatable;
 use App\Http\Controllers\Controller;
+use App\Http\Requests\DataMelahirkanFormRequest;
 use App\Models\Penduduk;
 use App\Models\Anak;
 use App\Models\SirkulasiMelahirkan;
@@ -35,7 +36,7 @@ class SirkulasiMelahirkanController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(DataMelahirkanFormRequest $request)
     {
         
         Anak::create($request->all());

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\DataTables\SirkulasiMeninggalDatatable;
 use App\Http\Controllers\Controller;
+use App\Http\Requests\DataMeninggalFormRequest;
 use App\Models\Penduduk;
 use App\Models\SirkulasiMeninggal;
 use Illuminate\Http\Request;
@@ -36,7 +37,7 @@ class SirkulasiMeninggalController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(DataMeninggalFormRequest $request)
     {
         SirkulasiMeninggal::create($request->all());
         return redirect()->route('sirkulasi-meninggal.index')->with('success','Data berhasil ditambahkan');

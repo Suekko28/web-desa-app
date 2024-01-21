@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\DataTables\SirkulasiPendatangDataTable;
+use App\Http\Requests\DataPendatangFormRequest;
 use App\Models\SirkulasiPendatang;
 use Illuminate\Http\Request;
 use Barryvdh\DomPDF\Facade\Pdf;
@@ -28,7 +29,7 @@ class SirkulasiPendatangController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(DataPendatangFormRequest $request)
     {
         $data=$request->all();
         SirkulasiPendatang::create($data);
