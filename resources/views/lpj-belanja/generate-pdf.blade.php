@@ -297,13 +297,13 @@
 
         <p style="text-indent: 20px;">Dalam hal ini bertindak untuk dan atas nama Tim Pemeriksa Pekerjaan/Penerima
             Barang/Jasa Kegiatan Penyuluhan
-            dan Pelatihan Pendidikan Bagi Masyarakat Sumber Dana {{$data_belanja->dana_desa}} Desa Tarikolot selaku Pemesan/Pembeli/
+            dan Pelatihan Pendidikan Bagi Masyarakat Sumber Dana Rp.{{number_format($data_belanja->dana_desa,0,',','.')}} Desa Tarikolot selaku Pemesan/Pembeli/
             Pengguna Barang yang selanjutnya disebut sebagai PIHAK KEDUA.</p>
         <br>
 
         <p style="text-indent: 20px;">Dengan ini PIHAK PERTAMA menyerahkan Bahan Baku/Material/Barang untuk Kegiatan
             Penyuluhan dan Pelatihan
-            Pendidikan Bagi Masyarakat Sumber Dana {{$data_belanja->dana_desa}} Desa Tarikolot kepada PIHAK KEDUA dan PIHAK KEDUA menerima
+            Pendidikan Bagi Masyarakat Sumber Dana Rp.{{number_format($data_belanja->dana_desa,0,',','.')}} Desa Tarikolot kepada PIHAK KEDUA dan PIHAK KEDUA menerima
             sebagai berikut:</p>
 
         <table class="table table-bordered text-center vw-100 mw-100 mt-3">
