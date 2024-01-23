@@ -22,7 +22,6 @@ class DataPindahFormRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'nama' => 'required|string|max:255',
             'NIK' => 'required|string|max:255',
             'tgl_pindah' => 'required|date',
             'alasan' => 'required|string|max:255',
@@ -38,7 +37,6 @@ class DataPindahFormRequest extends FormRequest
     public function messages(): array
     {
         return [
-            'nama.required' => 'Nama harus diisi.',
             'NIK.required' => 'Nomor Induk Kependudukan (NIK) harus diisi.',
             'tgl_pindah.required' => 'Tanggal pindah harus diisi.',
             'tgl_pindah.date' => 'Format tanggal pindah tidak valid.',
