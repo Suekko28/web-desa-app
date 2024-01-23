@@ -25,7 +25,7 @@ class DataMelahirkanFormRequest extends FormRequest
             'nama' => 'required|string|max:255',
             'tmpt_lahir' => 'required|string|max:255',
             'tgl_lahir' => 'required|date',
-            'jenis_kelamin' => 'required|in:Laki-laki,Perempuan',
+            'jenis_kelamin' => 'required|int',
             'NKK_keluarga' => 'required|string|max:255',
         ];
     }

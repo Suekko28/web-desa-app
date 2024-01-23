@@ -24,7 +24,7 @@ class DataPendatangFormRequest extends FormRequest
         return [
             'nama' => 'required|string|max:255',
             'NIK' => 'required|string|max:255',
-            'jenis_kelamin' => 'required|in:Laki-laki,Perempuan',
+            'jenis_kelamin' => 'required|int',
             'tgl_datang' => 'required|date',
             'alamat_sblm' => 'required|string|max:255',
             'alamat_skrg' => 'required|string|max:255',
