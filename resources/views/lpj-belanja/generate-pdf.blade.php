@@ -85,14 +85,15 @@
 
 
 
-        <table style="width: 100%;" class="container">
+        <table style="width: 100%;" >
             <tbody>
                 <tr>
-                    <td>
-                        <p>Nomor : {{ $data_belanja->no_berita_acara }}</p>
-                        <p>Lampiran : - </p>
-                        <p>Perihal : {{ $data_belanja->perihal }}</p>
+                    <td style="text-align: left;">
+                        <p>Nomor<span style="margin-left: 12px">:<span> {{ $data_belanja->no_berita_acara }}</p>
+                        <p style="margin: 0;">Lampiran : - </p>
+                        <p style="margin: 0;">Perihal : {{ $data_belanja->perihal }}</p>
                     </td>
+
                     <td style="text-align:right;">
                         <p>Tarikolot , {{ $date_pesanan }}</p>
                         <p>Kepada</p>
@@ -260,9 +261,7 @@
 
         <div class="page-break"></div>
         <h5 class="text-center mt-3 mb-3 berita_acara"><u>BERITA ACARA SERAH TERIMA BARANG</u></h5>
-        <p class="alamat text-center" style="margin-top: -10px">Alamat: Jl. Industri No.65 Desa Tarikolot Citereup Bogor
-            16810 Telp. (021)
-            87943708></p>
+        <p class="alamat text-center" style="margin-top: -10px">{{$data_belanja->no_berita_acara}}</p>
 
         <p style="text-indent: 20px; margin-top:2em;">Pada hari ini, {{ $tanggal_hari_ini }}, Kami yang
             bertandatangan dibawah ini:</p>
@@ -342,8 +341,8 @@
                         <td style="width: 50%;">
                             <p>PIHAK KEDUA</p>
                             <p>Yang menerima</p>
-                            <p>KETUA TIM PEMERIKSA PEKERJAAN/PENERIMAAN BARANG/JASA</p>
-                            <p style="margin-top: 5em">{{ $data_pemeriksa->nama }}</p>
+                            <p>{{$data_pemeriksa->jabatan}}</p>
+                            <p style="margin-top: 8em">{{ $data_pemeriksa->nama }}</p>
                         </td>
                         <td style="width: 50%;">
                             <p>PIHAK PERTAMA</p>
