@@ -14,6 +14,8 @@
     <style>
         main {
             font-size: 11px;
+            margin-right: 6%;
+            margin-left: 64px;
         }
 
         .pemerintahan,
@@ -54,6 +56,17 @@
         p {
             margin: 0;
         }
+
+        .signature-list {
+            display: flex;
+            flex-direction: column;
+            list-style-type: none;
+        }
+
+        .signature-item {
+            display: flex;
+            justify-content: space-between;
+        }
     </style>
 </head>
 
@@ -85,20 +98,22 @@
 
 
 
-        <table style="width: 100%;" >
+        <table style="width: 100%;">
             <tbody>
                 <tr>
                     <td style="text-align: left;">
-                        <p>Nomor<span style="margin-left: 12px">:<span> {{ $data_belanja->no_berita_acara }}</p>
-                        <p style="margin: 0;">Lampiran : - </p>
-                        <p style="margin: 0;">Perihal : {{ $data_belanja->perihal }}</p>
+                        <p>Nomor<span style="margin-left: 30px"> :<span> {{ $data_belanja->no_berita_acara }}</p>
+                        <p style="margin: 0;">Lampiran <span style="margin-left: 15px"> :<span>
+                                    {{ $data_belanja->lampiran }} </p>
+                        <p>Perihal<span style="margin-left: 30px"> :<span> {{ $data_belanja->perihal }}</p>
                     </td>
 
                     <td style="text-align:right;">
                         <p>Tarikolot , {{ $date_pesanan }}</p>
-                        <p>Kepada</p>
-                        <p>Yth. {{ $data_belanja->nama_toko }}</p>
-                        <p>____Tempat____</p>
+                        <p style="margin-right:95px;">Kepada</p>
+                        <p style="margin-right:87px;">Yth. {{ $data_belanja->nama_toko }}</p>
+                        <p style="margin-right:122px;">Di</p>
+                        <p style="margin-right:45px;">____Tempat____</p>
                     </td>
                 </tr>
             </tbody>
@@ -106,7 +121,8 @@
 
 
 
-        <p style="margin-top: 2em; text-indent: 20px;">Untuk kebutuhan Pelaksanaan Kegiatan
+        <p class="text-justify" style="margin-top: 2em; text-indent: 20px; margin-left:7em;  text-align:justify;">Untuk
+            kebutuhan Pelaksanaan Kegiatan
             {{ $data_belanja->nama_rincian_spp }} Sumber Dana
             Rp.{{ number_format($data_belanja->dana_desa, 0, ',', '.') }} di wilayah Desa
             Tarikolot Kecamatan
@@ -114,7 +130,7 @@
             sebagai Pelaksana Kegiatan memesan Barang dengan rincian sebagai berikut:
         </p>
 
-        <table class="table table-bordered text-center vw-100 mw-100 mt-3">
+        <table class="table table-bordered text-center mt-3" style="margin-left:7em; width:87%;">
             <thead>
                 <tr>
                     <th scope="col">No</th>
@@ -134,15 +150,16 @@
             </tbody>
         </table>
 
-        <p style="text-indent: 20px;">Demikian untuk menjadi Perhatiannya dan atas kerjasamanya yang baik, Kami ucapkan
+        <p style="text-indent: 20px; margin-left:7em;  text-align:justify;">Demikian untuk menjadi Perhatiannya dan atas
+            kerjasamanya yang baik, Kami ucapkan
             Terimakasih.</p>
 
-        <table style="width: 100%;" class="text-center mt-3">
+        <table style="width: 100%; margin-left:7em;" class="text-center mt-3">
             <tbody>
                 <tr>
                     <td style="width:50%;">
                     </td>
-                    <td style="width:50%;">
+                    <td style="width:50%; margin-top:20em;">
                         <p class="mb-5">PELAKSANA KEGIATAN</p>
                         <br>
                         <p class="mt-5"> {{ $data_belanja->nama_pelaksana_kegiatan }}
@@ -158,7 +175,8 @@
         <p class="alamat text-center" style="margin-top: -10px">Alamat: Jl. Industri No.65 Desa Tarikolot Citereup Bogor
             16810 Telp. (021)
             87943708></p>
-        <p class="text-wrap" style="margin-top: 2em; text-indent: 20px;">Pada hari ini, {{ $tanggal_hari_ini }}, Kami
+        <p class="text-wrap" style="margin-top: 2em; text-indent: 20px;">Pada hari ini,
+            {{ $tanggal_hari_ini }}, Kami
             yang
             bertandatangan dibawah ini:</p>
 
@@ -188,13 +206,15 @@
         </div>
         <br>
         <br>
-        <p style="text-indent: 20px;">Berdasarkan Surat Keputusan Kepala Desa Tarikolot Nomor
+        <p style="text-indent: 20px; text-align:justify;">Berdasarkan Surat Keputusan Kepala Desa
+            Tarikolot Nomor
             {{ $data_pemeriksa->nomor }} Tahun 2024 tanggal {{ $date_pemeriksa }}
             tentang Penetapan Tim Pemeriksa Pekerjaan/Penerima Barang/Jasa Desa Tarikolot Tahun 2024, Kami selaku Tim
             Pemeriksa Pekerjaan/Penerima Barang/Jasa telah melaksanakan Pemeriksaan Barang yang diserahkan oleh:
             {{ $data->first()->nama_toko }}</p>
         <br>
-        <p style="text-indent: 20px;">Berdasarkan Surat Pesanan Nomor {{ $data_belanja->no_pesanan_brg }} tanggal
+        <p style="text-indent: 20px; text-align:justify;">Berdasarkan Surat Pesanan Nomor
+            {{ $data_belanja->no_pesanan_brg }} tanggal
             {{ $date_pesanan }},
             hasil pemeriksaan tersebut Kami simpulkan terhadap barang yang kondisinya Baik Kami beri kalimat Ya,
             sedangkan
@@ -202,13 +222,11 @@
         <table class="table table-bordered text-center vw-100 mw-100 mt-3">
             <thead>
                 <tr>
-                    <th scope="col" rowspan="2" class="text-center">No</th>
-                    <th scope="col" rowspan="2" class="text-center">Nama Barang</th>
-                    <th scope="col" rowspan="2" class="text-center">Banyaknya</th>
-                    <th scope="col" colspan="2" class="text-center">Kondisi</th>
-
+                    <th style="height: 40px;" scope="col" rowspan="2" class="text-center">No</th>
+                    <th style="height: 40px;" scope="col" rowspan="2" class="text-center">Nama Barang</th>
+                    <th style="height: 40px;" scope="col" rowspan="2" class="text-center">Banyaknya</th>
+                    <th style="height: 40px;" scope="col" colspan="2" class="text-center">Kondisi</th>
                 </tr>
-
 
             </thead>
             <tbody>
@@ -231,7 +249,8 @@
             </tbody>
         </table>
 
-        <p style="text-indent: 20px;">Demikan Berita Acara Pemeriksaan Barang ini Kami buat pada hari dan tanggal
+        <p style="text-indent: 20px; text-align:justify;">Demikan Berita Acara Pemeriksaan Barang ini
+            Kami buat pada hari dan tanggal
             tersebut diatas.</p>
 
         <div class="mt-3">
@@ -247,11 +266,18 @@
                         <td style="width:50%;">
                             <p class="">PANITIA PEMERIKSA BARANG</p>
                             <p></p>
-                            <ol class="mt-3">
-                                <<li>Nama : {{ $data_pemeriksa->nama }} (................)</li>
-                                    @foreach ($data_anggota_pemeriksa as $i)
-                                        <li>Nama : {{ $i->nama }} (................)</li>
-                                    @endforeach
+                            <ol class="mt-3 text-left signature-list">
+                                <li class="signature-item">
+                                    
+                                    <span>Nama : {{ $data_pemeriksa->nama }}</span>
+                                    <span>(................)</span>
+                                </li>
+                                @foreach ($data_anggota_pemeriksa as $i)
+                                    <li class="signature-item">
+                                        <span>Nama : {{ $i->nama }}</span>
+                                        <span>(................)</span>
+                                    </li>
+                                @endforeach
                             </ol>
                         </td>
                     </tr>
@@ -261,7 +287,7 @@
 
         <div class="page-break"></div>
         <h5 class="text-center mt-3 mb-3 berita_acara"><u>BERITA ACARA SERAH TERIMA BARANG</u></h5>
-        <p class="alamat text-center" style="margin-top: -10px">{{$data_belanja->no_berita_acara}}</p>
+        <p class="alamat text-center" style="margin-top: -10px">{{ $data_belanja->no_berita_acara }}</p>
 
         <p style="text-indent: 20px; margin-top:2em;">Pada hari ini, {{ $tanggal_hari_ini }}, Kami yang
             bertandatangan dibawah ini:</p>
@@ -271,9 +297,9 @@
                 <tr>
                     <td style="width: 50%;">
                         <ol type="i">
-                            <li>Nama : {{ $data_belanja->pemilik_toko }} </li>
-                            <p>Jabatan : Perwakilan {{ $data_belanja->nama_toko }} </p>
-                            <p>Alamat : {{ $data_belanja->alamat }} </p>
+                            <li>Nama <span style="margin-left: 34px"> :<span> {{ $data_belanja->pemilik_toko }} </li>
+                            <p>Jabatan <span style="margin-left: 25px"> :<span> Perwakilan {{ $data_belanja->nama_toko }} </p>
+                            <p>Alamat <span style="margin-left: 30px"> :<span> {{ $data_belanja->alamat }} </p>
                         </ol>
                     </td>
                 </tr>
@@ -290,23 +316,23 @@
                 <tr>
                     <td style="width: 50%;">
                         <ol type="i" start="2">
-                            <li>Nama : {{ $data_pemeriksa->nama }} </li>
-                            <p>Jabatan : {{ $data_pemeriksa->jabatan }} </p>
-                            <p>Alamat : {{ $data_pemeriksa->alamat }}</p>
+                            <li>Nama <span style="margin-left: 34px"> :<span> {{ $data_pemeriksa->nama }} </li>
+                            <p>Jabatan <span style="margin-left: 25px"> :<span> {{ $data_pemeriksa->jabatan }} </p>
+                            <p>Alamat <span style="margin-left: 30px"> :<span> {{ $data_pemeriksa->alamat }}</p>
                         </ol>
                     </td>
                 </tr>
             </tbody>
         </table>
 
-        <p style="text-indent: 20px;">Dalam hal ini bertindak untuk dan atas nama Tim Pemeriksa Pekerjaan/Penerima
+        <p style="text-indent: 20px; text-align:justify;">Dalam hal ini bertindak untuk dan atas nama Tim Pemeriksa Pekerjaan/Penerima
             Barang/Jasa Kegiatan Penyuluhan
             dan Pelatihan Pendidikan Bagi Masyarakat Sumber Dana
             Rp.{{ number_format($data_belanja->dana_desa, 0, ',', '.') }} Desa Tarikolot selaku Pemesan/Pembeli/
             Pengguna Barang yang selanjutnya disebut sebagai PIHAK KEDUA.</p>
         <br>
 
-        <p style="text-indent: 20px;">Dengan ini PIHAK PERTAMA menyerahkan Bahan Baku/Material/Barang untuk Kegiatan
+        <p style="text-indent: 20px; text-align:justify;">Dengan ini PIHAK PERTAMA menyerahkan Bahan Baku/Material/Barang untuk Kegiatan
             Penyuluhan dan Pelatihan
             Pendidikan Bagi Masyarakat Sumber Dana Rp.{{ number_format($data_belanja->dana_desa, 0, ',', '.') }} Desa
             Tarikolot kepada PIHAK KEDUA dan PIHAK KEDUA menerima
@@ -331,7 +357,7 @@
                 @endforeach
             </tbody>
         </table>
-        <p style="text-indent: 20px;">Demikan Berita Acara Serah Terima Barang ini dibuat sebagai Bukti yang Sah dan
+        <p style="text-indent: 20px; text-align:justify;" >Demikan Berita Acara Serah Terima Barang ini dibuat sebagai Bukti yang Sah dan
             mempuyai kekuatan hukum yang
             sama bagi PIHAK PERTAMA dan PIHAK KEDUA.</p>
         <div class="mt-3">
@@ -341,7 +367,7 @@
                         <td style="width: 50%;">
                             <p>PIHAK KEDUA</p>
                             <p>Yang menerima</p>
-                            <p>{{$data_pemeriksa->jabatan}}</p>
+                            <p>{{ $data_pemeriksa->jabatan }}</p>
                             <p style="margin-top: 8em">{{ $data_pemeriksa->nama }}</p>
                         </td>
                         <td style="width: 50%;">
