@@ -43,7 +43,7 @@
 
                                     <div class="col-sm-4">
                                         <label for="dana_desa" class="col-form-label">Dana Desa</label>
-                                        <input type="number" class="form-control" id="dana_desa" name="dana_desa"
+                                        <input type="text" class="form-control" id="dana_desa" name="dana_desa"
                                             placeholder="Dana Desa">
                                     </div>
                                     
