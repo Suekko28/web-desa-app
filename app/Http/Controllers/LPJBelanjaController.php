@@ -98,6 +98,7 @@ class LPJBelanjaController extends Controller
         // Retrieve the data directly from the query builder
         $date=date('Y-m-d');
         $tanggal=Terbilang::date($date);
+        $tanggalProperCase = ucwords($tanggal);
         $hari=Carbon::now()->isoFormat('dddd');
         $tahun=Carbon::now()->isoFormat('Y');
 
@@ -133,7 +134,7 @@ class LPJBelanjaController extends Controller
 
         $data_pemeriksa=LPJTimPemeriksa::where('NIP','=',$data_belanja->tim_pemeriksa)->get();
         $data_anggota_pemeriksa=$data_pemeriksa->first()->AnggotaLPJTimPemeriksa()->get();
-        $html = view('lpj-belanja.generate-pdf', ['date_pemeriksa' => $date_pemeriksa,'tahun'=>$tahun_terbilang,'date_pesanan'=>$date_pesanan,'hari'=>$hari,'tanggal_hari_ini'=>$tanggal,'data_anggota_pemeriksa'=>$data_anggota_pemeriksa,'data_pemeriksa'=>$data_pemeriksa->first(),'data' => $data,'data_belanja'=>$data_belanja,'data_barang'=>$data_barang])->render();
+        $html = view('lpj-belanja.generate-pdf', ['date_pemeriksa' => $date_pemeriksa,'tahun'=>$tahun_terbilang,'date_pesanan'=>$date_pesanan,'hari'=>$hari,'tanggal_hari_ini'=>$tanggalProperCase,'data_anggota_pemeriksa'=>$data_anggota_pemeriksa,'data_pemeriksa'=>$data_pemeriksa->first(),'data' => $data,'data_belanja'=>$data_belanja,'data_barang'=>$data_barang])->render();
         
 
         // Adjust PDF options if needed
