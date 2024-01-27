@@ -59,12 +59,12 @@
                                         <input type="text" class="form-control" id="perihal" name="perihal"
                                             placeholder="Masukkan Perihal" value="{{ $data->perihal }}">
                                     </div>
-                                    
+{{--                                     
                                     <div class="col-sm-6">
                                         <label for="dana_desa" class="col-form-label"> Sumber Dana Desa</label>
                                         <input type="text" class="form-control" id="dana_desa" name="dana_desa"
                                             placeholder="Masukkan Sumber Dana Desa" value="">
-                                    </div>
+                                    </div> --}}
 
                                     <div class="col-sm-6">
                                         <label for="no_pesanan_brg" class="col-form-label">No. Pesanan Barang</label>
@@ -81,12 +81,12 @@
                                             value="{{ $data->no_berita_acara }}">
                                     </div>
 
-                                    <div class="col-sm-6">
+                                    {{-- <div class="col-sm-6">
                                         <label for="no_berita_acara" class="col-form-label">No. Berita Acara Serah Terima
                                             Barang (BASTB)</label>
                                         <input type="text" class="form-control" id="no_berita_acara"
                                             name="no_berita_acara" placeholder="001/BASTB/PTPKD/15.2005/IV/2023" value="">
-                                    </div>
+                                    </div> --}}
 
                                     <div class="col-sm-6">
                                         <label for="nama_pelaksana_kegiatan" class="col-form-label">Nama Pelaksana

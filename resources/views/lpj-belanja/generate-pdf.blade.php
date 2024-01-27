@@ -63,7 +63,7 @@
             list-style-type: none;
         }
 
-        .signature-item {
+            {
             display: flex;
             justify-content: space-between;
         }
@@ -101,19 +101,19 @@
         <table style="width: 100%;">
             <tbody>
                 <tr>
-                    <td style="text-align: left;">
+                    <td style="text-align: left; width:70%">
                         <p>Nomor<span style="margin-left: 30px"> :<span> {{ $data_belanja->no_berita_acara }}</p>
                         <p style="margin: 0;">Lampiran <span style="margin-left: 15px"> :<span>
                                     {{ $data_belanja->lampiran }} </p>
                         <p>Perihal<span style="margin-left: 30px"> :<span> {{ $data_belanja->perihal }}</p>
                     </td>
 
-                    <td style="text-align:right;">
+                    <td style="width:30%;">
                         <p>Tarikolot , {{ $date_pesanan }}</p>
-                        <p style="margin-right:95px;">Kepada</p>
-                        <p style="margin-right:87px;">Yth. {{ $data_belanja->nama_toko }}</p>
-                        <p style="margin-right:122px;">Di</p>
-                        <p style="margin-right:45px;">____Tempat____</p>
+                        <p style="">Kepada</p>
+                        <p style="">Yth. {{ $data_belanja->nama_toko }}</p>
+                        <p style="">Di</p>
+                        <p style="">____Tempat____</p>
                     </td>
                 </tr>
             </tbody>
@@ -180,11 +180,11 @@
             yang
             bertandatangan dibawah ini:</p>
 
-        <div class="container">
+        <div class="">
             <table style="width: 100%;" class="">
                 <tbody>
                     <tr>
-                        <td>
+                        <td style="width: 50%">
                             <ol>
                                 <li>Nama : {{ $data_pemeriksa->nama }}</li>
                                 @foreach ($data_anggota_pemeriksa as $i)
@@ -192,7 +192,7 @@
                                 @endforeach
                             </ol>
                         </td>
-                        <td>
+                        <td style="width: 50%">
                             <ul style="list-style: none;">
                                 <li>Jabatan : {{ $data_pemeriksa->jabatan }}</li>
                                 @foreach ($data_anggota_pemeriksa as $i)
@@ -253,32 +253,44 @@
             Kami buat pada hari dan tanggal
             tersebut diatas.</p>
 
-        <div class="mt-3">
-            <table style="width: 100%;" class="text-center">
+        <div class="mt-3" style="width: 100%;" class="text-center">
+            <table>
                 <tbody>
                     <tr>
-                        <td style="width:50%;">
+                        <td style="width: 50%" class="text-center">
                             <p>REKANAN</p>
+                        </td>
+                        <td style="width: 50%" class="text-center">
+                            <p>PANITIA PEMERIKSA BARANG</p>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            <table style="width: 100%; margin-top:-2em;" class="text-center">
+                <tbody>
+                    <tr>
+                        <td style="width:50%;" class="text-center">
                             <p>{{ $data_belanja->nama_toko }}</p>
                             <br>
                             <p style="margin-top: 5em">{{ $data_belanja->pemilik_toko }}</p>
                         </td>
-                        <td style="width:50%;">
-                            <p class="">PANITIA PEMERIKSA BARANG</p>
-                            <p></p>
-                            <ol class="mt-3 text-left signature-list">
-                                <li class="signature-item">
-                                    
+                        <td style="width:40%;">
+                            <ol class="mt-3 text-left signature-list" >
+                                <li>
                                     <span>Nama : {{ $data_pemeriksa->nama }}</span>
-                                    <span>(................)</span>
                                 </li>
                                 @foreach ($data_anggota_pemeriksa as $i)
-                                    <li class="signature-item">
+                                    <li>
                                         <span>Nama : {{ $i->nama }}</span>
-                                        <span>(................)</span>
                                     </li>
                                 @endforeach
                             </ol>
+                        </td>
+                        <td style="width:10%; margin-right: 10em;">
+                            <br>
+                            @for ($i = 0; $i <= count($data_anggota_pemeriksa); $i++)
+                                <span>(................)</span>
+                            @endfor
                         </td>
                     </tr>
                 </tbody>
@@ -298,7 +310,8 @@
                     <td style="width: 50%;">
                         <ol type="i">
                             <li>Nama <span style="margin-left: 34px"> :<span> {{ $data_belanja->pemilik_toko }} </li>
-                            <p>Jabatan <span style="margin-left: 25px"> :<span> Perwakilan {{ $data_belanja->nama_toko }} </p>
+                            <p>Jabatan <span style="margin-left: 25px"> :<span> Perwakilan
+                                        {{ $data_belanja->nama_toko }} </p>
                             <p>Alamat <span style="margin-left: 30px"> :<span> {{ $data_belanja->alamat }} </p>
                         </ol>
                     </td>
@@ -317,7 +330,7 @@
                     <td style="width: 50%;">
                         <ol type="i" start="2">
                             <li>Nama <span style="margin-left: 34px"> :<span> {{ $data_pemeriksa->nama }} </li>
-                            <p>Jabatan <span style="margin-left: 25px"> :<span> {{ $data_pemeriksa->jabatan }} </p>
+                            <p>Jabatan <span style="margin-left: 25px"> :<span> {{ $data_pemeriksa->jabatan }} Tim Pemeriksa Pekerjaan/Penerima Barang/Jasa  </p>
                             <p>Alamat <span style="margin-left: 30px"> :<span> {{ $data_pemeriksa->alamat }}</p>
                         </ol>
                     </td>
@@ -325,14 +338,16 @@
             </tbody>
         </table>
 
-        <p style="text-indent: 20px; text-align:justify;">Dalam hal ini bertindak untuk dan atas nama Tim Pemeriksa Pekerjaan/Penerima
+        <p style="text-indent: 20px; text-align:justify;">Dalam hal ini bertindak untuk dan atas nama Tim Pemeriksa
+            Pekerjaan/Penerima
             Barang/Jasa Kegiatan Penyuluhan
             dan Pelatihan Pendidikan Bagi Masyarakat Sumber Dana
             Rp.{{ number_format($data_belanja->dana_desa, 0, ',', '.') }} Desa Tarikolot selaku Pemesan/Pembeli/
             Pengguna Barang yang selanjutnya disebut sebagai PIHAK KEDUA.</p>
         <br>
 
-        <p style="text-indent: 20px; text-align:justify;">Dengan ini PIHAK PERTAMA menyerahkan Bahan Baku/Material/Barang untuk Kegiatan
+        <p style="text-indent: 20px; text-align:justify;">Dengan ini PIHAK PERTAMA menyerahkan Bahan
+            Baku/Material/Barang untuk Kegiatan
             Penyuluhan dan Pelatihan
             Pendidikan Bagi Masyarakat Sumber Dana Rp.{{ number_format($data_belanja->dana_desa, 0, ',', '.') }} Desa
             Tarikolot kepada PIHAK KEDUA dan PIHAK KEDUA menerima
@@ -357,7 +372,8 @@
                 @endforeach
             </tbody>
         </table>
-        <p style="text-indent: 20px; text-align:justify;" >Demikan Berita Acara Serah Terima Barang ini dibuat sebagai Bukti yang Sah dan
+        <p style="text-indent: 20px; text-align:justify;">Demikan Berita Acara Serah Terima Barang ini dibuat sebagai
+            Bukti yang Sah dan
             mempuyai kekuatan hukum yang
             sama bagi PIHAK PERTAMA dan PIHAK KEDUA.</p>
         <div class="mt-3">
@@ -367,7 +383,8 @@
                         <td style="width: 50%;">
                             <p>PIHAK KEDUA</p>
                             <p>Yang menerima</p>
-                            <p>{{ $data_pemeriksa->jabatan }}</p>
+                            <p class="text-uppercase">Tim Pemeriksa Pekerjaan/Penerima Barang/Jasa </p>
+                            <p class="text-uppercase">{{ $data_pemeriksa->jabatan }}</p>
                             <p style="margin-top: 8em">{{ $data_pemeriksa->nama }}</p>
                         </td>
                         <td style="width: 50%;">
