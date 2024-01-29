@@ -54,6 +54,8 @@ class LPJBarangJasaDataTable extends DataTable
                 'lpj-barang-jasa.id as id',
                 'lpj-barang-jasa.no_pesanan_brg as no_pesanan_barang',
                 'lpj-barang-jasa.no_berita_acara as no_berita_acara',
+                'lpj-barang-jasa.no_berita_acara as no_berita_acara_pemeriksaan',
+                'lpj-barang-jasa.no_berita_acara as dana_desa',
                 'lpj-barang-jasa.nama_pelaksana_kegiatan as nama_pelaksana_kegiatan',
                 'lpj-barang-jasa.sk_tpk as sk_tpk',
                 'lpj-barang-jasa.nama_rincian_spp as nama_rincian_spp',

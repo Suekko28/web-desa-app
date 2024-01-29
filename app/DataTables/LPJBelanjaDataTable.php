@@ -58,7 +58,6 @@ class LPJBelanjaDataTable extends DataTable
             ->select(
                 'lpj-belanja.id as id',
                 'lpj-belanja.nama_barang as nama_barang',
-                'lpj-belanja.dana_desa as dana_desa',
                 'lpj-belanja.volume_qty as volume_qty',
                 'lpj-belanja.satuan as satuan',
                 'lpj-belanja.harga as harga',
@@ -118,7 +117,6 @@ class LPJBelanjaDataTable extends DataTable
             Column::make('volume_qty'),
             Column::make('satuan'),
             Column::make('harga'),
-            Column::make('dana_desa'),
             Column::computed('action')
                 ->exportable(false)
                 ->printable(false)

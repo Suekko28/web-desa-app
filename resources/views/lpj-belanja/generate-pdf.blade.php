@@ -124,7 +124,7 @@
         <p class="text-justify" style="margin-top: 2em; text-indent: 20px; margin-left:7em;  text-align:justify;">Untuk
             kebutuhan Pelaksanaan Kegiatan
             {{ $data_belanja->nama_rincian_spp }} Sumber Dana
-            Rp.{{ number_format($data_belanja->dana_desa, 0, ',', '.') }} di wilayah Desa
+            {{$data_belanja->dana_desa}} di wilayah Desa
             Tarikolot Kecamatan
             Citeureup Kabupaten Bogor, dengan ini Kami
             sebagai Pelaksana Kegiatan memesan Barang dengan rincian sebagai berikut:
@@ -133,7 +133,7 @@
         <table class="table table-bordered text-center mt-3" style="margin-left:7em; width:87%;">
             <thead>
                 <tr>
-                    <th scope="col">No</th>
+                    <th scope="col" style="width: 10%;">No</th>
                     <th scope="col">Nama Barang</th>
                     <th scope="col">Banyaknya</th>
                 </tr>
@@ -172,11 +172,10 @@
 
         <div class="page-break"></div>
         <h5 class="text-center mt-3 mb-3 berita_acara"><u>BERITA ACARA PEMERIKSAAN BARANG</u></h5>
-        <p class="alamat text-center" style="margin-top: -10px">Alamat: Jl. Industri No.65 Desa Tarikolot Citereup Bogor
-            16810 Telp. (021)
-            87943708></p>
+        <p class="alamat text-center" style="margin-top: -10px">{{ $data_belanja->no_berita_acara_pemeriksaan }}</p>
         <p class="text-wrap" style="margin-top: 2em; text-indent: 20px;">Pada hari ini,
-            {{ $tanggal_hari_ini }}, Kami
+            {{ $date_pemeriksa_hari }} Tanggal {{ $date_pemeriksa_text_day }} Bulan {{ $date_pemeriksa_text_month }}
+            Tahun {{ $date_pemeriksa_text_year }} , Kami
             yang
             bertandatangan dibawah ini:</p>
 
@@ -208,7 +207,7 @@
         <br>
         <p style="text-indent: 20px; text-align:justify;">Berdasarkan Surat Keputusan Kepala Desa
             Tarikolot Nomor
-            {{ $data_pemeriksa->nomor }} Tahun 2024 tanggal {{ $date_pemeriksa }}
+            {{ $data_pemeriksa->nomor }} Tahun 2024 tanggal {{ $date_pemeriksa_format }}
             tentang Penetapan Tim Pemeriksa Pekerjaan/Penerima Barang/Jasa Desa Tarikolot Tahun 2024, Kami selaku Tim
             Pemeriksa Pekerjaan/Penerima Barang/Jasa telah melaksanakan Pemeriksaan Barang yang diserahkan oleh:
             {{ $data->first()->nama_toko }}</p>
@@ -219,13 +218,14 @@
             hasil pemeriksaan tersebut Kami simpulkan terhadap barang yang kondisinya Baik Kami beri kalimat Ya,
             sedangkan
             barang yang kondisinya Tidak Baik/Rusak/Tidak Sesuai Dengan Pesanan kami beri kalimat Tidak.</p>
+            
         <table class="table table-bordered text-center vw-100 mw-100 mt-3">
             <thead>
                 <tr>
-                    <th style="height: 40px;" scope="col" rowspan="2" class="text-center">No</th>
-                    <th style="height: 40px;" scope="col" rowspan="2" class="text-center">Nama Barang</th>
-                    <th style="height: 40px;" scope="col" rowspan="2" class="text-center">Banyaknya</th>
-                    <th style="height: 40px;" scope="col" colspan="2" class="text-center">Kondisi</th>
+                    <th style="" scope="col" rowspan="2" class="text-center">No</th>
+                    <th style="" scope="col" rowspan="2" class="text-center">Nama Barang</th>
+                    <th style="" scope="col" rowspan="2" class="text-center">Banyaknya</th>
+                    <th style="" scope="col" colspan="2" class="text-center">Kondisi</th>
                 </tr>
 
             </thead>
@@ -275,7 +275,7 @@
                             <p style="margin-top: 5em">{{ $data_belanja->pemilik_toko }}</p>
                         </td>
                         <td style="width:40%;">
-                            <ol class="mt-3 text-left signature-list" >
+                            <ol class="mt-3 text-left signature-list">
                                 <li>
                                     <span>Nama : {{ $data_pemeriksa->nama }}</span>
                                 </li>
@@ -301,8 +301,12 @@
         <h5 class="text-center mt-3 mb-3 berita_acara"><u>BERITA ACARA SERAH TERIMA BARANG</u></h5>
         <p class="alamat text-center" style="margin-top: -10px">{{ $data_belanja->no_berita_acara }}</p>
 
-        <p style="text-indent: 20px; margin-top:2em;">Pada hari ini, {{ $tanggal_hari_ini }}, Kami yang
+        <p style="text-indent: 20px; margin-top:2em;">Pada hari ini,
+            {{ $date_pemeriksa_hari }} Tanggal {{ $date_pemeriksa_text_day }} Bulan {{ $date_pemeriksa_text_month }}
+            Tahun {{ $date_pemeriksa_text_year }} , Kami
+            yang
             bertandatangan dibawah ini:</p>
+
 
         <table style="width: 100%;">
             <tbody>
@@ -330,7 +334,8 @@
                     <td style="width: 50%;">
                         <ol type="i" start="2">
                             <li>Nama <span style="margin-left: 34px"> :<span> {{ $data_pemeriksa->nama }} </li>
-                            <p>Jabatan <span style="margin-left: 25px"> :<span> {{ $data_pemeriksa->jabatan }} Tim Pemeriksa Pekerjaan/Penerima Barang/Jasa  </p>
+                            <p>Jabatan <span style="margin-left: 25px"> :<span> {{ $data_pemeriksa->jabatan }} Tim
+                                        Pemeriksa Pekerjaan/Penerima Barang/Jasa </p>
                             <p>Alamat <span style="margin-left: 30px"> :<span> {{ $data_pemeriksa->alamat }}</p>
                         </ol>
                     </td>
@@ -342,21 +347,21 @@
             Pekerjaan/Penerima
             Barang/Jasa Kegiatan Penyuluhan
             dan Pelatihan Pendidikan Bagi Masyarakat Sumber Dana
-            Rp.{{ number_format($data_belanja->dana_desa, 0, ',', '.') }} Desa Tarikolot selaku Pemesan/Pembeli/
+            {{$data_belanja->dana_desa}} Desa Tarikolot selaku Pemesan/Pembeli/
             Pengguna Barang yang selanjutnya disebut sebagai PIHAK KEDUA.</p>
         <br>
 
         <p style="text-indent: 20px; text-align:justify;">Dengan ini PIHAK PERTAMA menyerahkan Bahan
             Baku/Material/Barang untuk Kegiatan
             Penyuluhan dan Pelatihan
-            Pendidikan Bagi Masyarakat Sumber Dana Rp.{{ number_format($data_belanja->dana_desa, 0, ',', '.') }} Desa
+            Pendidikan Bagi Masyarakat Sumber Dana {{$data_belanja->dana_desa}} Desa
             Tarikolot kepada PIHAK KEDUA dan PIHAK KEDUA menerima
             sebagai berikut:</p>
 
         <table class="table table-bordered text-center vw-100 mw-100 mt-3">
             <thead>
                 <tr>
-                    <th scope="col">No</th>
+                    <th scope="col"  style="width: 10%;">No</th>
                     <th scope="col">Nama Barang</th>
                     <th scope="col">Banyaknya</th>
                 </tr>
@@ -385,13 +390,13 @@
                             <p>Yang menerima</p>
                             <p class="text-uppercase">Tim Pemeriksa Pekerjaan/Penerima Barang/Jasa </p>
                             <p class="text-uppercase">{{ $data_pemeriksa->jabatan }}</p>
-                            <p style="margin-top: 8em">{{ $data_pemeriksa->nama }}</p>
+                            <p style="margin-top: 8em;">{{ $data_pemeriksa->nama }}</p>
                         </td>
                         <td style="width: 50%;">
                             <p>PIHAK PERTAMA</p>
                             <p>Yang menyerahkan</p>
                             <p>{{ $data_belanja->nama_toko }}</p>
-                            <p style="margin-top: 8em">{{ $data_belanja->pemilik_toko }}</p>
+                            <p style="margin-top: 11em;">{{ $data_belanja->pemilik_toko }}</p>
                         </td>
                     </tr>
                 </tbody>

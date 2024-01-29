@@ -16,7 +16,6 @@ return new class extends Migration
             $table->id();
             $table->integer('id_barang_jasa');
             $table->string('nama_barang');
-            $table->integer('dana_desa');
             $table->integer('volume_qty');
             $table->string('satuan');
             $table->integer('harga');
