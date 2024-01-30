@@ -63,10 +63,7 @@
             list-style-type: none;
         }
 
-            {
-            display: flex;
-            justify-content: space-between;
-        }
+        
     </style>
 </head>
 
@@ -101,19 +98,19 @@
         <table style="width: 100%;">
             <tbody>
                 <tr>
-                    <td style="text-align: left; width:70%">
+                    <td style="text-align: left; width:50%">
                         <p>Nomor<span style="margin-left: 30px"> :<span> {{ $data_belanja->no_berita_acara }}</p>
                         <p style="margin: 0;">Lampiran <span style="margin-left: 15px"> :<span>
                                     {{ $data_belanja->lampiran }} </p>
                         <p>Perihal<span style="margin-left: 30px"> :<span> {{ $data_belanja->perihal }}</p>
                     </td>
 
-                    <td style="width:30%;">
-                        <p>Tarikolot , {{ $date_pesanan }}</p>
-                        <p style="">Kepada</p>
-                        <p style="">Yth. {{ $data_belanja->nama_toko }}</p>
-                        <p style="">Di</p>
-                        <p style="">____Tempat____</p>
+                    <td style="width:50%;">
+                        <p style="margin-left: 10em;">Tarikolot , {{ $date_pesanan }}</p>
+                        <p style="margin-left: 10em;">Kepada</p>
+                        <p style="margin-left: 8em;">Yth. {{ $data_belanja->nama_toko }}</p>
+                        <p style="margin-left: 10em;">Di</p>
+                        <p style="margin-left: 10em;">____Tempat____</p>
                     </td>
                 </tr>
             </tbody>
@@ -124,7 +121,7 @@
         <p class="text-justify" style="margin-top: 2em; text-indent: 20px; margin-left:7em;  text-align:justify;">Untuk
             kebutuhan Pelaksanaan Kegiatan
             {{ $data_belanja->nama_rincian_spp }} Sumber Dana
-            {{$data_belanja->dana_desa}} di wilayah Desa
+            {{ $data_belanja->dana_desa }} di wilayah Desa
             Tarikolot Kecamatan
             Citeureup Kabupaten Bogor, dengan ini Kami
             sebagai Pelaksana Kegiatan memesan Barang dengan rincian sebagai berikut:
@@ -218,22 +215,22 @@
             hasil pemeriksaan tersebut Kami simpulkan terhadap barang yang kondisinya Baik Kami beri kalimat Ya,
             sedangkan
             barang yang kondisinya Tidak Baik/Rusak/Tidak Sesuai Dengan Pesanan kami beri kalimat Tidak.</p>
-            
+
         <table class="table table-bordered text-center vw-100 mw-100 mt-3">
             <thead>
-                <tr>
-                    <th style="" scope="col" rowspan="2" class="text-center">No</th>
-                    <th style="" scope="col" rowspan="2" class="text-center">Nama Barang</th>
-                    <th style="" scope="col" rowspan="2" class="text-center">Banyaknya</th>
+                <tr class="">
+                    <th style="padding:-10em;" scope="col" rowspan="2" class="text-center">No</th>
+                    <th style="padding:-10em;" scope="col" rowspan="2" class="text-center">Nama Barang</th>
+                    <th style="padding:-10em;" scope="col" rowspan="2" class="text-center">Banyaknya</th>
                     <th style="" scope="col" colspan="2" class="text-center">Kondisi</th>
                 </tr>
 
-            </thead>
-            <tbody>
-                <tr>
+                <tr class="">
                     <th>Baik</th>
                     <th>Tidak Baik</th>
                 </tr>
+            </thead>
+            <tbody>
                 @php $i=1 @endphp
                 @foreach ($data_barang as $row)
                     <tr>
@@ -347,21 +344,21 @@
             Pekerjaan/Penerima
             Barang/Jasa Kegiatan Penyuluhan
             dan Pelatihan Pendidikan Bagi Masyarakat Sumber Dana
-            {{$data_belanja->dana_desa}} Desa Tarikolot selaku Pemesan/Pembeli/
+            {{ $data_belanja->dana_desa }} Desa Tarikolot selaku Pemesan/Pembeli/
             Pengguna Barang yang selanjutnya disebut sebagai PIHAK KEDUA.</p>
         <br>
 
         <p style="text-indent: 20px; text-align:justify;">Dengan ini PIHAK PERTAMA menyerahkan Bahan
             Baku/Material/Barang untuk Kegiatan
             Penyuluhan dan Pelatihan
-            Pendidikan Bagi Masyarakat Sumber Dana {{$data_belanja->dana_desa}} Desa
+            Pendidikan Bagi Masyarakat Sumber Dana {{ $data_belanja->dana_desa }} Desa
             Tarikolot kepada PIHAK KEDUA dan PIHAK KEDUA menerima
             sebagai berikut:</p>
 
         <table class="table table-bordered text-center vw-100 mw-100 mt-3">
             <thead>
                 <tr>
-                    <th scope="col"  style="width: 10%;">No</th>
+                    <th scope="col" style="width: 10%;">No</th>
                     <th scope="col">Nama Barang</th>
                     <th scope="col">Banyaknya</th>
                 </tr>

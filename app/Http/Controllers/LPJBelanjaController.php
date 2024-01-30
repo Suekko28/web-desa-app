@@ -40,6 +40,19 @@ class LPJBelanjaController extends Controller
      */
     public function store(Request $request)
     {
+
+        $request->validate([
+            'nama_barang' => 'required|string|max:255',
+            'volume_qty' => 'required|integer',
+            'satuan' => 'required|string|max:255',
+            'harga' => 'required|integer',
+        ], [
+            'nama_barang.required' => 'Nama Barang wajib diisi.',
+            'volume_qty.required' => 'Volume Quantity wajib diisi.',
+            'satuan.required' => 'Satuan wajib diisi.',
+            'harga.required' => 'Harga wajib diisi.',
+        ]);
+
         $request['id_barang_jasa'] = $request->id;
         LPJBelanja::create($request->all());
         return redirect()->route('lpj-belanja.show', ['lpj_belanja' => $request->id])->with('success', 'Berhasil menambahkan data');
@@ -161,7 +174,7 @@ class LPJBelanjaController extends Controller
 
         $data_pemeriksa = LPJTimPemeriksa::where('NIP', '=', $data_belanja->tim_pemeriksa)->get();
         $data_anggota_pemeriksa = $data_pemeriksa->first()->AnggotaLPJTimPemeriksa()->get();
-        $html = view('lpj-belanja.generate-pdf', ['date_pemeriksa_text_day' => $date_pemeriksa_text_day, 'date_pemeriksa_text_month' => $date_pemeriksa_text_month, 'date_pemeriksa_text_year' => $date_pemeriksa_text_year,'tanggalProperCase' => $tanggalProperCase, 'date_pemeriksa_hari' => $date_pemeriksa_hari, 'date_pemeriksa_format' => $date_pemeriksa_format, 'tahun' => $tahun_terbilang, 'date_pesanan' => $date_pesanan, 'hari' => $hari, 'data_anggota_pemeriksa' => $data_anggota_pemeriksa, 'data_pemeriksa' => $data_pemeriksa->first(), 'data' => $data, 'data_belanja' => $data_belanja, 'data_barang' => $data_barang])->render();
+        $html = view('lpj-belanja.generate-pdf', ['date_pemeriksa_text_day' => $date_pemeriksa_text_day, 'date_pemeriksa_text_month' => $date_pemeriksa_text_month, 'date_pemeriksa_text_year' => $date_pemeriksa_text_year, 'tanggalProperCase' => $tanggalProperCase, 'date_pemeriksa_hari' => $date_pemeriksa_hari, 'date_pemeriksa_format' => $date_pemeriksa_format, 'tahun' => $tahun_terbilang, 'date_pesanan' => $date_pesanan, 'hari' => $hari, 'data_anggota_pemeriksa' => $data_anggota_pemeriksa, 'data_pemeriksa' => $data_pemeriksa->first(), 'data' => $data, 'data_belanja' => $data_belanja, 'data_barang' => $data_barang])->render();
 
 
         // Adjust PDF options if needed
