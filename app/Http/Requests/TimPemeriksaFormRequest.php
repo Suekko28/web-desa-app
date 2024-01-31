@@ -19,35 +19,36 @@ class TimPemeriksaFormRequest extends FormRequest
      *
      * @return array<string, \Illuminate\Contracts\Validation\ValidationRule|array<mixed>|string>
      */
-    public function rules(): array
+    public function rules()
     {
         return [
-            'NIP' => 'required|string|max:255',
-            'nama' => 'required|string|max:255',
-            'jabatan' => 'required|string|max:255',
+            'NIP' => 'required',
+            'nama_ketua' => 'required',
+            'jabatan_ketua' => 'required',
             'tgl_pemeriksa' => 'required|date',
-            'nomor' => 'required|string|max:255',
-            'tahun' => 'required|string|max:255',
-            'alamat' => 'required|string|max:255',
+            'nomor' => 'required',
+            'tahun' => 'required',
+            'alamat' => 'required',
+            'nama.*' => 'sometimes|required|string',
+            'jabatan.*' => 'sometimes|required|string',
         ];
     }
 
-    /**
-     * Get the error messages for the defined validation rules.
-     *
-     * @return array<string, string>
-     */
-    public function messages(): array
+    public function messages()
     {
         return [
-            'NIP.required' => 'NIP harus diisi.',
-            'nama.required' => 'Nama harus diisi.',
-            'jabatan.required' => 'Jabatan harus diisi.',
-            'tgl_pemeriksa.required' => 'Tanggal pemeriksaan harus diisi.',
+            'NIP.required' => 'NIP wajib diisi.',
+            'nama_ketua.required' => 'Nama wajib diisi.',
+            'jabatan_ketua.required' => 'Jabatan wajib diisi.',
+            'tgl_pemeriksa.required' => 'Tanggal Pemeriksaan wajib diisi.',
             'tgl_pemeriksa.date' => 'Format tanggal pemeriksaan tidak valid.',
-            'nomor.required' => 'Nomor harus diisi.',
-            'tahun.required' => 'Tahun harus diisi.',
-            'alamat.required' => 'Alamat harus diisi.',
+            'nomor.required' => 'Nomor wajib diisi.',
+            'tahun.required' => 'Tahun wajib diisi.',
+            'alamat.required' => 'Alamat wajib diisi.',
+            'nama.*.required' => 'Nama Anggota Tim Pemeriksa wajib diisi.',
+            'nama.*.string' => 'Nama Anggota Tim Pemeriksa harus berupa teks.',
+            'jabatan.*.required' => 'Jabatan Anggota Tim Pemeriksa wajib diisi.',
+            'jabatan.*.string' => 'Jabatan Anggota Tim Pemeriksa harus berupa teks.',
         ];
     }
 }

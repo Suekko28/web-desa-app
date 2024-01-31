@@ -24,6 +24,8 @@ class PemerintahanLPJRequest extends FormRequest
         return [
             'no_pesanan_brg' => 'required|string|max:255',
             'no_berita_acara' => 'required|string|max:255',
+            'no_berita_acara_pemeriksaan' => 'required|string|max:255',
+            'dana_desa' => 'required|string|max:255',
             'nama_pelaksana_kegiatan' => 'required|string|max:255',
             'sk_tpk' => 'required|string|max:255',
             'nama_rincian_spp' => 'required|string|max:255',
@@ -52,6 +54,8 @@ class PemerintahanLPJRequest extends FormRequest
         return [
             'no_pesanan_brg.required' => 'Nomor Pesanan Barang harus diisi.',
             'no_berita_acara.required' => 'Nomor Berita Acara harus diisi.',
+            'no_berita_acara_pemeriksaan.required' => 'Nomor Berita Acara Pemeriksaan harus diisi.',
+            'dana_desa.required' => 'Sumber Dana Desa harus diisi',
             'nama_pelaksana_kegiatan.required' => 'Nama Pelaksana Kegiatan harus diisi.',
             'sk_tpk.required' => 'Surat Keputusan TPK harus diisi.',
             'nama_rincian_spp.required' => 'Nama Rincian SPP harus diisi.',

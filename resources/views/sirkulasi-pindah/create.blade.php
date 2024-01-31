@@ -72,7 +72,7 @@
                                 <div class="col-sm-12">
                                     <label for="alamat_pindah" class="col-form-label">Alamat Pindah</label>
                                     <textarea type="text" class="form-control" id="alamat_pindah" name="alamat_pindah" rows="5"
-                                        placeholder="Alamat Lengkap (Jl / Kampung  No.Rumah"></textarea>
+                                        placeholder="Alamat Lengkap (Jl / Kampung  No.Rumah)"></textarea>
                                 </div>
 
 

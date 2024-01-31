@@ -82,7 +82,7 @@
                                     <div class="col-sm-12">
                                         <label for=" alamat" class="col-form-label">Alamat</label>
                                         <textarea type="text" class="form-control" id="alamat" name="alamat" rows="5"
-                                            placeholder="Masukkan Alamat"></textarea>
+                                            placeholder="Alamat Lengkap (Jl / Kampung  No.Rumah)"></textarea>
                                     </div>
                                 </div>
                                 
@@ -91,7 +91,7 @@
 
                             <div class="d-flex flex-row-reverse">
                                 <button type="submit" class="btn btn-primary ml-3">Simpan</button>
-                                <a href="" class="btn btn-danger">Batal</a>
+                                <a href="{{route('lpj-timpemeriksa.index')}}" class="btn btn-danger">Batal</a>
                             </div>
                                 <!-- /.card-body -->
                 </form>

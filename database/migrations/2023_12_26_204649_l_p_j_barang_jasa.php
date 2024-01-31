@@ -15,6 +15,8 @@ return new class extends Migration
             $table->id();
             $table->string("no_pesanan_brg");
             $table->string("no_berita_acara");
+            $table->string("no_berita_acara_pemeriksaan");
+            $table->string("dana_desa");
             $table->string("nama_pelaksana_kegiatan");
             $table->string("sk_tpk");
             $table->string("nama_rincian_spp");

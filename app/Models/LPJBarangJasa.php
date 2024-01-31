@@ -26,6 +26,8 @@ class LPJBarangJasa extends Model
     protected $fillable = [
         'no_pesanan_brg',
         'no_berita_acara',
+        'no_berita_acara_pemeriksaan',
+        'dana_desa',
         'nama_pelaksana_kegiatan',
         'sk_tpk',
         'nama_rincian_spp',
@@ -45,4 +47,7 @@ class LPJBarangJasa extends Model
     public function LPJBelanja(): HasMany{
         return $this->hasMany(LPJBelanja::class,'id_barang_jasa','id');
     }
+
+    
+   
 }

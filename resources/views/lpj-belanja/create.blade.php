@@ -40,20 +40,14 @@
                             <div class="form-group">
                                 <div class="row">
                                     <!-- Tampilin Semua Field Di Table Jos !-->
-
-                                    <div class="col-sm-4">
-                                        <label for="dana_desa" class="col-form-label">Dana Desa</label>
-                                        <input type="number" class="form-control" id="dana_desa" name="dana_desa"
-                                            placeholder="Dana Desa">
-                                    </div>
                                     
-                                    <div class="col-sm-4">
+                                    <div class="col-sm-6">
                                         <label for="nama_barang" class="col-form-label">Nama Barang / Jasa</label>
                                         <input type="text" class="form-control" id="nama_barang" name="nama_barang"
                                             placeholder="Buku/Pena/dll">
                                     </div>
 
-                                    <div class="col-sm-4">
+                                    <div class="col-sm-6">
                                         <label for="volume_qty" class="col-form-label">Volume / QTY</label>
                                         <input type="number" class="form-control" id="volume_qty" name="volume_qty"
                                             placeholder="50">
