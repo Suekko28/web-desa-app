@@ -37,10 +37,15 @@ class PemerintahanKadusDataTable extends DataTable
         $actionBtn .= '</div>';
 
         return (new EloquentDataTable($query))
+            ->addColumn('id', function ($data) {
+                // Increment rowIndex for each row
+                $this->rowIndex++;
+                return '' . $this->rowIndex;
+            })
             ->addColumn('action', $actionBtn)
             ->rawColumns(['action'])
             ->setRowId('id');
-        }
+    }
     /**
      * Get query source of dataTable.
      *
@@ -50,19 +55,19 @@ class PemerintahanKadusDataTable extends DataTable
     public function query(PemerintahanKadus $model): QueryBuilder
     {
         return $model->newQuery()
-        ->select(
-            'pemerintahan_kadus.id as id',
-            'pemerintahan_kadus.nama as nama',
-            'pemerintahan_kadus.jabatan as jabatan',
-            \DB::raw('CASE WHEN jenis_kelamin = 1 THEN "Laki-Laki" ELSE "Perempuan" END AS jenis_kelamin'),
-            'pemerintahan_kadus.tmpt_lahir as tmpt_lahir',
-            'pemerintahan_kadus.tgl_lahir as tgl_lahir',
-            'pemerintahan_kadus.alamat as alamat',
-            'pemerintahan_kadus.updated_at as updated_at',
-            'pemerintahan_kadus.no_telepon as no_telepon',
-            'pemerintahan_kadus.no_sk as no_sk',
-            'pemerintahan_kadus.tgl_sk as tgl_sk',
-        );
+            ->select(
+                'pemerintahan_kadus.id as id',
+                'pemerintahan_kadus.nama as nama',
+                'pemerintahan_kadus.jabatan as jabatan',
+                \DB::raw('CASE WHEN jenis_kelamin = 1 THEN "Laki-Laki" ELSE "Perempuan" END AS jenis_kelamin'),
+                'pemerintahan_kadus.tmpt_lahir as tmpt_lahir',
+                'pemerintahan_kadus.tgl_lahir as tgl_lahir',
+                'pemerintahan_kadus.alamat as alamat',
+                'pemerintahan_kadus.updated_at as updated_at',
+                'pemerintahan_kadus.no_telepon as no_telepon',
+                'pemerintahan_kadus.no_sk as no_sk',
+                'pemerintahan_kadus.tgl_sk as tgl_sk',
+            );
     }
 
     /**
@@ -74,23 +79,23 @@ class PemerintahanKadusDataTable extends DataTable
     {
         $btn = [
             Button::make('add')
-            ->text('+ Tambah Data')
-            ->addClass('rounded'),
+                ->text('+ Tambah Data')
+                ->addClass('rounded'),
             Button::make('csv')
-            ->addClass('btn-warning rounded')
-            ->text('CSV'),
+                ->addClass('btn-warning rounded')
+                ->text('CSV'),
             Button::make('excel')
-            ->addClass('btn-success rounded')
-            ->text('Excel'),
+                ->addClass('btn-success rounded')
+                ->text('Excel'),
             Button::make('pdf')
-            ->addClass('btn-danger rounded')
-            ->text('PDF')
-            ->action('function() {
-                window.location.href = "'.route('pemerintahan-kadus.generate-pdf').'";
+                ->addClass('btn-danger rounded')
+                ->text('PDF')
+                ->action('function() {
+                window.location.href = "' . route('pemerintahan-kadus.generate-pdf') . '";
             }'),
 
         ];
-        
+
         return $this->builder()
             ->setTableId('pemerintahan_kadus-table')
             ->columns($this->getColumns())

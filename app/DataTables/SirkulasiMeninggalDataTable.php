@@ -14,6 +14,8 @@ use Yajra\DataTables\Services\DataTable;
 
 class SirkulasiMeninggalDataTable extends DataTable
 {
+    protected $rowIndex = 0;
+
     /**
      * Build DataTable class.
      *
@@ -32,6 +34,11 @@ class SirkulasiMeninggalDataTable extends DataTable
         $actionBtn .= '</div>';
 
         return (new EloquentDataTable($query))
+            ->addColumn('id', function ($data) {
+                // Increment rowIndex for each row
+                $this->rowIndex++;
+                return '' . $this->rowIndex;
+            })
             ->addColumn('action', $actionBtn)
             ->rawColumns(['action'])
             ->setRowId('id');
@@ -69,19 +76,19 @@ class SirkulasiMeninggalDataTable extends DataTable
     {
         $btn = [
             Button::make('add')
-            ->text('+ Tambah Data')
-            ->addClass('rounded'),
+                ->text('+ Tambah Data')
+                ->addClass('rounded'),
             Button::make('csv')
-            ->addClass('btn-warning rounded')
-            ->text('CSV'),
+                ->addClass('btn-warning rounded')
+                ->text('CSV'),
             Button::make('excel')
-            ->addClass('btn-success rounded')
-            ->text('Excel'),
+                ->addClass('btn-success rounded')
+                ->text('Excel'),
             Button::make('pdf')
-            ->addClass('btn-danger rounded')
-            ->text('PDF')
-            ->action('function() {
-                window.location.href = "'.route('sirkulasi-meninggal.generate-pdf').'";
+                ->addClass('btn-danger rounded')
+                ->text('PDF')
+                ->action('function() {
+                window.location.href = "' . route('sirkulasi-meninggal.generate-pdf') . '";
             }'),
 
 
@@ -112,10 +119,10 @@ class SirkulasiMeninggalDataTable extends DataTable
             Column::make('created_at'),
             Column::make('updated_at'),
             Column::computed('action')
-                  ->exportable(false)
-                  ->printable(false)
-                  ->width(60)
-                  ->addClass('text-center'),
+                ->exportable(false)
+                ->printable(false)
+                ->width(60)
+                ->addClass('text-center'),
         ];
     }
 

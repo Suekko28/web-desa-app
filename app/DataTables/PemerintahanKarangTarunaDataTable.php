@@ -27,15 +27,20 @@ class PemerintahanKarangTarunaDataTable extends DataTable
     {
         $this->rowIndex = 0;
 
-        $actionBtn='<div class="col">
+        $actionBtn = '<div class="col">
         <a href="' . route('pemerintahan-karang-taruna.index') . '/{{ $id }}/edit" name="edit" class="btn btn-warning"><i class="fa-solid fa-pen-to-square"></i></a>';
-        
+
         $actionBtn .= '<a href="javascript:void(0)" onclick="confirmDelete($(this))"
             route="' . route('pemerintahan-karang-taruna.index') . '/{{ $id }}" class="btn btn-danger mt-2"><i class="fa-solid fa-trash-can"></i></a>';
 
-        $actionBtn.='</div>';
+        $actionBtn .= '</div>';
 
         return (new EloquentDataTable($query))
+            ->addColumn('id', function ($data) {
+                // Increment rowIndex for each row
+                $this->rowIndex++;
+                return '' . $this->rowIndex;
+            })
             ->addColumn('action', $actionBtn)
             ->rawColumns(['action'])
             ->setRowId('id');
@@ -50,19 +55,19 @@ class PemerintahanKarangTarunaDataTable extends DataTable
     public function query(PemerintahanKarangTaruna $model): QueryBuilder
     {
         return $model->newQuery()
-        ->select(
-            'pemerintahan_karang_taruna.id as id',
-            'pemerintahan_karang_taruna.nama as nama',
-            'pemerintahan_karang_taruna.jabatan as jabatan',
-            \DB::raw('CASE WHEN jenis_kelamin = 1 THEN "Laki-Laki" ELSE "Perempuan" END AS jenis_kelamin'),
-            'pemerintahan_karang_taruna.tmpt_lahir as tmpt_lahir',
-            'pemerintahan_karang_taruna.tgl_lahir as tgl_lahir',
-            'pemerintahan_karang_taruna.alamat as alamat',
-            'pemerintahan_karang_taruna.updated_at as updated_at',
-            'pemerintahan_karang_taruna.no_telepon as no_telepon',
-            'pemerintahan_karang_taruna.no_sk as no_sk',
-            'pemerintahan_karang_taruna.tgl_sk as tgl_sk',
-        );
+            ->select(
+                'pemerintahan_karang_taruna.id as id',
+                'pemerintahan_karang_taruna.nama as nama',
+                'pemerintahan_karang_taruna.jabatan as jabatan',
+                \DB::raw('CASE WHEN jenis_kelamin = 1 THEN "Laki-Laki" ELSE "Perempuan" END AS jenis_kelamin'),
+                'pemerintahan_karang_taruna.tmpt_lahir as tmpt_lahir',
+                'pemerintahan_karang_taruna.tgl_lahir as tgl_lahir',
+                'pemerintahan_karang_taruna.alamat as alamat',
+                'pemerintahan_karang_taruna.updated_at as updated_at',
+                'pemerintahan_karang_taruna.no_telepon as no_telepon',
+                'pemerintahan_karang_taruna.no_sk as no_sk',
+                'pemerintahan_karang_taruna.tgl_sk as tgl_sk',
+            );
     }
 
     /**
@@ -74,30 +79,30 @@ class PemerintahanKarangTarunaDataTable extends DataTable
     {
         $btn = [
             Button::make('add')
-            ->text('+ Tambah Data')
-            ->addClass('rounded'),
+                ->text('+ Tambah Data')
+                ->addClass('rounded'),
             Button::make('csv')
-            ->addClass('btn-warning rounded')
-            ->text('CSV'),
+                ->addClass('btn-warning rounded')
+                ->text('CSV'),
             Button::make('excel')
-            ->addClass('btn-success rounded')
-            ->text('Excel'),
+                ->addClass('btn-success rounded')
+                ->text('Excel'),
             Button::make('pdf')
-            ->addClass('btn-danger rounded')
-            ->text('PDF')
-            ->action('function() {
-                window.location.href = "'.route('pemerintahan-karangtaruna.generate-pdf').'";
+                ->addClass('btn-danger rounded')
+                ->text('PDF')
+                ->action('function() {
+                window.location.href = "' . route('pemerintahan-karangtaruna.generate-pdf') . '";
             }'),
 
         ];
-        
+
         return $this->builder()
-                    ->setTableId('pemerintah-karang-taruna-table')
-                    ->columns($this->getColumns())
-                    ->minifiedAjax()
-                    ->orderBy(0,'asc')
-                    ->buttons($btn)
-                    ->lengthMenu([10, 50, 100]);
+            ->setTableId('pemerintah-karang-taruna-table')
+            ->columns($this->getColumns())
+            ->minifiedAjax()
+            ->orderBy(0, 'asc')
+            ->buttons($btn)
+            ->lengthMenu([10, 50, 100]);
     }
 
     /**
@@ -125,7 +130,7 @@ class PemerintahanKarangTarunaDataTable extends DataTable
                 ->printable(false)
                 ->width(60)
                 ->addClass('text-center'),
-        ];   
+        ];
     }
 
     /**

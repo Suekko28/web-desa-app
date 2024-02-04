@@ -14,6 +14,9 @@ use Yajra\DataTables\Services\DataTable;
 
 class LPJTimPemeriksaDataTable extends DataTable
 {
+
+    protected $rowIndex = 0;
+
     /**
      * Build DataTable class.
      *
@@ -33,6 +36,11 @@ class LPJTimPemeriksaDataTable extends DataTable
         $actionBtn .= '</div>';
 
         return (new EloquentDataTable($query))
+        ->addColumn('id', function ($data) {
+            // Increment rowIndex for each row
+            $this->rowIndex++;
+            return '' . $this->rowIndex;
+        })
             ->addColumn('action', $actionBtn)
             ->rawColumns(['action'])
             ->setRowId('id');

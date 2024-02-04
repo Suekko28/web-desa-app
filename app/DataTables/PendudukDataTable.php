@@ -41,6 +41,11 @@ class PendudukDataTable extends DataTable
         $actionBtn .= '</div>';
 
         return (new EloquentDataTable($query))
+            ->addColumn('id', function ($data) {
+                // Increment rowIndex for each row
+                $this->rowIndex++;
+                return '' . $this->rowIndex;
+            })
             ->addColumn('action', $actionBtn)
             ->rawColumns(['action'])
             ->setRowId('id');
@@ -75,17 +80,17 @@ class PendudukDataTable extends DataTable
     {
         $btn = [
             Button::make('add')
-            ->text('+ Tambah Data')
-            ->addClass('rounded'),
+                ->text('+ Tambah Data')
+                ->addClass('rounded'),
             Button::make('csv')
-            ->addClass('btn-warning rounded')
-            ->text('CSV'),
+                ->addClass('btn-warning rounded')
+                ->text('CSV'),
             Button::make('excel')
-            ->addClass('btn-success rounded')
-            ->text('Excel'),
+                ->addClass('btn-success rounded')
+                ->text('Excel'),
             Button::make('pdf')
-            ->addClass('btn-danger rounded')
-            ->text('PDF'),
+                ->addClass('btn-danger rounded')
+                ->text('PDF'),
 
         ];
         array_push($btn, Button::raw('Import Data')
@@ -103,10 +108,6 @@ class PendudukDataTable extends DataTable
 
 
 
-
-
-
-
     }
 
     /**
@@ -118,8 +119,8 @@ class PendudukDataTable extends DataTable
     {
         return [
             Column::make('id')
-            ->title('No')
-            ->width(10),
+                ->title('No')
+                ->width(10),
             Column::make('nama'),
             Column::make('NIK'),
             Column::make('NKK'),

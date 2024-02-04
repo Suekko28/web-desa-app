@@ -14,6 +14,9 @@ use Yajra\DataTables\Services\DataTable;
 
 class LPJBelanjaDataTable extends DataTable
 {
+
+    protected $rowIndex = 0;
+
     private $id_barang_jasa;
     public function __construct($id = null)
     {
@@ -30,18 +33,23 @@ class LPJBelanjaDataTable extends DataTable
     {
         //.$this->id_barang_jasa;
         $actionBtn = '<div class="col">
-        <a href="' . route('lpj-belanja.index').'/'.$this->id_barang_jasa.'/{{ $id }}/edit" name="edit" class="btn btn-warning"><i class="fa-solid fa-pen-to-square"></i></a>';
+        <a href="' . route('lpj-belanja.index') . '/' . $this->id_barang_jasa . '/{{ $id }}/edit" name="edit" class="btn btn-warning"><i class="fa-solid fa-pen-to-square"></i></a>';
 
         $actionBtn .= '<a href="javascript:void(0)" onclick="confirmDelete($(this))"
-            route="' . route('lpj-belanja.index') .'/'.$this->id_barang_jasa .'/{{ $id }}" class="btn btn-danger mt-2"><i class="fa-solid fa-trash-can"></i></a>';
+            route="' . route('lpj-belanja.index') . '/' . $this->id_barang_jasa . '/{{ $id }}" class="btn btn-danger mt-2"><i class="fa-solid fa-trash-can"></i></a>';
 
         $actionBtn .= '</div>';
-        $dataTable=(new EloquentDataTable($query))
-        ->addColumn('action', $actionBtn)
-        ->rawColumns(['action'])
-        ->setRowId('id');
-        $dataTable->filter(function($query){
-            $query->where('id_barang_jasa','=',$this->id_barang_jasa);
+        $dataTable = (new EloquentDataTable($query))
+            ->addColumn('id', function ($data) {
+                // Increment rowIndex for each row
+                $this->rowIndex++;
+                return '' . $this->rowIndex;
+            })
+            ->addColumn('action', $actionBtn)
+            ->rawColumns(['action'])
+            ->setRowId('id');
+        $dataTable->filter(function ($query) {
+            $query->where('id_barang_jasa', '=', $this->id_barang_jasa);
         });
         return $dataTable;
     }
@@ -73,22 +81,22 @@ class LPJBelanjaDataTable extends DataTable
     {
         $btn = [
             Button::make('add')
-            ->text('+ Tambah Data')
-            ->addClass('rounded')
-            ->action('function() {
-                window.location.href = "'.route('lpj-belanja.create',['id'=>$this->id_barang_jasa]).'";
+                ->text('+ Tambah Data')
+                ->addClass('rounded')
+                ->action('function() {
+                window.location.href = "' . route('lpj-belanja.create', ['id' => $this->id_barang_jasa]) . '";
             }'),
             Button::make('csv')
-            ->addClass('btn-warning rounded')
-            ->text('CSV'),
+                ->addClass('btn-warning rounded')
+                ->text('CSV'),
             Button::make('excel')
-            ->addClass('btn-success rounded')
-            ->text('Excel'),
+                ->addClass('btn-success rounded')
+                ->text('Excel'),
             Button::make('pdf')
-            ->addClass('btn-danger rounded')
-            ->text('PDF')
-            ->action('function() {
-                window.location.href = "'.route('lpj-belanja.generate-pdf',['id'=>$this->id_barang_jasa]).'";
+                ->addClass('btn-danger rounded')
+                ->text('PDF')
+                ->action('function() {
+                window.location.href = "' . route('lpj-belanja.generate-pdf', ['id' => $this->id_barang_jasa]) . '";
             }'),
 
         ];

@@ -14,6 +14,8 @@ use Yajra\DataTables\Services\DataTable;
 
 class LPJBarangJasaDataTable extends DataTable
 {
+    protected $rowIndex = 0;
+
     /**
      * Build DataTable class.
      *
@@ -36,6 +38,11 @@ class LPJBarangJasaDataTable extends DataTable
         $actionBtn .= '</div>';
 
         return (new EloquentDataTable($query))
+            ->addColumn('id', function ($data) {
+                // Increment rowIndex for each row
+                $this->rowIndex++;
+                return '' . $this->rowIndex;
+            })
             ->addColumn('action', $actionBtn)
             ->rawColumns(['action'])
             ->setRowId('id');
@@ -72,7 +79,7 @@ class LPJBarangJasaDataTable extends DataTable
                 'lpj-barang-jasa.alamat as alamat',
                 \DB::raw("CONCAT(lpj_timpemeriksa.NIP, ' - ',lpj_timpemeriksa.nama) as tim_pemeriksa"),
             )
-            ->leftJoin('lpj_timpemeriksa','lpj_timpemeriksa.NIP','=','lpj-barang-jasa.tim_pemeriksa');
+            ->leftJoin('lpj_timpemeriksa', 'lpj_timpemeriksa.NIP', '=', 'lpj-barang-jasa.tim_pemeriksa');
     }
 
     /**
@@ -84,19 +91,19 @@ class LPJBarangJasaDataTable extends DataTable
     {
         $btn = [
             Button::make('add')
-            ->text('+ Tambah Data')
-            ->addClass('rounded'),
+                ->text('+ Tambah Data')
+                ->addClass('rounded'),
             Button::make('csv')
-            ->addClass('btn-warning rounded')
-            ->text('CSV'),
+                ->addClass('btn-warning rounded')
+                ->text('CSV'),
             Button::make('excel')
-            ->addClass('btn-success rounded')
-            ->text('Excel'),
+                ->addClass('btn-success rounded')
+                ->text('Excel'),
             Button::make('pdf')
-            ->addClass('btn-danger rounded')
-            ->text('PDF')
-            ->action('function() {
-                window.location.href = "'.route('lpj-barangjasa.generate-pdf').'";
+                ->addClass('btn-danger rounded')
+                ->text('PDF')
+                ->action('function() {
+                window.location.href = "' . route('lpj-barangjasa.generate-pdf') . '";
             }'),
 
 
@@ -120,7 +127,7 @@ class LPJBarangJasaDataTable extends DataTable
     {
         return [
             Column::make('id')
-            ->title('No'),
+                ->title('No'),
             Column::make('no_pesanan_barang'),
             Column::make('no_berita_acara'),
             Column::make('nama_pelaksana_kegiatan'),
