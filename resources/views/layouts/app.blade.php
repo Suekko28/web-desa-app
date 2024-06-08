@@ -5,11 +5,14 @@
     <meta charset="utf-8" />
     <title>{{ config('app.name', 'Laravel') }}</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+
     <meta content="Premium Multipurpose Admin & Dashboard Template" name="description" />
     <meta content="Themesbrand" name="author" />
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
 
-    
+
 
     <!-- App favicon -->
 
@@ -128,8 +131,7 @@
         </div>
     </div>
     <!-- Button trigger modal delete -->
-    <button id="btn-delete-modal" data-bs-toggle="modal" style="display: none;"
-        data-bs-target="#modal-delete"></button>
+    <button id="btn-delete-modal" data-bs-toggle="modal" style="display: none;" data-bs-target="#modal-delete"></button>
     <!-- end delete modal -->
 
     <!-- JAVASCRIPT -->
