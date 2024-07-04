@@ -36,7 +36,7 @@ class PendudukDataTable extends DataTable
             route="' . route('penduduk.index') . '/{{ $id }}" class="btn btn-danger mt-2"><i class="fa-solid fa-trash-can"></i></a>';
 
         $actionBtn .= '<div class="col">
-        <a href="' . route('penduduk.index') . '/{{ $id }}" name="view" class="btn btn-warning mt-2"><i class="fa-solid fa-eye"></i></a>';
+        <a href="' . route('penduduk.index') . '/{{ $id }}" name="view" class="btn btn-primary mt-2"><i class="fa-solid fa-eye"></i></a>';
 
         $actionBtn .= '</div>';
 
@@ -88,9 +88,9 @@ class PendudukDataTable extends DataTable
             Button::make('excel')
                 ->addClass('btn-success rounded')
                 ->text('Excel'),
-            Button::make('pdf')
-                ->addClass('btn-danger rounded')
-                ->text('PDF'),
+            // Button::make('pdf')
+            //     ->addClass('btn-danger rounded')
+            //     ->text('PDF'),
 
         ];
         array_push($btn, Button::raw('Import Data')

@@ -63,7 +63,7 @@ class PendudukController extends Controller
         
         Penduduk::create($data);
         
-        return redirect()->route('penduduk.index')->with('success','data berhasil ditambahkan');
+        return redirect()->route('penduduk.index')->with('success','Data berhasil ditambahkan');
     
     }
 
@@ -96,7 +96,7 @@ class PendudukController extends Controller
     public function update(Request $request, string $id)
     {
         $user=Penduduk::find($id)->update($request->all());
-        return redirect()->route('penduduk.index')->with('success','data berhasil diubah'); 
+        return redirect()->route('penduduk.index')->with('success','Data berhasil diubah'); 
     
     }
 
@@ -111,14 +111,11 @@ class PendudukController extends Controller
         $request->file_import->move('file_penduduk',$nama_file);
         Excel::import(new PendudukImport, public_path("/file_penduduk/".$nama_file));
         File::delete(public_path("/file_penduduk/".$nama_file));
-        return redirect()->route('penduduk.index')->with('success', 'User Imported Successfully');
+        return redirect()->route('penduduk.index')->with('success', 'Data Berhasil Di Import');
     }
 
     public function pdfTemplate(PendudukFullDataTable $dataTable,Request $request)
     {
-        // Retrieve the data directly from the query builder
-        // return $dataTable->addScope(new PendudukScope($request))->render('penduduk.index');
-        // $data = $dataTable->query(new Anak())->get();
         
         $query = $dataTable->query(new Penduduk());
         $request['agama']=$request['GET_/penduduk?agama'];
@@ -187,7 +184,7 @@ class PendudukController extends Controller
     public function destroy(string $id)
     {
             $user=Penduduk::find($id)->delete();
-            return redirect()->route('penduduk.index')->with('success','data berhasil dihapus'); 
+            return redirect()->route('penduduk.index')->with('success','Data berhasil dihapus'); 
 
     }
 }

@@ -64,7 +64,7 @@ class LPJTimPemeriksaDataTable extends DataTable
             'lpj_timpemeriksa.nomor as nomor',
             'lpj_timpemeriksa.tahun as tahun',
             'lpj_timpemeriksa.alamat as alamat',
-            'lpj_timpemeriksa.updated_at as updated_at',
+            // 'lpj_timpemeriksa.updated_at as updated_at',
         );
     }
 
@@ -120,7 +120,7 @@ class LPJTimPemeriksaDataTable extends DataTable
             Column::make('nomor'),
             Column::make('tahun'),
             Column::make('alamat'),
-            Column::make('updated_at'),
+            // Column::make('updated_at'),
             Column::computed('action')
                 ->exportable(false)
                 ->printable(false)

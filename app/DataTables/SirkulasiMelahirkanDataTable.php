@@ -62,8 +62,7 @@ class SirkulasiMelahirkanDataTable extends DataTable
                 'anak.tgl_lahir as tgl_lahir',
                 \DB::raw('CASE WHEN jenis_kelamin = 1 THEN "Laki-Laki" ELSE "Perempuan" END AS jenis_kelamin'),
                 'anak.NKK_keluarga as NKK_keluarga',
-                'anak.created_at as created_at',
-                'anak.updated_at as updated_at',
+                
             );
     }
 
@@ -117,8 +116,6 @@ class SirkulasiMelahirkanDataTable extends DataTable
             Column::make('tgl_lahir'),
             Column::make('jenis_kelamin'),
             Column::make('NKK_keluarga'),
-            Column::make('created_at'),
-            Column::make('updated_at'),
             Column::computed('action')
                 ->exportable(false)
                 ->printable(false)

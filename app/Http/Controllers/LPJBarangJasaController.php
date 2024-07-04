@@ -44,7 +44,7 @@ class LPJBarangJasaController extends Controller
 
         LPJBarangJasa::create($data);
 
-        return redirect()->route('lpj-barangjasa.index')->with('success','data berhasil ditambahkan');
+        return redirect()->route('lpj-barangjasa.index')->with('success','Data berhasil ditambahkan');
 
     }
 
@@ -82,7 +82,7 @@ class LPJBarangJasaController extends Controller
     {
 
         $user=LPJBarangJasa::find($id)->update($request->all());
-        return redirect()->route('lpj-barangjasa.index')->with('success','data berhasil diubah');
+        return redirect()->route('lpj-barangjasa.index')->with('success','Data berhasil diubah');
 
     }
 
@@ -94,7 +94,7 @@ class LPJBarangJasaController extends Controller
 
         $user=LPJBarangJasa::find($id)->delete();
         $anak=LPJBelanja::where('id_barang_jasa','=',$id)->delete();
-        return redirect()->route('lpj-barangjasa.index')->with('success','data berhasil dihapus');
+        return redirect()->route('lpj-barangjasa.index')->with('success','Data berhasil dihapus');
 
     }
 
@@ -112,7 +112,7 @@ class LPJBarangJasaController extends Controller
         $data_barang=$data_belanja->LPJBelanja()->get();
         // Send data to the view for PDF rendering
         if(sizeof($data_barang)==0){
-            return redirect()->route('lpj-barangjasa.index')->with('error',"tidak ada data belanja untuk toko ini");
+            return redirect()->route('lpj-barangjasa.index')->with('error',"Tidak ada data belanja untuk toko ini");
         }
         $date_pesanan=$data->first()->tgl_pesanan;
         $date_pesanan=strtotime($date_pesanan);
