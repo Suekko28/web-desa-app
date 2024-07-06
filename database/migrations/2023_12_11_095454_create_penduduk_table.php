@@ -36,6 +36,7 @@ return new class extends Migration
             $table->integer('kepemilikan_e_ktp');
             $table->string('nama_ibu');
             $table->string('nama_ayah');
+            $table->integer('user_id');
             $table->timestamps();
         });
     }

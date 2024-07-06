@@ -1,0 +1,10 @@
+#pendudukDropdown .dropdown-item {
+    white-space: nowrap; /* Mencegah teks melipat */
+    overflow: hidden; /* Menyembunyikan teks yang meluber */
+    text-overflow: ellipsis; /* Menambahkan ellipsis (...) */
+}
+
+#pendudukDropdown {
+    max-height: 200px; /* Maksimal tinggi dropdown */
+    overflow-y: auto; /* Scroll jika konten lebih tinggi dari max-height */
+}

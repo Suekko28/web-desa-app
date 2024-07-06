@@ -47,10 +47,30 @@ class PendudukDataTable extends DataTable
                 return '' . $this->rowIndex;
             })
             ->addColumn('action', $actionBtn)
+            ->editColumn('created_at', function ($data) {
+                return Carbon::parse($data->created_at)->format('d-m-Y H:i:s');
+            })
+            ->editColumn('updated_at', function ($data) {
+                return Carbon::parse($data->updated_at)->format('d-m-Y H:i:s');
+            })
+            ->filter(function ($query) {
+                if (request()->has('search') && !empty(request()->get('search')['value'])) {
+                    $search = request()->get('search')['value'];
+                    $query->where(function ($q) use ($search) {
+                        $q->whereRaw('LOWER(penduduk.nama) LIKE ?', ["%{$search}%"])
+                          ->orWhereRaw('LOWER(penduduk.NIK) LIKE ?', ["%{$search}%"])
+                          ->orWhereRaw('LOWER(penduduk.NKK) LIKE ?', ["%{$search}%"])
+                          ->orWhereRaw('LOWER(penduduk.usia) LIKE ?', ["%{$search}%"])
+                          ->orWhereRaw('LOWER(penduduk.rt) LIKE ?', ["%{$search}%"])
+                          ->orWhereRaw('LOWER(penduduk.created_at) LIKE ?', ["%{$search}%"])
+                          ->orWhereRaw('LOWER(penduduk.updated_at) LIKE ?', ["%{$search}%"]);
+                        //   ->orWhereRaw('LOWER(users.nama) LIKE ?', ["%{$search}%"]); // Correctly referencing users.nama
+                    });
+                }
+            })
             ->rawColumns(['action'])
             ->setRowId('id');
     }
-
     /**
      * Get query source of dataTable.
      *
@@ -68,7 +88,12 @@ class PendudukDataTable extends DataTable
                 'penduduk.usia as usia',
                 'penduduk.rt as rt',
                 'penduduk.rw as rw',
-            );
+                'penduduk.created_at as created_at',
+                'penduduk.updated_at as updated_at',
+                'users.nama as user_nama'
+            )
+            ->orderBy('created_at', 'desc')
+            ->leftJoin('users', 'penduduk.user_id', '=', 'users.id');
     }
 
     /**
@@ -102,9 +127,10 @@ class PendudukDataTable extends DataTable
             ->setTableId('penduduk-desa-table')
             ->columns($this->getColumns())
             ->minifiedAjax()
-            ->orderBy(0, 'asc')
+            ->orderBy(0, 'desc')
             ->buttons($btn)
-            ->lengthMenu([10, 50, 100]);
+            ->lengthMenu([10, 50, 100])
+            ->searching(true);
 
 
 
@@ -126,7 +152,10 @@ class PendudukDataTable extends DataTable
             Column::make('NKK'),
             Column::make('usia'),
             Column::make('rt'),
-            Column::make('rw'),
+            Column::make('created_at'),
+            Column::make('updated_at'),
+            Column::make('user_nama')
+                ->title('Update by'),
             Column::computed('action')
                 ->exportable(false)
                 ->printable(false)

@@ -34,7 +34,7 @@
 
                 <form action="{{ route('penduduk.store') }}" method="POST" enctype="multipart/form-data">
                     @csrf
-                    <div class="card">
+                    <input type="hidden" id="user_id" name="user_id" value="{{ auth()->user()->id }}">                    <div class="card">
                         <div class="card-body">
                             <div class="form-group">
                                 <div class="row">

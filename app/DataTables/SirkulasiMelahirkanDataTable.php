@@ -4,14 +4,12 @@ namespace App\DataTables;
 
 use App\Models\Anak;
 use Illuminate\Database\Eloquent\Builder as QueryBuilder;
+use Illuminate\Support\Carbon;
 use Yajra\DataTables\EloquentDataTable;
 use Yajra\DataTables\Html\Builder as HtmlBuilder;
 use Yajra\DataTables\Html\Button;
 use Yajra\DataTables\Html\Column;
-use Yajra\DataTables\Html\Editor\Editor;
-use Yajra\DataTables\Html\Editor\Fields;
 use Yajra\DataTables\Services\DataTable;
-
 
 class SirkulasiMelahirkanDataTable extends DataTable
 {
@@ -41,6 +39,26 @@ class SirkulasiMelahirkanDataTable extends DataTable
                 $this->rowIndex++;
                 return '' . $this->rowIndex;
             })
+            ->editColumn('tgl_lahir', function ($data) {
+                return Carbon::parse($data->tgl_lahir)->format('d-m-Y');
+            })
+            ->editColumn('created_at', function ($data) {
+                return Carbon::parse($data->created_at)->format('d-m-Y H:i:s');
+            })
+            ->editColumn('updated_at', function ($data) {
+                return Carbon::parse($data->updated_at)->format('d-m-Y H:i:s');
+            })
+            ->filter(function ($query) {
+                if (request()->has('search') && !empty(request()->get('search')['value'])) {
+                    $search = request()->get('search')['value'];
+                    $query->where(function ($q) use ($search) {
+                        $q->whereRaw('LOWER(anak.nama) LIKE ?', ["%{$search}%"])
+                            ->orWhereRaw('LOWER(anak.tmpt_lahir) LIKE ?', ["%{$search}%"])
+                            ->orWhereRaw('LOWER(anak.tgl_lahir) LIKE ?', ["%{$search}%"])
+                            ->orWhereRaw('LOWER(anak.NKK_keluarga) LIKE ?', ["%{$search}%"]);
+                    });
+                }
+            })
             ->addColumn('action', $actionBtn)
             ->rawColumns(['action'])
             ->setRowId('id');
@@ -62,8 +80,12 @@ class SirkulasiMelahirkanDataTable extends DataTable
                 'anak.tgl_lahir as tgl_lahir',
                 \DB::raw('CASE WHEN jenis_kelamin = 1 THEN "Laki-Laki" ELSE "Perempuan" END AS jenis_kelamin'),
                 'anak.NKK_keluarga as NKK_keluarga',
-                
-            );
+                'anak.created_at as created_at',
+                'anak.updated_at as updated_at',
+                'users.nama as user_nama' // Ensure this column name matches your database
+            )
+            ->join('users', 'users.id', '=', 'anak.user_id')
+            ->orderBy('anak.created_at', 'desc');
     }
 
     /**
@@ -87,10 +109,8 @@ class SirkulasiMelahirkanDataTable extends DataTable
                 ->addClass('btn-danger rounded')
                 ->text('PDF')
                 ->action('function() {
-                window.location.href = "' . route('sirkulasi-melahirkan.generate-pdf') . '";
-            }'),
-
-
+                    window.location.href = "' . route('sirkulasi-melahirkan.generate-pdf') . '";
+                }')
         ];
         return $this->builder()
             ->setTableId('sirkulasi-melahirkan-table')
@@ -116,6 +136,10 @@ class SirkulasiMelahirkanDataTable extends DataTable
             Column::make('tgl_lahir'),
             Column::make('jenis_kelamin'),
             Column::make('NKK_keluarga'),
+            Column::make('created_at'),
+            Column::make('updated_at'),
+            Column::make('user_nama')
+                ->title('Update by'),
             Column::computed('action')
                 ->exportable(false)
                 ->printable(false)

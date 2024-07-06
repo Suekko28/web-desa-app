@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class SirkulasiMeninggal extends Model
 {
@@ -26,10 +27,18 @@ class SirkulasiMeninggal extends Model
         'NIK_penduduk',
         'tgl_meninggal',
         'sebab',
+        'user_id',
+
     ];
 
     public function penduduk(){
         return $this->belongsTo(Penduduk::class,'NIK_penduduk','NIK');
+    }
+
+    
+    public function user(): BelongsTo
+    {
+        return $this->belongsTo(User::class, 'user_id', 'id');
     }
     
 }

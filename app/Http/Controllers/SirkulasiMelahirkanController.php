@@ -39,6 +39,9 @@ class SirkulasiMelahirkanController extends Controller
     public function store(DataMelahirkanFormRequest $request)
     {
         
+        $userId = auth()->user()->id;
+        $data['user_id'] = $userId;
+
         Anak::create($request->all());
         return redirect()->route('sirkulasi-melahirkan.index')->with('success','Data berhasil ditambahkan');
     }
@@ -73,9 +76,13 @@ class SirkulasiMelahirkanController extends Controller
      */
     public function update(Request $request, String $id)
     {
+        $userId = auth()->user()->id;
+
         $user = Anak::find($id);
-        $user->update($request->all());
-        return redirect()->route('sirkulasi-melahirkan.index')->with('success','data berhasil diupdate'); 
+        $data['user_id'] = $userId;
+
+        $user->update($data);
+        return redirect()->route('sirkulasi-melahirkan.index')->with('success','Data berhasil diupdate'); 
     }
 
     /**
@@ -84,7 +91,7 @@ class SirkulasiMelahirkanController extends Controller
     public function destroy(String $id)
     {
         $user=Anak::find($id)->delete();
-        return redirect()->route('sirkulasi-melahirkan.index')->with('success','data berhasil dihapus'); 
+        return redirect()->route('sirkulasi-melahirkan.index')->with('success','Data berhasil dihapus'); 
         
     }
 

@@ -46,7 +46,7 @@
 
                                     <div class="col-sm-6">
                                         <label for="nama2" class="col-form-label">Tanggal Lapor</label>
-                                        <input type="date" class="form-control" id="tgl_lapor" name="tgl_lapor"
+                                        <input type="date" class="form-control " id="tgl_lapor" name="tgl_lapor"
                                             value="{{ $data->tgl_lapor }}" disabled>
                                     </div>
                                 </div>
@@ -98,13 +98,13 @@
 
                                     <div class="col-sm-6">
                                         <label for="jenis_kelamin" class="col-form-label">Jenis Kelamin</label>
-                                        <input type="text" class="form-control" id="jenis_kelamin" name="jenis_kelamin"
+                                        <input type="text" class="form-control text-capitalize" id="jenis_kelamin" name="jenis_kelamin"
                                             placeholder="" value="{{$data->jenis_kelamin}}" disabled>
                                     </div>
 
                                     <div class="col-sm-6">
                                         <label for="agama" class="col-form-label">Agama</label>
-                                        <input type="text" class="form-control" id="agama" name="agama"
+                                        <input type="text" class="form-control text-capitalize" id="agama" name="agama"
                                         placeholder="" value="{{$data->agama}}" disabled>
                                     </div>
 
@@ -117,7 +117,7 @@
                                     <div class="col-sm-6">
                                         <label for="status_pernikahan" class="col-form-label">Status
                                             Pernikahan</label>
-                                            <input type="text" class="form-control" id="status_pernikahan" name="status_pernikahan"
+                                            <input type="text" class="form-control text-capitalize" id="status_pernikahan" name="status_pernikahan"
                                             placeholder="" value="{{$data->status_pernikahan}}" disabled>
 
                                     </div>
@@ -134,7 +134,7 @@
                                         <label for="dusun" class="col-form-label">
                                             Dusun</label>
                                         <input type="text" class="form-control" id="dusun" name="dusun"
-                                            placeholder="Dusun" value="{{ $data->dusun}}">
+                                            placeholder="Dusun" value="{{ $data->dusun}} " disabled>
                                     </div>
 
                                     <div class="col-sm-4">
@@ -189,7 +189,7 @@
                                     <div class="col-sm-6">
                                         <label for="kepemilikan_e_ktp" class="col-form-label">
                                             Kepemilikan E-KTP</label>
-                                            <input type="text" class="form-control" id="kepemilikan_e_ktp" name="kepemilikan_e_ktp"
+                                            <input type="text" class="form-control text-capitalize" id="kepemilikan_e_ktp" name="kepemilikan_e_ktp"
                                             placeholder="" value="{{$data->kepemilikan_e_ktp}}" disabled>
 
                                     </div>

@@ -70,12 +70,12 @@ class SirkulasiMeninggalController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, String $id)
+    public function update(DataMeninggalFormRequest $request, String $id)
     {  
         $data=SirkulasiMeninggal::find($id);
         
         $data->update($request->all());
-        return redirect()->route('sirkulasi-meninggal.index')->with('success','data berhasil diupdate'); 
+        return redirect()->route('sirkulasi-meninggal.index')->with('success','Data berhasil diupdate'); 
 
     }
 
@@ -85,7 +85,7 @@ class SirkulasiMeninggalController extends Controller
     public function destroy(string $id)
     {
         $user=SirkulasiMeninggal::find($id)->delete();
-        return redirect()->route('sirkulasi-meninggal.index')->with('success','data berhasil dihapus'); 
+        return redirect()->route('sirkulasi-meninggal.index')->with('success','Data berhasil dihapus'); 
 
     }
 

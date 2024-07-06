@@ -3,6 +3,7 @@
 namespace App\DataTables;
 
 use App\Models\SirkulasiMeninggal;
+use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Builder as QueryBuilder;
 use Yajra\DataTables\EloquentDataTable;
 use Yajra\DataTables\Html\Builder as HtmlBuilder;
@@ -39,6 +40,26 @@ class SirkulasiMeninggalDataTable extends DataTable
                 $this->rowIndex++;
                 return '' . $this->rowIndex;
             })
+            ->editColumn('tgl_meninggal', function ($data) {
+                return Carbon::parse($data->tgl_meninggal)->format('d-m-Y');
+            })
+            ->editColumn('created_at', function ($data) {
+                return Carbon::parse($data->created_at)->format('d-m-Y H:i:s');
+            })
+            ->editColumn('updated_at', function ($data) {
+                return Carbon::parse($data->updated_at)->format('d-m-Y H:i:s');
+            })
+            ->filter(function ($query) {
+                if (request()->has('search') && !empty(request()->get('search')['value'])) {
+                    $search = request()->get('search')['value'];
+                    $query->where(function ($q) use ($search) {
+                        $q->whereRaw('LOWER(anak.nama) LIKE ?', ["%{$search}%"])
+                            ->orWhereRaw('LOWER(anak.tmpt_lahir) LIKE ?', ["%{$search}%"])
+                            ->orWhereRaw('LOWER(anak.tgl_lahir) LIKE ?', ["%{$search}%"])
+                            ->orWhereRaw('LOWER(anak.NKK_keluarga) LIKE ?', ["%{$search}%"]);
+                    });
+                }
+            })
             ->addColumn('action', $actionBtn)
             ->rawColumns(['action'])
             ->setRowId('id');
@@ -60,11 +81,16 @@ class SirkulasiMeninggalDataTable extends DataTable
                 'sirkulasi_meninggal.sebab as sebab',
                 'sirkulasi_meninggal.created_at as created_at',
                 'sirkulasi_meninggal.updated_at as updated_at',
-                'penduduk.nama as nama'
+                'penduduk.nama as nama',
+                'users.nama as user_nama' // Ensure this column name matches your database
+
             )
             ->join('penduduk', function ($q) {
                 $q->on('penduduk.NIK', '=', 'sirkulasi_meninggal.NIK_penduduk');
-            });
+            })
+            ->join('users', 'users.id', '=', 'sirkulasi_meninggal.user_id')
+            ->orderBy('sirkulasi_meninggal.created_at', 'desc');
+;
     }
 
     /**
@@ -97,7 +123,7 @@ class SirkulasiMeninggalDataTable extends DataTable
             ->setTableId('sirkulasi-meninggal-table')
             ->columns($this->getColumns())
             ->minifiedAjax()
-            ->orderBy(0, 'asc')
+            ->orderBy(0, 'desc')
             ->buttons($btn)
             ->lengthMenu([10, 50, 100])
             ->responsive(true);
@@ -118,6 +144,8 @@ class SirkulasiMeninggalDataTable extends DataTable
             Column::make('sebab'),
             Column::make('created_at'),
             Column::make('updated_at'),
+            Column::make('user_nama')
+            ->title('Update by'),
             Column::computed('action')
                 ->exportable(false)
                 ->printable(false)

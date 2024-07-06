@@ -43,6 +43,7 @@ class PendudukFormRequest extends FormRequest
             'kepemilikan_e_ktp' => ['required', 'string', 'max:100'],
             'nama_ibu' => ['required', 'string', 'max:100'],
             'nama_ayah' => ['required', 'string', 'max:100'],
+            // 'user_id' => ['required'],
 
 
         ];

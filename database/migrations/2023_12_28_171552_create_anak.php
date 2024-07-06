@@ -18,6 +18,7 @@ return new class extends Migration
             $table->date("tgl_lahir");
             $table->string("jenis_kelamin");
             $table->string("NKK_keluarga");
+            $table->integer('user_id');
             $table->timestamps();
         });
     }

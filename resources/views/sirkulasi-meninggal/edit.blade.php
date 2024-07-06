@@ -36,6 +36,8 @@
                     enctype="multipart/form-data">
                     @method('PUT')
                     @csrf
+                    <input type="hidden" id="user_id" name="user_id" value="{{ auth()->user()->id }}">
+
                     <div class="card">
                         <div class="card-body">
                             <h5 class="text-center data_diri mb-3">Data Meninggal</h5>
@@ -50,7 +52,7 @@
                                             </button>
                                             <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton" id="pendudukDropdown">
                                                 <input type="text" id="pendudukSearchInput" name="NIK_penduduk" class="form-control" placeholder="Cari Penduduk...">
-                                                @foreach ( $data as $i )
+                                                @foreach ( $data_penduduk as $i )
                                                     <li><a class="dropdown-item penduduk-option" href="#" value="{{ $i->NIK }}">{{ $i->NIK . " - " . $i->nama }}</a></li>
                                                 @endforeach
                                             </ul>

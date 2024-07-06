@@ -16,6 +16,7 @@ return new class extends Migration
             $table->string('NIK_penduduk');
             $table->date('tgl_meninggal');
             $table->string('sebab');
+            $table->integer('user_id');
             $table->timestamps();
         });
     }
