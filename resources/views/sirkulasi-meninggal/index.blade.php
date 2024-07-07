@@ -27,6 +27,40 @@
         crossorigin="anonymous" referrerpolicy="no-referrer" />
 
     <main>
+        <form action="{{ route('penduduk.index') }}" method="GET" enctype="multipart/form-data">
+            <div class="card">
+                <div class="card-body">
+                    <h3 class="card-title text-info fw-bold">Filter</h3>
+                    <div class="form-group">
+                        <div class="row">
+
+                            <div class="col-sm-6">
+                                <label for="pendidikan" class="col-form-label">
+                                    Mulai Dari</label>
+                                    <input type="date" class="form-control" id="tgl_mulai"
+                                            name="tgl_mulai" placeholder="">
+                            </div>
+
+                            <div class="col-sm-6">
+                                <label for="pendidikan" class="col-form-label">
+                                    Akhir Dari</label>
+                                    <input type="date" class="form-control" id="tgl_akhir"
+                                            name="tgl_akhir" placeholder="">
+                            </div>
+                         
+
+                        </div>
+
+                    </div>
+
+                   
+
+                    <div class="d-flex flex-row mt-3">
+                        <button type="submit" class="btn btn-primary">Filter</button>
+                    </div>
+                    <hr>
+                </div>
+        </form>
         <div class="row">
             <div class="col-12">
                 <div class="card">

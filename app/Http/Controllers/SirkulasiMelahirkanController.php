@@ -40,7 +40,6 @@ class SirkulasiMelahirkanController extends Controller
     {
         
         $userId = auth()->user()->id;
-        $data['user_id'] = $userId;
 
         Anak::create($request->all());
         return redirect()->route('sirkulasi-melahirkan.index')->with('success','Data berhasil ditambahkan');
@@ -49,7 +48,7 @@ class SirkulasiMelahirkanController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(SirkulasiMelahirkan $sirkulasiMelahirkan)
+    public function show()
     {
         //
     }
@@ -74,7 +73,7 @@ class SirkulasiMelahirkanController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, String $id)
+    public function update(DataMelahirkanFormRequest $request, String $id)
     {
         $userId = auth()->user()->id;
 

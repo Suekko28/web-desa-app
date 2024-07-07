@@ -17,6 +17,7 @@ return new class extends Migration
             $table->string('tgl_pindah');
             $table->string('alasan');
             $table->string('alamat_pindah');
+            $table->integer('user_id');
             $table->timestamps();
         });
     }

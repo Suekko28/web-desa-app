@@ -4,6 +4,7 @@ namespace App\DataTables;
 
 use App\Models\SirkulasiPendatang;
 use Illuminate\Database\Eloquent\Builder as QueryBuilder;
+use Illuminate\Support\Carbon;
 use Yajra\DataTables\EloquentDataTable;
 use Yajra\DataTables\Html\Builder as HtmlBuilder;
 use Yajra\DataTables\Html\Button;
@@ -38,6 +39,25 @@ class SirkulasiPendatangDataTable extends DataTable
                 $this->rowIndex++;
                 return '' . $this->rowIndex;
             })
+            ->editColumn('tgl_datang', function ($data) {
+                return Carbon::parse($data->tgl_datang)->format('d-m-Y');
+            })
+            ->editColumn('created_at', function ($data) {
+                return Carbon::parse($data->created_at)->format('d-m-Y H:i:s');
+            })
+            ->editColumn('updated_at', function ($data) {
+                return Carbon::parse($data->updated_at)->format('d-m-Y H:i:s');
+            })
+            ->filter(function ($query) {
+                if (request()->has('search') && !empty(request()->get('search')['value'])) {
+                    $search = request()->get('search')['value'];
+                    $query->where(function ($q) use ($search) {
+                        $q->whereRaw('LOWER(sirkulasi_pendatang.NIK) LIKE ?', ["%{$search}%"])
+                            ->orWhereRaw('LOWER(sirkulasi_pendatang.nama) LIKE ?', ["%{$search}%"]);
+                    });
+                }
+            })
+
             ->addColumn('action', $actionBtn)
             ->rawColumns(['action'])
             ->setRowId('id');
@@ -62,7 +82,12 @@ class SirkulasiPendatangDataTable extends DataTable
                 'sirkulasi_pendatang.alamat_skrg as alamat_skrg',
                 'sirkulasi_pendatang.created_at as created_at',
                 'sirkulasi_pendatang.updated_at as updated_at',
-            );
+                'users.nama as user_nama' // Ensure this column name matches your database
+
+            )
+            ->join('users', 'users.id', '=', 'sirkulasi_pendatang.user_id')
+            ->orderBy('sirkulasi_pendatang.created_at', 'desc');
+
     }
 
     /**
@@ -118,6 +143,8 @@ class SirkulasiPendatangDataTable extends DataTable
             Column::make('alamat_skrg'),
             Column::make('created_at'),
             Column::make('updated_at'),
+            Column::make('user_nama')
+                ->title('Update by'),
             Column::computed('action')
                 ->exportable(false)
                 ->printable(false)

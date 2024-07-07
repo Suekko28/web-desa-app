@@ -55,6 +55,13 @@ class User extends Authenticatable
     public function sirkulasiMeninggal() : HasMany {
         return $this->hasMany(SirkulasiMeninggal::class, 'user_id', 'id');
     }
+    public function sirkulasiPendatang() : HasMany {
+        return $this->hasMany(SirkulasiPendatang::class, 'user_id', 'id');
+    }
+
+    public function sirkulasiPindah() : HasMany {
+        return $this->hasMany(SirkulasiPindah::class, 'user_id', 'id');
+    }
 
 
 }

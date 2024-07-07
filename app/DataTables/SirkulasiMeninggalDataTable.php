@@ -26,8 +26,9 @@ class SirkulasiMeninggalDataTable extends DataTable
     public function dataTable(QueryBuilder $query): EloquentDataTable
     {
 
+
         $actionBtn = '<div class="col">
-        <a href="' . route('sirkulasi-meninggal.index') . '/{{ $id }}/edit" name="edit" class="btn btn-warning"><i class="fa-solid fa-pen-to-square"></i></a>';
+            <a href="' . route('sirkulasi-meninggal.index') . '/{{ $id }}/edit" name="edit" class="btn btn-warning"><i class="fa-solid fa-pen-to-square"></i></a>';
 
         $actionBtn .= '<a href="javascript:void(0)" onclick="confirmDelete($(this))"
             route="' . route('sirkulasi-meninggal.index') . '/{{ $id }}" class="btn btn-danger mt-2"><i class="fa-solid fa-trash-can"></i></a>';
@@ -36,7 +37,6 @@ class SirkulasiMeninggalDataTable extends DataTable
 
         return (new EloquentDataTable($query))
             ->addColumn('id', function ($data) {
-                // Increment rowIndex for each row
                 $this->rowIndex++;
                 return '' . $this->rowIndex;
             })
@@ -53,10 +53,9 @@ class SirkulasiMeninggalDataTable extends DataTable
                 if (request()->has('search') && !empty(request()->get('search')['value'])) {
                     $search = request()->get('search')['value'];
                     $query->where(function ($q) use ($search) {
-                        $q->whereRaw('LOWER(anak.nama) LIKE ?', ["%{$search}%"])
-                            ->orWhereRaw('LOWER(anak.tmpt_lahir) LIKE ?', ["%{$search}%"])
-                            ->orWhereRaw('LOWER(anak.tgl_lahir) LIKE ?', ["%{$search}%"])
-                            ->orWhereRaw('LOWER(anak.NKK_keluarga) LIKE ?', ["%{$search}%"]);
+                        $q->whereRaw('LOWER(penduduk.nama) LIKE ?', ["%{$search}%"])
+                            ->orWhereRaw('LOWER(sirkulasi_meninggal.NIK_penduduk) LIKE ?', ["%{$search}%"])
+                            ->orWhereRaw('LOWER(sirkulasi_meninggal.sebab) LIKE ?', ["%{$search}%"]);
                     });
                 }
             })
@@ -64,6 +63,7 @@ class SirkulasiMeninggalDataTable extends DataTable
             ->rawColumns(['action'])
             ->setRowId('id');
     }
+
 
     /**
      * Get query source of dataTable.
@@ -82,15 +82,11 @@ class SirkulasiMeninggalDataTable extends DataTable
                 'sirkulasi_meninggal.created_at as created_at',
                 'sirkulasi_meninggal.updated_at as updated_at',
                 'penduduk.nama as nama',
-                'users.nama as user_nama' // Ensure this column name matches your database
-
+                'users.nama as user_nama'
             )
-            ->join('penduduk', function ($q) {
-                $q->on('penduduk.NIK', '=', 'sirkulasi_meninggal.NIK_penduduk');
-            })
+            ->join('penduduk', 'penduduk.NIK', '=', 'sirkulasi_meninggal.NIK_penduduk')
             ->join('users', 'users.id', '=', 'sirkulasi_meninggal.user_id')
             ->orderBy('sirkulasi_meninggal.created_at', 'desc');
-;
     }
 
     /**
@@ -145,7 +141,7 @@ class SirkulasiMeninggalDataTable extends DataTable
             Column::make('created_at'),
             Column::make('updated_at'),
             Column::make('user_nama')
-            ->title('Update by'),
+                ->title('Update by'),
             Column::computed('action')
                 ->exportable(false)
                 ->printable(false)

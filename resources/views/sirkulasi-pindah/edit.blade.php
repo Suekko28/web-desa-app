@@ -48,15 +48,19 @@
                                         <div class="dropdown">
                                             <button class="form-control dropdown-toggle text-left" type="button"
                                                 data-bs-toggle="dropdown" aria-expanded="false" name="penduduk">
-                                                {{ $data->NIK .' - ' . $nama}}
+                                                {{ $data->NIK . ' - ' . $nama }}
                                             </button>
                                             <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton"
                                                 id="pendudukDropdown">
-                                                <input type="text" id="pendudukSearchInput" name="NIK" class="form-control"
-                                                    placeholder="Cari Penduduk..." value="{{ $data->NIK .' - ' . $nama}}">
+                                                <input type="text" id="pendudukSearchInput" name="NIK"
+                                                    class="form-control" placeholder="Cari Penduduk..."
+                                                    value="{{ $data->NIK . ' - ' . $nama }}">
                                                 {{-- <li><a class="dropdown-item" href="#" value="">--Pilih Penduduk--</a></li> --}}
-                                                @foreach ( $data_penduduk as $i )
-                                                    <li><div class="dropdown-item" value="{{ $i->NIK }}">{{ $i->NIK . " - " . $i->nama }}</div></li>
+                                                @foreach ($data_penduduk as $i)
+                                                    <li>
+                                                        <div class="dropdown-item" value="{{ $i->NIK }}">
+                                                            {{ $i->NIK . ' - ' . $i->nama }}</div>
+                                                    </li>
                                                 @endforeach
                                             </ul>
                                         </div>
@@ -65,31 +69,34 @@
                                     <div class="col-sm-6">
                                         <label for="tgl_pindah" class="col-form-label">Tanggal Pindah</label>
                                         <input type="date" class="form-control" id="tgl_pindah" name="tgl_pindah"
-                                            placeholder="" value="{{$data->tgl_pindah}}">
+                                            placeholder="" value="{{ $data->tgl_pindah }}">
                                     </div>
 
                                     <div class="col-sm-12">
                                         <label for="alasan" class="col-form-label">Alasan</label>
-                                        <textarea type="text" class="form-control" id="alasan" name="alasan" rows="5" placeholder="Alasan Pindah">{{$data->alasan}}</textarea>
+                                        <textarea type="text" class="form-control" id="alasan" name="alasan" rows="5" placeholder="Alasan Pindah">{{ $data->alasan }}</textarea>
                                     </div>
 
                                     <div class="col-sm-12">
                                         <label for="alamat_pindah" class="col-form-label">Alamat Pindah</label>
                                         <textarea type="text" class="form-control" id="alamat_pindah" name="alamat_pindah" rows="5"
-                                            placeholder="Alamat Lengkap (Jl / Kampung  No.Rumah">{{$data->alamat_pindah}}</textarea>
+                                            placeholder="Alamat Lengkap (Jl / Kampung  No.Rumah">{{ $data->alamat_pindah }}</textarea>
                                     </div>
 
 
                                 </div>
 
 
-                                <div class="d-flex flex-row-reverse">
+                                <div class="d-flex flex-row-reverse mt-3">
                                     <button type="submit" class="btn btn-primary ml-3">Simpan</button>
                                     <a href="{{ route('sirkulasi-pindah.index') }}" class="btn btn-danger">Batal</a>
                                 </div>
+                            </div>
+                        </div>
+                    </div>
 
 
-                                <!-- /.card-body -->
+                    <!-- /.card-body -->
                 </form>
                 <!-- /.row (main row) -->
             </div><!-- /.container-fluid -->
@@ -161,10 +168,10 @@
 
         // Fungsi untuk menangani pemilihan pada dropdown
         function selectPenduduk(value, label) {
-        var dropdownButton = document.querySelector(".dropdown button[name='penduduk']");
-        dropdownButton.innerHTML = label;
-        var inputVal = document.querySelector("[name='NIK']");
-        inputVal.value = value;
+            var dropdownButton = document.querySelector(".dropdown button[name='penduduk']");
+            dropdownButton.innerHTML = label;
+            var inputVal = document.querySelector("[name='NIK']");
+            inputVal.value = value;
         }
     </script>
 

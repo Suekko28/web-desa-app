@@ -135,11 +135,15 @@ class SirkulasiMelahirkanDataTable extends DataTable
             Column::make('tmpt_lahir'),
             Column::make('tgl_lahir'),
             Column::make('jenis_kelamin'),
-            Column::make('NKK_keluarga'),
-            Column::make('created_at'),
-            Column::make('updated_at'),
+            Column::make('NKK_keluarga')
+            ->exportFormat('integer'),
+            Column::make('created_at')
+            ->exportable(false),
+            Column::make('updated_at')
+            ->exportable(false),
             Column::make('user_nama')
-                ->title('Update by'),
+                ->title('Update by')
+                ->exportable(false),
             Column::computed('action')
                 ->exportable(false)
                 ->printable(false)

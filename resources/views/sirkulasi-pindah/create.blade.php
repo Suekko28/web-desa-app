@@ -34,6 +34,7 @@
 
                 <form action="{{ route('sirkulasi-pindah.store') }}" method="POST" enctype="multipart/form-data">
                 @csrf
+                <input type="hidden" id="user_id" name="user_id" value="{{ auth()->user()->id }}">
                 <div class="card">
                     <div class="card-body">
                         <h5 class="text-center data_diri mb-3">Data Pindah</h5>

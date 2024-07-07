@@ -33,7 +33,7 @@ class SirkulasiPendatangController extends Controller
     {
         $data=$request->all();
         SirkulasiPendatang::create($data);
-        return redirect()->route('sirkulasi-pendatang.index')->with('success','data berhasil ditambahkan');
+        return redirect()->route('sirkulasi-pendatang.index')->with('success','Data berhasil ditambahkan');
     }
 
     /**
@@ -41,7 +41,7 @@ class SirkulasiPendatangController extends Controller
      */
     public function show(SirkulasiPendatang $dataPendatang)
     {
-        abort(404);
+
     }
 
     /**
@@ -58,11 +58,15 @@ class SirkulasiPendatangController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, String $id)
+    public function update(DataPendatangFormRequest $request, String $id)
     {
+        $userId = auth()->user()->id;
+
         $data=SirkulasiPendatang::find($id);
-        $data->update($request->all());
-        return redirect()->route('sirkulasi-pendatang.index')->with('success','data berhasil diupdate');
+        $user ['user_id'] = $userId;
+
+        $data->update($user);
+        return redirect()->route('sirkulasi-pendatang.index')->with('success','Data berhasil diupdate');
     }
 
     /**
@@ -71,7 +75,7 @@ class SirkulasiPendatangController extends Controller
     public function destroy(String $id)
     {
         $user=SirkulasiPendatang::find($id)->delete();
-        return redirect()->route('sirkulasi-pendatang.index')->with('success','data berhasil dihapus');
+        return redirect()->route('sirkulasi-pendatang.index')->with('success','Data berhasil dihapus');
 
     }
 
