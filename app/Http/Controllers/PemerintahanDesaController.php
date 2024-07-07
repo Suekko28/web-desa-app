@@ -39,12 +39,16 @@ class PemerintahanDesaController extends Controller
         $image = $request->file('profile');
         $nama_image = rand() . $image->getClientOriginalName();
         $image->storeAs('public/desa', $nama_image);
+        $userId = auth()->user()->id;
+
 
         $data = $request->all();
         $data['profile'] = $nama_image;
+        $data['user_id'] = $userId;
+
 
         PemerintahanDesa::create($data);
-        return redirect()->route('pemerintahan-desa.index')->with('success', 'data berhasil ditambahkan');
+        return redirect()->route('pemerintahan-desa.index')->with('success', 'Data berhasil ditambahkan');
     }
 
     /**
@@ -72,6 +76,8 @@ class PemerintahanDesaController extends Controller
     public function update(PemerintahanDesaFormRequest $request, string $id)
     {
         $user = PemerintahanDesa::find($id);
+        // Ambil id pengguna yang sedang login
+        $userId = auth()->user()->id;
 
         // Check if a new image is uploaded
         if ($request->hasFile('profile')) {
@@ -86,10 +92,15 @@ class PemerintahanDesaController extends Controller
             $user->update(['profile' => $nama_image]);
         }
 
-        // Update other fields based on the request
-        $user->update($request->except('profile'));
-        return redirect()->route('pemerintahan-desa.index')->with('success', 'data berhasil diubah');
+        // Update other fields based on the request, including the user ID
+        $data = $request->except('profile');
+        $data['user_id'] = $userId; // Add user ID to the data
+
+        $user->update($data);
+
+        return redirect()->route('pemerintahan-desa.index')->with('success', 'Data berhasil diubah');
     }
+
 
     /**
      * Remove the specified resource from storage.
@@ -97,7 +108,7 @@ class PemerintahanDesaController extends Controller
     public function destroy(string $id)
     {
         $user = PemerintahanDesa::find($id)->delete();
-        return redirect()->route('pemerintahan-desa.index')->with('success', 'data berhasil dihapus');
+        return redirect()->route('pemerintahan-desa.index')->with('success', 'Data berhasil dihapus');
 
     }
 
@@ -105,15 +116,15 @@ class PemerintahanDesaController extends Controller
     {
         // Retrieve the data directly from the query builder
         $data = $dataTable->query(new PemerintahanDesa())->get();
-    
+
         // Send data to the view for PDF rendering
         $html = view('pemerintahan-desa.generate-pdf', ['data' => $data])->render();
-   
+
         // Adjust PDF options including setting paper to landscape
         $pdf = PDF::loadHtml($html)->setPaper('f4', 'landscape');
-    
+
         return $pdf->stream('PemerintahanDesa.pdf');
     }
 
-   
+
 }

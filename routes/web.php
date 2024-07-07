@@ -29,7 +29,7 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/', [\App\Http\Controllers\DashboardController::class, 'index'])->name('index');
 
 
-    Route::get('/index', [\App\Http\Controllers\DashboardController::class, 'index'])->name('index');
+    Route::get('/dashboard', [\App\Http\Controllers\DashboardController::class, 'index'])->name('index');
 
     Route::get('/pemerintahan-desa/generate-pdf', [\App\Http\Controllers\PemerintahanDesaController::class, 'pdfTemplate'])
         ->name('pemerintahan-desa.generate-pdf');

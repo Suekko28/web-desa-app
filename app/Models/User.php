@@ -44,6 +44,13 @@ class User extends Authenticatable
         'password' => 'hashed',
     ];
 
+    public function pemerintahanDesa() : HasMany {
+        return $this->hasMany(PemerintahanDesa::class, 'user_id', 'id');
+    }
+    public function pemerintahanBPD() : HasMany {
+        return $this->hasMany(PemerintahanDesa::class, 'user_id', 'id');
+    }
+
     public function penduduk() : HasMany {
         return $this->hasMany(penduduk::class, 'user_id', 'id');
     }

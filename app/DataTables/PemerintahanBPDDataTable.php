@@ -4,6 +4,7 @@ namespace App\DataTables;
 
 use App\Models\PemerintahanBPD;
 use Illuminate\Database\Eloquent\Builder as QueryBuilder;
+use Illuminate\Support\Carbon;
 use Yajra\DataTables\EloquentDataTable;
 use Yajra\DataTables\Html\Builder as HtmlBuilder;
 use Yajra\DataTables\Html\Button;
@@ -42,6 +43,22 @@ class PemerintahanBPDDataTable extends DataTable
                 $this->rowIndex++;
                 return '' . $this->rowIndex;
             })
+
+            ->editColumn('created_at', function ($data) {
+                return Carbon::parse($data->created_at)->format('d-m-Y H:i:s');
+            })
+            ->editColumn('updated_at', function ($data) {
+                return Carbon::parse($data->updated_at)->format('d-m-Y H:i:s');
+            })
+            ->filter(function ($query) {
+                if (request()->has('search') && !empty(request()->get('search')['value'])) {
+                    $search = request()->get('search')['value'];
+                    $query->where(function ($q) use ($search) {
+                        $q->whereRaw('LOWER(pemerintahan_desa.nama) LIKE ?', ["%{$search}%"])
+                          ->orWhereRaw('LOWER(pemerintahan_desa.jabatan) LIKE ?', ["%{$search}%"]);
+                    });
+                }
+            })
             ->addColumn('action', $actionBtn)
             ->rawColumns(['action'])
             ->setRowId('id');
@@ -64,11 +81,17 @@ class PemerintahanBPDDataTable extends DataTable
                 'Pemerintahan_BPD.tmpt_lahir as tmpt_lahir',
                 'Pemerintahan_BPD.tgl_lahir as tgl_lahir',
                 'Pemerintahan_BPD.alamat as alamat',
+                'Pemerintahan_BPD.created_at as created_at',
                 'Pemerintahan_BPD.updated_at as updated_at',
                 'Pemerintahan_BPD.no_telepon as no_telepon',
                 'Pemerintahan_BPD.no_sk as no_sk',
                 'Pemerintahan_BPD.tgl_sk as tgl_sk',
-            );
+                'users.nama as user_nama',
+
+            )
+            ->join('users', 'users.id', '=', 'Pemerintahan_BPD.user_id')
+            ->orderBy('created_at', 'desc');
+
     }
 
     /**
@@ -125,7 +148,10 @@ class PemerintahanBPDDataTable extends DataTable
             Column::make('no_telepon'),
             Column::make('no_sk'),
             Column::make('tgl_sk'),
+            Column::make('created_at'),
             Column::make('updated_at'),
+            Column::make('user_nama')
+                ->title('Update by'),
             Column::computed('action')
                 ->exportable(false)
                 ->printable(false)

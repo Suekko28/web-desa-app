@@ -49,7 +49,7 @@
                                     <div class="col-sm-4">
                                         <label for="profile" class="col-form-label">Profile</label>
                                         <input type="file" class="form-control" id="profile" name="profile"
-                                            placeholder="">
+                                            placeholder="" accept=".png, .jpeg, .jpg">
                                         <div>current : <a
                                                 href="{{ asset('storage/desa/' . $data->profile) }}">{{ $data->profile }}</a>
                                         </div>

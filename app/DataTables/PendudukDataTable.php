@@ -93,7 +93,7 @@ class PendudukDataTable extends DataTable
                 'users.nama as user_nama'
             )
             ->orderBy('created_at', 'desc')
-            ->leftJoin('users', 'penduduk.user_id', '=', 'users.id');
+            ->join('users', 'users.id', '=', 'penduduk.user_id');
     }
 
     /**
