@@ -130,7 +130,9 @@ class SirkulasiMelahirkanDataTable extends DataTable
     public function getColumns(): array
     {
         return [
-            Column::make('id'),
+            Column::make('id')
+            ->title('No')
+            ->width(10),
             Column::make('nama'),
             Column::make('tmpt_lahir'),
             Column::make('tgl_lahir'),

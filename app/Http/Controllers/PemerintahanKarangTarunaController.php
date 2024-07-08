@@ -46,15 +46,19 @@ class PemerintahanKarangTarunaController extends Controller
 
 
         PemerintahanKarangTaruna::create($data);
-        return redirect()->route('pemerintahan-karang-taruna.index')->with('success', 'data berhasil ditambahkan');
+        return redirect()->route('pemerintahan-karang-taruna.index')->with('success', 'Data berhasil ditambahkan');
     }
 
     /**
      * Display the specified resource.
      */
-    public function show()
+    public function show(string $id)
     {
-        abort(404);
+        $data = PemerintahanKarangTaruna::find($id);
+
+        return view('pemerintahan-karangtaruna.view', [
+            "data" => $data,
+        ]);
     }
 
     /**
@@ -99,7 +103,7 @@ class PemerintahanKarangTarunaController extends Controller
         $data['user_id'] = $userId; // Add user ID to the data
 
         $user->update($data);
-        return redirect()->route('pemerintahan-karang-taruna.index')->with('success', 'data berhasil diubah');
+        return redirect()->route('pemerintahan-karang-taruna.index')->with('success', 'Data berhasil diubah');
     }
 
     /**
@@ -108,7 +112,7 @@ class PemerintahanKarangTarunaController extends Controller
     public function destroy(string $id)
     {
         $user = PemerintahanKarangTaruna::find($id)->delete();
-        return redirect()->route('pemerintahan-karang-taruna.index')->with('success', 'data berhasil dihapus');
+        return redirect()->route('pemerintahan-karang-taruna.index')->with('success', 'Data berhasil dihapus');
     }
 
     public function pdfTemplate(PemerintahanKarangTarunaDataTable $dataTable)

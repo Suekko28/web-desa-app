@@ -69,6 +69,7 @@
                     <th scope="col">Nama</th>
                     <th scope="col">Jabatan</th>
                     <th scope="col">Tempat Lahir</th>
+                    <th scope="col">Tanggal Lahir</th>
                     <th scope="col">Alamat</th>
                     <th scope="col">No Telepon</th>
                     <th scope="col">No SK</th>
@@ -83,10 +84,12 @@
                         <td>{{ $row->nama }}</td>
                         <td>{{ $row->jabatan }}</td>
                         <td>{{ $row->tmpt_lahir }}</td>
+                        <td>{{ Carbon\Carbon::parse($row->tgl_lahir)->format('d-m-Y') }}</td>
                         <td>{{ $row->alamat }}</td>
                         <td>{{ $row->no_telepon }}</td>
                         <td>{{ $row->no_sk }}</td>
                         <td>{{ $row->tgl_sk }}</td>
+                        <td>{{ Carbon\Carbon::parse($row->tgl_sk)->format('d-m-Y') }}</td>
                     </tr>
                 @endforeach
             </tbody>

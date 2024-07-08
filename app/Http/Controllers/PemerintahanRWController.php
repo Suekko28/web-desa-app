@@ -56,7 +56,11 @@ class PemerintahanRWController extends Controller
      */
     public function show(string $id)
     {
-        abort(404);
+        $data = PemerintahanRW::find($id);
+
+        return view('pemerintahan-rw.view', [
+            "data" => $data,
+        ]);
     }
 
     /**
@@ -65,7 +69,7 @@ class PemerintahanRWController extends Controller
     public function edit(string $id)
     {
         $user = PemerintahanRW::find($id);
-        return view('pemerintahan-rt.edit', [
+        return view('pemerintahan-rw.edit', [
             "data" => $user,
         ]);
     }
@@ -112,7 +116,7 @@ class PemerintahanRWController extends Controller
     public function destroy(string $id)
     {
         $user = PemerintahanRW::find($id)->delete();
-        return redirect()->route('pemerintahan-rt.index')->with('success', 'Data berhasil dihapus');
+        return redirect()->route('pemerintahan-rw.index')->with('success', 'Data berhasil dihapus');
 
     }
 

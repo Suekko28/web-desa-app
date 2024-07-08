@@ -36,6 +36,11 @@ class PemerintahanBPDDataTable extends DataTable
             route="' . route('pemerintahan-BPD.index') . '/{{ $id }}" class="btn btn-danger mt-2"><i class="fa-solid fa-trash-can"></i></a>';
 
         $actionBtn .= '</div>';
+        $actionBtn .= '<div class="col">
+        <a href="' . route('pemerintahan-BPD.index') . '/{{ $id }}" name="view" class="btn btn-primary mt-2"><i class="fa-solid fa-eye"></i></a>';
+
+        $actionBtn .= '</div>';
+
 
         return (new EloquentDataTable($query))
             ->addColumn('id', function ($data) {
@@ -60,7 +65,7 @@ class PemerintahanBPDDataTable extends DataTable
                     $search = request()->get('search')['value'];
                     $query->where(function ($q) use ($search) {
                         $q->whereRaw('LOWER(pemerintahan_desa.nama) LIKE ?', ["%{$search}%"])
-                          ->orWhereRaw('LOWER(pemerintahan_desa.jabatan) LIKE ?', ["%{$search}%"]);
+                            ->orWhereRaw('LOWER(pemerintahan_desa.jabatan) LIKE ?', ["%{$search}%"]);
                     });
                 }
             })
@@ -153,10 +158,13 @@ class PemerintahanBPDDataTable extends DataTable
             Column::make('no_telepon'),
             Column::make('no_sk'),
             Column::make('tgl_sk'),
-            Column::make('created_at'),
-            Column::make('updated_at'),
+            Column::make('created_at')
+                ->exportable(false),
+            Column::make('updated_at')
+                ->exportable(false),
             Column::make('user_nama')
-                ->title('Update By'),
+                ->title('Update By')
+                ->exportable(false),
             Column::computed('action')
                 ->exportable(false)
                 ->printable(false)

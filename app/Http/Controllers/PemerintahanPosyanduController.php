@@ -52,9 +52,13 @@ class PemerintahanPosyanduController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show()
+    public function show(string $id)
     {
-        abort(404);
+        $data = PemerintahanPosyandu::find($id);
+
+        return view('pemerintahan-posyandu.view', [
+            "data" => $data,
+        ]);
     }
 
     /**

@@ -45,15 +45,19 @@ class PemerintahanPKKController extends Controller
 
 
         PemerintahanPKK::create($data);
-        return redirect()->route('pemerintahan-pkk.index')->with('success', 'data berhasil ditambahkan');
+        return redirect()->route('pemerintahan-pkk.index')->with('success', 'Data berhasil ditambahkan');
     }
 
     /**
      * Display the specified resource.
      */
-    public function show()
+    public function show(string $id)
     {
-        abort(404);
+        $data = PemerintahanPKK::find($id);
+
+        return view('pemerintahan-pkk.view', [
+            "data" => $data,
+        ]);
     }
 
     /**
@@ -98,7 +102,7 @@ class PemerintahanPKKController extends Controller
         $data['user_id'] = $userId; // Add user ID to the data
 
         $user->update($data);
-        return redirect()->route('pemerintahan-pkk.index')->with('success', 'data berhasil diubah');
+        return redirect()->route('pemerintahan-pkk.index')->with('success', 'Data berhasil diubah');
     }
 
     /**
@@ -107,7 +111,7 @@ class PemerintahanPKKController extends Controller
     public function destroy(string $id)
     {
         $user = PemerintahanPKK::find($id)->delete();
-        return redirect()->route('pemerintahan-pkk.index')->with('success', 'data berhasil dihapus');
+        return redirect()->route('pemerintahan-pkk.index')->with('success', 'Data berhasil dihapus');
     }
 
     public function pdfTemplate(PemerintahanPKKDataTable $dataTable)

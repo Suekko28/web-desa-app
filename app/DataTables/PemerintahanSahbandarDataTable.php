@@ -35,6 +35,12 @@ class PemerintahanSahbandarDataTable extends DataTable
 
         $actionBtn .= '</div>';
 
+        $actionBtn .= '<div class="col">
+        <a href="' . route('pemerintahan-sahbandar.index') . '/{{ $id }}" name="view" class="btn btn-primary mt-2"><i class="fa-solid fa-eye"></i></a>';
+
+        $actionBtn .= '</div>';
+
+
         return (new EloquentDataTable($query))
             ->addColumn('id', function ($data) {
                 // Increment rowIndex for each row
@@ -58,7 +64,7 @@ class PemerintahanSahbandarDataTable extends DataTable
                     $search = request()->get('search')['value'];
                     $query->where(function ($q) use ($search) {
                         $q->whereRaw('LOWER(pemerintahan_sahbandar.nama) LIKE ?', ["%{$search}%"])
-                          ->orWhereRaw('LOWER(pemerintahan_sahbandar.jabatan) LIKE ?', ["%{$search}%"]);
+                            ->orWhereRaw('LOWER(pemerintahan_sahbandar.jabatan) LIKE ?', ["%{$search}%"]);
                     });
                 }
             })
@@ -92,7 +98,7 @@ class PemerintahanSahbandarDataTable extends DataTable
                 'users.nama as user_nama',
 
             )
-            ->join('users', 'users.id', '=', 'Pemerintahan_BPD.user_id')
+            ->join('users', 'users.id', '=', 'pemerintahan_sahbandar.user_id')
             ->orderBy('created_at', 'desc');
 
     }
@@ -141,6 +147,7 @@ class PemerintahanSahbandarDataTable extends DataTable
     {
         return [
             Column::make('id')
+                ->title('No')
                 ->width(10),
             Column::make('nama'),
             Column::make('jabatan'),
@@ -151,10 +158,13 @@ class PemerintahanSahbandarDataTable extends DataTable
             Column::make('no_telepon'),
             Column::make('no_sk'),
             Column::make('tgl_sk'),
-            Column::make('created_at'),
-            Column::make('updated_at'),
+            Column::make('created_at')
+                ->exportable(false),
+            Column::make('updated_at')
+                ->exportable(false),
             Column::make('user_nama')
-                ->title('Update By'),
+                ->title('Update By')
+                ->exportable(false),
             Column::computed('action')
                 ->exportable(false)
                 ->printable(false)

@@ -45,15 +45,19 @@ class PemerintahanSahbandarController extends Controller
 
 
         PemerintahanSahbandar::create($data);
-        return redirect()->route('pemerintahan-sahbandar.index')->with('success', 'data berhasil ditambahkan');
+        return redirect()->route('pemerintahan-sahbandar.index')->with('success', 'Data berhasil ditambahkan');
     }
 
     /**
      * Display the specified resource.
      */
-    public function show()
+    public function show(string $id)
     {
-        abort(404);
+        $data = PemerintahanSahbandar::find($id);
+
+        return view('pemerintahan-sahbandar.view', [
+            "data" => $data,
+        ]);
     }
 
     /**
@@ -100,7 +104,7 @@ class PemerintahanSahbandarController extends Controller
         $user->update($data);
 
 
-        return redirect()->route('pemerintahan-sahbandar.index')->with('success', 'data berhasil diubah');
+        return redirect()->route('pemerintahan-sahbandar.index')->with('success', 'Data berhasil diubah');
     }
 
     /**
@@ -109,7 +113,7 @@ class PemerintahanSahbandarController extends Controller
     public function destroy(string $id)
     {
         $user = PemerintahanSahbandar::find($id)->delete();
-        return redirect()->route('pemerintahan-sahbandar.index')->with('success', 'data berhasil dihapus');
+        return redirect()->route('pemerintahan-sahbandar.index')->with('success', 'Data berhasil dihapus');
     }
 
     public function pdfTemplate(PemerintahanSahbandarDataTable $dataTable)

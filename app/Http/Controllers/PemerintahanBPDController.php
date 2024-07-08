@@ -57,7 +57,11 @@ class PemerintahanBPDController extends Controller
      */
     public function show(string $id)
     {
-        abort(404);
+        $data = PemerintahanBPD::find($id);
+
+        return view('pemerintahan-bpd.view', [
+            "data" => $data,
+        ]);
     }
 
     /**

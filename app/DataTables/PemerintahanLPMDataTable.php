@@ -36,6 +36,11 @@ class PemerintahanLPMDataTable extends DataTable
 
         $actionBtn .= '</div>';
 
+        $actionBtn .= '<div class="col">
+        <a href="' . route('pemerintahan-lpm.index') . '/{{ $id }}" name="view" class="btn btn-primary mt-2"><i class="fa-solid fa-eye"></i></a>';
+
+        $actionBtn .= '</div>';
+
         return (new EloquentDataTable($query))
             ->addColumn('id', function ($data) {
                 // Increment rowIndex for each row
@@ -142,6 +147,7 @@ class PemerintahanLPMDataTable extends DataTable
     {
         return [
             Column::make('id')
+                ->title('No')
                 ->width(10),
             Column::make('nama'),
             Column::make('jabatan'),

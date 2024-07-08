@@ -57,7 +57,11 @@ class PemerintahanDesaController extends Controller
      */
     public function show(string $id)
     {
-        abort(404);
+        $data = PemerintahanDesa::find($id);
+
+        return view('pemerintahan-desa.view', [
+            "data" => $data,
+        ]);
     }
 
     /**

@@ -138,7 +138,9 @@ class SirkulasiPindahDataTable extends DataTable
     public function getColumns(): array
     {
         return [
-            Column::make('id'),
+            Column::make('id')
+                ->title('No')
+                ->width(10),
             Column::make('NIK'),
             Column::make('nama'),
             Column::make('tgl_pindah'),

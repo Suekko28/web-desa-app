@@ -56,8 +56,11 @@ class PemerintahanKadusController extends Controller
      */
     public function show(string $id)
     {
-        abort(404);
+        $data = PemerintahanKadus::find($id);
 
+        return view('pemerintahan-kadus.view', [
+            "data" => $data,
+        ]);
     }
 
     /**

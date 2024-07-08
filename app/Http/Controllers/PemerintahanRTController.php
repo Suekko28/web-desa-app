@@ -56,8 +56,11 @@ class PemerintahanRTController extends Controller
      */
     public function show(string $id)
     {
-        abort(404);
+        $data = PemerintahanRT::find($id);
 
+        return view('pemerintahan-rt.view', [
+            "data" => $data,
+        ]);
     }
 
     /**

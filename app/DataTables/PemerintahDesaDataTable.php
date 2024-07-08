@@ -36,6 +36,11 @@ class PemerintahDesaDataTable extends DataTable
 
         $actionBtn .= '</div>';
 
+        $actionBtn .= '<div class="col">
+        <a href="' . route('pemerintahan-desa.index') . '/{{ $id }}" name="view" class="btn btn-primary mt-2"><i class="fa-solid fa-eye"></i></a>';
+
+        $actionBtn .= '</div>';
+
         return (new EloquentDataTable($query))
             ->addColumn('id', function ($data) {
                 // Increment rowIndex for each row
@@ -143,7 +148,8 @@ class PemerintahDesaDataTable extends DataTable
     {
         return [
             Column::make('id')
-                ->title('No'),
+                ->title('No')
+                ->width(10),
             Column::make('nama'),
             Column::make('jabatan'),
             Column::make('jenis_kelamin'),
@@ -153,10 +159,13 @@ class PemerintahDesaDataTable extends DataTable
             Column::make('no_telepon'),
             Column::make('no_sk'),
             Column::make('tgl_sk'),
-            Column::make('created_at'),
-            Column::make('updated_at'),
+            Column::make('created_at')
+            ->exportable(false),
+            Column::make('updated_at')
+            ->exportable(false),
             Column::make('user_nama')
-                ->title('Update By'),
+                ->title('Update By')
+                ->exportable(false),
             Column::computed('action')
                 ->exportable(false)
                 ->printable(false)

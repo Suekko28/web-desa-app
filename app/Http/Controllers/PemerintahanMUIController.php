@@ -52,9 +52,13 @@ class PemerintahanMUIController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show()
+    public function show(string $id)
     {
-        abort(404);
+        $data = PemerintahanMUI::find($id);
+
+        return view('pemerintahan-mui.view', [
+            "data" => $data,
+        ]);
     }
 
     /**

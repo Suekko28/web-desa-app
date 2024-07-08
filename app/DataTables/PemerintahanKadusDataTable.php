@@ -37,6 +37,11 @@ class PemerintahanKadusDataTable extends DataTable
 
         $actionBtn .= '</div>';
 
+        $actionBtn .= '<div class="col">
+        <a href="' . route('pemerintahan-kadus.index') . '/{{ $id }}" name="view" class="btn btn-primary mt-2"><i class="fa-solid fa-eye"></i></a>';
+
+        $actionBtn .= '</div>';
+
         return (new EloquentDataTable($query))
             ->addColumn('id', function ($data) {
                 // Increment rowIndex for each row
@@ -60,7 +65,7 @@ class PemerintahanKadusDataTable extends DataTable
                     $search = request()->get('search')['value'];
                     $query->where(function ($q) use ($search) {
                         $q->whereRaw('LOWER(pemerintahan_kadus.nama) LIKE ?', ["%{$search}%"])
-                          ->orWhereRaw('LOWER(pemerintahan_kadus.jabatan) LIKE ?', ["%{$search}%"]);
+                            ->orWhereRaw('LOWER(pemerintahan_kadus.jabatan) LIKE ?', ["%{$search}%"]);
                     });
                 }
             })
@@ -85,6 +90,7 @@ class PemerintahanKadusDataTable extends DataTable
                 'pemerintahan_kadus.tmpt_lahir as tmpt_lahir',
                 'pemerintahan_kadus.tgl_lahir as tgl_lahir',
                 'pemerintahan_kadus.alamat as alamat',
+                'pemerintahan_kadus.created_at as created_at',
                 'pemerintahan_kadus.updated_at as updated_at',
                 'pemerintahan_kadus.no_telepon as no_telepon',
                 'pemerintahan_kadus.no_sk as no_sk',
@@ -151,10 +157,13 @@ class PemerintahanKadusDataTable extends DataTable
             Column::make('no_telepon'),
             Column::make('no_sk'),
             Column::make('tgl_sk'),
-            Column::make('created_at'),
-            Column::make('updated_at'),
+            Column::make('created_at')
+                ->exportable(false),
+            Column::make('updated_at')
+                ->exportable(false),
             Column::make('user_nama')
-                ->title('Update By'),
+                ->title('Update By')
+                ->exportable(false),
             Column::computed('action')
                 ->exportable(false)
                 ->printable(false)

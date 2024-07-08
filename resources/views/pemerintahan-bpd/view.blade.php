@@ -1,6 +1,6 @@
 @extends('layouts.app')
-@section('master-title', 'RW/')
-@section('page-title', 'Edit')
+@section('master-title', 'Pemerintahan BPD/')
+@section('page-title', 'View')
 @section('contents')
     <link rel="shortcut icon" href="{{ asset('assets/images/favicon.ico') }}">
 
@@ -25,6 +25,7 @@
         integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA=="
         crossorigin="anonymous" referrerpolicy="no-referrer" />
 
+
     <main>
         <section class="content">
 
@@ -33,89 +34,81 @@
 
                 <!-- Small boxes (Stat box) -->
 
-                <form action="{{ route('pemerintahan-rw.update', $data->id) }}" method="post"
+                <form action="{{ route('pemerintahan-BPD.update', $data->id) }}" method="post"
                     enctype="multipart/form-data">
                     @method('PUT')
                     @csrf
-                    <input type="hidden" id="user_id" name="user_id" value="{{ auth()->user()->id }}">
                     <div class="card">
                         <div class="card-body">
                             <h5 class="text-center data_diri">Data Diri</h5>
                             <div class="form-group">
                                 <div class="row">
                                     <div class="col-sm-4">
-                                        <label for="profile" class="col-form-label">Profile</label>
-                                        <input type="file" class="form-control" id="profile" name="profile"
-                                            placeholder="" accept=".png, .jpeg, .jpg">
-                                        <div>current : <a
-                                                href="{{ asset('storage/rw/' . $data->profile) }}">{{ $data->profile }}</a>
+                                        <div class="d-flex flex-column">
+                                            <label for="profile" class="col-form-label">Profile</label>
+                                            <img class="img-fluid rounded-circle"
+                                                src="{{ asset('storage/bpd/' . $data->profile) }}" alt="Foto Profile"
+                                                width="230" height="230">
                                         </div>
                                     </div>
                                     <div class="col-sm-4">
                                         <label for="name" class="col-form-label">Nama Lengkap</label>
                                         <input type="text" class="form-control" id="nama" name="nama"
-                                            value="{{ $data->nama }}">
+                                            value="{{ $data->nama }}" disabled>
                                     </div>
 
                                     <div class="col-sm-4">
                                         <label for="jabatan" class="col-form-label">Jabatan</label>
                                         <input type="text" class="form-control" id="jabatan" name="jabatan"
-                                            value="{{ $data->jabatan }}">
+                                            value="{{ $data->jabatan }}" disabled>
                                     </div>
 
                                     <div class="col-sm-4">
                                         <label for="tmpt_lahir" class="col-form-label">Tempat Lahir</label>
                                         <input type="text" class="form-control" id="tmpt_lahir" name="tmpt_lahir"
-                                            value="{{ $data->tmpt_lahir }}">
+                                            value="{{ $data->tmpt_lahir }}" disabled>
                                     </div>
 
                                     <div class="col-sm-4">
                                         <label for="tgl_lahir" class="col-form-label">Tanggal Lahir</label>
                                         <input type="date" class="form-control" id="tgl_lahir" name="tgl_lahir"
-                                            value="{{ $data->tgl_lahir }}">
+                                            value="{{ $data->tgl_lahir }}" disabled>
                                     </div>
 
                                     <div class="col-sm-4">
-                                        <label for="jenis_kelamin" class="col-form-label">Jenis Kelamin</label>
-                                        <select class="form-control" id="jenis_kelamin" name="jenis_kelamin">
-                                            <option value="" selected>--Pilih Salah Satu--</option>
-                                            <option value="1" @if ($data->jenis_kelamin == '1') selected @endif>
-                                                Laki-Laki
-                                            </option>
-                                            <option value="2" @if ($data->jenis_kelamin == '2') selected @endif>
-                                                Perempuan
-                                            </option>
-                                        </select>
+                                        <label for="tgl_lahir" class="col-form-label">Tanggal Lahir</label>
+                                        <input type="date" class="form-control" id="tgl_lahir" name="tgl_lahir"
+                                            value="{{ $data->tgl_lahir }}" disabled>
                                     </div>
+
                                     <div class="col-sm-4">
                                         <label for="no_telepon" class="col-form-label">Nomor Telepon</label>
                                         <input type="number" class="form-control" id="no_telepon" name="no_telepon"
-                                            placeholder="Nomor Telepon" value="{{ $data->no_telepon }}">
+                                            placeholder="Nomor Telepon" value="{{ $data->no_telepon }}" disabled>
                                     </div>
 
                                     <div class="col-sm-4">
                                         <label for="no_sk" class="col-form-label">Nomor SK</label>
                                         <input type="text" class="form-control" id="no_sk" name="no_sk"
-                                            placeholder="Nomor SK" value="{{ $data->no_sk }}">
+                                            placeholder="Nomor SK" value="{{ $data->no_sk }}" disabled>
                                     </div>
 
                                     <div class="col-sm-4">
                                         <label for="tgl_sk" class="col-form-label">Tanggal SK</label>
                                         <input type="date" class="form-control" id="tgl_sk" name="tgl_sk"
-                                            placeholder="" value="{{ $data->tgl_sk }}">
+                                            placeholder="" value="{{ $data->tgl_sk }}" disabled>
                                     </div>
 
                                     <div class="col">
                                         <label for="alamat" class="col-form-label">Alamat</label>
-                                        <textarea rows="5" type="text" class="form-control" id="alamat" name="alamat">{{ $data->alamat }}</textarea>
+                                        <textarea rows="5" type="text" class="form-control" id="alamat" name="alamat" disabled>{{ $data->alamat }}</textarea>
                                     </div>
 
                                 </div>
                             </div>
 
                             <div class="d-flex flex-row-reverse">
-                                <button type="submit" class="btn btn-primary ml-3">Simpan</button>
-                                <a href="{{ route('pemerintahan-rw.index') }}" class="btn btn-danger">Batal</a>
+                                <a href="{{ route('pemerintahan-BPD.index') }}" class="btn btn-danger">Kembali</a>
                             </div>
 
 

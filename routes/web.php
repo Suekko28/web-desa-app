@@ -47,7 +47,7 @@ Route::middleware(['auth'])->group(function () {
         ->name('pemerintahan-pkk.generate-pdf');
     Route::Resource('/pemerintahan-pkk', \App\Http\Controllers\PemerintahanPKKController::class);
     Route::get('/pemerintahan-sahbandar/generate-pdf', [\App\Http\Controllers\PemerintahanSahbandarController::class, 'pdfTemplate'])
-    ->name('pemerintahan-sahb   andar.generate-pdf');
+    ->name('pemerintahan-sahbandar.generate-pdf');
     Route::Resource('/pemerintahan-sahbandar', \App\Http\Controllers\PemerintahanSahbandarController::class);
     Route::get('/pemerintahan-karang-taruna/generate-pdf', [\App\Http\Controllers\PemerintahanKarangTarunaController::class, 'pdfTemplate'])
     ->name('pemerintahan-karangtaruna.generate-pdf');
