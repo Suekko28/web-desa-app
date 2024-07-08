@@ -4,6 +4,7 @@ namespace App\DataTables;
 
 use App\Models\LPJBelanja;
 use Illuminate\Database\Eloquent\Builder as QueryBuilder;
+use Illuminate\Support\Carbon;
 use Yajra\DataTables\EloquentDataTable;
 use Yajra\DataTables\Html\Builder as HtmlBuilder;
 use Yajra\DataTables\Html\Button;
@@ -45,6 +46,24 @@ class LPJBelanjaDataTable extends DataTable
                 $this->rowIndex++;
                 return '' . $this->rowIndex;
             })
+            ->editColumn('created_at', function ($data) {
+                return Carbon::parse($data->created_at)->format('d-m-Y H:i:s');
+            })
+            ->editColumn('updated_at', function ($data) {
+                return Carbon::parse($data->updated_at)->format('d-m-Y H:i:s');
+            })
+            ->editColumn('harga', function ($data) {
+                return 'Rp.' . number_format($data->harga, 0, ',', '.');
+            })
+            ->filter(function ($query) {
+                if (request()->has('search') && !empty(request()->get('search')['value'])) {
+                    $search = request()->get('search')['value'];
+                    $query->where(function ($q) use ($search) {
+                        $q->whereRaw('LOWER(lpj-belanja.nama_barang) LIKE ?', ["%{$search}%"])
+                            ->orWhereRaw('LOWER(lpj-belanja.harga) LIKE ?', ["%{$search}%"]);
+                    });
+                }
+            })
             ->addColumn('action', $actionBtn)
             ->rawColumns(['action'])
             ->setRowId('id');
@@ -69,7 +88,14 @@ class LPJBelanjaDataTable extends DataTable
                 'lpj-belanja.volume_qty as volume_qty',
                 'lpj-belanja.satuan as satuan',
                 'lpj-belanja.harga as harga',
-            );
+                'lpj-belanja.created_at as created_at',
+                'lpj-belanja.updated_at as updated_at',
+                'users.nama as user_nama',
+
+            )
+            ->join('users', 'users.id', '=', 'lpj-belanja.user_id')
+            ->orderBy('created_at', 'desc');
+
     }
 
     /**
@@ -125,6 +151,10 @@ class LPJBelanjaDataTable extends DataTable
             Column::make('volume_qty'),
             Column::make('satuan'),
             Column::make('harga'),
+            Column::make('created_at'),
+            Column::make('updated_at'),
+            Column::make('user_nama')
+                ->title('Update By'),
             Column::computed('action')
                 ->exportable(false)
                 ->printable(false)

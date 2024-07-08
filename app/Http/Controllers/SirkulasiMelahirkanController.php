@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\DataTables\Scopes\SirkulasiMelahirkanScope;
 use App\DataTables\SirkulasiMelahirkanDatatable;
+use App\Exports\SirkulasiMelahirkanExport;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\DataMelahirkanFormRequest;
 use App\Models\Penduduk;
@@ -10,15 +12,24 @@ use App\Models\Anak;
 use App\Models\SirkulasiMelahirkan;
 use Illuminate\Http\Request;
 use Barryvdh\DomPDF\Facade\Pdf;
+use Maatwebsite\Excel\Facades\Excel;
 
 class SirkulasiMelahirkanController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
-    public function index(SirkulasiMelahirkanDatatable $dataTable)
+    public function index(SirkulasiMelahirkanDatatable $dataTable, Request $request)
     {
-        return $dataTable->render('sirkulasi-melahirkan.index');
+        if ($dataTable->request()->action == 'pdf') {
+
+            return redirect()->route('sirkulasi-melahirkan.generate-pdf', [$request]);
+        }
+
+        if ($dataTable->request()->action != null) {
+            return Excel::download(new SirkulasiMelahirkanExport($request), 'sirkulasi-melahirkan-' . date('Y-m-d H:i:s') . ($dataTable->request()->action == 'excel' ? '.xlsx' : '.csv'));
+        }
+        return $dataTable->addScope(new SirkulasiMelahirkanScope($request))->render('sirkulasi-melahirkan.index');
 
     }
 

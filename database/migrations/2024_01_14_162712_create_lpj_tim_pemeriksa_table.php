@@ -20,6 +20,7 @@ return new class extends Migration
             $table->string('nomor');
             $table->string('tahun');
             $table->string('alamat');
+            $table->integer('user_id');
             $table->timestamps();
         });
     }

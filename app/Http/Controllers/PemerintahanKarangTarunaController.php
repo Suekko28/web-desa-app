@@ -6,6 +6,7 @@ use App\DataTables\PemerintahanKarangTarunaDataTable;
 use App\Http\Requests\PemerintahanKarangTarunaRequest;
 use App\Models\PemerintahanKarangTaruna;
 use Barryvdh\DomPDF\Facade\Pdf;
+use Illuminate\Support\Facades\Storage;
 
 
 class PemerintahanKarangTarunaController extends Controller
@@ -35,9 +36,13 @@ class PemerintahanKarangTarunaController extends Controller
         $image = $request->file('profile');
         $nama_image = rand() . $image->getClientOriginalName();
         $image->storeAs('public/karangtaruna', $nama_image);
+        $userId = auth()->user()->id;
+
 
         $data = $request->all();
         $data['profile'] = $nama_image;
+        $data['user_id'] = $userId;
+
 
 
         PemerintahanKarangTaruna::create($data);
@@ -69,22 +74,31 @@ class PemerintahanKarangTarunaController extends Controller
     public function update(PemerintahanKarangTarunaRequest $request, string $id)
     {
         $user = PemerintahanKarangTaruna::find($id);
-    
+        $userId = auth()->user()->id;
+
         // Check if a new image is uploaded
         if ($request->hasFile('profile')) {
+            // Delete the old image if it exists
+            if ($user->profile) {
+                Storage::delete('public/karangtaruna/' . $user->profile);
+            }
+
             $image = $request->file('profile');
             $extension = $image->getClientOriginalExtension(); // Get the file extension
             $nama_image = time() . '_' . uniqid() . '.' . $extension;
-    
+
             // Move the uploaded file to the storage location
             $image->storeAs('public/karangtaruna', $nama_image);
-    
+
             // Update the profile field with the new filename
             $user->update(['profile' => $nama_image]);
         }
-    
-        // Update other fields based on the request
-        $user->update($request->except('profile'));
+
+        // Update other fields based on the request, including the user ID
+        $data = $request->except('profile');
+        $data['user_id'] = $userId; // Add user ID to the data
+
+        $user->update($data);
         return redirect()->route('pemerintahan-karang-taruna.index')->with('success', 'data berhasil diubah');
     }
 
@@ -101,13 +115,13 @@ class PemerintahanKarangTarunaController extends Controller
     {
         // Retrieve the data directly from the query builder
         $data = $dataTable->query(new PemerintahanKarangTaruna())->get();
-    
+
         // Send data to the view for PDF rendering
         $html = view('pemerintahan-karangtaruna.generate-pdf', ['data' => $data])->render();
-    
+
         // Adjust PDF options if needed
         $pdf = PDF::loadHtml($html)->setPaper('f4', 'landscape');
-        
+
         return $pdf->stream('PemerintahanKarangTaruna.pdf');
     }
 }

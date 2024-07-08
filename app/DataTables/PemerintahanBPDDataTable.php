@@ -43,7 +43,12 @@ class PemerintahanBPDDataTable extends DataTable
                 $this->rowIndex++;
                 return '' . $this->rowIndex;
             })
-
+            ->editColumn('tgl_lahir', function ($data) {
+                return Carbon::parse($data->tgl_lahir)->format('d-m-Y');
+            })
+            ->editColumn('tgl_sk', function ($data) {
+                return Carbon::parse($data->tgl_sk)->format('d-m-Y');
+            })
             ->editColumn('created_at', function ($data) {
                 return Carbon::parse($data->created_at)->format('d-m-Y H:i:s');
             })
@@ -151,7 +156,7 @@ class PemerintahanBPDDataTable extends DataTable
             Column::make('created_at'),
             Column::make('updated_at'),
             Column::make('user_nama')
-                ->title('Update by'),
+                ->title('Update By'),
             Column::computed('action')
                 ->exportable(false)
                 ->printable(false)

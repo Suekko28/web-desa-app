@@ -155,7 +155,7 @@ class PendudukDataTable extends DataTable
             Column::make('created_at'),
             Column::make('updated_at'),
             Column::make('user_nama')
-                ->title('Update by'),
+                ->title('Update By'),
             Column::computed('action')
                 ->exportable(false)
                 ->printable(false)

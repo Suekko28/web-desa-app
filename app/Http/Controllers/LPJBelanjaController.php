@@ -40,8 +40,8 @@ class LPJBelanjaController extends Controller
      */
     public function store(Request $request)
     {
-
-        $request->validate([
+        // Validasi data yang diterima dari request
+        $validatedData = $request->validate([
             'nama_barang' => 'required|string|max:255',
             'volume_qty' => 'required|integer',
             'satuan' => 'required|string|max:255',
@@ -53,10 +53,22 @@ class LPJBelanjaController extends Controller
             'harga.required' => 'Harga wajib diisi.',
         ]);
 
-        $request['id_barang_jasa'] = $request->id;
-        LPJBelanja::create($request->all());
+        // Ambil ID pengguna yang sedang login
+        $userId = auth()->user()->id;
+
+        // Tambahkan user_id ke dalam data yang akan disimpan
+        $validatedData['user_id'] = $userId;
+
+        // Tambahkan id_barang_jasa berdasarkan request id ke dalam data yang akan disimpan
+        $validatedData['id_barang_jasa'] = $request->id;
+
+        // Simpan data LPJBelanja berdasarkan data yang sudah divalidasi
+        LPJBelanja::create($validatedData);
+
+        // Redirect kembali ke halaman show lpj-belanja dengan id yang sesuai dan pesan sukses
         return redirect()->route('lpj-belanja.show', ['lpj_belanja' => $request->id])->with('success', 'Data berhasil ditambahkan');
     }
+
 
     /**
      * Display the specified resource.
@@ -75,7 +87,14 @@ class LPJBelanjaController extends Controller
     {
         $data = LPJBelanja::where('id', '=', $id)->where('id_barang_jasa', '=', $id_barang_jasa)->first();
         $data_pemeriksa = LPJTimPemeriksa::all();
-        $data['nama_pemeriksa'] = LPJTimPemeriksa::where('NIP', '=', $data['tim_pemeriksa'])->first()->nama;
+
+        // Ambil nama pemeriksa jika ada
+        $data_pemeriksa_nama = LPJTimPemeriksa::where('NIP', '=', $data['tim_pemeriksa'])->first();
+        if ($data_pemeriksa_nama) {
+            $data['nama_pemeriksa'] = $data_pemeriksa_nama->nama;
+        } else {
+            $data['nama_pemeriksa'] = null; // Nilai default jika tidak ditemukan
+        }
 
         return view('lpj-belanja.edit', [
             'data' => $data,
@@ -85,16 +104,38 @@ class LPJBelanjaController extends Controller
         ]);
     }
 
+
     /**
      * Update the specified resource in storage.
      */
     public function update(Request $request, string $id_barang_jasa, string $id)
     {
-        $request['id'] = $id;
-        $request['id_barang_jasa'] = $id_barang_jasa;
-        LPJBelanja::find($id)->update($request->all());
+        // Validasi data yang diterima dari request
+        $validatedData = $request->validate([
+            'nama_barang' => 'required|string|max:255',
+            'volume_qty' => 'required|integer',
+            'satuan' => 'required|string|max:255',
+            'harga' => 'required|integer',
+        ], [
+            'nama_barang.required' => 'Nama Barang wajib diisi.',
+            'volume_qty.required' => 'Volume Quantity wajib diisi.',
+            'satuan.required' => 'Satuan wajib diisi.',
+            'harga.required' => 'Harga wajib diisi.',
+        ]);
+
+        // Ambil ID pengguna yang sedang login
+        $userId = auth()->user()->id;
+
+        // Tambahkan user_id ke dalam data yang akan diperbarui
+        $validatedData['user_id'] = $userId;
+
+        // Perbarui data LPJBelanja berdasarkan id yang diberikan
+        LPJBelanja::find($id)->update($validatedData);
+
+        // Redirect kembali ke halaman show lpj-belanja dengan id_barang_jasa yang sesuai dan pesan sukses
         return redirect()->route('lpj-belanja.show', ['lpj_belanja' => $id_barang_jasa])->with('success', 'Berhasil mengubah data');
     }
+
 
     /**
      * Remove the specified resource from storage.

@@ -32,6 +32,7 @@ return new class extends Migration
             $table->integer('tim_pemeriksa');
             $table->string('perihal');
             $table->string('alamat');
+            $table->integer('user_id');
             $table->timestamps();
         });
     }

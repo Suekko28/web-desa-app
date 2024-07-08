@@ -4,6 +4,7 @@ namespace App\DataTables;
 
 use App\Models\PemerintahanLPM;
 use Illuminate\Database\Eloquent\Builder as QueryBuilder;
+use Illuminate\Support\Carbon;
 use Yajra\DataTables\EloquentDataTable;
 use Yajra\DataTables\Html\Builder as HtmlBuilder;
 use Yajra\DataTables\Html\Button;
@@ -41,6 +42,27 @@ class PemerintahanLPMDataTable extends DataTable
                 $this->rowIndex++;
                 return '' . $this->rowIndex;
             })
+            ->editColumn('tgl_lahir', function ($data) {
+                return Carbon::parse($data->tgl_lahir)->format('d-m-Y');
+            })
+            ->editColumn('tgl_sk', function ($data) {
+                return Carbon::parse($data->tgl_sk)->format('d-m-Y');
+            })
+            ->editColumn('created_at', function ($data) {
+                return Carbon::parse($data->created_at)->format('d-m-Y H:i:s');
+            })
+            ->editColumn('updated_at', function ($data) {
+                return Carbon::parse($data->updated_at)->format('d-m-Y H:i:s');
+            })
+            ->filter(function ($query) {
+                if (request()->has('search') && !empty(request()->get('search')['value'])) {
+                    $search = request()->get('search')['value'];
+                    $query->where(function ($q) use ($search) {
+                        $q->whereRaw('LOWER(pemerintahan_lpm.nama) LIKE ?', ["%{$search}%"])
+                          ->orWhereRaw('LOWER(pemerintahan_lpm.jabatan) LIKE ?', ["%{$search}%"]);
+                    });
+                }
+            })
             ->addColumn('action', $actionBtn)
             ->rawColumns(['action'])
             ->setRowId('id');
@@ -63,11 +85,16 @@ class PemerintahanLPMDataTable extends DataTable
                 'pemerintahan_lpm.tmpt_lahir as tmpt_lahir',
                 'pemerintahan_lpm.tgl_lahir as tgl_lahir',
                 'pemerintahan_lpm.alamat as alamat',
+                'pemerintahan_lpm.created_at as created_at',
                 'pemerintahan_lpm.updated_at as updated_at',
                 'pemerintahan_lpm.no_telepon as no_telepon',
                 'pemerintahan_lpm.no_sk as no_sk',
                 'pemerintahan_lpm.tgl_sk as tgl_sk',
-            );
+                'users.nama as user_nama',
+
+            )
+            ->join('users', 'users.id', '=', 'pemerintahan_lpm.user_id')
+            ->orderBy('created_at', 'desc');
     }
 
     /**
@@ -125,7 +152,10 @@ class PemerintahanLPMDataTable extends DataTable
             Column::make('no_telepon'),
             Column::make('no_sk'),
             Column::make('tgl_sk'),
+            Column::make('created_at'),
             Column::make('updated_at'),
+            Column::make('user_nama')
+                ->title('Update By'),
             Column::computed('action')
                 ->exportable(false)
                 ->printable(false)

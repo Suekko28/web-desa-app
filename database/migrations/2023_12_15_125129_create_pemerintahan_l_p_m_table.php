@@ -23,6 +23,7 @@ return new class extends Migration
             $table->string('no_telepon');
             $table->string('no_sk');
             $table->date('tgl_sk');
+            $table->integer('user_id');
             $table->timestamps();
         });
     }

@@ -3,6 +3,7 @@
 namespace App\DataTables;
 
 use App\Models\PemerintahanKarangTaruna;
+use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Builder as QueryBuilder;
 use Yajra\DataTables\EloquentDataTable;
 use Yajra\DataTables\Html\Builder as HtmlBuilder;
@@ -41,6 +42,27 @@ class PemerintahanKarangTarunaDataTable extends DataTable
                 $this->rowIndex++;
                 return '' . $this->rowIndex;
             })
+            ->editColumn('tgl_lahir', function ($data) {
+                return Carbon::parse($data->tgl_lahir)->format('d-m-Y');
+            })
+            ->editColumn('tgl_sk', function ($data) {
+                return Carbon::parse($data->tgl_sk)->format('d-m-Y');
+            })
+            ->editColumn('created_at', function ($data) {
+                return Carbon::parse($data->created_at)->format('d-m-Y H:i:s');
+            })
+            ->editColumn('updated_at', function ($data) {
+                return Carbon::parse($data->updated_at)->format('d-m-Y H:i:s');
+            })
+            ->filter(function ($query) {
+                if (request()->has('search') && !empty(request()->get('search')['value'])) {
+                    $search = request()->get('search')['value'];
+                    $query->where(function ($q) use ($search) {
+                        $q->whereRaw('LOWER(pemerintahan_karang_taruna.nama) LIKE ?', ["%{$search}%"])
+                            ->orWhereRaw('LOWER(pemerintahan_karang_taruna.jabatan) LIKE ?', ["%{$search}%"]);
+                    });
+                }
+            })
             ->addColumn('action', $actionBtn)
             ->rawColumns(['action'])
             ->setRowId('id');
@@ -63,11 +85,16 @@ class PemerintahanKarangTarunaDataTable extends DataTable
                 'pemerintahan_karang_taruna.tmpt_lahir as tmpt_lahir',
                 'pemerintahan_karang_taruna.tgl_lahir as tgl_lahir',
                 'pemerintahan_karang_taruna.alamat as alamat',
+                'pemerintahan_karang_taruna.created_at as created_at',
                 'pemerintahan_karang_taruna.updated_at as updated_at',
                 'pemerintahan_karang_taruna.no_telepon as no_telepon',
                 'pemerintahan_karang_taruna.no_sk as no_sk',
                 'pemerintahan_karang_taruna.tgl_sk as tgl_sk',
-            );
+                'users.nama as user_nama',
+
+            )
+            ->join('users', 'users.id', '=', 'pemerintahan_karang_taruna.user_id')
+            ->orderBy('created_at', 'desc');
     }
 
     /**
@@ -124,7 +151,10 @@ class PemerintahanKarangTarunaDataTable extends DataTable
             Column::make('no_telepon'),
             Column::make('no_sk'),
             Column::make('tgl_sk'),
+            Column::make('created_at'),
             Column::make('updated_at'),
+            Column::make('user_nama')
+                ->title('Update By'),
             Column::computed('action')
                 ->exportable(false)
                 ->printable(false)

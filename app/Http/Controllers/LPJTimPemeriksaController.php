@@ -31,6 +31,8 @@ class LPJTimPemeriksaController extends Controller
      */
     public function store(TimPemeriksaFormRequest $request)
     {
+        $userId = auth()->user()->id;
+
         $data_ketua = [
             'NIP' => $request->NIP,
             'nama' => $request->nama_ketua,
@@ -39,7 +41,10 @@ class LPJTimPemeriksaController extends Controller
             'nomor' => $request->nomor,
             'tahun' => $request->tahun,
             'alamat' => $request->alamat,
+            'user_id' => $userId, 
         ];
+
+
 
         LPJTimPemeriksa::create($data_ketua);
         $id_ketua = LPJTimPemeriksa::where('NIP', '=', $data_ketua['NIP'])->where('jabatan', '=', $data_ketua['jabatan'])->where('tgl_pemeriksa', '=', $data_ketua['tgl_pemeriksa'])->first();
@@ -81,6 +86,8 @@ class LPJTimPemeriksaController extends Controller
      */
     public function update(Request $request, string $id)
     {
+        $userId = auth()->user()->id;
+        
         $data = LPJTimPemeriksa::find($id);
         $data_ketua = [
             'NIP' => $request->NIP,
@@ -90,6 +97,8 @@ class LPJTimPemeriksaController extends Controller
             'nomor' => $request->nomor,
             'tahun' => $request->tahun,
             'alamat' => $request->alamat,
+            'user_id' => $userId, 
+
         ];
         $data->update($data_ketua);
         $data->AnggotaLPJTimPemeriksa()->delete();

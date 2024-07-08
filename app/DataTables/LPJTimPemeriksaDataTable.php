@@ -4,6 +4,7 @@ namespace App\DataTables;
 
 use App\Models\LPJTimPemeriksa;
 use Illuminate\Database\Eloquent\Builder as QueryBuilder;
+use Illuminate\Support\Carbon;
 use Yajra\DataTables\EloquentDataTable;
 use Yajra\DataTables\Html\Builder as HtmlBuilder;
 use Yajra\DataTables\Html\Button;
@@ -36,11 +37,29 @@ class LPJTimPemeriksaDataTable extends DataTable
         $actionBtn .= '</div>';
 
         return (new EloquentDataTable($query))
-        ->addColumn('id', function ($data) {
-            // Increment rowIndex for each row
-            $this->rowIndex++;
-            return '' . $this->rowIndex;
-        })
+            ->addColumn('id', function ($data) {
+                // Increment rowIndex for each row
+                $this->rowIndex++;
+                return '' . $this->rowIndex;
+            })
+            ->editColumn('tgl_pemeriksa', function ($data) {
+                return Carbon::parse($data->tgl_pemeriksa)->format('d-m-Y');
+            })
+            ->editColumn('created_at', function ($data) {
+                return Carbon::parse($data->created_at)->format('d-m-Y H:i:s');
+            })
+            ->editColumn('updated_at', function ($data) {
+                return Carbon::parse($data->updated_at)->format('d-m-Y H:i:s');
+            })
+            ->filter(function ($query) {
+                if (request()->has('search') && !empty(request()->get('search')['value'])) {
+                    $search = request()->get('search')['value'];
+                    $query->where(function ($q) use ($search) {
+                        $q->whereRaw('LOWER(lpj_timpemeriksa.nama) LIKE ?', ["%{$search}%"])
+                            ->orWhereRaw('LOWER(lpj_timpemeriksa.NIP) LIKE ?', ["%{$search}%"]);
+                    });
+                }
+            })
             ->addColumn('action', $actionBtn)
             ->rawColumns(['action'])
             ->setRowId('id');
@@ -55,17 +74,22 @@ class LPJTimPemeriksaDataTable extends DataTable
     public function query(LPJTimPemeriksa $model): QueryBuilder
     {
         return $model->newQuery()
-        ->select(
-            'lpj_timpemeriksa.id as id',
-            'lpj_timpemeriksa.NIP as NIP',
-            'lpj_timpemeriksa.nama as nama',
-            'lpj_timpemeriksa.jabatan as jabatan',
-            'lpj_timpemeriksa.tgl_pemeriksa as tgl_pemeriksa',
-            'lpj_timpemeriksa.nomor as nomor',
-            'lpj_timpemeriksa.tahun as tahun',
-            'lpj_timpemeriksa.alamat as alamat',
-            // 'lpj_timpemeriksa.updated_at as updated_at',
-        );
+            ->select(
+                'lpj_timpemeriksa.id as id',
+                'lpj_timpemeriksa.NIP as NIP',
+                'lpj_timpemeriksa.nama as nama',
+                'lpj_timpemeriksa.jabatan as jabatan',
+                'lpj_timpemeriksa.tgl_pemeriksa as tgl_pemeriksa',
+                'lpj_timpemeriksa.nomor as nomor',
+                'lpj_timpemeriksa.tahun as tahun',
+                'lpj_timpemeriksa.alamat as alamat',
+                'lpj_timpemeriksa.created_at as created_at',
+                'lpj_timpemeriksa.updated_at as updated_at',
+                'users.nama as user_nama',
+
+            )
+            ->join('users', 'users.id', '=', 'lpj_timpemeriksa.user_id')
+            ->orderBy('created_at', 'desc');
     }
 
     /**
@@ -77,8 +101,8 @@ class LPJTimPemeriksaDataTable extends DataTable
     {
         $btn = [
             Button::make('add')
-            ->text('+ Tambah Data')
-            ->addClass('rounded'),
+                ->text('+ Tambah Data')
+                ->addClass('rounded'),
             // Button::make('csv')
             // ->addClass('btn-warning rounded')
             // ->text('CSV'),
@@ -120,7 +144,10 @@ class LPJTimPemeriksaDataTable extends DataTable
             Column::make('nomor'),
             Column::make('tahun'),
             Column::make('alamat'),
-            // Column::make('updated_at'),
+            Column::make('created_at'),
+            Column::make('updated_at'),
+            Column::make('user_nama')
+                ->title('Update By'),
             Column::computed('action')
                 ->exportable(false)
                 ->printable(false)

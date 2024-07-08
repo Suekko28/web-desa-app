@@ -47,8 +47,39 @@ class User extends Authenticatable
     public function pemerintahanDesa() : HasMany {
         return $this->hasMany(PemerintahanDesa::class, 'user_id', 'id');
     }
+
     public function pemerintahanBPD() : HasMany {
-        return $this->hasMany(PemerintahanDesa::class, 'user_id', 'id');
+        return $this->hasMany(PemerintahanBPD::class, 'user_id', 'id');
+    }
+
+    public function pemerintahanLPM() : HasMany {
+        return $this->hasMany(PemerintahanLPM::class, 'user_id', 'id');
+    }
+
+    public function pemerintahanMUI() : HasMany {
+        return $this->hasMany(PemerintahanMUI::class, 'user_id', 'id');
+    }
+
+    public function pemerintahanPKK() : HasMany {
+        return $this->hasMany(PemerintahanPKK::class, 'user_id', 'id');
+    }
+    public function pemerintahanSahbandar() : HasMany {
+        return $this->hasMany(PemerintahanSahbandar::class, 'user_id', 'id');
+    }
+    public function pemerintahanKarangTaruna() : HasMany {
+        return $this->hasMany(PemerintahanKarangTaruna::class, 'user_id', 'id');
+    }
+    public function pemerintahanPosyandu() : HasMany {
+        return $this->hasMany(PemerintahanPosyandu::class, 'user_id', 'id');
+    }
+    public function pemerintahanRT() : HasMany {
+        return $this->hasMany(PemerintahanRT::class, 'user_id', 'id');
+    }
+    public function pemerintahanRW() : HasMany {
+        return $this->hasMany(PemerintahanRW::class, 'user_id', 'id');
+    }
+    public function pemerintahanKadus() : HasMany {
+        return $this->hasMany(PemerintahanKadus::class, 'user_id', 'id');
     }
 
     public function penduduk() : HasMany {
@@ -68,6 +99,14 @@ class User extends Authenticatable
 
     public function sirkulasiPindah() : HasMany {
         return $this->hasMany(SirkulasiPindah::class, 'user_id', 'id');
+    }
+
+    public function timPemeriksa() : HasMany {
+        return $this->hasMany(LPJTimPemeriksa::class, 'user_id', 'id');
+    }
+
+    public function LPJBarangJasa() : HasMany {
+        return $this->hasMany(LPJBarangJasa::class, 'user_id', 'id');
     }
 
 

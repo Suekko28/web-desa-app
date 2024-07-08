@@ -2,20 +2,37 @@
 
 namespace App\Http\Controllers;
 
+use App\DataTables\Scopes\SirkulasiPendatangScope;
 use App\DataTables\SirkulasiPendatangDataTable;
+use App\Exports\SirkulasiPendatangExport;
 use App\Http\Requests\DataPendatangFormRequest;
 use App\Models\SirkulasiPendatang;
 use Illuminate\Http\Request;
 use Barryvdh\DomPDF\Facade\Pdf;
+use Maatwebsite\Excel\Facades\Excel;
 
 class SirkulasiPendatangController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
-    public function index(SirkulasiPendatangDataTable $dataTable)
+    public function index(SirkulasiPendatangDataTable $dataTable, Request $request)
     {
-        return $dataTable->render('sirkulasi-pendatang.index');
+        // Handle PDF generation request
+        if ($dataTable->request()->action == 'pdf') {
+            return redirect()->route('sirkulasi-pendatang.generate-pdf', [$request]);
+        }
+
+        // Handle Excel or CSV export request
+        if ($dataTable->request()->action != null) {
+            return Excel::download(
+                new SirkulasiPendatangExport($request),
+                'sirkulasi-pendatang-' . date('Y-m-d H:i:s') . ($dataTable->request()->action == 'excel' ? '.xlsx' : '.csv')
+            );
+        }
+
+        // Render the DataTable view with any applied filters
+        return $dataTable->addScope(new SirkulasiPendatangScope($request))->render('sirkulasi-pendatang.index');
     }
 
     /**
@@ -31,9 +48,9 @@ class SirkulasiPendatangController extends Controller
      */
     public function store(DataPendatangFormRequest $request)
     {
-        $data=$request->all();
+        $data = $request->all();
         SirkulasiPendatang::create($data);
-        return redirect()->route('sirkulasi-pendatang.index')->with('success','Data berhasil ditambahkan');
+        return redirect()->route('sirkulasi-pendatang.index')->with('success', 'Data berhasil ditambahkan');
     }
 
     /**
@@ -47,35 +64,35 @@ class SirkulasiPendatangController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(String $id)
+    public function edit(string $id)
     {
-        $data=SirkulasiPendatang::find($id);
-        return view('sirkulasi-pendatang.edit',[
-            'data'=>$data,
+        $data = SirkulasiPendatang::find($id);
+        return view('sirkulasi-pendatang.edit', [
+            'data' => $data,
         ]);
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(DataPendatangFormRequest $request, String $id)
+    public function update(DataPendatangFormRequest $request, string $id)
     {
         $userId = auth()->user()->id;
 
-        $data=SirkulasiPendatang::find($id);
-        $user ['user_id'] = $userId;
+        $data = SirkulasiPendatang::find($id);
+        $user['user_id'] = $userId;
 
         $data->update($user);
-        return redirect()->route('sirkulasi-pendatang.index')->with('success','Data berhasil diupdate');
+        return redirect()->route('sirkulasi-pendatang.index')->with('success', 'Data berhasil diupdate');
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(String $id)
+    public function destroy(string $id)
     {
-        $user=SirkulasiPendatang::find($id)->delete();
-        return redirect()->route('sirkulasi-pendatang.index')->with('success','Data berhasil dihapus');
+        $user = SirkulasiPendatang::find($id)->delete();
+        return redirect()->route('sirkulasi-pendatang.index')->with('success', 'Data berhasil dihapus');
 
     }
 
@@ -83,13 +100,13 @@ class SirkulasiPendatangController extends Controller
     {
         // Retrieve the data directly from the query builder
         $data = $dataTable->query(new SirkulasiPendatang())->get();
-    
+
         // Send data to the view for PDF rendering
         $html = view('sirkulasi-pendatang.generate-pdf', ['data' => $data])->render();
-   
+
         // Adjust PDF options including setting paper to landscape
         $pdf = PDF::loadHtml($html)->setPaper('a4', 'landscape');
-    
+
         return $pdf->stream('SirkulasiPendatang.pdf');
     }
 }

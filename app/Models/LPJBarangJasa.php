@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 
 
@@ -43,11 +44,19 @@ class LPJBarangJasa extends Model
         'tim_pemeriksa',
         'perihal',
         'alamat',
+        'user_id',
+
     ];
-    public function LPJBelanja(): HasMany{
-        return $this->hasMany(LPJBelanja::class,'id_barang_jasa','id');
+    public function LPJBelanja(): HasMany
+    {
+        return $this->hasMany(LPJBelanja::class, 'id_barang_jasa', 'id');
     }
 
-    
-   
+    public function user(): BelongsTo
+    {
+        return $this->belongsTo(User::class, 'user_id', 'id');
+    }
+
+
+
 }

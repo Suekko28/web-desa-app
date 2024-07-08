@@ -33,7 +33,8 @@ class PemerintahanBPD extends Model
         'no_telepon',
         'no_sk',
         'tgl_sk',
-        'user_id'
+        'user_id',
+        
     ];
 
     public function user(): BelongsTo

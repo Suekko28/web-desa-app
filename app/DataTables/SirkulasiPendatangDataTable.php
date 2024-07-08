@@ -141,10 +141,13 @@ class SirkulasiPendatangDataTable extends DataTable
             Column::make('tgl_datang'),
             Column::make('alamat_sblm'),
             Column::make('alamat_skrg'),
-            Column::make('created_at'),
-            Column::make('updated_at'),
+            Column::make('created_at')
+                ->exportable(false),
+            Column::make('updated_at')
+                ->exportable(false),
             Column::make('user_nama')
-                ->title('Update by'),
+                ->title('Update By')
+                ->exportable(false),
             Column::computed('action')
                 ->exportable(false)
                 ->printable(false)

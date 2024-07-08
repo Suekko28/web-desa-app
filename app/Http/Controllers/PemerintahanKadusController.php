@@ -7,6 +7,7 @@ use App\Http\Requests\PemerintahanKadusRequest;
 use App\Models\PemerintahanKadus;
 use Illuminate\Http\Request;
 use Barryvdh\DomPDF\Facade\Pdf;
+use Illuminate\Support\Facades\Storage;
 
 
 class PemerintahanKadusController extends Controller
@@ -33,16 +34,20 @@ class PemerintahanKadusController extends Controller
      * Store a newly created resource in storage.
      */
     public function store(PemerintahanKadusRequest $request)
-    {   
-        $image=$request->file('profile');
-        $nama_image=rand().$image->getClientOriginalName();
+    {
+        $image = $request->file('profile');
+        $nama_image = rand() . $image->getClientOriginalName();
         $image->storeAs('public/kadus', $nama_image);
-        
-        $data=$request->all();
-        $data['profile']=$nama_image;
-        
+        $userId = auth()->user()->id;
+
+
+        $data = $request->all();
+        $data['profile'] = $nama_image;
+        $data['user_id'] = $userId;
+
+
         PemerintahanKadus::create($data);
-        return redirect()->route('pemerintahan-kadus.index')->with('success','Data berhasil ditambahkan'); 
+        return redirect()->route('pemerintahan-kadus.index')->with('success', 'Data berhasil ditambahkan');
 
     }
 
@@ -60,35 +65,44 @@ class PemerintahanKadusController extends Controller
      */
     public function edit(string $id)
     {
-        $user=PemerintahanKadus::find($id);
-        return view('pemerintahan-kadus.edit',[
-                    "data"=>$user,
-            ]);
+        $user = PemerintahanKadus::find($id);
+        return view('pemerintahan-kadus.edit', [
+            "data" => $user,
+        ]);
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(PemerintahanKadusRequest $request, string $id)
     {
         $user = PemerintahanKadus::find($id);
-    
+        $userId = auth()->user()->id;
+
         // Check if a new image is uploaded
         if ($request->hasFile('profile')) {
+            // Delete the old image if it exists
+            if ($user->profile) {
+                Storage::delete('public/kadus/' . $user->profile);
+            }
+
             $image = $request->file('profile');
             $extension = $image->getClientOriginalExtension(); // Get the file extension
             $nama_image = time() . '_' . uniqid() . '.' . $extension;
-    
+
             // Move the uploaded file to the storage location
             $image->storeAs('public/kadus', $nama_image);
-    
+
             // Update the profile field with the new filename
             $user->update(['profile' => $nama_image]);
         }
-    
-        // Update other fields based on the request
-        $user->update($request->except('profile'));
-    
+
+        // Update other fields based on the request, including the user ID
+        $data = $request->except('profile');
+        $data['user_id'] = $userId; // Add user ID to the data
+
+        $user->update($data);
+
         return redirect()->route('pemerintahan-kadus.index')->with('success', 'Data berhasil diubah');
 
     }
@@ -98,8 +112,8 @@ class PemerintahanKadusController extends Controller
      */
     public function destroy(string $id)
     {
-        $user=PemerintahanKadus::find($id)->delete();
-        return redirect()->route('pemerintahan-kadus.index')->with('success','Data berhasil dihapus'); 
+        $user = PemerintahanKadus::find($id)->delete();
+        return redirect()->route('pemerintahan-kadus.index')->with('success', 'Data berhasil dihapus');
 
     }
 
@@ -107,13 +121,13 @@ class PemerintahanKadusController extends Controller
     {
         // Retrieve the data directly from the query builder
         $data = $dataTable->query(new PemerintahanKadus())->get();
-    
+
         // Send data to the view for PDF rendering
         $html = view('pemerintahan-kadus.generate-pdf', ['data' => $data])->render();
-    
+
         // Adjust PDF options if needed
         $pdf = PDF::loadHtml($html)->setPaper('f4', 'landscape');
-        
+
         return $pdf->stream('PemerintahanKadus.pdf');
     }
 }

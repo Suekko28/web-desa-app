@@ -34,17 +34,15 @@
             <form action="{{ route('pemerintahan-pkk.update', $data->id) }}" method="post" enctype="multipart/form-data">
                 @method('PUT')
                 @csrf
+                <input type="hidden" id="user_id" name="user_id" value="{{ auth()->user()->id }}">
                 <div class="card">
                     <div class="card-body">
-
-
                         <h5 class="text-center data_diri">Data Diri</h5>
-
                         <div class="form-group">
                             <div class="row">
                                 <div class="col-sm-4">
                                     <label for="profile" class="col-form-label">Profile</label>
-                                    <input type="file" class="form-control" id="profile" name="profile" placeholder="">
+                                    <input type="file" class="form-control" id="profile" name="profile" placeholder="" accept=".png, .jpeg, .jpg">
                                     <div>current : <a href="{{ asset('storage/pkk/' . $data->profile) }}">{{ $data->profile }}</a></div>
                                 </div>
                                 <div class="col-sm-4">

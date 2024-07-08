@@ -21,8 +21,8 @@ class LPJBarangJasaController extends Controller
      */
     public function index(LPJBarangJasaDataTable $dataTable)
     {
-    
-    return $dataTable->render('lpj-barangjasa.index');
+
+        return $dataTable->render('lpj-barangjasa.index');
     }
 
     /**
@@ -30,9 +30,9 @@ class LPJBarangJasaController extends Controller
      */
     public function create()
     {
-        $data_pemeriksa=LPJTimPemeriksa::all();
+        $data_pemeriksa = LPJTimPemeriksa::all();
 
-        return view('lpj-barangjasa.create',['data_pemeriksa'=>$data_pemeriksa]);
+        return view('lpj-barangjasa.create', ['data_pemeriksa' => $data_pemeriksa]);
     }
 
     /**
@@ -40,11 +40,14 @@ class LPJBarangJasaController extends Controller
      */
     public function store(PemerintahanLPJRequest $request)
     {
-        $data=$request->all();
+        $data = $request->all();
+        $userId = auth()->user()->id;
+
+        $data['user_id'] = $userId;
 
         LPJBarangJasa::create($data);
 
-        return redirect()->route('lpj-barangjasa.index')->with('success','Data berhasil ditambahkan');
+        return redirect()->route('lpj-barangjasa.index')->with('success', 'Data berhasil ditambahkan');
 
     }
 
@@ -63,83 +66,106 @@ class LPJBarangJasaController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(String $id)
+    public function edit(string $id)
     {
-        $data=LPJBarangJasa::find($id)->first();
-        $data_pemeriksa=LPJTimPemeriksa::all();
-        $data['nama_pemeriksa']=LPJTimPemeriksa::where('NIP','=',$data['tim_pemeriksa'])->first()->nama;
-
-        return view('lpj-barangjasa.edit',[
-                    "data"=>$data,
-                    "data_pemeriksa"=>$data_pemeriksa,
-            ]);
+        $data = LPJBarangJasa::find($id);
+    
+        $data_pemeriksa = LPJTimPemeriksa::all();
+    
+        // Ambil nama pemeriksa jika ada
+        $data_pemeriksa_nama = LPJTimPemeriksa::where('NIP', '=', $data->tim_pemeriksa)->first();
+        if ($data_pemeriksa_nama) {
+            $data->nama_pemeriksa = $data_pemeriksa_nama->nama;
+        } else {
+            $data->nama_pemeriksa = null; // Nilai default jika tidak ditemukan
+        }
+    
+        return view('lpj-barangjasa.edit', [
+            "data" => $data,
+            "data_pemeriksa" => $data_pemeriksa,
+        ]);
     }
+    
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(PemerintahanLPJRequest $request, string $id)
     {
+        // Ambil ID user yang sedang login
+        $userId = auth()->user()->id;
 
-        $user=LPJBarangJasa::find($id)->update($request->all());
-        return redirect()->route('lpj-barangjasa.index')->with('success','Data berhasil diubah');
+        // Temukan data LPJBarangJasa berdasarkan ID yang diberikan
+        $lpjBarangJasa = LPJBarangJasa::find($id);
 
+        // Validasi data yang diterima dari request
+        $validatedData = $request->validated();
+
+        // Tambahkan user_id ke dalam data yang akan diupdate
+        $validatedData['user_id'] = $userId;
+
+        // Lakukan update data LPJBarangJasa dengan data yang telah divalidasi dan user_id
+        $lpjBarangJasa->update($validatedData);
+
+        // Redirect kembali ke halaman indeks lpj-barangjasa dengan pesan sukses
+        return redirect()->route('lpj-barangjasa.index')->with('success', 'Data berhasil diubah');
     }
+
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(String $id)
+    public function destroy(string $id)
     {
 
-        $user=LPJBarangJasa::find($id)->delete();
-        $anak=LPJBelanja::where('id_barang_jasa','=',$id)->delete();
-        return redirect()->route('lpj-barangjasa.index')->with('success','Data berhasil dihapus');
+        $user = LPJBarangJasa::find($id)->delete();
+        $anak = LPJBelanja::where('id_barang_jasa', '=', $id)->delete();
+        return redirect()->route('lpj-barangjasa.index')->with('success', 'Data berhasil dihapus');
 
     }
 
-    public function pdfTemplate(LPJBarangJasaDataTable $dataTable)
-    {
-        // Retrieve the data directly from the query builder
-        $date=date('Y-m-d');
-        $tanggal=Terbilang::date($date);
-        $hari=Carbon::now()->isoFormat('dddd');
-        $tahun=Carbon::now()->isoFormat('Y');
+    // public function pdfTemplate(LPJBarangJasaDataTable $dataTable)
+    // {
+    //     // Retrieve the data directly from the query builder
+    //     $date = date('Y-m-d');
+    //     $tanggal = Terbilang::date($date);
+    //     $hari = Carbon::now()->isoFormat('dddd');
+    //     $tahun = Carbon::now()->isoFormat('Y');
 
-        $data = $dataTable->query(new LPJBarangJasa())->get();
-        $data_belanja=LPJBarangJasa::find($data->first()->id);
+    //     $data = $dataTable->query(new LPJBarangJasa())->get();
+    //     $data_belanja = LPJBarangJasa::find($data->first()->id);
 
-        $data_barang=$data_belanja->LPJBelanja()->get();
-        // Send data to the view for PDF rendering
-        if(sizeof($data_barang)==0){
-            return redirect()->route('lpj-barangjasa.index')->with('error',"Tidak ada data belanja untuk toko ini");
-        }
-        $date_pesanan=$data->first()->tgl_pesanan;
-        $date_pesanan=strtotime($date_pesanan);
-        $tahun_terbilang=Terbilang::make(date('Y'));
+    //     $data_barang = $data_belanja->LPJBelanja()->get();
+    //     // Send data to the view for PDF rendering
+    //     if (sizeof($data_barang) == 0) {
+    //         return redirect()->route('lpj-barangjasa.index')->with('error', "Tidak ada data belanja untuk toko ini");
+    //     }
+    //     $date_pesanan = $data->first()->tgl_pesanan;
+    //     $date_pesanan = strtotime($date_pesanan);
+    //     $tahun_terbilang = Terbilang::make(date('Y'));
 
-        $bulan_pesanan_terbilang=Carbon::create()->month(date('m',$date_pesanan))->isoFormat('MMMM');
-        $tahun_pesanan=Carbon::create()->year(date('Y',$date_pesanan))->isoFormat('Y');
-        $date_pesanan=date('d',$date_pesanan).' '.$bulan_pesanan_terbilang.' '.$tahun_pesanan;
+    //     $bulan_pesanan_terbilang = Carbon::create()->month(date('m', $date_pesanan))->isoFormat('MMMM');
+    //     $tahun_pesanan = Carbon::create()->year(date('Y', $date_pesanan))->isoFormat('Y');
+    //     $date_pesanan = date('d', $date_pesanan) . ' ' . $bulan_pesanan_terbilang . ' ' . $tahun_pesanan;
 
-        $date_pemeriksa= LPJTimPemeriksa::first()->tgl_pemeriksa;
-        $date_pemeriksa=strtotime($date_pemeriksa);
-        $tahun_terbilang=Terbilang::make(date('Y'));
+    //     $date_pemeriksa = LPJTimPemeriksa::first()->tgl_pemeriksa;
+    //     $date_pemeriksa = strtotime($date_pemeriksa);
+    //     $tahun_terbilang = Terbilang::make(date('Y'));
 
-        $bulan_pesanan_terbilang=Carbon::create()->month(date('m',$date_pemeriksa))->isoFormat('MMMM');
-        $tahun_pesanan=Carbon::create()->year(date('Y',$date_pemeriksa))->isoFormat('Y');
-        $date_pemeriksa=date('d',$date_pemeriksa).' '.$bulan_pesanan_terbilang.' '.$tahun_pesanan;
+    //     $bulan_pesanan_terbilang = Carbon::create()->month(date('m', $date_pemeriksa))->isoFormat('MMMM');
+    //     $tahun_pesanan = Carbon::create()->year(date('Y', $date_pemeriksa))->isoFormat('Y');
+    //     $date_pemeriksa = date('d', $date_pemeriksa) . ' ' . $bulan_pesanan_terbilang . ' ' . $tahun_pesanan;
 
 
 
-        $data_pemeriksa=LPJTimPemeriksa::where('NIP','=',$data->first()->tim_pemeriksa)->get();
-        $data_anggota_pemeriksa=$data_pemeriksa->first()->AnggotaLPJTimPemeriksa()->get();
-        $html = view('lpj-barangjasa.generate-pdf', ['date_pemeriksa' => $date_pemeriksa,'tahun'=>$tahun_terbilang,'date_pesanan'=>$date_pesanan,'hari'=>$hari,'tanggal_hari_ini'=>$tanggal,'data_anggota_pemeriksa'=>$data_anggota_pemeriksa,'data_pemeriksa'=>$data_pemeriksa->first(),'data' => $data,'data_belanja'=>$data_belanja,'data_barang'=>$data_barang])->render();
-        
+    //     $data_pemeriksa = LPJTimPemeriksa::where('NIP', '=', $data->first()->tim_pemeriksa)->get();
+    //     $data_anggota_pemeriksa = $data_pemeriksa->first()->AnggotaLPJTimPemeriksa()->get();
+    //     $html = view('lpj-barangjasa.generate-pdf', ['date_pemeriksa' => $date_pemeriksa, 'tahun' => $tahun_terbilang, 'date_pesanan' => $date_pesanan, 'hari' => $hari, 'tanggal_hari_ini' => $tanggal, 'data_anggota_pemeriksa' => $data_anggota_pemeriksa, 'data_pemeriksa' => $data_pemeriksa->first(), 'data' => $data, 'data_belanja' => $data_belanja, 'data_barang' => $data_barang])->render();
 
-        // Adjust PDF options if needed
-        $pdf = PDF::loadHtml($html)->setPaper('f4', 'landscape');
 
-        return $pdf->stream('LPJBarangJasa.pdf');
-    }
+    //     // Adjust PDF options if needed
+    //     $pdf = PDF::loadHtml($html)->setPaper('f4', 'landscape');
+
+    //     return $pdf->stream('LPJBarangJasa.pdf');
+    // }
 }

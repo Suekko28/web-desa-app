@@ -4,14 +4,16 @@ namespace App\Exports;
 
 use App\DataTables\Scopes\PendudukScope;
 use App\Models\Penduduk;
+use Illuminate\Support\Carbon;
 use Maatwebsite\Excel\Concerns\Exportable;
 use Maatwebsite\Excel\Concerns\FromCollection;
 use Maatwebsite\Excel\Concerns\FromQuery;
+use Maatwebsite\Excel\Concerns\WithColumnFormatting;
 use Maatwebsite\Excel\Concerns\WithHeadings;
 use Maatwebsite\Excel\Concerns\WithMapping;
 use PhpOffice\PhpSpreadsheet\Style\NumberFormat;
 
-class PendudukExport implements FromQuery, withHeadings, withMapping
+class PendudukExport implements FromQuery, withHeadings, withMapping, WithColumnFormatting
 {
     use Exportable;
     protected $request;
@@ -53,7 +55,7 @@ class PendudukExport implements FromQuery, withHeadings, withMapping
             "penduduk.nama_ibu",
             "penduduk.nama_ayah"
         );
-        $filters =  [
+        $filters = [
             'pendidikan',
             'pekerjaan',
             'kepemilikan_bpjs',
@@ -67,28 +69,28 @@ class PendudukExport implements FromQuery, withHeadings, withMapping
         ];
         foreach ($filters as $field) {
             if ($this->request->has($field)) {
-                if($this->request->get($field) !== null){
+                if ($this->request->get($field) !== null) {
                     $query->where($field, '=', $this->request->get($field));
                 }
             }
         }
-        $mn='0';
-        $mx='999';
-        if($this->request->has('usia_mn')){
-            if($this->request->get('usia_mn')!=null){
-            $mn=$this->request->get('usia_mn');
-                if((int)$mn<0){
-                    $mn='0';
+        $mn = '0';
+        $mx = '999';
+        if ($this->request->has('usia_mn')) {
+            if ($this->request->get('usia_mn') != null) {
+                $mn = $this->request->get('usia_mn');
+                if ((int) $mn < 0) {
+                    $mn = '0';
                 }
             }
             $query->where('usia', '>=', $mn);
         }
 
-        if($this->request->has('usia_mx')){
-            if($this->request->get('usia_mx')!=null and $this->request->get('usia_mx')!="?draw=1"){
-            $mx=$this->request->get('usia_mx');
-                if((int)$mx>999){
-                    $mx='999';
+        if ($this->request->has('usia_mx')) {
+            if ($this->request->get('usia_mx') != null and $this->request->get('usia_mx') != "?draw=1") {
+                $mx = $this->request->get('usia_mx');
+                if ((int) $mx > 999) {
+                    $mx = '999';
                 }
             }
             $query->where('usia', '<=', $mx);
@@ -129,7 +131,7 @@ class PendudukExport implements FromQuery, withHeadings, withMapping
     public function headings(): array
     {
         return [
-            "id",
+            "No",
             "tgl_pindah_masuk",
             "tgl_lapor",
             "NIK",
@@ -159,13 +161,13 @@ class PendudukExport implements FromQuery, withHeadings, withMapping
     {
         return [
             $row->id,
-            $row->tgl_pindah_masuk,
-            $row->tgl_lapor,
-            $row->NIK,
-            $row->NKK,
+            Carbon::parse($row->tgl_pindah_masuk)->format('d-m-Y'),
+            Carbon::parse($row->tgl_lapor)->format('d-m-Y'),
+            (int) $row->NIK,
+            (int) $row->NKK,
             $row->nama,
             $row->tempat_lahir,
-            $row->tgl_lahir,
+            Carbon::parse($row->tgl_lahir)->format('d-m-Y'),
             $row->usia,
             $row->jenis_kelamin,
             $row->agama,
@@ -181,6 +183,17 @@ class PendudukExport implements FromQuery, withHeadings, withMapping
             $row->kepemilikan_e_ktp,
             $row->nama_ibu,
             $row->nama_ayah,
+        ];
+    }
+
+    public function columnFormats(): array
+    {
+        return [
+            'B' => NumberFormat::FORMAT_DATE_DDMMYYYY,
+            'C' => NumberFormat::FORMAT_DATE_DDMMYYYY,
+            'H' => NumberFormat::FORMAT_DATE_DDMMYYYY,
+            'D' => NumberFormat::FORMAT_NUMBER,
+            'E' => NumberFormat::FORMAT_NUMBER,
         ];
     }
 }

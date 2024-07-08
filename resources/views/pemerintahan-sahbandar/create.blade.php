@@ -35,18 +35,16 @@
 
                 <form action="{{ route('pemerintahan-sahbandar.store') }}" method="POST" enctype="multipart/form-data">
                     @csrf
+                    <input type="hidden" id="user_id" name="user_id" value="{{ auth()->user()->id }}">
                     <div class="card">
                         <div class="card-body">
-
-
                             <h5 class="text-center data_diri">Data Diri</h5>
-
                             <div class="form-group">
                                 <div class="row">
                                     <div class="col-sm-4">
                                         <label for="profile" class="col-form-label">Profile</label>
                                         <input type="file" class="form-control" id="profile" name="profile"
-                                            placeholder="">
+                                            placeholder="" accept=".png, .jpeg, .jpg">
                                     </div>
                                     <div class="col-sm-4">
                                         <label for="name" class="col-form-label">Nama Lengkap</label>

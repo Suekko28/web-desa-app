@@ -7,6 +7,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\PemerintahanBPDFormRequest;
 use App\Models\PemerintahanBPD;
 use Barryvdh\DomPDF\Facade\Pdf;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\View;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
@@ -74,14 +75,18 @@ class PemerintahanBPDController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(PemerintahanBPDFormRequest $request, string $id)
     {
         $user = PemerintahanBPD::find($id);
         $userId = auth()->user()->id;
 
-
         // Check if a new image is uploaded
         if ($request->hasFile('profile')) {
+            // Delete the old image if it exists
+            if ($user->profile) {
+                Storage::delete('public/bpd/' . $user->profile);
+            }
+
             $image = $request->file('profile');
             $extension = $image->getClientOriginalExtension(); // Get the file extension
             $nama_image = time() . '_' . uniqid() . '.' . $extension;
@@ -101,6 +106,7 @@ class PemerintahanBPDController extends Controller
 
         return redirect()->route('pemerintahan-BPD.index')->with('success', 'Data berhasil diubah');
     }
+
 
 
     /**

@@ -33,18 +33,12 @@
                 <!-- Small boxes (Stat box) -->
                 <form action="{{ route('lpj-barangjasa.store') }}" method="POST" enctype="multipart/form-data">
                     @csrf
+                    <input type="hidden" id="user_id" name="user_id" value="{{ auth()->user()->id }}">
                     <div class="card">
                         <div class="card-body">
                             <h5 class="text-center data_diri">Data Barang Jasa</h5>
                             <div class="form-group">
                                 <div class="row">
-                                    <!--Field yang ditampilin di table
-                                            1. No
-                                            2. Nomor Pesanan
-                                            3. TPK (Nama TPK)
-                                            4. Tanggal Pesanan
-                                            5. Nama Toko !-->
-
                                     <div class="col-sm-6">
                                         <label for="lampiran" class="col-form-label">Lampiran</label>
                                         <input type="text" class="form-control" id="lampiran" name="lampiran"

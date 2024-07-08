@@ -34,8 +34,8 @@
                 <form action="{{ route('lpj-barangjasa.update', [$data->id]) }}" method="POST"
                     enctype="multipart/form-data">
                     @method('PUT')
-
                     @csrf
+                    <input type="hidden" id="user_id" name="user_id" value="{{ auth()->user()->id }}">
                     <div class="card">
                         <div class="card-body">
                             <h5 class="text-center data_diri">Data Barang Jasa</h5>

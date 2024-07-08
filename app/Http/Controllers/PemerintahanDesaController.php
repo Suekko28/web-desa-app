@@ -7,6 +7,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\PemerintahanDesaFormRequest;
 use App\Models\PemerintahanDesa;
 use Barryvdh\DomPDF\Facade\Pdf;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\View;
 use Illuminate\Support\Str;
 
@@ -76,11 +77,15 @@ class PemerintahanDesaController extends Controller
     public function update(PemerintahanDesaFormRequest $request, string $id)
     {
         $user = PemerintahanDesa::find($id);
-        // Ambil id pengguna yang sedang login
         $userId = auth()->user()->id;
 
         // Check if a new image is uploaded
         if ($request->hasFile('profile')) {
+            // Delete the old image if it exists
+            if ($user->profile) {
+                Storage::delete('public/desa/' . $user->profile);
+            }
+
             $image = $request->file('profile');
             $extension = $image->getClientOriginalExtension(); // Get the file extension
             $nama_image = time() . '_' . uniqid() . '.' . $extension;

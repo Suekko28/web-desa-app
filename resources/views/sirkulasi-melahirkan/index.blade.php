@@ -27,7 +27,7 @@
         crossorigin="anonymous" referrerpolicy="no-referrer" />
 
     <main>
-        <form action="{{ route('penduduk.index') }}" method="GET" enctype="multipart/form-data">
+        <form action="{{ route('sirkulasi-melahirkan.index') }}" method="GET" enctype="multipart/form-data">
             <div class="card">
                 <div class="card-body">
                     <h3 class="card-title text-info fw-bold">Filter</h3>
@@ -37,15 +37,15 @@
                             <div class="col-sm-6">
                                 <label for="pendidikan" class="col-form-label">
                                     Mulai Dari</label>
-                                    <input type="date" class="form-control" id="tgl_mulai"
-                                            name="tgl_mulai" placeholder="">
+                                    <input type="date" class="form-control" id="tgl_lahir_start"
+                                            name="tgl_lahir_start" placeholder="">
                             </div>
 
                             <div class="col-sm-6">
                                 <label for="pendidikan" class="col-form-label">
                                     Akhir Dari</label>
-                                    <input type="date" class="form-control" id="tgl_akhir"
-                                            name="tgl_akhir" placeholder="">
+                                    <input type="date" class="form-control" id="tgl_lahir_end"
+                                            name="tgl_lahir_end" placeholder="">
                             </div>
                          
 

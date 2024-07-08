@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasOne;
 
 
@@ -29,8 +30,15 @@ class LPJBelanja extends Model
         'volume_qty',
         'satuan',
         'harga',
+        'user_id',
+
     ];
     public function LPJBarangJasa(): HasOne{
         return $this->hasOne(LPJBarangJasa::class,'id_barang_jasa','id');
     }  
+
+     public function user(): BelongsTo
+    {
+        return $this->belongsTo(User::class, 'user_id', 'id');
+    }
 }

@@ -19,6 +19,7 @@ return new class extends Migration
             $table->integer('volume_qty');
             $table->string('satuan');
             $table->integer('harga');
+            $table->integer('user_id');
             $table->timestamps();
         });
     }

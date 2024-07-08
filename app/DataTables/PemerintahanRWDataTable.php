@@ -3,6 +3,7 @@
 namespace App\DataTables;
 
 use App\Models\PemerintahanRW;
+use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Builder as QueryBuilder;
 use Yajra\DataTables\EloquentDataTable;
 use Yajra\DataTables\Html\Builder as HtmlBuilder;
@@ -41,6 +42,27 @@ class PemerintahanRWDataTable extends DataTable
                 $this->rowIndex++;
                 return '' . $this->rowIndex;
             })
+            ->editColumn('tgl_lahir', function ($data) {
+                return Carbon::parse($data->tgl_lahir)->format('d-m-Y');
+            })
+            ->editColumn('tgl_sk', function ($data) {
+                return Carbon::parse($data->tgl_sk)->format('d-m-Y');
+            })
+            ->editColumn('created_at', function ($data) {
+                return Carbon::parse($data->created_at)->format('d-m-Y H:i:s');
+            })
+            ->editColumn('updated_at', function ($data) {
+                return Carbon::parse($data->updated_at)->format('d-m-Y H:i:s');
+            })
+            ->filter(function ($query) {
+                if (request()->has('search') && !empty(request()->get('search')['value'])) {
+                    $search = request()->get('search')['value'];
+                    $query->where(function ($q) use ($search) {
+                        $q->whereRaw('LOWER(pemerintahan_RW.nama) LIKE ?', ["%{$search}%"])
+                          ->orWhereRaw('LOWER(pemerintahan_RW.jabatan) LIKE ?', ["%{$search}%"]);
+                    });
+                }
+            })
             ->addColumn('action', $actionBtn)
             ->rawColumns(['action'])
             ->setRowId('id');
@@ -67,7 +89,11 @@ class PemerintahanRWDataTable extends DataTable
                 'pemerintahan_RW.no_telepon as no_telepon',
                 'pemerintahan_RW.no_sk as no_sk',
                 'pemerintahan_RW.tgl_sk as tgl_sk',
-            );
+                'users.nama as user_nama',
+
+            )
+            ->join('users', 'users.id', '=', 'pemerintahan_RW.user_id')
+            ->orderBy('created_at', 'desc');
     }
 
     /**
@@ -125,7 +151,10 @@ class PemerintahanRWDataTable extends DataTable
             Column::make('no_telepon'),
             Column::make('no_sk'),
             Column::make('tgl_sk'),
+            Column::make('created_at'),
             Column::make('updated_at'),
+            Column::make('user_nama')
+                ->title('Update By'),
             Column::computed('action')
                 ->exportable(false)
                 ->printable(false)
