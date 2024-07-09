@@ -81,10 +81,8 @@ class SirkulasiMeninggalDataTable extends DataTable
                 'sirkulasi_meninggal.sebab as sebab',
                 'sirkulasi_meninggal.created_at as created_at',
                 'sirkulasi_meninggal.updated_at as updated_at',
-                'penduduk.nama as nama',
                 'users.nama as user_nama'
             )
-            ->join('penduduk', 'penduduk.NIK', '=', 'sirkulasi_meninggal.NIK_penduduk')
             ->join('users', 'users.id', '=', 'sirkulasi_meninggal.user_id')
             ->orderBy('sirkulasi_meninggal.created_at', 'desc');
     }
@@ -136,7 +134,7 @@ class SirkulasiMeninggalDataTable extends DataTable
             Column::make('id')
                 ->title('No')
                 ->width(10),
-            Column::make('nama'),
+            // Column::make('nama'),
             Column::make('NIK_penduduk'),
             Column::make('tgl_meninggal'),
             Column::make('sebab'),

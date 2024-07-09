@@ -32,7 +32,7 @@ class SirkulasiMeninggal extends Model
     ];
 
     public function penduduk(){
-        return $this->belongsTo(Penduduk::class,'NIK_penduduk','NIK');
+        return $this->belongsTo(Penduduk::class,'NIK_penduduk','id');
     }
 
     
