@@ -66,7 +66,7 @@
             <thead>
                 <tr>
                     <th scope="col">No</th>
-                    <th scope="col">Nama</th>
+                    <th scope="col">Nama Penduduk</th>
                     <th scope="col">NIK Penduduk</th>
                     <th scope="col">Tanggal Meninggal</th>
                     <th scope="col">Sebab</th>
@@ -77,9 +77,9 @@
                 @foreach ($data as $row)
                     <tr>
                         <td>{{ $i++ }}</td>
-                        <td>{{ $row->nama }}</td>
+                        <td>{{ $row->nama_penduduk}}</td>
                         <td>{{ $row->NIK_penduduk }}</td>
-                        <td>{{ $row->tgl_meninggal }}</td>
+                        <td>{{ Carbon\Carbon::parse($row->tgl_meninggal)->format('d-m-Y') }}</td>
                         <td>{{ $row->sebab }}</td>
                     </tr>
                 @endforeach

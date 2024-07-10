@@ -77,6 +77,7 @@ class SirkulasiMeninggalDataTable extends DataTable
             ->select(
                 'sirkulasi_meninggal.id as id',
                 'sirkulasi_meninggal.NIK_penduduk as NIK_penduduk',
+                'sirkulasi_meninggal.nama_penduduk as nama_penduduk',
                 'sirkulasi_meninggal.tgl_meninggal as tgl_meninggal',
                 'sirkulasi_meninggal.sebab as sebab',
                 'sirkulasi_meninggal.created_at as created_at',
@@ -134,7 +135,8 @@ class SirkulasiMeninggalDataTable extends DataTable
             Column::make('id')
                 ->title('No')
                 ->width(10),
-            // Column::make('nama'),
+            Column::make('nama_penduduk')
+                ->title('Nama Penduduk'),
             Column::make('NIK_penduduk'),
             Column::make('tgl_meninggal'),
             Column::make('sebab'),

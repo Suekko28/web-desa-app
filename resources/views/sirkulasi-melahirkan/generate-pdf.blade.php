@@ -80,7 +80,7 @@
                         <td>{{ $i++ }}</td>
                         <td>{{ $row->nama }}</td>
                         <td>{{ $row->tmpt_lahir }}</td>
-                        <td>{{ $row->tgl_lahir }}</td>
+                        <td>{{ Carbon\Carbon::parse($row->tgl_lahir)->format('d-m-Y') }}</td>
                         <td>{{ $row->jenis_kelamin }}</td>
                         <td>{{ $row->NKK_keluarga }}</td>
                     </tr>

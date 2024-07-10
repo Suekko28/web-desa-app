@@ -14,6 +14,7 @@ return new class extends Migration
         Schema::create('sirkulasi_meninggal', function (Blueprint $table) {
             $table->id();
             $table->string('NIK_penduduk');
+            $table->string('nama_penduduk')->nullable();
             $table->date('tgl_meninggal');
             $table->string('sebab');
             $table->integer('user_id');

@@ -2,13 +2,16 @@
 
 namespace App\Http\Controllers;
 
+use App\DataTables\Scopes\SirkulasiMeninggalScope;
 use App\DataTables\SirkulasiMeninggalDatatable;
+use App\Exports\SirkulasiMeninggalExport;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\DataMeninggalFormRequest;
 use App\Models\Penduduk;
 use App\Models\SirkulasiMeninggal;
 use Illuminate\Http\Request;
 use Barryvdh\DomPDF\Facade\Pdf;
+use Maatwebsite\Excel\Facades\Excel;
 
 
 
@@ -17,10 +20,18 @@ class SirkulasiMeninggalController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index(SirkulasiMeninggalDataTable $dataTable)
+    public function index(SirkulasiMeninggalDataTable $dataTable, Request $request)
     {
 
-        return $dataTable->render('sirkulasi-meninggal.index');
+        if ($dataTable->request()->action == 'pdf') {
+
+            return redirect()->route('sirkulasi-meninggal.generate-pdf', [$request]);
+        }
+
+        if ($dataTable->request()->action != null) {
+            return Excel::download(new SirkulasiMeninggalExport($request), 'sirkulasi-meninggal-' . date('Y-m-d H:i:s') . ($dataTable->request()->action == 'excel' ? '.xlsx' : '.csv'));
+        }
+        return $dataTable->addScope(new SirkulasiMeninggalScope($request))->render('sirkulasi-meninggal.index');
     }
 
     /**
@@ -39,10 +50,23 @@ class SirkulasiMeninggalController extends Controller
      */
     public function store(DataMeninggalFormRequest $request)
     {
+        // Ambil data penduduk berdasarkan NIK
         $penduduk = Penduduk::where('NIK', $request->NIK_penduduk)->firstOrFail();
-        $penduduk->delete();
 
-        SirkulasiMeninggal::create($request->all());
+        // Gabungkan Nama dan NIK untuk disimpan atau ditampilkan
+        $infoPenduduk = $penduduk->nama;
+
+        // Simpan informasi sirkulasi meninggal dengan informasi nama penduduk
+        SirkulasiMeninggal::create([
+            'nama_penduduk' => $infoPenduduk,
+            'NIK_penduduk' => $request->NIK_penduduk,
+            'tgl_meninggal' => $request->tgl_meninggal,
+            'sebab' => $request->sebab,
+            'user_id' => auth()->id(),
+        ]);
+
+        // Hapus penduduk setelah data sirkulasi meninggal disimpan
+        $penduduk->delete();
 
         return redirect()->route('sirkulasi-meninggal.index')->with('success', 'Data berhasil ditambahkan dan data penduduk terkait telah dihapus');
     }
@@ -60,27 +84,60 @@ class SirkulasiMeninggalController extends Controller
      */
     public function edit(string $id)
     {
-        $data = SirkulasiMeninggal::find($id);
-        $nkk = $data->NIK_penduduk;
-        $data['nama'] = Penduduk::where('NIK', '=', $nkk)->first()->nama;
-        $data_penduduk = Penduduk::all();
+        // Cari data SirkulasiMeninggal berdasarkan ID
+        $sirkulasiMeninggal = SirkulasiMeninggal::find($id);
+
+        // Jika data tidak ditemukan, bisa berikan respons sesuai kebijakan aplikasi
+        if (!$sirkulasiMeninggal) {
+            abort(404); // Contoh: tampilkan halaman 404
+        }
+
+        // Ambil NIK penduduk dari data SirkulasiMeninggal
+        $nikPenduduk = $sirkulasiMeninggal->NIK_penduduk;
+
+        // Cari nama penduduk berdasarkan NIK dari data SirkulasiMeninggal
+        $namaPenduduk = Penduduk::where('NIK', $nikPenduduk)->value('nama');
+
+        // Ambil semua data Penduduk untuk pilihan dropdown
+        $dataPenduduk = Penduduk::all();
 
         return view('sirkulasi-meninggal.edit', [
-            'data' => $data,
-            'data_penduduk' => $data_penduduk,
+            'data' => $sirkulasiMeninggal,
+            'nama_penduduk' => $namaPenduduk,
+            'data_penduduk' => $dataPenduduk,
         ]);
     }
+
 
     /**
      * Update the specified resource in storage.
      */
     public function update(DataMeninggalFormRequest $request, string $id)
     {
-        $data = SirkulasiMeninggal::find($id);
+        // Cari data SirkulasiMeninggal berdasarkan ID
+        $sirkulasiMeninggal = SirkulasiMeninggal::find($id);
 
-        $data->update($request->all());
+        // Jika data tidak ditemukan, bisa berikan respons sesuai kebijakan aplikasi
+        if (!$sirkulasiMeninggal) {
+            abort(404); // Contoh: tampilkan halaman 404
+        }
+
+        // Ambil data penduduk berdasarkan NIK dari request
+        $penduduk = Penduduk::where('NIK', $request->NIK_penduduk)->firstOrFail();
+
+        // Update informasi sirkulasi meninggal
+        $sirkulasiMeninggal->update([
+            'nama_penduduk' => $penduduk->nama,
+            'NIK_penduduk' => $request->NIK_penduduk,
+            'tgl_meninggal' => $request->tgl_meninggal,
+            'sebab' => $request->sebab,
+            'user_id' => auth()->id(),
+        ]);
+
+        // Hapus penduduk terkait setelah update data sirkulasi meninggal
+        $penduduk->delete();
+
         return redirect()->route('sirkulasi-meninggal.index')->with('success', 'Data berhasil diupdate');
-
     }
 
     /**

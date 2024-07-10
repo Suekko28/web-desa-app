@@ -25,6 +25,7 @@ class SirkulasiMeninggal extends Model
     protected $fillable = [
         'nama',
         'NIK_penduduk',
+        'nama_penduduk',
         'tgl_meninggal',
         'sebab',
         'user_id',
