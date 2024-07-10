@@ -23,7 +23,7 @@ class SirkulasiPindah extends Model
      * @var array<int, string>
      */
     protected $fillable = [
-        'nama',
+        'nama_penduduk',
         'NIK',
         'tgl_pindah',
         'alasan',
@@ -35,5 +35,9 @@ class SirkulasiPindah extends Model
     public function user(): BelongsTo
     {
         return $this->belongsTo(User::class, 'user_id', 'id');
+    }
+
+    public function penduduk(){
+        return $this->belongsTo(Penduduk::class,'NIK','id');
     }
 }

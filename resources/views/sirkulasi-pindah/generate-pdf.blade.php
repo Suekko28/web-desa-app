@@ -77,7 +77,7 @@
                 @foreach ($data as $row)
                     <tr>
                         <td>{{ $i++ }}</td>
-                        <td>{{ $row->nama }}</td>
+                        <td>{{ $row->nama_penduduk }}</td>
                         <td>{{ $row->NIK }}</td>
                         <td>{{ $row->alasan }}</td>
                         <td>{{ $row->alamat_pindah }}</td>

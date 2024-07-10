@@ -77,12 +77,15 @@ class SirkulasiPendatangController extends Controller
      */
     public function update(DataPendatangFormRequest $request, string $id)
     {
-        $userId = auth()->user()->id;
+        // Validasi data yang diperbarui
+        $validatedData = $request->validated();
 
-        $data = SirkulasiPendatang::find($id);
-        $user['user_id'] = $userId;
+        // Temukan data SirkulasiPendatang berdasarkan ID
+        $data = SirkulasiPendatang::findOrFail($id);
 
-        $data->update($user);
+        // Update data dengan data yang diperbarui
+        $data->update($validatedData);
+
         return redirect()->route('sirkulasi-pendatang.index')->with('success', 'Data berhasil diupdate');
     }
 

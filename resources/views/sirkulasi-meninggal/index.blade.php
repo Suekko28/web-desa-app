@@ -36,14 +36,14 @@
 
                             <div class="col-sm-6">
                                 <label for="pendidikan" class="col-form-label">
-                                    Mulai Dari</label>
+                                    Tanggal Meninggal Mulai</label>
                                     <input type="date" class="form-control" id="tgl_meninggal_start"
                                             name="tgl_meninggal_start" placeholder="">
                             </div>
 
                             <div class="col-sm-6">
                                 <label for="pendidikan" class="col-form-label">
-                                    Akhir Dari</label>
+                                    Tanggal Meninggal Akhir</label>
                                     <input type="date" class="form-control" id="tgl_meninggal_end"
                                             name="tgl_meninggal_end" placeholder="">
                             </div>

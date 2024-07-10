@@ -53,7 +53,7 @@ class SirkulasiMeninggalDataTable extends DataTable
                 if (request()->has('search') && !empty(request()->get('search')['value'])) {
                     $search = request()->get('search')['value'];
                     $query->where(function ($q) use ($search) {
-                        $q->whereRaw('LOWER(penduduk.nama) LIKE ?', ["%{$search}%"])
+                        $q->whereRaw('LOWER(sirkulasi_meninggal.nama_penduduk) LIKE ?', ["%{$search}%"])
                             ->orWhereRaw('LOWER(sirkulasi_meninggal.NIK_penduduk) LIKE ?', ["%{$search}%"])
                             ->orWhereRaw('LOWER(sirkulasi_meninggal.sebab) LIKE ?', ["%{$search}%"]);
                     });

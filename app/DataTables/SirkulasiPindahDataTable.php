@@ -41,8 +41,8 @@ class SirkulasiPindahDataTable extends DataTable
                 $this->rowIndex++;
                 return '' . $this->rowIndex;
             })
-            ->editColumn('tgl_lahir', function ($data) {
-                return Carbon::parse($data->tgl_lahir)->format('d-m-Y');
+            ->editColumn('tgl_pindah', function ($data) {
+                return Carbon::parse($data->tgl_pindah)->format('d-m-Y');
             })
             ->editColumn('created_at', function ($data) {
                 return Carbon::parse($data->created_at)->format('d-m-Y H:i:s');
@@ -55,7 +55,7 @@ class SirkulasiPindahDataTable extends DataTable
                     $search = request()->get('search')['value'];
                     $query->where(function ($q) use ($search) {
                         $q->whereRaw('LOWER(sirkulasi_pindah.NIK) LIKE ?', ["%{$search}%"])
-                            ->orWhereRaw('LOWER(penduduk.nama) LIKE ?', ["%{$search}%"])
+                            ->orWhereRaw('LOWER(sirkulasi_pindah.nama_penduduk) LIKE ?', ["%{$search}%"])
                             ->orWhereRaw('LOWER(sirkulasi_pindah.tgl_pindah) LIKE ?', ["%{$search}%"])
                             ->orWhereRaw('LOWER(sirkulasi_pindah.alamat_pindah) LIKE ?', ["%{$search}%"]);
                     });
@@ -78,18 +78,15 @@ class SirkulasiPindahDataTable extends DataTable
             ->select(
                 'sirkulasi_pindah.id as id',
                 'sirkulasi_pindah.NIK as NIK',
+                'sirkulasi_pindah.nama_penduduk as nama_penduduk',
                 'sirkulasi_pindah.tgl_pindah as tgl_pindah',
                 'sirkulasi_pindah.alasan as alasan',
                 'sirkulasi_pindah.alamat_pindah as alamat_pindah',
                 'sirkulasi_pindah.created_at as created_at',
                 'sirkulasi_pindah.updated_at as updated_at',
-                'penduduk.nama as nama',
-                'users.nama as user_nama' 
+                'users.nama as user_nama'
 
             )
-            ->join('penduduk', function ($q) {
-                $q->on('penduduk.NIK', '=', 'sirkulasi_pindah.NIK');
-            })
             ->join('users', 'users.id', '=', 'sirkulasi_pindah.user_id')
             ->orderBy('sirkulasi_pindah.created_at', 'desc');
 
@@ -141,15 +138,16 @@ class SirkulasiPindahDataTable extends DataTable
             Column::make('id')
                 ->title('No')
                 ->width(10),
+            Column::make('nama_penduduk')
+                ->title('Nama Penduduk'),
             Column::make('NIK'),
-            Column::make('nama'),
             Column::make('tgl_pindah'),
             Column::make('alasan'),
             Column::make('alamat_pindah'),
             Column::make('created_at'),
             Column::make('updated_at'),
             Column::make('user_nama')
-            ->title('Update By'),
+                ->title('Update By'),
             Column::computed('action')
                 ->exportable(false)
                 ->printable(false)

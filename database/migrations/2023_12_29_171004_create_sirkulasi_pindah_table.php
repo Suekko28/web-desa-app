@@ -14,6 +14,7 @@ return new class extends Migration
         Schema::create('sirkulasi_pindah', function (Blueprint $table) {
             $table->id();
             $table->string('NIK');
+            $table->string('nama_penduduk')->nullable();
             $table->string('tgl_pindah');
             $table->string('alasan');
             $table->string('alamat_pindah');
