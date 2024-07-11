@@ -34,7 +34,8 @@
 
                 <form action="{{ route('penduduk.store') }}" method="POST" enctype="multipart/form-data">
                     @csrf
-                    <input type="hidden" id="user_id" name="user_id" value="{{ auth()->user()->id }}">                    <div class="card">
+                    <input type="hidden" id="user_id" name="user_id" value="{{ auth()->user()->id }}">
+                    <div class="card">
                         <div class="card-body">
                             <div class="form-group">
                                 <div class="row">
@@ -61,13 +62,13 @@
                                 <div class="row">
                                     <div class="col-sm-4">
                                         <label for="nik" class="col-form-label">NIK</label>
-                                        <input type="text" class="form-control" id="NIK" name="NIK"
+                                        <input type="number" class="form-control" id="NIK" name="NIK"
                                             placeholder="Nomor KTP">
                                     </div>
 
                                     <div class="col-sm-4">
                                         <label for="nkk" class="col-form-label">NKK</label>
-                                        <input type="text" class="form-control" id="NKK" name="NKK"
+                                        <input type="number" class="form-control" id="NKK" name="NKK"
                                             placeholder="Nomor KK">
                                     </div>
 
@@ -150,19 +151,19 @@
                                     <div class="col-sm-4">
                                         <label for="dusun" class="col-form-label">
                                             Dusun</label>
-                                            <input type="text" class="form-control" id="nama1" name="dusun"
+                                        <input type="text" class="form-control" id="nama1" name="dusun"
                                             placeholder="Dusun">
                                     </div>
 
                                     <div class="col-sm-4">
                                         <label for="rt" class="col-form-label">RT</label>
-                                        <input type="text" class="form-control" id="rt" name="rt"
+                                        <input type="number" class="form-control" id="rt" name="rt"
                                             placeholder="000">
                                     </div>
 
                                     <div class="col-sm-4">
                                         <label for="rw" class="col-form-label">RW</label>
-                                        <input type="text" class="form-control" id="rw" name="rw"
+                                        <input type="number" class="form-control" id="rw" name="rw"
                                             placeholder="000">
                                     </div>
 
