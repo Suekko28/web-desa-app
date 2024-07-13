@@ -52,10 +52,11 @@ class LPJBarangJasa extends Model
         return $this->hasMany(LPJBelanja::class, 'id_barang_jasa', 'id');
     }
 
-    public function user(): BelongsTo
+    public function TimPemeriksa(): BelongsTo
     {
-        return $this->belongsTo(User::class, 'user_id', 'id');
+        return $this->belongsTo(LPJTimPemeriksa::class, 'tim_pemeriksa', 'id');
     }
+
 
 
 

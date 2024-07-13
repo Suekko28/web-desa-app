@@ -67,7 +67,6 @@
 
                 </div>
                 <!-- End Page-content -->
-
                 @include('partials.footer')
             </div>
             <!-- end main content-->

@@ -82,7 +82,7 @@ class SirkulasiMelahirkanDataTable extends DataTable
                 'anak.NKK_keluarga as NKK_keluarga',
                 'anak.created_at as created_at',
                 'anak.updated_at as updated_at',
-                'users.nama as user_nama' // Ensure this column name matches your database
+                'users.nama as user_nama' 
             )
             ->join('users', 'users.id', '=', 'anak.user_id')
             ->orderBy('anak.created_at', 'desc');

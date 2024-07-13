@@ -36,9 +36,4 @@ class LPJBelanja extends Model
     public function LPJBarangJasa(): HasOne{
         return $this->hasOne(LPJBarangJasa::class,'id_barang_jasa','id');
     }  
-
-     public function user(): BelongsTo
-    {
-        return $this->belongsTo(User::class, 'user_id', 'id');
-    }
 }

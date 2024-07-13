@@ -65,7 +65,7 @@ class penduduk extends Model
 
     public function sirkulasiMeninggal(): HasOne
     {
-        return $this->Hasone(SirkulasiMeninggal::class, 'NIK_penduduk', 'id');
+        return $this->hasOne(SirkulasiMeninggal::class, 'NIK_penduduk', 'id');
     }
 
     public function sirkulasiPindah(): HasOne
