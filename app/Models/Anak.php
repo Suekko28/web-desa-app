@@ -36,8 +36,8 @@ class Anak extends Model
         return $this->belongsTo(Penduduk::class,'NKK','NKK_keluarga');
     }
 
-    // public function user(): BelongsTo
-    // {
-    //     return $this->belongsTo(User::class, 'user_id', 'id');
-    // }
+    public function user(): BelongsTo
+    {
+        return $this->belongsTo(User::class, 'user_id', 'id');
+    }
 }
