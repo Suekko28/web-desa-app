@@ -8,7 +8,6 @@ use App\Exports\SirkulasiMelahirkanExport;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\DataMelahirkanFormRequest;
 use App\Models\Penduduk;
-use App\Models\Anak;
 use App\Models\SirkulasiMelahirkan;
 use Illuminate\Http\Request;
 use Barryvdh\DomPDF\Facade\Pdf;
@@ -54,7 +53,7 @@ class SirkulasiMelahirkanController extends Controller
         $data = $request->all();
         $data['user_id'] = $userId;
 
-        Anak::create($data);
+        SirkulasiMelahirkan::create($data);
 
         return redirect()->route('sirkulasi-melahirkan.index')->with('success', 'Data berhasil ditambahkan');
     }
@@ -73,7 +72,7 @@ class SirkulasiMelahirkanController extends Controller
      */
     public function edit(string $id)
     {
-        $data = Anak::find($id);
+        $data = SirkulasiMelahirkan::find($id);
         $nkk = $data->NKK_keluarga;
         $data_keluarga = Penduduk::where('NKK', '=', $nkk)->first();
         $data_penduduk = Penduduk::all();
@@ -95,7 +94,7 @@ class SirkulasiMelahirkanController extends Controller
         $data = $request->all();
         $data['user_id'] = $userId;
 
-        $anak = Anak::find($id);
+        $anak = SirkulasiMelahirkan::find($id);
         $anak->update($data);
         
         return redirect()->route('sirkulasi-melahirkan.index')->with('success', 'Data berhasil diupdate');
@@ -106,7 +105,7 @@ class SirkulasiMelahirkanController extends Controller
      */
     public function destroy(string $id)
     {
-        $user = Anak::find($id)->delete();
+        $user = SirkulasiMelahirkan::find($id)->delete();
         return redirect()->route('sirkulasi-melahirkan.index')->with('success', 'Data berhasil dihapus');
 
     }
@@ -114,7 +113,7 @@ class SirkulasiMelahirkanController extends Controller
     public function pdfTemplate(SirkulasiMelahirkanDatatable $dataTable)
     {
         // Retrieve the data directly from the query builder
-        $data = $dataTable->query(new Anak())->get();
+        $data = $dataTable->query(new SirkulasiMelahirkan())->get();
 
         // Send data to the view for PDF rendering
         $html = view('sirkulasi-melahirkan.generate-pdf', ['data' => $data])->render();

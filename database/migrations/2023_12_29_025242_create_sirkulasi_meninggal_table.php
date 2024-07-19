@@ -17,7 +17,8 @@ return new class extends Migration
             $table->string('nama_penduduk')->nullable();
             $table->date('tgl_meninggal');
             $table->string('sebab');
-            $table->integer('user_id');
+            $table->unsignedBigInteger('user_id');
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
             $table->timestamps();
         });
     }

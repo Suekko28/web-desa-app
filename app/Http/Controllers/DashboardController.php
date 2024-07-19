@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Controllers\Controller;
 use App\Models\Anak;
 use App\Models\Penduduk;
+use App\Models\SirkulasiMelahirkan;
 use App\Models\SirkulasiPendatang;
 use App\Models\SirkulasiPindah;
 use App\Models\SirkulasiMeninggal;
@@ -71,7 +72,7 @@ class DashboardController extends Controller
         $pekerjaan_guru = Penduduk::where('pekerjaan', '4');
         $pekerjaan_petani = Penduduk::where('pekerjaan', '5');
 
-        $kelahiran = Anak::count();
+        $kelahiran = SirkulasiMelahirkan::count();
         $meninggal = SirkulasiMeninggal::count();
 
         $pindah_masuk = SirkulasiPendatang::count();

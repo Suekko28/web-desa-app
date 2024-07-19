@@ -2,7 +2,7 @@
 
 namespace App\DataTables;
 
-use App\Models\Anak;
+use App\Models\SirkulasiMelahirkan;
 use Illuminate\Database\Eloquent\Builder as QueryBuilder;
 use Illuminate\Support\Carbon;
 use Yajra\DataTables\EloquentDataTable;
@@ -52,10 +52,10 @@ class SirkulasiMelahirkanDataTable extends DataTable
                 if (request()->has('search') && !empty(request()->get('search')['value'])) {
                     $search = request()->get('search')['value'];
                     $query->where(function ($q) use ($search) {
-                        $q->whereRaw('LOWER(anak.nama) LIKE ?', ["%{$search}%"])
-                            ->orWhereRaw('LOWER(anak.tmpt_lahir) LIKE ?', ["%{$search}%"])
-                            ->orWhereRaw('LOWER(anak.tgl_lahir) LIKE ?', ["%{$search}%"])
-                            ->orWhereRaw('LOWER(anak.NKK_keluarga) LIKE ?', ["%{$search}%"]);
+                        $q->whereRaw('LOWER(sirkulasi_melahirkans.nama) LIKE ?', ["%{$search}%"])
+                            ->orWhereRaw('LOWER(sirkulasi_melahirkans.tmpt_lahir) LIKE ?', ["%{$search}%"])
+                            ->orWhereRaw('LOWER(sirkulasi_melahirkans.tgl_lahir) LIKE ?', ["%{$search}%"])
+                            ->orWhereRaw('LOWER(sirkulasi_melahirkans.NKK_keluarga) LIKE ?', ["%{$search}%"]);
                     });
                 }
             })
@@ -67,25 +67,25 @@ class SirkulasiMelahirkanDataTable extends DataTable
     /**
      * Get query source of dataTable.
      *
-     * @param \App\Models\Anak $model
+     * @param \App\Models\SirkulasiMelahirkan $model
      * @return \Illuminate\Database\Eloquent\Builder
      */
-    public function query(Anak $model): QueryBuilder
+    public function query(SirkulasiMelahirkan $model): QueryBuilder
     {
         return $model->newQuery()
             ->select(
-                'anak.id as id',
-                'anak.nama as nama',
-                'anak.tmpt_lahir as tmpt_lahir',
-                'anak.tgl_lahir as tgl_lahir',
+                'sirkulasi_melahirkans.id as id',
+                'sirkulasi_melahirkans.nama as nama',
+                'sirkulasi_melahirkans.tmpt_lahir as tmpt_lahir',
+                'sirkulasi_melahirkans.tgl_lahir as tgl_lahir',
                 \DB::raw('CASE WHEN jenis_kelamin = 1 THEN "Laki-Laki" ELSE "Perempuan" END AS jenis_kelamin'),
-                'anak.NKK_keluarga as NKK_keluarga',
-                'anak.created_at as created_at',
-                'anak.updated_at as updated_at',
+                'sirkulasi_melahirkans.NKK_keluarga as NKK_keluarga',
+                'sirkulasi_melahirkans.created_at as created_at',
+                'sirkulasi_melahirkans.updated_at as updated_at',
                 'users.nama as user_nama' 
             )
-            ->join('users', 'users.id', '=', 'anak.user_id')
-            ->orderBy('anak.created_at', 'desc');
+            ->join('users', 'users.id', '=', 'sirkulasi_melahirkans.user_id')
+            ->orderBy('sirkulasi_melahirkans.created_at', 'desc');
     }
 
     /**

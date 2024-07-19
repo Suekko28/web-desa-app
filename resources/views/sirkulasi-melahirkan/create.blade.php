@@ -30,8 +30,6 @@
             <div class="container-fluid">
                 @include('layouts.message')
 
-                <!-- Small boxes (Stat box) -->
-
                 <form action="{{ route('sirkulasi-melahirkan.store') }}" method="POST" enctype="multipart/form-data">
                     @csrf
                     <input type="hidden" id="user_id" name="user_id" value="{{ auth()->user()->id }}">
@@ -78,19 +76,17 @@
                                                 </button>
                                                 <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton"
                                                     id="keluargaDropdown">
-                                                    <input type="text" id="keluargaSearchInput" name="NKK_keluarga"
+                                                    <input type="text" id="keluargaSearchInput" name="penduduk_id"
                                                         class="form-control" placeholder="Cari Keluarga...">
                                                     @foreach ($data as $i)
                                                         <li>
-                                                            <div class="dropdown-item" value="{{ $i->NKK }}">
+                                                            <div class="dropdown-item" data-value="{{ $i->id }}">
                                                                 {{ $i->NKK . ' - ' . $i->nama }}</div>
                                                         </li>
                                                     @endforeach
                                                 </ul>
                                             </div>
                                         </div>
-
-
                                     </div>
                                 </div>
 
@@ -98,11 +94,10 @@
                                     <button type="submit" class="btn btn-primary ml-3">Simpan</button>
                                     <a href="{{ route('sirkulasi-melahirkan.index') }}" class="btn btn-danger">Batal</a>
                                 </div>
-
-
-                                <!-- /.card-body -->
+                            </div>
+                        </div>
+                    </div>
                 </form>
-                <!-- /.row (main row) -->
             </div>
         </section>
     </main>
@@ -164,7 +159,7 @@
         var keluargaOptions = document.querySelectorAll("#keluargaDropdown .dropdown-item");
         keluargaOptions.forEach(function(option) {
             option.addEventListener("click", function() {
-                selectKeluarga(option.getAttribute("value"), option.textContent);
+                selectKeluarga(option.getAttribute("data-value"), option.textContent);
             });
         });
 
@@ -172,7 +167,7 @@
         function selectKeluarga(value, label) {
             var dropdownButton = document.querySelector(".dropdown button[name='keluarga']");
             dropdownButton.innerHTML = label;
-            var inputVal = document.querySelector("[name='NKK_keluarga']");
+            var inputVal = document.querySelector("[name='penduduk_id']");
             inputVal.value = value;
         }
     </script>

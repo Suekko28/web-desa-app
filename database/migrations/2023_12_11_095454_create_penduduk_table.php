@@ -11,7 +11,6 @@ return new class extends Migration
      */
     public function up(): void
     {
-
         Schema::create('penduduk', function (Blueprint $table) {
             $table->id();
             $table->date('tgl_pindah_masuk');
@@ -22,7 +21,7 @@ return new class extends Migration
             $table->string('tempat_lahir');
             $table->date('tgl_lahir');
             $table->integer('usia');
-            $table->integer('jenis_kelamin');// laki-laki,perempuan
+            $table->integer('jenis_kelamin'); // laki-laki,perempuan
             $table->integer('agama'); //islam,kristen protestan,kristen katholik,hindu,budha,konghucu
             $table->integer('kewarganegaraan'); //WNI,WNA,Kedua Kewarganegaraan
             $table->integer('status_pernikahan'); //belum kawin,kawin,cerai hidup,cerai mati
@@ -30,13 +29,14 @@ return new class extends Migration
             $table->string('rt');
             $table->string('rw');
             $table->string('alamat');
-            $table->integer('pendidikan');//tidak sekolah,SD,SLTP,SLTA,diploma 1,diploma 2,diploma 3,diploma 4
+            $table->integer('pendidikan'); //tidak sekolah,SD,SLTP,SLTA,diploma 1,diploma 2,diploma 3,diploma 4
             $table->integer('pekerjaan');
             $table->integer('kepemilikan_bpjs');
             $table->integer('kepemilikan_e_ktp');
             $table->string('nama_ibu');
             $table->string('nama_ayah');
-            $table->integer('user_id');
+            $table->unsignedBigInteger('user_id');
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
             $table->timestamps();
         });
     }

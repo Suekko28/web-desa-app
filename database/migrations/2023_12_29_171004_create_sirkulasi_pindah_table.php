@@ -18,7 +18,8 @@ return new class extends Migration
             $table->string('tgl_pindah');
             $table->string('alasan');
             $table->string('alamat_pindah');
-            $table->integer('user_id');
+            $table->unsignedBigInteger('user_id');
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
             $table->timestamps();
         });
     }

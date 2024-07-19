@@ -58,9 +58,9 @@ class penduduk extends Model
         return $this->belongsTo(User::class, 'user_id', 'id');
     }
 
-    public function anak(): HasMany
+    public function SirkulasiMelahirkan(): HasMany
     {
-        return $this->hasMany(Anak::class, 'NKK_keluarga', 'NKK');
+        return $this->hasMany(SirkulasiMelahirkan::class, 'NKK_keluarga', 'NKK');
     }
 
     public function sirkulasiMeninggal(): HasOne

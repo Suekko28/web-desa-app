@@ -2,7 +2,7 @@
 
 namespace App\Exports;
 
-use App\Models\Anak;
+use App\Models\SirkulasiMelahirkan;
 use Illuminate\Http\Request;
 use Maatwebsite\Excel\Concerns\FromCollection;
 use Maatwebsite\Excel\Concerns\WithHeadings;
@@ -25,7 +25,7 @@ class SirkulasiMelahirkanExport implements FromCollection, WithHeadings, WithMap
      */
     public function collection()
     {
-        $query = Anak::query()->select(
+        $query = SirkulasiMelahirkan::query()->select(
             'nama',
             'tmpt_lahir',
             'tgl_lahir',

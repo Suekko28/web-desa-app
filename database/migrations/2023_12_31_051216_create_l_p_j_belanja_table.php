@@ -19,7 +19,8 @@ return new class extends Migration
             $table->integer('volume_qty');
             $table->string('satuan');
             $table->integer('harga');
-            $table->integer('user_id');
+            $table->unsignedBigInteger('user_id');
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
             $table->timestamps();
         });
     }
