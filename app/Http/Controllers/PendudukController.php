@@ -128,7 +128,7 @@ class PendudukController extends Controller
         return redirect()->route('penduduk.index')->with('success', 'Data Berhasil Di Import');
     }
 
-    // public function pdfTemplate(PendudukFullDataTable $dataTable, Request $request)
+ 
     // {
 
     //     $query = $dataTable->query(new Penduduk());
