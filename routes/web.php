@@ -23,18 +23,19 @@ Auth::routes([
 ]);
 
  // Penduduk API Routes
- Route::get('/penduduk', [PendudukApiController::class, 'index']);
- Route::post('/penduduk', [PendudukApiController::class, 'store']);
- Route::get('/penduduk/{id}', [PendudukApiController::class, 'show']);
- Route::put('/penduduk/{id}', [PendudukApiController::class, 'update']);
- Route::delete('/penduduk/{id}', [PendudukApiController::class, 'destroy']);
+//  Route::resource('api/penduduk', \App\Http\Controllers\Api\PendudukApiController::class);
+ Route::get('api/penduduk', [\App\Http\Controllers\Api\PendudukApiController::class, 'index']);
+ Route::post('api/penduduk', [\App\Http\Controllers\Api\PendudukApiController::class, 'store']);
+ Route::get('api/penduduk/{id}', [\App\Http\Controllers\Api\PendudukApiController::class, 'show']);
+ Route::put('api/penduduk/{id}', [\App\Http\Controllers\Api\PendudukApiController::class, 'update']);
+ Route::delete('api/penduduk/{id}', [\App\Http\Controllers\Api\PendudukApiController::class, 'destroy']);
 
 
 Route::middleware(['auth'])->group(function () {
 
-   
+
     // Dashboard Routes
-    // Route::get('/', [\App\Http\Controllers\DashboardController::class, 'index'])->name('index');
+    Route::get('/', [\App\Http\Controllers\DashboardController::class, 'index'])->name('index');
     Route::get('/dashboard', [\App\Http\Controllers\DashboardController::class, 'index'])->name('index');
 
     // Pemerintahan Desa Routes
