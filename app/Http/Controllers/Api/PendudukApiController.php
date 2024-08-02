@@ -62,7 +62,7 @@ class PendudukApiController extends Controller
      */
     public function show(string $id)
     {
-        $data = penduduk::findOrFail($id);
+        $data = penduduk::find($id);
         if ($data) {
             return response()->json([
                 'status' => true,
@@ -73,7 +73,7 @@ class PendudukApiController extends Controller
             return response()->json([
                 'status' => false,
                 'message' => "Data tidak ditemukan"
-            ]);
+            ], 404);
         }
     }
 
@@ -91,16 +91,16 @@ class PendudukApiController extends Controller
     public function destroy(string $id)
     {
         $data = Penduduk::find($id);
-        
+
         if (empty($data)) {
             return response()->json([
                 'status' => false,
                 'message' => 'Data Tidak Ditemukan',
             ], 404);
         }
-        
+
         $data->delete();
-        
+
         return response()->json([
             'status' => true,
             'message' => 'Berhasil delete data',
