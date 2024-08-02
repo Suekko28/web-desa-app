@@ -13,12 +13,12 @@ return new class extends Migration
     {
         Schema::create('sirkulasi_pendatang', function (Blueprint $table) {
             $table->id();
-            $table->string('NIK');
-            $table->string('nama');
+            $table->string('NIK', 25);
+            $table->string('nama', 50);
             $table->integer('jenis_kelamin');
             $table->date('tgl_datang');
-            $table->string('alamat_sblm');
-            $table->string('alamat_skrg');
+            $table->text('alamat_sblm');
+            $table->text('alamat_skrg');
             $table->unsignedBigInteger('user_id');
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
             $table->timestamps();

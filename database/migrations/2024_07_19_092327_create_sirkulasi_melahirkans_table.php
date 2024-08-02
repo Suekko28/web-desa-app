@@ -13,10 +13,10 @@ return new class extends Migration
     {
         Schema::create('sirkulasi_melahirkans', function (Blueprint $table) {
             $table->id();
-            $table->string("nama");
-            $table->string("tmpt_lahir");
+            $table->string("nama", 50);
+            $table->string("tmpt_lahir", 25);
             $table->date("tgl_lahir");
-            $table->string("jenis_kelamin");
+            $table->integer("jenis_kelamin");
             $table->string("NKK_keluarga");
             $table->unsignedBigInteger('user_id');
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');

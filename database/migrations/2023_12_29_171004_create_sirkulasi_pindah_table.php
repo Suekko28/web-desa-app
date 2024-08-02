@@ -14,10 +14,10 @@ return new class extends Migration
         Schema::create('sirkulasi_pindah', function (Blueprint $table) {
             $table->id();
             $table->string('NIK');
-            $table->string('nama_penduduk')->nullable();
-            $table->string('tgl_pindah');
-            $table->string('alasan');
-            $table->string('alamat_pindah');
+            $table->string('nama_penduduk', 50)->nullable();
+            $table->date('tgl_pindah');
+            $table->text('alasan');
+            $table->text('alamat_pindah');
             $table->unsignedBigInteger('user_id');
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
             $table->timestamps();
