@@ -32,6 +32,7 @@ Auth::routes([
 
 
 Route::middleware(['auth'])->group(function () {
+// Rute API tanpa autentikasi
 
 
     // Dashboard Routes

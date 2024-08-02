@@ -29,32 +29,29 @@ class PendudukApiController extends Controller
      */
     public function store(PendudukFormRequest $request)
     {
-        // Validasi data
+        // Retrieve validated data
         $validatedData = $request->validated();
 
-        // Menghitung usia berdasarkan tanggal lahir
+        // Create a new penduduk record and fill it with validated data
+        $dataPenduduk = new penduduk();
+        $dataPenduduk->fill($validatedData);
+
         $tglLahir = Carbon::parse($request->tgl_lahir);
         $usia = $tglLahir->diffInYears(Carbon::now());
 
-        // Mendapatkan user ID
-        $userId = Auth::id();
+        $dataPenduduk['usia'] = $usia;
 
-        // Menambahkan usia dan user_id ke data yang sudah divalidasi
-        $validatedData['usia'] = $usia;
-        $validatedData['user_id'] = $userId;
+        // Save the penduduk record to the database
+        $dataPenduduk->save();
 
-        // Membuat instance baru dari model Penduduk dan mengisi dengan data yang sudah divalidasi
-        $penduduk = new Penduduk($validatedData);
-
-        // Menyimpan data
-        $penduduk->save();
-
-        // Mengembalikan respons JSON
+        // Return a success response
         return response()->json([
             'status' => true,
-            'message' => 'Sukses memasukkan data'
-        ], 200);
+            'message' => 'Data berhasil disimpan',
+            'data' => $dataPenduduk,
+        ], 201);
     }
+
 
 
     /**
