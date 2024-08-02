@@ -44,7 +44,7 @@
                                     <div class="col-sm-4">
                                         <label for="penduduk" class="col-form-label">Penduduk</label>
                                         <div class="dropdown">
-                                            <button class="form-control dropdown-toggle text-left" type="button" data-bs-toggle="dropdown" aria-expanded="false" name="penduduk">
+                                            <button style="overflow: hidden; text-overflow:ellipsis;" class="form-control dropdown-toggle text-left" type="button" data-bs-toggle="dropdown" aria-expanded="false" name="penduduk">
                                                 --Pilih Penduduk--
                                             </button>
                                             <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton" id="pendudukDropdown">

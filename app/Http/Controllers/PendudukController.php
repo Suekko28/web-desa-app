@@ -128,73 +128,7 @@ class PendudukController extends Controller
         return redirect()->route('penduduk.index')->with('success', 'Data Berhasil Di Import');
     }
 
- 
-    // {
 
-    //     $query = $dataTable->query(new Penduduk());
-    //     $request['agama'] = $request['GET_/penduduk?agama'];
-
-    //     $filters = [
-    //         'pendidikan',
-    //         'pekerjaan',
-    //         'kepemilikan_bpjs',
-    //         'kepemilikan_e_ktp',
-    //         'jenis_kelamin',
-    //         'status_pernikahan',
-    //         'agama',
-    //         'rt',
-    //         'rw',
-
-    //     ];
-    //     $agama = [];
-
-    //     foreach ($filters as $field) {
-    //         if ($request->has($field)) {
-    //             if ($request->get($field) !== null) {
-    //                 $query->where($field, '=', $request->get($field));
-
-    //             }
-    //         }
-    //     }
-
-
-    //     $mn = '0';
-    //     $mx = '999';
-    //     if ($request->has('usia_mn')) {
-    //         if ($request->get('usia_mn') != null) {
-    //             $mn = $request->get('usia_mn');
-    //             if ((int) $mn < 0) {
-    //                 $mn = '0';
-    //             }
-    //         }
-    //         $query = $query->where('usia', '>=', $mn);
-
-    //     }
-
-    //     if ($request->has('usia_mx')) {
-    //         if ($request->get('usia_mx') != null) {
-    //             $mx = $request->get('usia_mx');
-    //             if ((int) $mx > 999) {
-    //                 $mx = '999';
-    //             }
-    //         }
-    //         $query = $query->where('usia', '<=', $mx);
-
-    //     }
-
-
-    //     // Send data to the view for PDF rendering
-    //     $html = view('penduduk.generate-pdf', ['data' => $query->get()])->render();
-
-    //     // Adjust PDF options including setting paper to landscape
-    //     $pdf = PDF::loadHtml($html)->setPaper('f4', 'landscape');
-
-    //     return $pdf->stream('Penduduk.pdf');
-    // }
-
-    /**
-     * Remove the specified resource from storage.
-     */
     public function destroy(string $id)
     {
         $user = Penduduk::find($id)->delete();
