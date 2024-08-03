@@ -45,45 +45,45 @@
                                     <div class="col-sm-4">
                                         <label for="nip" class="col-form-label">NIP</label>
                                         <input type="text" class="form-control" id="NIP" name="NIP"
-                                            placeholder="Nomor Identitas Pemeriksa">
+                                            placeholder="Nomor Identitas Pemeriksa" value="{{old('NIP')}}">
                                     </div>
 
                                     <div class="col-sm-4">
                                         <label for="nama" class="col-form-label">Nama</label>
                                         <input type="text" class="form-control" id="nama" name="nama_ketua"
-                                            placeholder="Nama Lengkap">
+                                            placeholder="Nama Lengkap" value="{{old('nama_ketua')}}">
                                     </div>
 
                                     <div class="col-sm-4">
                                         <label for="jabatan" class="col-form-label">Jabatan</label>
                                         <div class="input-group">
                                             <input type="text" class="form-control" id="jabatan" name="jabatan_ketua"
-                                            placeholder="Jabatan">
+                                            placeholder="Jabatan" value="{{old('jabatan_ketua')}}">
                                         </div>
                                     </div>
 
                                     <div class="col-sm-4">
                                         <label for="tgl_pemeriksa" class="col-form-label">Tanggal Pemeriksa</label>
                                         <input type="date" class="form-control" id="tgl_pemeriksa" name="tgl_pemeriksa"
-                                            placeholder="">
+                                            placeholder="" value="{{old('tgl_pemeriksa')}}">
                                     </div>
 
                                     <div class="col-sm-4">
                                         <label for="nomor" class="col-form-label">Nomor</label>
                                         <input type="number" class="form-control" id="nomor" name="nomor"
-                                            placeholder="Nomor">
+                                            placeholder="Nomor" value="{{old('nomor')}}">
                                     </div>
 
                                     <div class="col-sm-4">
                                         <label for="tahun" class="col-form-label">Tahun</label>
                                         <input type="number" class="form-control" id="tahun" name="tahun"
-                                            placeholder="Tahun">
+                                            placeholder="Tahun" value="{{old('tahun')}}">
                                     </div>
 
                                     <div class="col-sm-12">
                                         <label for=" alamat" class="col-form-label">Alamat</label>
                                         <textarea type="text" class="form-control" id="alamat" name="alamat" rows="5"
-                                            placeholder="Alamat Lengkap (Jl / Kampung  No.Rumah)"></textarea>
+                                            placeholder="Alamat Lengkap (Jl / Kampung  No.Rumah)">{{old('alamat')}}</textarea>
                                     </div>
                                 </div>
                                 

@@ -42,39 +42,42 @@
                                     <div class="col-sm-6">
                                         <label for="lampiran" class="col-form-label">Lampiran</label>
                                         <input type="text" class="form-control" id="lampiran" name="lampiran"
-                                            placeholder="Masukkan Lampiran">
+                                            placeholder="Masukkan Lampiran" value="{{ old('lampiran') }}">
                                     </div>
 
                                     <div class="col-sm-6">
                                         <label for="perihal" class="col-form-label">Perihal</label>
                                         <input type="text" class="form-control" id="perihal" name="perihal"
-                                            placeholder="Masukkan Perihal">
+                                            placeholder="Masukkan Perihal" value="{{ old('perihal') }}">
                                     </div>
 
                                     <div class="col-sm-6">
                                         <label for="dana_desa" class="col-form-label"> Sumber Dana Desa</label>
                                         <input type="text" class="form-control" id="dana_desa" name="dana_desa"
-                                            placeholder="Masukkan Sumber Dana Desa">
+                                            placeholder="Masukkan Sumber Dana Desa" value="{{ old('dana_desa') }}">
                                     </div>
 
                                     <div class="col-sm-6">
                                         <label for="no_pesanan_brg" class="col-form-label">No. Pesanan Barang</label>
                                         <input type="text" class="form-control" id="no_pesanan_brg" name="no_pesanan_brg"
-                                            placeholder="001/PSB/PTPKD/15.2005/IV/2023">
+                                            placeholder="001/PSB/PTPKD/15.2005/IV/2023"
+                                            value="{{ old('no_pesanan_brg') }}">
                                     </div>
 
                                     <div class="col-sm-6">
                                         <label for="no_berita_acara_pemeriksaan" class="col-form-label">No. Berita Acara
                                             Pemeriksaan Barang (BAPB)</label>
                                         <input type="text" class="form-control" id="no_berita_acara_pemeriksaan"
-                                            name="no_berita_acara_pemeriksaan" placeholder="001/BAPB/PTPKD/15.2005/IV/2023">
+                                            name="no_berita_acara_pemeriksaan" placeholder="001/BAPB/PTPKD/15.2005/IV/2023"
+                                            value="{{ old('no_berita_acara_pemeriksaan') }}">
                                     </div>
 
                                     <div class="col-sm-6">
                                         <label for="no_berita_acara" class="col-form-label">No. Berita Acara Serah Terima
                                             Barang (BASTB)</label>
                                         <input type="text" class="form-control" id="no_berita_acara"
-                                            name="no_berita_acara" placeholder="001/BASTB/PTPKD/15.2005/IV/2023">
+                                            name="no_berita_acara" placeholder="001/BASTB/PTPKD/15.2005/IV/2023"
+                                            value="{{ old('no_berita_acara') }}">
                                     </div>
 
 
@@ -88,20 +91,20 @@
                                     <div class="col-sm-6">
                                         <label for="sk_tpk" class="col-form-label">SK TPK</label>
                                         <input type="text" class="form-control" id="sk_tpk" name="sk_tpk"
-                                            placeholder="Masukkan SK TPK">
+                                            placeholder="Masukkan SK TPK" value="{{old('sk_tpk')}}">
                                     </div>
 
                                     <div class="col-sm-6">
                                         <label for="nama_rincian_spp" class="col-form-label">Nama Rincian SPP</label>
                                         <input type="text" class="form-control" id="nama_rincian_spp"
-                                            name="nama_rincian_spp" placeholder="Belanja Alat Tulis Kantor dan Benda Pos">
+                                            name="nama_rincian_spp" placeholder="Belanja Alat Tulis Kantor dan Benda Pos" value="{{old('nama_rincian_spp')}}">
                                     </div>
 
                                     <div class="col-sm-6">
                                         <label for="uraian_kwitansi" class="col-form-label">Uraian Kwitansi Sesuai
                                             SISKEUDES</label>
                                         <input type="text" class="form-control" id="uraian_kwitansi"
-                                            name="uraian_kwitansi" placeholder="Belanja Alat Tulis Kantor dan Benda Pos">
+                                            name="uraian_kwitansi" placeholder="Belanja Alat Tulis Kantor dan Benda Pos" value="{{old('uraian_kwitansi')}}">
                                     </div>
 
 
@@ -109,44 +112,44 @@
                                     <div class="col-sm-6">
                                         <label for="tgl_pesanan" class="col-form-label">Tanggal Pesanan</label>
                                         <input type="date" class="form-control" id="tgl_pesanan" name="tgl_pesanan"
-                                            placeholder="">
+                                            placeholder="" value="{{old('tgl_pesanan')}}">
                                     </div>
 
                                     <div class="col-sm-6">
                                         <label for="jatuh_tempo" class="col-form-label">Jatuh Tempo</label>
                                         <input type="date" class="form-control" id="jatuh_tempo" name="jatuh_tempo"
-                                            placeholder="">
+                                            placeholder="" value="{{old('jatuh_tempo')}}">
                                     </div>
 
                                     <div class="col-sm-6">
                                         <label for="tgl_bast" class="col-form-label">Tanggal Bast</label>
                                         <input type="date" class="form-control" id="tgl_bast" name="tgl_bast"
-                                            placeholder="">
+                                            placeholder="" value="{{old('tgl_bast')}}">
                                     </div>
 
                                     <div class="col-sm-6">
                                         <label for="jatuh_pemeriksaan" class="col-form-label">Jatuh Pemeriksaan</label>
                                         <input type="date" class="form-control" id="jatuh_pemeriksaan"
-                                            name="jatuh_pemeriksaan" placeholder="">
+                                            name="jatuh_pemeriksaan" placeholder="" value="{{old('jatuh_pemeriksaan')}}">
                                     </div>
 
                                     <div class="col-sm-12">
                                         <label for="keterangan" class="col-form-label">Keterangan</label>
                                         <textarea type="text" class="form-control" id="keterangan" name="keterangan" rows="5"
-                                            placeholder="Barang-barang tersebut telah kami terima dengan baik"></textarea>
+                                            placeholder="Barang-barang tersebut telah kami terima dengan baik">{{old('keterangan')}}</textarea>
                                     </div>
 
 
                                     <div class="col-sm-6">
                                         <label for="nama_toko" class="col-form-label">Nama Toko</label>
                                         <input type="text" class="form-control" id="nama_toko" name="nama_toko"
-                                            placeholder="Nama Toko">
+                                            placeholder="Nama Toko" value="{{old('nama_toko')}}">
                                     </div>
 
                                     <div class="col-sm-6">
                                         <label for="pemilik_toko" class="col-form-label">Pemilik Toko</label>
                                         <input type="text" class="form-control" id="pemilik_toko" name="pemilik_toko"
-                                            placeholder="Nama Pemilik Toko">
+                                            placeholder="Nama Pemilik Toko" value="{{old('pemilik_toko')}}">
                                     </div>
 
                                     <div class="col-sm-12">
@@ -184,7 +187,7 @@
                                     <div class="col-sm-12">
                                         <label for="alamat" class="col-form-label">Alamat</label>
                                         <textarea type="text" class="form-control" id="alamat" name="alamat" rows="5"
-                                            placeholder="Masukkan Alamat Toko"></textarea>
+                                            placeholder="Masukkan Alamat Toko">{{old('alamat')}}</textarea>
                                     </div>
 
                                 </div>

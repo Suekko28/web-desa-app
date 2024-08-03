@@ -45,25 +45,25 @@
                                     <div class="col-sm-6">
                                         <label for="nama_barang" class="col-form-label">Nama Barang / Jasa</label>
                                         <input type="text" class="form-control" id="nama_barang" name="nama_barang"
-                                            placeholder="Buku/Pena/dll">
+                                            placeholder="Buku/Pena/dll" value="{{old('nama_barang')}}">
                                     </div>
 
                                     <div class="col-sm-6">
                                         <label for="volume_qty" class="col-form-label">Volume / QTY</label>
                                         <input type="number" class="form-control" id="volume_qty" name="volume_qty"
-                                            placeholder="50">
+                                            placeholder="50" value="{{old('volume_qty')}}">
                                     </div>
 
                                     <div class="col-sm-6">
                                         <label for="satuan" class="col-form-label">Satuan</label>
                                         <input type="text" class="form-control" id="satuan" name="satuan"
-                                            placeholder="Masukkan Nama Satuan">
+                                            placeholder="Masukkan Nama Satuan" value="{{old('satuan')}}">
                                     </div>
 
                                     <div class="col-sm-6">
                                         <label for="harga" class="col-form-label">Harga</label>
                                         <input type="number" class="form-control" id="harga" name="harga"
-                                            placeholder="Masukkan Harga">
+                                            placeholder="Masukkan Harga" value="{{old('harga')}}">
                                     </div>
 
                                 </div>

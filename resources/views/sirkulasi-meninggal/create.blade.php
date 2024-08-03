@@ -59,13 +59,13 @@
                                     <div class="col-sm-4">
                                         <label for="tgl_meninggal" class="col-form-label">Tanggal Meninggal</label>
                                         <input type="date" class="form-control" id="tgl_meninggal" name="tgl_meninggal"
-                                            placeholder="">
+                                            placeholder="" value="{{old('tgl_meninggal')}}">
                                     </div>
 
                                     <div class="col-sm-4">
                                         <label for="sebab" class="col-form-label">Sebab</label>
                                         <input type="text" class="form-control" id="sebab" name="sebab"
-                                            placeholder="Sebab Meninggal">
+                                            placeholder="Sebab Meninggal" value="{{old('sebab')}}">
                                     </div>
 
 

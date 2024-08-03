@@ -62,18 +62,18 @@
                                 <div class="col-sm-6">
                                     <label for="tgl_pindah" class="col-form-label">Tanggal Pindah</label>
                                     <input type="date" class="form-control" id="tgl_pindah" name="tgl_pindah"
-                                        placeholder="">
+                                        placeholder="" value="{{old('tgl_pindah')}}">
                                 </div>
 
                                 <div class="col-sm-12">
                                     <label for="alasan" class="col-form-label">Alasan</label>
-                                    <textarea type="text" class="form-control" id="alasan" name="alasan" rows="5" placeholder="Alasan Pindah"></textarea>
+                                    <textarea type="text" class="form-control" id="alasan" name="alasan" rows="5" placeholder="Alasan Pindah">{{old('alasan')}}</textarea>
                                 </div>
 
                                 <div class="col-sm-12">
                                     <label for="alamat_pindah" class="col-form-label">Alamat Pindah</label>
                                     <textarea type="text" class="form-control" id="alamat_pindah" name="alamat_pindah" rows="5"
-                                        placeholder="Alamat Lengkap (Jl / Kampung  No.Rumah)"></textarea>
+                                        placeholder="Alamat Lengkap (Jl / Kampung  No.Rumah)">{{old('alamat_pindah')}}</textarea>
                                 </div>
 
 

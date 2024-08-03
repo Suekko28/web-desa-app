@@ -44,40 +44,40 @@
                                     <div class="col-sm-6">
                                         <label for="nik" class="col-form-label">NIK</label>
                                         <input type="number" class="form-control" id="nik" name="NIK"
-                                            placeholder="Masukkan NIK">
+                                            placeholder="Masukkan NIK" value="{{old('nik')}}">
                                     </div>
 
                                     <div class="col-sm-6">
                                         <label for="nama" class="col-form-label">Nama Lengkap</label>
                                         <input type="text" class="form-control" id="nama" name="nama"
-                                            placeholder="Nama Pendatang">
+                                            placeholder="Nama Pendatang" value="{{old('nama')}}">
                                     </div>
 
                                     <div class="col-sm-6">
                                         <label for="jenis_kelamin" class="col-form-label">Jenis Kelamin</label>
-                                        <select class="form-control" name="jenis_kelamin" id="jenis_kelamin">
-                                            <option value="0">--Pilih Salah Satu--</option>
-                                            <option value="1">Laki-Laki</option>
-                                            <option value="2">Perempuan</option>
+                                        <select id="jenis_kelamin" name="jenis_kelamin" class="form-control" required>
+                                            <option value="" {{ old('jenis_kelamin') === '' ? 'selected' : '' }}>--Pilih Salah Satu--</option>
+                                            <option value="1" {{ old('jenis_kelamin') == '1' ? 'selected' : '' }}>Laki-Laki</option>
+                                            <option value="2" {{ old('jenis_kelamin') == '2' ? 'selected' : '' }}>Perempuan</option>
                                         </select>
                                     </div>
 
                                     <div class="col-sm-6">
                                         <label for="tgl_datang" class="col-form-label">Tanggal Datang</label>
                                         <input type="date" class="form-control" id="tgl_datang" name="tgl_datang"
-                                            placeholder="">
+                                            placeholder="" value="{{old('tgl_datang')}}">
                                     </div>
 
                                     <div class="col-sm-12">
                                         <label for="alamat_sblm" class="col-form-label">Alamat Sebelum</label>
                                         <textarea type="text" class="form-control" id="alamat_sblm" name="alamat_sblm" rows="5"
-                                            placeholder="Alamat Lengkap (Jl / Kampung  No.Rumah)"></textarea>
+                                            placeholder="Alamat Lengkap (Jl / Kampung  No.Rumah)">{{old('alamat_sblm')}}</textarea>
                                     </div>
 
                                     <div class="col-sm-12">
                                         <label for="alamat_skrng" class="col-form-label">Alamat Sekarang</label>
                                         <textarea type="text" class="form-control" id="alamat_skrg" name="alamat_skrg" rows="5"
-                                            placeholder="Alamat Lengkap (Jl / Kampung  No.Rumah)"></textarea>
+                                            placeholder="Alamat Lengkap (Jl / Kampung  No.Rumah)">{{old('alamat_skrg')}}</textarea>
                                     </div>
 
 

@@ -43,27 +43,27 @@
                                 <div class="col-sm-6">
                                     <label for="name" class="col-form-label">Nama</label>
                                     <input type="text" class="form-control" id="nama" name="nama"
-                                        placeholder="Nama Bayi">
+                                        placeholder="Nama Bayi" value="{{old('nama')}}">
                                 </div>
 
                                 <div class="col-sm-6">
                                     <label for="tmpt_lahir" class="col-form-label">Tempat Lahir</label>
                                     <input type="text" class="form-control" id="tmpt_lahir" name="tmpt_lahir"
-                                        placeholder="Tempat Lahir">
+                                        placeholder="Tempat Lahir" value="{{old('tmpt_lahir')}}">
                                 </div>
 
                                 <div class="col-sm-6">
                                     <label for="tgl_lahir" class="col-form-label">Tanggal Lahir</label>
                                     <input type="date" class="form-control" id="tgl_lahir" name="tgl_lahir"
-                                        placeholder="">
+                                        placeholder="" value="{{old('tgl_lahir')}}">
                                 </div>
 
                                 <div class="col-sm-6">
                                     <label for="jenis_kelamin" class="col-form-label">Jenis Kelamin</label>
                                     <select id="jenis_kelamin" name="jenis_kelamin" class="form-control" required>
-                                        <option value="" selected>--Pilih Salah Satu--</option>
-                                        <option value="1">Laki-Laki</option>
-                                        <option value="2">Perempuan</option>
+                                        <option value="" {{ old('jenis_kelamin') === '' ? 'selected' : '' }}>--Pilih Salah Satu--</option>
+                                        <option value="1" {{ old('jenis_kelamin') == '1' ? 'selected' : '' }}>Laki-Laki</option>
+                                        <option value="2" {{ old('jenis_kelamin') == '2' ? 'selected' : '' }}>Perempuan</option>
                                     </select>
                                 </div>
 

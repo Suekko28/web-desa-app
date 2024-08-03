@@ -43,13 +43,13 @@
                                         <label for="nama1" class="col-form-label">Tanggal Pindah
                                             Masuk</label>
                                         <input type="date" class="form-control" id="tgl_pindah_masuk"
-                                            name="tgl_pindah_masuk" placeholder="">
+                                            name="tgl_pindah_masuk" placeholder="" value="{{ old('tgl_pindah_masuk') }}">
                                     </div>
 
                                     <div class="col-sm-6">
                                         <label for="nama2" class="col-form-label">Tanggal Lapor</label>
                                         <input type="date" class="form-control" id="tgl_lapor" name="tgl_lapor"
-                                            placeholder="">
+                                            placeholder="" value="{{ old('tgl_lapor') }}">
                                     </div>
                                 </div>
 
@@ -63,31 +63,31 @@
                                     <div class="col-sm-4">
                                         <label for="nik" class="col-form-label">NIK</label>
                                         <input type="number" class="form-control" id="NIK" name="NIK"
-                                            placeholder="Nomor KTP">
+                                            placeholder="Nomor KTP" value="{{ old('NIK') }}">
                                     </div>
 
                                     <div class="col-sm-4">
                                         <label for="nkk" class="col-form-label">NKK</label>
                                         <input type="number" class="form-control" id="NKK" name="NKK"
-                                            placeholder="Nomor KK">
+                                            placeholder="Nomor KK"value="{{ old('NKK') }}">
                                     </div>
 
                                     <div class="col-sm-4">
                                         <label for="nama" class="col-form-label">Nama Lengkap</label>
                                         <input type="text" class="form-control" id="nama" name="nama"
-                                            placeholder="Nama Sesuai KTP">
+                                            placeholder="Nama Sesuai KTP" value="{{ old('nama') }}">
                                     </div>
 
                                     <div class="col-sm-4">
                                         <label for="tmpt_lhr" class="col-form-label">Tempat Lahir</label>
                                         <input type="text" class="form-control" id="nama1" name="tempat_lahir"
-                                            placeholder="Tempat Lahir">
+                                            placeholder="Tempat Lahir" value="{{ old('tempat_lahir') }}">
                                     </div>
 
                                     <div class="col-sm-4">
                                         <label for="tgl_lhr" class="col-form-label">Tanggal Lahir</label>
                                         <input type="date" class="form-control" id="tgl_lhr" name="tgl_lahir"
-                                            placeholder="">
+                                            placeholder="" value="{{ old('tgl_lahir') }}">
                                     </div>
 
                                     <div class="col-sm-4">
@@ -99,44 +99,64 @@
                                     <div class="col-sm-6">
                                         <label for="jenis_kelamin" class="col-form-label">Jenis Kelamin</label>
                                         <select class="form-control" name="jenis_kelamin" id="jenis_kelamin">
-                                            <option value="0">--Pilih Salah Satu--</option>
-                                            <option value="1">Laki-Laki</option>
-                                            <option value="2">Perempuan</option>
+                                            <option value="0" {{ old('jenis_kelamin') == '0' ? 'selected' : '' }}>
+                                                --Pilih Salah Satu--</option>
+                                            <option value="1" {{ old('jenis_kelamin') == '1' ? 'selected' : '' }}>
+                                                Laki-Laki</option>
+                                            <option value="2" {{ old('jenis_kelamin') == '2' ? 'selected' : '' }}>
+                                                Perempuan</option>
                                         </select>
                                     </div>
 
                                     <div class="col-sm-6">
                                         <label for="agama" class="col-form-label">Agama</label>
                                         <select class="form-control" name="agama" id="agama">
-                                            <option value="">--Pilih Salah Satu--</option>
-                                            <option value="1">Islam</option>
-                                            <option value="2">Kristen Protestan</option>
-                                            <option value="3">Kristen Katolik</option>
-                                            <option value="4">Hindu</option>
-                                            <option value="5">Buddha</option>
-                                            <option value="6">Khonghucu</option>
+                                            <option value="" {{ old('agama') == '' ? 'selected' : '' }}>--Pilih
+                                                Salah Satu--</option>
+                                            <option value="1" {{ old('agama') == '1' ? 'selected' : '' }}>Islam
+                                            </option>
+                                            <option value="2" {{ old('agama') == '2' ? 'selected' : '' }}>Kristen
+                                                Protestan</option>
+                                            <option value="3" {{ old('agama') == '3' ? 'selected' : '' }}>Kristen
+                                                Katolik</option>
+                                            <option value="4" {{ old('agama') == '4' ? 'selected' : '' }}>Hindu
+                                            </option>
+                                            <option value="5" {{ old('agama') == '5' ? 'selected' : '' }}>Buddha
+                                            </option>
+                                            <option value="6" {{ old('agama') == '6' ? 'selected' : '' }}>Khonghucu
+                                            </option>
                                         </select>
                                     </div>
 
                                     <div class="col-sm-6">
                                         <label for="warga_negara" class="col-form-label">Warga Negara</label>
                                         <select class="form-control" name="kewarganegaraan" id="warga_negara">
-                                            <option value="">--Pilih Salah Satu--</option>
-                                            <option value="1">WNI</option>
-                                            <option value="2">WNA</option>
-                                            <option value="3">Kedua Kewarganegaraan</option>
+                                            <option value="" {{ old('kewarganegaraan') == '' ? 'selected' : '' }}>
+                                                --Pilih Salah Satu--</option>
+                                            <option value="1" {{ old('kewarganegaraan') == '1' ? 'selected' : '' }}>
+                                                WNI</option>
+                                            <option value="2" {{ old('kewarganegaraan') == '2' ? 'selected' : '' }}>
+                                                WNA</option>
+                                            <option value="3" {{ old('kewarganegaraan') == '3' ? 'selected' : '' }}>
+                                                Kedua Kewarganegaraan</option>
                                         </select>
                                     </div>
 
                                     <div class="col-sm-6">
-                                        <label for="status_nikah" class="col-form-label">Status
-                                            Pernikahan</label>
+                                        <label for="status_nikah" class="col-form-label">Status Pernikahan</label>
                                         <select class="form-control" name="status_pernikahan" id="status_nikah">
-                                            <option value="">--Pilih Salah Satu--</option>
-                                            <option value="1">Belum Kawin</option>
-                                            <option value="2">Kawin</option>
-                                            <option value="3">Cerai Hidup</option>
-                                            <option value="4">Cerai Mati</option>
+                                            <option value="" {{ old('status_pernikahan') == '' ? 'selected' : '' }}>
+                                                --Pilih Salah Satu--</option>
+                                            <option value="1"
+                                                {{ old('status_pernikahan') == '1' ? 'selected' : '' }}>Belum Kawin
+                                            </option>
+                                            <option value="2"
+                                                {{ old('status_pernikahan') == '2' ? 'selected' : '' }}>Kawin</option>
+                                            <option value="3"
+                                                {{ old('status_pernikahan') == '3' ? 'selected' : '' }}>Cerai Hidup
+                                            </option>
+                                            <option value="4"
+                                                {{ old('status_pernikahan') == '4' ? 'selected' : '' }}>Cerai Mati</option>
                                         </select>
                                     </div>
                                 </div>
@@ -152,25 +172,25 @@
                                         <label for="dusun" class="col-form-label">
                                             Dusun</label>
                                         <input type="text" class="form-control" id="nama1" name="dusun"
-                                            placeholder="Dusun">
+                                            placeholder="Dusun" value="{{ old('dusun') }}">
                                     </div>
 
                                     <div class="col-sm-4">
                                         <label for="rt" class="col-form-label">RT</label>
                                         <input type="number" class="form-control" id="rt" name="rt"
-                                            placeholder="000">
+                                            placeholder="000" value="{{ old('rt') }}">
                                     </div>
 
                                     <div class="col-sm-4">
                                         <label for="rw" class="col-form-label">RW</label>
                                         <input type="number" class="form-control" id="rw" name="rw"
-                                            placeholder="000">
+                                            placeholder="000" value="{{ old('rw') }}">
                                     </div>
 
                                     <div class="col-sm-12">
                                         <label for="alamat" class="col-form-label">Alamat</label>
                                         <textarea type="text" class="form-control" id="alamat" name="alamat" rows="5"
-                                            placeholder="Alamat Lengkap (Jl / Kampung  No.Rumah)"></textarea>
+                                            placeholder="Alamat Lengkap (Jl / Kampung  No.Rumah)">{{old('alamat')}}</textarea>
                                     </div>
                                 </div>
                             </div>
@@ -181,85 +201,121 @@
 
                             <div class="form-group">
                                 <div class="row">
-
-
                                     <div class="col-sm-6">
-                                        <label for="pendidikan" class="col-form-label">
-                                            Pendidikan</label>
+                                        <label for="pendidikan" class="col-form-label">Pendidikan</label>
                                         <select class="form-control" name="pendidikan" id="pendidikan">
-                                            <option value="" selected>--Pilih Salah Satu--</option>
-                                            <option value="1">Belum Sekolah</option>
-                                            <option value="2">Tamat SD</option>
-                                            <option value="3">Belum Tamat SD</option>
-                                            <option value="4">Akademi</option>
-                                            <option value="5">SD Sederajat</option>
-                                            <option value="6">SLTP Sederajat</option>
-                                            <option value="7">SLTA Sederajat</option>
-                                            <option value="8">Diploma I</option>
-                                            <option value="9">Diploma II</option>
-                                            <option value="10">Diploma III</option>
-                                            <option value="11">Diploma IV</option>
-                                            <option value="12">Stara I</option>
-                                            <option value="13">Stara II</option>
-                                            <option value="14">Stara III</option>
+                                            <option value="" {{ old('pendidikan') == '' ? 'selected' : '' }}>--Pilih
+                                                Salah Satu--</option>
+                                            <option value="1" {{ old('pendidikan') == '1' ? 'selected' : '' }}>Belum
+                                                Sekolah</option>
+                                            <option value="2" {{ old('pendidikan') == '2' ? 'selected' : '' }}>Tamat
+                                                SD</option>
+                                            <option value="3" {{ old('pendidikan') == '3' ? 'selected' : '' }}>Belum
+                                                Tamat SD</option>
+                                            <option value="4" {{ old('pendidikan') == '4' ? 'selected' : '' }}>
+                                                Akademi</option>
+                                            <option value="5" {{ old('pendidikan') == '5' ? 'selected' : '' }}>SD
+                                                Sederajat</option>
+                                            <option value="6" {{ old('pendidikan') == '6' ? 'selected' : '' }}>SLTP
+                                                Sederajat</option>
+                                            <option value="7" {{ old('pendidikan') == '7' ? 'selected' : '' }}>SLTA
+                                                Sederajat</option>
+                                            <option value="8" {{ old('pendidikan') == '8' ? 'selected' : '' }}>
+                                                Diploma I</option>
+                                            <option value="9" {{ old('pendidikan') == '9' ? 'selected' : '' }}>
+                                                Diploma II</option>
+                                            <option value="10" {{ old('pendidikan') == '10' ? 'selected' : '' }}>
+                                                Diploma III</option>
+                                            <option value="11" {{ old('pendidikan') == '11' ? 'selected' : '' }}>
+                                                Diploma IV</option>
+                                            <option value="12" {{ old('pendidikan') == '12' ? 'selected' : '' }}>Stara
+                                                I</option>
+                                            <option value="13" {{ old('pendidikan') == '13' ? 'selected' : '' }}>Stara
+                                                II</option>
+                                            <option value="14" {{ old('pendidikan') == '14' ? 'selected' : '' }}>Stara
+                                                III</option>
                                         </select>
-
                                     </div>
+
 
                                     <div class="col-sm-6">
-                                        <label for="pekerjaan" class="col-form-label">
-                                            Pekerjaan</label>
-                                        <select class="form-control" class="pekerjaan" name="pekerjaan" id="pekerjaan">
-                                            <option value="">--Pilih Salah Satu--</option>
-                                            <option value="1">Buruh Harian Lepas</option>
-                                            <option value="2">Belum Bekerja</option>
-                                            <option value="3">Pengrajin Logam</option>
-                                            <option value="4">Wiraswasta</option>
-                                            <option value="5">Guru</option>
-                                            <option value="6">Mengurus Rumah Tangga</option>
-                                            <option value="7">Pegawai Negri Sipil</option>
-                                            <option value="8">Tentara Nasional Indonesia</option>
-                                            <option value="9">Guru ngaji</option>
-                                            <option value="10">Wirausaha</option>
-                                            <option value="11">Penjahit</option>
-                                            <option value="12">Pensiun PNS</option>
-                                            <option value="13">Pemulung</option>
-                                            <option value="14">Buruh</option>
-                                            <option value="15">Linmas wilayah</option>
-                                            <option value="16">Driver</option>
-                                            <option value="17">Petani</option>
-                                            <option value="18">Amil</option>
-                                            <option value="19">Service</option>
+                                        <label for="pekerjaan" class="col-form-label">Pekerjaan</label>
+                                        <select class="form-control" name="pekerjaan" id="pekerjaan">
+                                            <option value="" {{ old('pekerjaan') == '' ? 'selected' : '' }}>--Pilih
+                                                Salah Satu--</option>
+                                            <option value="1" {{ old('pekerjaan') == '1' ? 'selected' : '' }}>Buruh
+                                                Harian Lepas</option>
+                                            <option value="2" {{ old('pekerjaan') == '2' ? 'selected' : '' }}>Belum
+                                                Bekerja</option>
+                                            <option value="3" {{ old('pekerjaan') == '3' ? 'selected' : '' }}>
+                                                Pengrajin Logam</option>
+                                            <option value="4" {{ old('pekerjaan') == '4' ? 'selected' : '' }}>
+                                                Wiraswasta</option>
+                                            <option value="5" {{ old('pekerjaan') == '5' ? 'selected' : '' }}>Guru
+                                            </option>
+                                            <option value="6" {{ old('pekerjaan') == '6' ? 'selected' : '' }}>
+                                                Mengurus Rumah Tangga</option>
+                                            <option value="7" {{ old('pekerjaan') == '7' ? 'selected' : '' }}>Pegawai
+                                                Negri Sipil</option>
+                                            <option value="8" {{ old('pekerjaan') == '8' ? 'selected' : '' }}>Tentara
+                                                Nasional Indonesia</option>
+                                            <option value="9" {{ old('pekerjaan') == '9' ? 'selected' : '' }}>Guru
+                                                ngaji</option>
+                                            <option value="10" {{ old('pekerjaan') == '10' ? 'selected' : '' }}>
+                                                Wirausaha</option>
+                                            <option value="11" {{ old('pekerjaan') == '11' ? 'selected' : '' }}>
+                                                Penjahit</option>
+                                            <option value="12" {{ old('pekerjaan') == '12' ? 'selected' : '' }}>
+                                                Pensiun PNS</option>
+                                            <option value="13" {{ old('pekerjaan') == '13' ? 'selected' : '' }}>
+                                                Pemulung</option>
+                                            <option value="14" {{ old('pekerjaan') == '14' ? 'selected' : '' }}>Buruh
+                                            </option>
+                                            <option value="15" {{ old('pekerjaan') == '15' ? 'selected' : '' }}>Linmas
+                                                wilayah</option>
+                                            <option value="16" {{ old('pekerjaan') == '16' ? 'selected' : '' }}>Driver
+                                            </option>
+                                            <option value="17" {{ old('pekerjaan') == '17' ? 'selected' : '' }}>Petani
+                                            </option>
+                                            <option value="18" {{ old('pekerjaan') == '18' ? 'selected' : '' }}>Amil
+                                            </option>
+                                            <option value="19" {{ old('pekerjaan') == '19' ? 'selected' : '' }}>
+                                                Service</option>
                                         </select>
-
                                     </div>
+
 
                                     <div class="col-sm-6">
-                                        <label for="bpjs" class="col-form-label">
-                                            Kepemilikan BPJS</label>
-                                        <select class="form-control" class="bpjs" name="kepemilikan_bpjs"
-                                            id="bpjs">
-                                            <option value="">--Pilih Salah Satu--</option>
-                                            <option value="1">PPU</option>
-                                            <option value="2">PBPU</option>
-                                            <option value="3">PD Pemda</option>
-                                            <option value="4">Bukan Pekerja</option>
-                                            <option value="5">PBI JK</option>
-                                            <option value="6">Tidak Ada</option>
-
+                                        <label for="bpjs" class="col-form-label">Kepemilikan BPJS</label>
+                                        <select class="form-control" name="kepemilikan_bpjs" id="bpjs">
+                                            <option value="" {{ old('kepemilikan_bpjs') == '' ? 'selected' : '' }}>
+                                                --Pilih Salah Satu--</option>
+                                            <option value="1" {{ old('kepemilikan_bpjs') == '1' ? 'selected' : '' }}>
+                                                PPU</option>
+                                            <option value="2" {{ old('kepemilikan_bpjs') == '2' ? 'selected' : '' }}>
+                                                PBPU</option>
+                                            <option value="3" {{ old('kepemilikan_bpjs') == '3' ? 'selected' : '' }}>
+                                                PD Pemda</option>
+                                            <option value="4" {{ old('kepemilikan_bpjs') == '4' ? 'selected' : '' }}>
+                                                Bukan Pekerja</option>
+                                            <option value="5" {{ old('kepemilikan_bpjs') == '5' ? 'selected' : '' }}>
+                                                PBI JK</option>
+                                            <option value="6" {{ old('kepemilikan_bpjs') == '6' ? 'selected' : '' }}>
+                                                Tidak Ada</option>
                                         </select>
                                     </div>
+
 
                                     <div class="col-sm-6">
-                                        <label for="e_ktp" class="col-form-label">
-                                            Kepemilikan E-KTP</label>
-                                        <select class="form-control" class="e_ktp" name="kepemilikan_e_ktp"
-                                            id="e_ktp">
-                                            <option value="">--Pilih Salah Satu--</option>
-                                            <option value="1">Ada</option>
-                                            <option value="2">Tidak Ada</option>
+                                        <label for="e_ktp" class="col-form-label">Kepemilikan E-KTP</label>
+                                        <select class="form-control" name="kepemilikan_e_ktp" id="e_ktp">
+                                            <option value="" {{ old('kepemilikan_e_ktp') === '' ? 'selected' : '' }}>--Pilih Salah Satu--</option>
+                                            <option value="1" {{ old('kepemilikan_e_ktp') == '1' ? 'selected' : '' }}>Ada</option>
+                                            <option value="2" {{ old('kepemilikan_e_ktp') == '2' ? 'selected' : '' }}>Tidak Ada</option>
                                         </select>
                                     </div>
+                                    
+
                                 </div>
                             </div>
 
@@ -272,13 +328,13 @@
                                     <div class="col-sm-6">
                                         <label for="nama_ibu" class="col-form-label">Nama Ibu</label>
                                         <input type="text" class="form-control" id="nama_ibu" name="nama_ibu"
-                                            placeholder="Nama Ibu">
+                                            placeholder="Nama Ibu" value="{{ old('nama_ibu') }}">
                                     </div>
 
                                     <div class="col-sm-6">
                                         <label for="nama_ayah" class="col-form-label">Nama Ayah</label>
                                         <input type="text" class="form-control" id="nama_ayah" name="nama_ayah"
-                                            placeholder="Nama Ayah">
+                                            placeholder="Nama Ayah" value="{{ old('nama_ayah') }}">
                                     </div>
                                 </div>
                             </div>

@@ -49,57 +49,63 @@
                                     <div class="col-sm-4">
                                         <label for="name" class="col-form-label">Nama Lengkap</label>
                                         <input type="text" class="form-control" id="nama" name="nama"
-                                            placeholder="Nama Sesuai KTP">
+                                            placeholder="Nama Sesuai KTP" value="{{ old('nama') }}">
                                     </div>
 
                                     <div class="col-sm-4">
                                         <label for="jabatan" class="col-form-label">Jabatan</label>
                                         <input type="text" class="form-control" id="jabatan" name="jabatan"
-                                            placeholder="Jabatan">
+                                            placeholder="Jabatan" value="{{ old('jabatan') }}">
                                     </div>
 
                                     <div class="col-sm-4">
                                         <label for="tmpt_lahir" class="col-form-label">Tempat Lahir</label>
                                         <input type="text" class="form-control" id="tmpt_lahir" name="tmpt_lahir"
-                                            placeholder="Tempat Lahir">
+                                            placeholder="Tempat Lahir" value="{{ old('tmpt_lahir') }}">
                                     </div>
 
                                     <div class="col-sm-4">
                                         <label for="tgl_lahir" class="col-form-label">Tanggal Lahir</label>
                                         <input type="date" class="form-control" id="tgl_lahir" name="tgl_lahir"
-                                            placeholder="">
+                                            placeholder="" value="{{ old('tgl_lahir') }}">
                                     </div>
 
                                     <div class="col-sm-4">
                                         <label for="jenis_kelamin" class="col-form-label">Jenis Kelamin</label>
                                         <select id="jenis_kelamin" name="jenis_kelamin" class="form-control" required>
-                                            <option value="" selected>--Pilih Salah Satu--</option>
-                                            <option value="1">Laki-Laki</option>
-                                            <option value="2">Perempuan</option>
+                                            <option value="" {{ old('jenis_kelamin') === '' ? 'selected' : '' }}>
+                                                --Pilih Salah Satu--</option>
+                                            <option value="1" {{ old('jenis_kelamin') == '1' ? 'selected' : '' }}>
+                                                Laki-Laki</option>
+                                            <option value="2" {{ old('jenis_kelamin') == '2' ? 'selected' : '' }}>
+                                                Perempuan</option>
                                         </select>
                                     </div>
 
                                     <div class="col-sm-4">
                                         <label for="no_telepon" class="col-form-label">Nomor Telepon</label>
                                         <input type="number" class="form-control" id="no_telepon" name="no_telepon"
-                                            placeholder="Nomor Telepon">
+                                            placeholder="Nomor Telepon" value="{{ old('no_telepon') }}">
                                     </div>
 
                                     <div class="col-sm-4">
                                         <label for="no_sk" class="col-form-label">Nomor SK</label>
                                         <input type="text" class="form-control" id="no_sk" name="no_sk"
-                                            placeholder="Nomor SK">
+                                            placeholder="Nomor SK" value="{{ old('no_sk') }}">
                                     </div>
 
                                     <div class="col-sm-4">
                                         <label for="tgl_sk" class="col-form-label">Tanggal SK</label>
                                         <input type="date" class="form-control" id="tgl_sk" name="tgl_sk"
-                                            placeholder="">
+                                            placeholder="" value="{{ old('tgl_sk') }}">
                                     </div>
+
+
 
                                     <div class="col">
                                         <label for="alamat" class="col-form-label">Alamat</label>
-                                        <textarea rows="5" type="text" class="form-control" id="alamat" name="alamat" placeholder="Alamat Lengkap (Jl / Kampung  No.Rumah)"></textarea>
+                                        <textarea rows="5" type="text" class="form-control" id="alamat" name="alamat"
+                                            placeholder="Alamat Lengkap (Jl / Kampung  No.Rumah)">{{ old('alamat') }}</textarea>
                                     </div>
 
                                 </div>
