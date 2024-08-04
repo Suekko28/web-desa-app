@@ -54,13 +54,13 @@ class LPJBarangJasaController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(LPJBarangJasa $lPJKegiatan)
+    public function show(string $id)
     {
-        // $data=LPJBarangJasa::find($id);
+        $data = LPJBarangJasa::find($id);
 
-        // return view('lpj-barangjasa.view',[
-        //     "data"=>$data,
-        // ]);
+        return view('lpj-barangjasa.view', [
+            "data" => $data,
+        ]);
     }
 
     /**
@@ -69,9 +69,9 @@ class LPJBarangJasaController extends Controller
     public function edit(string $id)
     {
         $data = LPJBarangJasa::find($id);
-    
+
         $data_pemeriksa = LPJTimPemeriksa::all();
-    
+
         // Ambil nama pemeriksa jika ada
         $data_pemeriksa_nama = LPJTimPemeriksa::where('NIP', '=', $data->tim_pemeriksa)->first();
         if ($data_pemeriksa_nama) {
@@ -79,13 +79,13 @@ class LPJBarangJasaController extends Controller
         } else {
             $data->nama_pemeriksa = null; // Nilai default jika tidak ditemukan
         }
-    
+
         return view('lpj-barangjasa.edit', [
             "data" => $data,
             "data_pemeriksa" => $data_pemeriksa,
         ]);
     }
-    
+
 
     /**
      * Update the specified resource in storage.

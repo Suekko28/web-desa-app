@@ -34,7 +34,12 @@ class LPJBarangJasaDataTable extends DataTable
             route="' . route('lpj-barangjasa.index') . '/{{ $id }}" class="btn btn-danger mt-2"><i class="fa-solid fa-trash-can"></i></a>';
 
         $actionBtn .= '<div class="col">
-        <a href="' . route('lpj-belanja.index') . '/{{ $id }}" name="view" class="btn btn-primary mt-2"><i class="fa-solid fa-basket-shopping"></i></a>';
+        <a href="' . route('lpj-belanja.index') . '/{{ $id }}" name="view" class="btn btn-success mt-2"><i class="fa-solid fa-basket-shopping"></i></a>';
+
+        $actionBtn .= '</div>';
+
+        $actionBtn .= '<div class="col">
+        <a href="' . route('lpj-barangjasa.index') . '/{{ $id }}" name="view" class="btn btn-primary mt-2"><i class="fa-solid fa-eye"></i></a>';
 
         $actionBtn .= '</div>';
 
@@ -58,9 +63,9 @@ class LPJBarangJasaDataTable extends DataTable
                     $search = request()->get('search')['value'];
                     $query->where(function ($q) use ($search) {
                         $q->whereRaw('LOWER(lpj-barang-jasa.no_berita_acara) LIKE ?', ["%{$search}%"])
-                          ->orWhereRaw('LOWER(lpj-barang-jasa.nama_pelaksana_kegiatan) LIKE ?', ["%{$search}%"])
-                          ->orWhereRaw('LOWER(lpj-barang-jasa.no_berita_acara) LIKE ?', ["%{$search}%"])
-                          ->orWhereRaw('LOWER(lpj-barang-jasa.tgl_pesanan) LIKE ?', ["%{$search}%"]);
+                            ->orWhereRaw('LOWER(lpj-barang-jasa.nama_pelaksana_kegiatan) LIKE ?', ["%{$search}%"])
+                            ->orWhereRaw('LOWER(lpj-barang-jasa.no_berita_acara) LIKE ?', ["%{$search}%"])
+                            ->orWhereRaw('LOWER(lpj-barang-jasa.tgl_pesanan) LIKE ?', ["%{$search}%"]);
                     });
                 }
             })
