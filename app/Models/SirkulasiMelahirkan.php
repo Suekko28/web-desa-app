@@ -17,13 +17,14 @@ class SirkulasiMelahirkan extends Model
         'tmpt_lahir',
         'tgl_lahir',
         'jenis_kelamin',
-        'NKK_keluarga',
+        // 'NKK_keluarga',
+        'penduduk_id',
         'user_id',
     ];
 
     public function penduduk()
     {
-        return $this->belongsTo(Penduduk::class, 'NKK_keluarga', 'NKK');
+        return $this->belongsTo(penduduk::class, 'penduduk_id', 'id');
     }
 
     public function user()

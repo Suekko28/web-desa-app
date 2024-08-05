@@ -23,7 +23,7 @@ class SirkulasiMelahirkanScope implements DataTableScope
     public function apply($query)
     {
         if ($this->request->has('tgl_lahir_start') && $this->request->has('tgl_lahir_end')) {
-            $query->whereBetween('tgl_lahir', [
+            $query->whereBetween('sirkulasi_melahirkans.tgl_lahir', [
                 $this->request->get('tgl_lahir_start'),
                 $this->request->get('tgl_lahir_end')
             ]);

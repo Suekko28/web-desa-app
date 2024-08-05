@@ -26,7 +26,8 @@ class DataMelahirkanFormRequest extends FormRequest
             'tmpt_lahir' => 'required|string|max:255',
             'tgl_lahir' => 'required|date',
             'jenis_kelamin' => 'required|int',
-            'NKK_keluarga' => 'required|string|max:255',
+            // 'NKK_keluarga' => 'required|string|max:255',
+            'penduduk_id' => 'required|string|max:255',
         ];
     }
 
@@ -44,7 +45,8 @@ class DataMelahirkanFormRequest extends FormRequest
             'tgl_lahir.date' => 'Format tanggal lahir tidak valid.',
             'jenis_kelamin.required' => 'Jenis kelamin harus diisi.',
             'jenis_kelamin.in' => 'Jenis kelamin harus berupa "Laki-laki" atau "Perempuan".',
-            'NKK_keluarga.required' => 'Nomor Kartu Keluarga keluarga harus diisi.',
+            // 'NKK_keluarga.required' => 'Nomor Kartu Keluarga keluarga harus diisi.',
+            'penduduk_id.required' => 'Nomor Kartu Keluarga keluarga harus diisi.',
         ];
     }
 }

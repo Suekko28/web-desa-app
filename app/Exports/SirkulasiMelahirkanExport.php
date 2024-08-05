@@ -25,16 +25,19 @@ class SirkulasiMelahirkanExport implements FromCollection, WithHeadings, WithMap
      */
     public function collection()
     {
-        $query = SirkulasiMelahirkan::query()->select(
-            'nama',
-            'tmpt_lahir',
-            'tgl_lahir',
-            'jenis_kelamin',
-            'NKK_keluarga'
-        );
+        $query = SirkulasiMelahirkan::query()
+            ->select(
+                'sirkulasi_melahirkans.nama',
+                'sirkulasi_melahirkans.tmpt_lahir',
+                'sirkulasi_melahirkans.tgl_lahir',
+                'sirkulasi_melahirkans.jenis_kelamin',
+                'penduduk.NKK as penduduk_NKK',
+                'penduduk.nama as penduduk_nama'
+            )
+            ->join('penduduk', 'penduduk.id', '=', 'sirkulasi_melahirkans.penduduk_id');
 
         if ($this->request->has('tgl_lahir_start') && $this->request->has('tgl_lahir_end')) {
-            $query->whereBetween('tgl_lahir', [
+            $query->whereBetween('sirkulasi_melahirkans.tgl_lahir', [
                 $this->request->get('tgl_lahir_start'),
                 $this->request->get('tgl_lahir_end')
             ]);
@@ -50,7 +53,8 @@ class SirkulasiMelahirkanExport implements FromCollection, WithHeadings, WithMap
             'Tempat Lahir',
             'Tanggal Lahir',
             'Jenis Kelamin',
-            'NKK Keluarga',
+            'NKK',
+            'Nama Penduduk',
         ];
     }
 
@@ -61,7 +65,8 @@ class SirkulasiMelahirkanExport implements FromCollection, WithHeadings, WithMap
             $row->tmpt_lahir,
             Carbon::parse($row->tgl_lahir)->format('d-m-Y'),
             $row->jenis_kelamin == 1 ? 'Laki-Laki' : 'Perempuan', // Ubah nilai jenis kelamin
-            (int)$row->NKK_keluarga,
+            $row->penduduk_NKK,
+            $row->penduduk_nama,
         ];
     }
 

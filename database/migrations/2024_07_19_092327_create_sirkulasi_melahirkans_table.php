@@ -17,9 +17,11 @@ return new class extends Migration
             $table->string("tmpt_lahir", 25);
             $table->date("tgl_lahir");
             $table->integer("jenis_kelamin");
-            $table->string("NKK_keluarga");
+            // $table->string("NKK_keluarga");
             $table->unsignedBigInteger('user_id');
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
+            $table->unsignedBigInteger('penduduk_id');
+            $table->foreign('penduduk_id')->references('id')->on('penduduk')->onDelete('cascade');
             $table->timestamps();
         });
     }

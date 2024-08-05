@@ -24,7 +24,7 @@ class SirkulasiPindah extends Model
      */
     protected $fillable = [
         'nama_penduduk',
-        'NIK',
+        'penduduk_id',
         'tgl_pindah',
         'alasan',
         'alamat_pindah',
@@ -33,6 +33,6 @@ class SirkulasiPindah extends Model
     ];
 
     public function penduduk(){
-        return $this->belongsTo(Penduduk::class,'NIK','id');
+        return $this->belongsTo(Penduduk::class,'penduduk_id','id');
     }
 }

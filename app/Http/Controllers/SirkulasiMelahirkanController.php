@@ -41,6 +41,7 @@ class SirkulasiMelahirkanController extends Controller
         return view('sirkulasi-melahirkan.create', [
             "data" => $data,
         ]);
+
     }
 
     /**
@@ -72,15 +73,12 @@ class SirkulasiMelahirkanController extends Controller
      */
     public function edit(string $id)
     {
-        $data = SirkulasiMelahirkan::find($id);
-        $nkk = $data->NKK_keluarga;
-        $data_keluarga = Penduduk::where('NKK', '=', $nkk)->first();
-        $data_penduduk = Penduduk::all();
+        $data = SirkulasiMelahirkan::findOrFail($id);
+        $dataPenduduk = Penduduk::all()->unique('NKK');
 
         return view('sirkulasi-melahirkan.edit', [
-            "data" => $data,
-            "data_keluarga" => $data_keluarga,
-            "data_penduduk" => $data_penduduk,
+            'data' => $data,
+            'dataPenduduk' => $dataPenduduk
         ]);
     }
 
@@ -89,15 +87,14 @@ class SirkulasiMelahirkanController extends Controller
      */
     public function update(DataMelahirkanFormRequest $request, string $id)
     {
-        $userId = auth()->user()->id;
+        $sirkulasiMelahirkan = SirkulasiMelahirkan::findOrFail($id);
 
         $data = $request->all();
-        $data['user_id'] = $userId;
+        $data['user_id'] = auth()->user()->id;
 
-        $anak = SirkulasiMelahirkan::find($id);
-        $anak->update($data);
-        
-        return redirect()->route('sirkulasi-melahirkan.index')->with('success', 'Data berhasil diupdate');
+        $sirkulasiMelahirkan->update($data);
+
+        return redirect()->route('sirkulasi-melahirkan.index')->with('success', 'Data berhasil diperbarui');
     }
 
     /**
@@ -110,10 +107,33 @@ class SirkulasiMelahirkanController extends Controller
 
     }
 
-    public function pdfTemplate(SirkulasiMelahirkanDatatable $dataTable)
+    public function pdfTemplate(SirkulasiMelahirkanDataTable $dataTable, Request $request)
     {
-        // Retrieve the data directly from the query builder
-        $data = $dataTable->query(new SirkulasiMelahirkan())->get();
+        // Retrieve the query builder instance for Sirkulasi Melahirkan data
+        $query = $dataTable->query(new SirkulasiMelahirkan());
+
+        // Define the filters
+        $filters = [
+            'nama',
+            'tmpt_lahir',
+            'jenis_kelamin',
+            'tgl_lahir_start',
+            'tgl_lahir_end',
+        ];
+
+        // Apply the filters to the query
+        foreach ($filters as $field) {
+            if ($request->has($field) && $request->get($field) !== null) {
+                if ($field == 'tgl_lahir_start' && $request->has('tgl_lahir_end')) {
+                    $query->whereBetween('tgl_lahir', [$request->get('tgl_lahir_start'), $request->get('tgl_lahir_end')]);
+                } else {
+                    $query->where($field, '=', $request->get($field));
+                }
+            }
+        }
+
+        // Retrieve the filtered data
+        $data = $query->get();
 
         // Send data to the view for PDF rendering
         $html = view('sirkulasi-melahirkan.generate-pdf', ['data' => $data])->render();
@@ -123,4 +143,6 @@ class SirkulasiMelahirkanController extends Controller
 
         return $pdf->stream('SirkulasiMelahirkan.pdf');
     }
+
+
 }

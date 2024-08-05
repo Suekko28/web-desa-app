@@ -55,7 +55,7 @@ class SirkulasiMelahirkanDataTable extends DataTable
                         $q->whereRaw('LOWER(sirkulasi_melahirkans.nama) LIKE ?', ["%{$search}%"])
                             ->orWhereRaw('LOWER(sirkulasi_melahirkans.tmpt_lahir) LIKE ?', ["%{$search}%"])
                             ->orWhereRaw('LOWER(sirkulasi_melahirkans.tgl_lahir) LIKE ?', ["%{$search}%"])
-                            ->orWhereRaw('LOWER(sirkulasi_melahirkans.NKK_keluarga) LIKE ?', ["%{$search}%"]);
+                            ->orWhereRaw('LOWER(sirkulasi_melahirkans.penduduk_id) LIKE ?', ["%{$search}%"]);
                     });
                 }
             })
@@ -78,15 +78,18 @@ class SirkulasiMelahirkanDataTable extends DataTable
                 'sirkulasi_melahirkans.nama as nama',
                 'sirkulasi_melahirkans.tmpt_lahir as tmpt_lahir',
                 'sirkulasi_melahirkans.tgl_lahir as tgl_lahir',
-                \DB::raw('CASE WHEN jenis_kelamin = 1 THEN "Laki-Laki" ELSE "Perempuan" END AS jenis_kelamin'),
-                'sirkulasi_melahirkans.NKK_keluarga as NKK_keluarga',
+                \DB::raw('CASE WHEN sirkulasi_melahirkans.jenis_kelamin = 1 THEN "Laki-Laki" ELSE "Perempuan" END AS jenis_kelamin'),
                 'sirkulasi_melahirkans.created_at as created_at',
                 'sirkulasi_melahirkans.updated_at as updated_at',
-                'users.nama as user_nama' 
+                'users.nama as user_nama',
+                'penduduk.NKK as penduduk_nkk', // Pastikan kolom NKK sudah benar di tabel penduduk
+                'penduduk.nama as penduduk_nama' // Pastikan kolom NKK sudah benar di tabel penduduk
             )
             ->join('users', 'users.id', '=', 'sirkulasi_melahirkans.user_id')
+            ->join('penduduk', 'penduduk.id', '=', 'sirkulasi_melahirkans.penduduk_id')
             ->orderBy('sirkulasi_melahirkans.created_at', 'desc');
     }
+
 
     /**
      * Optional method if you want to use html builder.
@@ -131,18 +134,21 @@ class SirkulasiMelahirkanDataTable extends DataTable
     {
         return [
             Column::make('id')
-            ->title('No')
-            ->width(10),
+                ->title('No')
+                ->width(10),
             Column::make('nama'),
             Column::make('tmpt_lahir'),
             Column::make('tgl_lahir'),
             Column::make('jenis_kelamin'),
-            Column::make('NKK_keluarga')
-            ->exportFormat('integer'),
+            Column::make('penduduk_nama')
+                ->title('Keluarga'),
+            Column::make('penduduk_nkk')
+                ->title('NKK')
+                ->exportFormat('integer'),
             Column::make('created_at')
-            ->exportable(false),
+                ->exportable(false),
             Column::make('updated_at')
-            ->exportable(false),
+                ->exportable(false),
             Column::make('user_nama')
                 ->title('Update by')
                 ->exportable(false),
@@ -153,6 +159,7 @@ class SirkulasiMelahirkanDataTable extends DataTable
                 ->addClass('text-center'),
         ];
     }
+
 
     /**
      * Get filename for export.

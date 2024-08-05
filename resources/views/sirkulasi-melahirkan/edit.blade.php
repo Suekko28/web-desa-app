@@ -79,12 +79,17 @@
                                         <div class="dropdown">
                                             <button class="form-control dropdown-toggle text-left" type="button"
                                                 data-bs-toggle="dropdown" aria-expanded="false" name="keluarga">
-                                                {{ $data_keluarga->NKK . ' - ' . $data_keluarga->nama }}
+                                                --Pilih Keluarga--
                                             </button>
-                                            <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton" id="keluargaDropdown">
-                                                <input type="text" id="keluargaSearchInput" name="NKK_keluarga" class="form-control" placeholder="Cari Keluarga..." value="{{ $data_keluarga->NKK }}">
-                                                @foreach ( $data_penduduk as $i )
-                                                <li><div class="dropdown-item" value="{{ $i->NKK }}">{{ $i->NKK . " - " . $i->nama }}</div></li>
+                                            <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton"
+                                                id="keluargaDropdown">
+                                                <input type="text" id="keluargaSearchInput" name="penduduk_id"
+                                                    class="form-control" placeholder="Cari Keluarga...">
+                                                @foreach ($dataPenduduk as $i)
+                                                    <li>
+                                                        <div class="dropdown-item" value="{{ $i->id }}">
+                                                            {{ $i->NKK . ' - ' . $i->nama }}</div>
+                                                    </li>
                                                 @endforeach
                                             </ul>
                                         </div>
@@ -174,7 +179,7 @@
     function selectKeluarga(value, label) {
         var dropdownButton = document.querySelector(".dropdown button[name='keluarga']");
         dropdownButton.innerHTML = label;
-        var inputVal = document.querySelector("[name='NKK_keluarga']");
+        var inputVal = document.querySelector("[name='penduduk_id']");
         inputVal.value = value;
     }
 </script>

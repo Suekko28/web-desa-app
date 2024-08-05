@@ -60,7 +60,7 @@ class penduduk extends Model
 
     public function SirkulasiMelahirkan(): HasMany
     {
-        return $this->hasMany(SirkulasiMelahirkan::class, 'NKK_keluarga', 'NKK');
+        return $this->hasMany(SirkulasiMelahirkan::class, 'penduduk_id', 'id');
     }
 
     public function sirkulasiMeninggal(): HasOne
