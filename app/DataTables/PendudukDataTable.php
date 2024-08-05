@@ -9,15 +9,11 @@ use Yajra\DataTables\EloquentDataTable;
 use Yajra\DataTables\Html\Builder as HtmlBuilder;
 use Yajra\DataTables\Html\Button;
 use Yajra\DataTables\Html\Column;
-use Yajra\DataTables\Html\Editor\Editor;
-use Yajra\DataTables\Html\Editor\Fields;
 use Yajra\DataTables\Services\DataTable;
 
 class PendudukDataTable extends DataTable
 {
-
     protected $rowIndex = 0;
-
 
     /**
      * Build DataTable class.
@@ -42,7 +38,6 @@ class PendudukDataTable extends DataTable
 
         return (new EloquentDataTable($query))
             ->addColumn('id', function ($data) {
-                // Increment rowIndex for each row
                 $this->rowIndex++;
                 return '' . $this->rowIndex;
             })
@@ -58,19 +53,19 @@ class PendudukDataTable extends DataTable
                     $search = request()->get('search')['value'];
                     $query->where(function ($q) use ($search) {
                         $q->whereRaw('LOWER(penduduk.nama) LIKE ?', ["%{$search}%"])
-                          ->orWhereRaw('LOWER(penduduk.NIK) LIKE ?', ["%{$search}%"])
-                          ->orWhereRaw('LOWER(penduduk.NKK) LIKE ?', ["%{$search}%"])
-                          ->orWhereRaw('LOWER(penduduk.usia) LIKE ?', ["%{$search}%"])
-                          ->orWhereRaw('LOWER(penduduk.rt) LIKE ?', ["%{$search}%"])
-                          ->orWhereRaw('LOWER(penduduk.created_at) LIKE ?', ["%{$search}%"])
-                          ->orWhereRaw('LOWER(penduduk.updated_at) LIKE ?', ["%{$search}%"]);
-                        //   ->orWhereRaw('LOWER(users.nama) LIKE ?', ["%{$search}%"]); // Correctly referencing users.nama
+                            ->orWhereRaw('LOWER(penduduk.NIK) LIKE ?', ["%{$search}%"])
+                            ->orWhereRaw('LOWER(penduduk.NKK) LIKE ?', ["%{$search}%"])
+                            ->orWhereRaw('LOWER(penduduk.usia) LIKE ?', ["%{$search}%"])
+                            ->orWhereRaw('LOWER(penduduk.rt) LIKE ?', ["%{$search}%"])
+                            ->orWhereRaw('LOWER(penduduk.created_at) LIKE ?', ["%{$search}%"])
+                            ->orWhereRaw('LOWER(penduduk.updated_at) LIKE ?', ["%{$search}%"]);
                     });
                 }
             })
             ->rawColumns(['action'])
             ->setRowId('id');
     }
+
     /**
      * Get query source of dataTable.
      *
@@ -92,7 +87,9 @@ class PendudukDataTable extends DataTable
                 'penduduk.updated_at as updated_at',
                 'users.nama as user_nama'
             )
-            ->orderBy('created_at', 'desc')
+            ->leftJoin('sirkulasi_pindah', 'penduduk.id', '=', 'sirkulasi_pindah.penduduk_id')
+            ->whereNull('sirkulasi_pindah.penduduk_id') // Exclude data that exists in sirkulasi_pindah
+            ->orderBy('penduduk.created_at', 'desc')
             ->join('users', 'users.id', '=', 'penduduk.user_id');
     }
 
@@ -116,12 +113,10 @@ class PendudukDataTable extends DataTable
             // Button::make('pdf')
             //     ->addClass('btn-danger rounded')
             //     ->text('PDF'),
-
         ];
         array_push($btn, Button::raw('Import Data')
             ->addClass('btn-info rounded')
             ->action("window.location = '" . route('penduduk.import-view') . "';"));
-
 
         return $this->builder()
             ->setTableId('penduduk-desa-table')
@@ -131,9 +126,6 @@ class PendudukDataTable extends DataTable
             ->buttons($btn)
             ->lengthMenu([10, 50, 100])
             ->searching(true);
-
-
-
     }
 
     /**

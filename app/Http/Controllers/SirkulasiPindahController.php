@@ -36,35 +36,29 @@ class SirkulasiPindahController extends Controller
      */
     public function create()
     {
-        $data_penduduk = Penduduk::all();
+        // Ambil ID penduduk yang sudah ada di sirkulasi_pindah
+        $existingPendudukIds = SirkulasiPindah::pluck('penduduk_id')->toArray();
+
+        // Ambil penduduk yang tidak ada di sirkulasi_pindah
+        $data = Penduduk::whereNotIn('id', $existingPendudukIds)->get()->unique('NIK');
+
         return view('sirkulasi-pindah.create', [
-            'data_penduduk' => $data_penduduk,
+            'data' => $data,
         ]);
     }
+
 
     /**
      * Store a newly created resource in storage.
      */
     public function store(DataPindahFormRequest $request)
     {
-        // Ambil data penduduk berdasarkan NIK
-        $penduduk = Penduduk::where('NIK', $request->NIK)->firstOrFail();
+        $userId = auth()->user()->id;
 
-        // Gabungkan Nama dan NIK untuk disimpan atau ditampilkan
-        $infoPenduduk = $penduduk->nama;
+        $data = $request->all();
+        $data['user_id'] = $userId;
 
-        // Simpan informasi sirkulasi pindah dengan informasi nama penduduk
-        SirkulasiPindah::create([
-            'nama_penduduk' => $infoPenduduk,
-            'NIK' => $request->NIK,
-            'tgl_pindah' => $request->tgl_pindah,
-            'alasan' => $request->alasan,
-            'alamat_pindah' => $request->alamat_pindah,
-            'user_id' => auth()->id(),
-        ]);
-
-        // Hapus penduduk setelah data sirkulasi pindah disimpan
-        $penduduk->delete();
+        SirkulasiPindah::create($data);
 
         return redirect()->route('sirkulasi-pindah.index')->with('success', 'Data Berhasil Ditambahkan');
     }
@@ -82,61 +76,48 @@ class SirkulasiPindahController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
+    /**
+     * Show the form for editing the specified resource.
+     */
     public function edit(string $id)
     {
-        // Cari data sirkulasiPindah berdasarkan ID
-        $sirkulasiPindah = SirkulasiPindah::find($id);
+        // Ambil data SirkulasiPindah yang akan diedit
+        $data = SirkulasiPindah::findOrFail($id);
 
-        // Jika data tidak ditemukan, bisa berikan respons sesuai kebijakan aplikasi
-        if (!$sirkulasiPindah) {
-            abort(404); // Contoh: tampilkan halaman 404
-        }
+        // Ambil ID penduduk yang sudah ada di sirkulasi_pindah
+        $existingPendudukIds = SirkulasiPindah::pluck('penduduk_id')->toArray();
 
-        // Ambil NIK penduduk dari data sirkulasiPindah
-        $nikPenduduk = $sirkulasiPindah->NIK;
-
-        // Cari nama penduduk berdasarkan NIK dari data sirkulasiPindah
-        $namaPenduduk = Penduduk::where('NIK', $nikPenduduk)->value('nama');
-
-        // Ambil semua data Penduduk untuk pilihan dropdown
-        $dataPenduduk = Penduduk::all();
+        // Ambil penduduk yang tidak ada di sirkulasi_pindah
+        $dataPenduduk = Penduduk::whereNotIn('id', $existingPendudukIds)->get()->unique('NIK');
 
         return view('sirkulasi-pindah.edit', [
-            'data' => $sirkulasiPindah,
-            'nama' => $namaPenduduk,
-            'data_penduduk' => $dataPenduduk,
+            'data' => $data,
+            'dataPenduduk' => $dataPenduduk,
         ]);
     }
 
+
+    /**
+     * Update the specified resource in storage.
+     */
     /**
      * Update the specified resource in storage.
      */
     public function update(DataPindahFormRequest $request, string $id)
     {
-        // Cari data sirkulasiPindah berdasarkan ID
-        $sirkulasiPindah = SirkulasiPindah::find($id);
+        // Temukan instance SirkulasiPindah yang akan diperbarui
+        $sirkulasiPindah = SirkulasiPindah::findOrFail($id);
 
-        // Jika data tidak ditemukan, bisa berikan respons sesuai kebijakan aplikasi
-        if (!$sirkulasiPindah) {
-            abort(404); // Contoh: tampilkan halaman 404
-        }
+        // Ambil data dari request
+        $data = $request->all();
+        $data['user_id'] = auth()->user()->id;
 
-        // Ambil data penduduk berdasarkan NIK dari request
-        $penduduk = Penduduk::where('NIK', $request->NIK)->firstOrFail();
+        // Perbarui data SirkulasiPindah
+        $sirkulasiPindah->update($data);
 
-        // Update informasi sirkulasi pindah
-        $sirkulasiPindah->update([
-            'nama_penduduk' => $penduduk->nama,
-            'NIK' => $request->NIK,
-            'tgl_pindah' => $request->tgl_pindah,
-            'sebab' => $request->sebab,
-            'user_id' => auth()->id(),
-        ]);
-
-        // Hapus penduduk terkait setelah update data sirkulasi pindah
-        $penduduk->delete();
         return redirect()->route('sirkulasi-pindah.index')->with('success', 'Data berhasil diupdate');
     }
+
 
     /**
      * Remove the specified resource from storage.
@@ -147,10 +128,18 @@ class SirkulasiPindahController extends Controller
         return redirect()->route('sirkulasi-pindah.index')->with('success', 'Data berhasil dihapus');
     }
 
-    public function pdfTemplate(SirkulasiPindahDataTable $dataTable)
+    public function pdfTemplate(SirkulasiPindahDataTable $dataTable, Request $request)
     {
-        // Retrieve the data directly from the query builder
-        $data = $dataTable->query(new SirkulasiPindah())->get();
+        // Retrieve the query builder instance for Sirkulasi Mepindahkan data
+        $query = $dataTable->query(new SirkulasiPindah());
+
+        // Apply the date range filter
+        if ($request->has('tgl_pindah_start') && $request->has('tgl_pindah_end')) {
+            $query->whereBetween('sirkulasi_pindah.tgl_pindah', [$request->get('tgl_pindah_start'), $request->get('tgl_pindah_end')]);
+        }
+
+        // Retrieve the filtered data
+        $data = $query->get();
 
         // Send data to the view for PDF rendering
         $html = view('sirkulasi-pindah.generate-pdf', ['data' => $data])->render();

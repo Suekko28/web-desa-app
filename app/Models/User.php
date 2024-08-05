@@ -87,7 +87,7 @@ class User extends Authenticatable
     }
 
     public function sirkulasiMelahirkan() : HasMany {
-        return $this->hasMany(Anak::class, 'user_id', 'id');
+        return $this->hasMany(SirkulasiMelahirkan::class, 'user_id', 'id');
     }
 
     public function sirkulasiMeninggal() : HasMany {

@@ -70,8 +70,8 @@
                     <th scope="col">Tempat Lahir</th>
                     <th scope="col">Tanggal Lahir</th>
                     <th scope="col">Jenis Kelamin</th>
-                    <th scope="col">Keluarga</th>
                     <th scope="col">NKK</th>
+                    {{-- <th scope="col">Keluarga</th> --}}
                 </tr>
             </thead>
             <tbody>
@@ -83,8 +83,8 @@
                         <td>{{ $row->tmpt_lahir }}</td>
                         <td>{{ Carbon\Carbon::parse($row->tgl_lahir)->format('d-m-Y') }}</td>
                         <td>{{ $row->jenis_kelamin }}</td>
-                        <td>{{ $row->penduduk_nama}}</td>
                         <td>{{ $row->penduduk_nkk}}</td>
+                        {{-- <td>{{ $row->penduduk_nama}}</td> --}}
                     </tr>
                 @endforeach
             </tbody>

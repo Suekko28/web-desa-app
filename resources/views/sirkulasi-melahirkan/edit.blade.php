@@ -1,5 +1,5 @@
 @extends('layouts.app')
-@section('master-title', 'RW/')
+@section('master-title', 'Data Melahirkan/')
 @section('page-title', 'Edit')
 @section('contents')
     <link rel="shortcut icon" href="{{ asset('assets/images/favicon.ico') }}">
@@ -82,7 +82,7 @@
                                                 --Pilih Keluarga--
                                             </button>
                                             <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton"
-                                                id="keluargaDropdown">
+                                                id="keluargaDropdown" style="height: 300px; overflow-y: auto;">
                                                 <input type="text" id="keluargaSearchInput" name="penduduk_id"
                                                     class="form-control" placeholder="Cari Keluarga...">
                                                 @foreach ($dataPenduduk as $i)

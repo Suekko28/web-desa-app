@@ -37,12 +37,14 @@ class SirkulasiMelahirkanController extends Controller
      */
     public function create()
     {
-        $data = Penduduk::all()->unique('NKK');
+        // Ambil semua penduduk yang belum ada di sirkulasi_pindah
+        $data = Penduduk::whereDoesntHave('sirkulasiPindah')->get();
+
         return view('sirkulasi-melahirkan.create', [
             "data" => $data,
         ]);
-
     }
+
 
     /**
      * Store a newly created resource in storage.
@@ -74,13 +76,18 @@ class SirkulasiMelahirkanController extends Controller
     public function edit(string $id)
     {
         $data = SirkulasiMelahirkan::findOrFail($id);
-        $dataPenduduk = Penduduk::all()->unique('NKK');
+
+        // Ambil semua penduduk yang belum ada di sirkulasi_pindah, kecuali penduduk yang saat ini sedang diedit
+        $dataPenduduk = Penduduk::whereDoesntHave('sirkulasiPindah', function ($query) use ($data) {
+            $query->where('penduduk_id', '!=', $data->penduduk_id);
+        })->get();
 
         return view('sirkulasi-melahirkan.edit', [
             'data' => $data,
             'dataPenduduk' => $dataPenduduk
         ]);
     }
+
 
     /**
      * Update the specified resource in storage.
@@ -97,6 +104,7 @@ class SirkulasiMelahirkanController extends Controller
         return redirect()->route('sirkulasi-melahirkan.index')->with('success', 'Data berhasil diperbarui');
     }
 
+
     /**
      * Remove the specified resource from storage.
      */
@@ -112,24 +120,9 @@ class SirkulasiMelahirkanController extends Controller
         // Retrieve the query builder instance for Sirkulasi Melahirkan data
         $query = $dataTable->query(new SirkulasiMelahirkan());
 
-        // Define the filters
-        $filters = [
-            'nama',
-            'tmpt_lahir',
-            'jenis_kelamin',
-            'tgl_lahir_start',
-            'tgl_lahir_end',
-        ];
-
-        // Apply the filters to the query
-        foreach ($filters as $field) {
-            if ($request->has($field) && $request->get($field) !== null) {
-                if ($field == 'tgl_lahir_start' && $request->has('tgl_lahir_end')) {
-                    $query->whereBetween('tgl_lahir', [$request->get('tgl_lahir_start'), $request->get('tgl_lahir_end')]);
-                } else {
-                    $query->where($field, '=', $request->get($field));
-                }
-            }
+        // Apply the date range filter
+        if ($request->has('tgl_lahir_start') && $request->has('tgl_lahir_end')) {
+            $query->whereBetween('sirkulasi_melahirkans.tgl_lahir', [$request->get('tgl_lahir_start'), $request->get('tgl_lahir_end')]);
         }
 
         // Retrieve the filtered data
@@ -143,6 +136,8 @@ class SirkulasiMelahirkanController extends Controller
 
         return $pdf->stream('SirkulasiMelahirkan.pdf');
     }
+
+
 
 
 }

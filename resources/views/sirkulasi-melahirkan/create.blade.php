@@ -78,7 +78,7 @@
                                                 --Pilih Keluarga--
                                             </button>
                                             <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton"
-                                                id="keluargaDropdown">
+                                                id="keluargaDropdown" style="height: 300px; overflow-y: auto;">
                                                 <input type="text" id="keluargaSearchInput" name="penduduk_id"
                                                     class="form-control" placeholder="Cari Keluarga...">
                                                 @foreach ($data as $i)

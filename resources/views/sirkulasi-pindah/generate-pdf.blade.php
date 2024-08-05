@@ -66,8 +66,8 @@
             <thead>
                 <tr>
                     <th scope="col">No</th>
-                    <th scope="col">Nama</th>
                     <th scope="col">NIK</th>
+                    <th scope="col">Nama</th>
                     <th scope="col">Alasan</th>
                     <th scope="col">Alamat Pindah</th>
                 </tr>
@@ -77,8 +77,8 @@
                 @foreach ($data as $row)
                     <tr>
                         <td>{{ $i++ }}</td>
-                        <td>{{ $row->nama_penduduk }}</td>
-                        <td>{{ $row->NIK }}</td>
+                        <td>{{ $row->penduduk_nik }}</td>
+                        <td>{{ $row->penduduk_nama }}</td>
                         <td>{{ $row->alasan }}</td>
                         <td>{{ $row->alamat_pindah }}</td>
                     </tr>

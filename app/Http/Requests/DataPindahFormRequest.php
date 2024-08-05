@@ -22,10 +22,10 @@ class DataPindahFormRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'NIK' => 'required|string|max:255',
             'tgl_pindah' => 'required|date',
             'alasan' => 'required|string|max:255',
             'alamat_pindah' => 'required|string|max:255',
+            'penduduk_id' => 'required|exists:penduduk,id',
         ];
     }
 
@@ -37,11 +37,11 @@ class DataPindahFormRequest extends FormRequest
     public function messages(): array
     {
         return [
-            'NIK.required' => 'Nomor Induk Kependudukan (NIK) harus diisi.',
             'tgl_pindah.required' => 'Tanggal pindah harus diisi.',
             'tgl_pindah.date' => 'Format tanggal pindah tidak valid.',
             'alasan.required' => 'Alasan pindah harus diisi.',
             'alamat_pindah.required' => 'Alamat pindah harus diisi.',
+            'penduduk_id.required' => 'Nomor Induk Kependudukan  harus diisi.',
         ];
     }
 }

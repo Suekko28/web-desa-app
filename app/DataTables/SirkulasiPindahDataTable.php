@@ -54,8 +54,8 @@ class SirkulasiPindahDataTable extends DataTable
                 if (request()->has('search') && !empty(request()->get('search')['value'])) {
                     $search = request()->get('search')['value'];
                     $query->where(function ($q) use ($search) {
-                        $q->whereRaw('LOWER(sirkulasi_pindah.NIK) LIKE ?', ["%{$search}%"])
-                            ->orWhereRaw('LOWER(sirkulasi_pindah.nama_penduduk) LIKE ?', ["%{$search}%"])
+                        $q->whereRaw('LOWER(penduduk.NIK) LIKE ?', ["%{$search}%"])
+                            ->orWhereRaw('LOWER(penduduk.nama) LIKE ?', ["%{$search}%"])
                             ->orWhereRaw('LOWER(sirkulasi_pindah.tgl_pindah) LIKE ?', ["%{$search}%"])
                             ->orWhereRaw('LOWER(sirkulasi_pindah.alamat_pindah) LIKE ?', ["%{$search}%"]);
                     });
@@ -77,17 +77,19 @@ class SirkulasiPindahDataTable extends DataTable
         return $model->newQuery()
             ->select(
                 'sirkulasi_pindah.id as id',
-                'sirkulasi_pindah.NIK as NIK',
-                'sirkulasi_pindah.nama_penduduk as nama_penduduk',
                 'sirkulasi_pindah.tgl_pindah as tgl_pindah',
                 'sirkulasi_pindah.alasan as alasan',
                 'sirkulasi_pindah.alamat_pindah as alamat_pindah',
                 'sirkulasi_pindah.created_at as created_at',
                 'sirkulasi_pindah.updated_at as updated_at',
-                'users.nama as user_nama'
+                'users.nama as user_nama',
+                'penduduk.NIK as penduduk_nik', // Pastikan kolom NKK sudah benar di tabel penduduk
+                'penduduk.nama as penduduk_nama' // Pastikan kolom NKK sudah benar di tabel penduduk
+
 
             )
             ->join('users', 'users.id', '=', 'sirkulasi_pindah.user_id')
+            ->join('penduduk', 'penduduk.id', '=', 'sirkulasi_pindah.penduduk_id')
             ->orderBy('sirkulasi_pindah.created_at', 'desc');
 
     }
@@ -109,12 +111,15 @@ class SirkulasiPindahDataTable extends DataTable
             Button::make('excel')
                 ->addClass('btn-success rounded')
                 ->text('Excel'),
+            // Button::make('pdf')
+            //     ->addClass('btn-danger rounded')
+            //     ->text('PDF')
+            //     ->action('function() {
+            //     window.location.href = "' . route('sirkulasi-pindah.generate-pdf') . '";
+            // }'),
             Button::make('pdf')
                 ->addClass('btn-danger rounded')
-                ->text('PDF')
-                ->action('function() {
-                window.location.href = "' . route('sirkulasi-pindah.generate-pdf') . '";
-            }'),
+                ->text('PDF'),
 
 
         ];
@@ -138,9 +143,10 @@ class SirkulasiPindahDataTable extends DataTable
             Column::make('id')
                 ->title('No')
                 ->width(10),
-            Column::make('nama_penduduk')
+            Column::make('penduduk_nik')
+                ->title('NIK'),
+            Column::make('penduduk_nama')
                 ->title('Nama Penduduk'),
-            Column::make('NIK'),
             Column::make('tgl_pindah'),
             Column::make('alasan'),
             Column::make('alamat_pindah'),

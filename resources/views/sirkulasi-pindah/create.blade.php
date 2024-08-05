@@ -30,69 +30,66 @@
             <div class="container-fluid">
                 @include('layouts.message')
 
-                <!-- Small boxes (Stat box) -->
-
                 <form action="{{ route('sirkulasi-pindah.store') }}" method="POST" enctype="multipart/form-data">
-                @csrf
-                <input type="hidden" id="user_id" name="user_id" value="{{ auth()->user()->id }}">
-                <div class="card">
-                    <div class="card-body">
-                        <h5 class="text-center data_diri mb-3">Data Pindah</h5>
-                        <div class="form-group">
-                            <div class="row">
-                                <!-- Tampilin Semua Field Di Table Jos !-->
-                                <div class="col-sm-6">
-                                    <label for="penduduk" class="col-form-label">Penduduk</label>
-                                    <div class="dropdown">
-                                        <button class="form-control dropdown-toggle text-left" type="button"
-                                            data-bs-toggle="dropdown" aria-expanded="false" name="penduduk">
-                                            --Pilih Penduduk--
-                                        </button>
-                                        <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton" id="pendudukDropdown">
-                                            <input type="text" id="pendudukSearchInput" name="NIK" class="form-control"
-                                                placeholder="Cari Penduduk...">
-                                            @foreach ($data_penduduk as $i)
-                                                <li><a class="dropdown-item penduduk-option" href="#" value="{{ $i->NIK }}">{{ $i->NIK . " - " . $i->nama }}</a></li>
-                                            @endforeach
-                                        </ul>
+                    @csrf
+                    <input type="hidden" id="user_id" name="user_id" value="{{ auth()->user()->id }}">
+                    <div class="card">
+                        <div class="card-body">
+                            <h5 class="text-center data_diri mb-3">Data Pindah</h5>
+                            <div class="form-group">
+                                <div class="row">
+                                    <div class="col-sm-6">
+                                        <label for="penduduk" class="col-form-label">Penduduk</label>
+                                        <div class="dropdown">
+                                            <button class="form-control dropdown-toggle text-left" type="button"
+                                                data-bs-toggle="dropdown" aria-expanded="false" id="pendudukDropdownButton">
+                                                --Pilih Penduduk--
+                                            </button>
+                                            <ul class="dropdown-menu" aria-labelledby="pendudukDropdownButton"
+                                                id="pendudukDropdown" style="height: 300px; overflow-y: auto;">
+                                                <input type="text" id="pendudukSearchInput" name="penduduk_id"
+                                                    class="form-control" placeholder="Cari Penduduk...">
+                                                @foreach ($data as $i)
+                                                    <li>
+                                                        <div class="dropdown-item" data-id="{{ $i->id }}"
+                                                            data-nik="{{ $i->NIK }}"
+                                                            data-nama="{{ $i->nama }}">
+                                                            {{ $i->NIK . ' - ' . $i->nama }}</div>
+                                                    </li>
+                                                @endforeach
+                                            </ul>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-sm-6">
+                                        <label for="tgl_pindah" class="col-form-label">Tanggal Pindah</label>
+                                        <input type="date" class="form-control" id="tgl_pindah" name="tgl_pindah"
+                                            placeholder="" value="{{ old('tgl_pindah') }}">
+                                    </div>
+
+                                    <div class="col-sm-12">
+                                        <label for="alasan" class="col-form-label">Alasan</label>
+                                        <textarea type="text" class="form-control" id="alasan" name="alasan" rows="5" placeholder="Alasan Pindah">{{ old('alasan') }}</textarea>
+                                    </div>
+
+                                    <div class="col-sm-12">
+                                        <label for="alamat_pindah" class="col-form-label">Alamat Pindah</label>
+                                        <textarea type="text" class="form-control" id="alamat_pindah" name="alamat_pindah" rows="5"
+                                            placeholder="Alamat Lengkap (Jl / Kampung  No.Rumah)">{{ old('alamat_pindah') }}</textarea>
                                     </div>
                                 </div>
+                            </div>
 
-
-                                <div class="col-sm-6">
-                                    <label for="tgl_pindah" class="col-form-label">Tanggal Pindah</label>
-                                    <input type="date" class="form-control" id="tgl_pindah" name="tgl_pindah"
-                                        placeholder="" value="{{old('tgl_pindah')}}">
-                                </div>
-
-                                <div class="col-sm-12">
-                                    <label for="alasan" class="col-form-label">Alasan</label>
-                                    <textarea type="text" class="form-control" id="alasan" name="alasan" rows="5" placeholder="Alasan Pindah">{{old('alasan')}}</textarea>
-                                </div>
-
-                                <div class="col-sm-12">
-                                    <label for="alamat_pindah" class="col-form-label">Alamat Pindah</label>
-                                    <textarea type="text" class="form-control" id="alamat_pindah" name="alamat_pindah" rows="5"
-                                        placeholder="Alamat Lengkap (Jl / Kampung  No.Rumah)">{{old('alamat_pindah')}}</textarea>
-                                </div>
-
-
+                            <div class="d-flex flex-row-reverse">
+                                <button type="submit" class="btn btn-primary ml-3">Simpan</button>
+                                <a href="{{ route('sirkulasi-pindah.index') }}" class="btn btn-danger">Batal</a>
                             </div>
                         </div>
-
-                        <div class="d-flex flex-row-reverse">
-                            <button type="submit" class="btn btn-primary ml-3">Simpan</button>
-                            <a href="{{ route('sirkulasi-pindah.index') }}" class="btn btn-danger">Batal</a>
-                        </div>
-
-
-                        <!-- /.card-body -->
-                        </form>
-                        <!-- /.row (main row) -->
-                    </div><!-- /.container-fluid -->
+                    </div>
+                </form>
+            </div>
         </section>
     </main>
-
 
     <script src="{{ asset('assets/libs/jquery/jquery.min.js') }}"></script>
     <script src="{{ asset('assets/libs/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
@@ -124,44 +121,29 @@
     <script defer src="https://use.fontawesome.com/releases/v5.15.4/js/fontawesome.js"
         integrity="sha384-dPBGbj4Uoy1OOpM4+aRGfAOc0W37JkROT+3uynUgTHZCHZNMHfGXsmmvYTffZjYO" crossorigin="anonymous">
     </script>
-<script>
-    function searchPenduduk() {
-        var input, filter, ul, li, a, i, txtValue;
-        input = document.getElementById("pendudukSearchInput");
-        filter = input.value.toUpperCase();
-        ul = document.getElementById("pendudukDropdown");
-        li = ul.getElementsByClassName("penduduk-option");
 
-        for (i = 0; i < li.length; i++) {
-            a = li[i];
-            txtValue = a.textContent || a.innerText;
-
-            if (txtValue.toUpperCase().indexOf(filter) > -1) {
-                li[i].style.display = "";
-            } else {
-                li[i].style.display = "none";
-            }
-        }
-    }
-
-    // Adding event listener for input search
-    var searchInput = document.getElementById("pendudukSearchInput");
-    searchInput.addEventListener("input", searchPenduduk);
-
-    // Adding event listener for each option in the dropdown
-    var pendudukOptions = document.querySelectorAll("#pendudukDropdown .penduduk-option");
-    pendudukOptions.forEach(function(option) {
-        option.addEventListener("click", function() {
-            selectPenduduk(option.getAttribute("value"), option.textContent);
+    <script>
+        // Event listener for search input
+        document.getElementById('pendudukSearchInput').addEventListener('input', function() {
+            var filter = this.value.toUpperCase();
+            var items = document.querySelectorAll('#pendudukDropdown .dropdown-item');
+            items.forEach(function(item) {
+                var nik = item.getAttribute('data-nik').toUpperCase();
+                var nama = item.getAttribute('data-nama').toUpperCase();
+                if (nik.includes(filter) || nama.includes(filter)) {
+                    item.style.display = '';
+                } else {
+                    item.style.display = 'none';
+                }
+            });
         });
-    });
 
-    // Handling selection in the dropdown
-    function selectPenduduk(value, label) {
-        var dropdownButton = document.querySelector(".dropdown button[name='penduduk']");
-        dropdownButton.innerHTML = label;
-        var inputVal = document.querySelector("[name='NIK']");
-        inputVal.value = value;
-    }
-</script>
+        // Event listener for dropdown items
+        document.querySelectorAll('#pendudukDropdown .dropdown-item').forEach(function(item) {
+            item.addEventListener('click', function() {
+                document.getElementById('pendudukDropdownButton').textContent = this.textContent;
+                document.querySelector('[name="penduduk_id"]').value = this.getAttribute('data-id');
+            });
+        });
+    </script>
 @endsection

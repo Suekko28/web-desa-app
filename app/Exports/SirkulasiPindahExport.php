@@ -26,16 +26,20 @@ class SirkulasiPindahExport implements FromCollection, WithHeadings, WithMapping
     public function collection()
     {
         $query = SirkulasiPindah::query()->select(
-            'nama_penduduk',
-            'NIK',
-            'tgl_pindah',
-            'alasan',
-            'alamat_pindah'
-        );
+            'sirkulasi_pindah.tgl_pindah',
+            'sirkulasi_pindah.alasan',
+            'sirkulasi_pindah.alamat_pindah',
+            'penduduk.NIK as penduduk_NIK',
+            'penduduk.nama as penduduk_nama',
+
+
+        )
+        ->join('penduduk', 'penduduk.id', '=', 'sirkulasi_pindah.penduduk_id');
+    
 
         // Filter berdasarkan tanggal pindah
         if ($this->request->has('tgl_pindah_start') && $this->request->has('tgl_pindah_end')) {
-            $query->whereBetween('tgl_pindah', [
+            $query->whereBetween('sirkulasi_pindah.tgl_pindah', [
                 $this->request->get('tgl_pindah_start'),
                 $this->request->get('tgl_pindah_end')
             ]);
@@ -47,8 +51,8 @@ class SirkulasiPindahExport implements FromCollection, WithHeadings, WithMapping
     public function headings(): array
     {
         return [
-            'Nama Penduduk',
             'NIK Penduduk',
+            'Nama Penduduk',
             'Tanggal Pindah',
             'Alasan',
             'Alamat Pindah'
@@ -58,8 +62,8 @@ class SirkulasiPindahExport implements FromCollection, WithHeadings, WithMapping
     public function map($row): array
     {
         return [
-            $row->nama_penduduk,
-            (int)$row->NIK,
+            $row->penduduk_NIK,
+            $row->penduduk_nama,
             Carbon::parse($row->tgl_pindah)->format('d-m-Y'),
             $row->alasan,
             $row->alamat_pindah
@@ -69,7 +73,7 @@ class SirkulasiPindahExport implements FromCollection, WithHeadings, WithMapping
     public function columnFormats(): array
     {
         return [
-            'B' => NumberFormat::FORMAT_NUMBER,
+            'A' => NumberFormat::FORMAT_NUMBER,
             'C' => NumberFormat::FORMAT_DATE_DDMMYYYY,
         ];
     }

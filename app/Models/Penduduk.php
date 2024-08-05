@@ -68,9 +68,9 @@ class penduduk extends Model
         return $this->hasOne(SirkulasiMeninggal::class, 'NIK_penduduk', 'id');
     }
 
-    public function sirkulasiPindah(): HasOne
+    public function sirkulasiPindah(): HasMany
     {
-        return $this->hasOne(SirkulasiPindah::class, 'NIK', 'id');
+        return $this->hasMany(SirkulasiPindah::class, 'penduduk_id', 'id');
     }
 
     public function getAgamaAttribute($value)

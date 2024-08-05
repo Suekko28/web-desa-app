@@ -32,7 +32,7 @@ class SirkulasiMelahirkanExport implements FromCollection, WithHeadings, WithMap
                 'sirkulasi_melahirkans.tgl_lahir',
                 'sirkulasi_melahirkans.jenis_kelamin',
                 'penduduk.NKK as penduduk_NKK',
-                'penduduk.nama as penduduk_nama'
+                // 'penduduk.nama as penduduk_nama'
             )
             ->join('penduduk', 'penduduk.id', '=', 'sirkulasi_melahirkans.penduduk_id');
 
@@ -54,7 +54,7 @@ class SirkulasiMelahirkanExport implements FromCollection, WithHeadings, WithMap
             'Tanggal Lahir',
             'Jenis Kelamin',
             'NKK',
-            'Nama Penduduk',
+            // 'Keluarga',
         ];
     }
 
@@ -66,7 +66,7 @@ class SirkulasiMelahirkanExport implements FromCollection, WithHeadings, WithMap
             Carbon::parse($row->tgl_lahir)->format('d-m-Y'),
             $row->jenis_kelamin == 1 ? 'Laki-Laki' : 'Perempuan', // Ubah nilai jenis kelamin
             $row->penduduk_NKK,
-            $row->penduduk_nama,
+            // $row->penduduk_nama,
         ];
     }
 

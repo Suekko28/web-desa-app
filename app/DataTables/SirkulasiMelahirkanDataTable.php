@@ -55,7 +55,8 @@ class SirkulasiMelahirkanDataTable extends DataTable
                         $q->whereRaw('LOWER(sirkulasi_melahirkans.nama) LIKE ?', ["%{$search}%"])
                             ->orWhereRaw('LOWER(sirkulasi_melahirkans.tmpt_lahir) LIKE ?', ["%{$search}%"])
                             ->orWhereRaw('LOWER(sirkulasi_melahirkans.tgl_lahir) LIKE ?', ["%{$search}%"])
-                            ->orWhereRaw('LOWER(sirkulasi_melahirkans.penduduk_id) LIKE ?', ["%{$search}%"]);
+                            ->orWhereRaw('LOWER(penduduk.nama) LIKE ?', ["%{$search}%"])
+                            ->orWhereRaw('LOWER(penduduk.NKK) LIKE ?', ["%{$search}%"]);
                     });
                 }
             })
@@ -83,7 +84,7 @@ class SirkulasiMelahirkanDataTable extends DataTable
                 'sirkulasi_melahirkans.updated_at as updated_at',
                 'users.nama as user_nama',
                 'penduduk.NKK as penduduk_nkk', // Pastikan kolom NKK sudah benar di tabel penduduk
-                'penduduk.nama as penduduk_nama' // Pastikan kolom NKK sudah benar di tabel penduduk
+                // 'penduduk.nama as penduduk_nama' // Pastikan kolom NKK sudah benar di tabel penduduk
             )
             ->join('users', 'users.id', '=', 'sirkulasi_melahirkans.user_id')
             ->join('penduduk', 'penduduk.id', '=', 'sirkulasi_melahirkans.penduduk_id')
@@ -108,12 +109,15 @@ class SirkulasiMelahirkanDataTable extends DataTable
             Button::make('excel')
                 ->addClass('btn-success rounded')
                 ->text('Excel'),
+            // Button::make('pdf')
+            //     ->addClass('btn-danger rounded')
+            //     ->text('PDF')
+            //     ->action('function() {
+            //         window.location.href = "' . route('sirkulasi-melahirkan.generate-pdf') . '";
+            //     }')
             Button::make('pdf')
                 ->addClass('btn-danger rounded')
-                ->text('PDF')
-                ->action('function() {
-                    window.location.href = "' . route('sirkulasi-melahirkan.generate-pdf') . '";
-                }')
+                ->text('PDF'),
         ];
         return $this->builder()
             ->setTableId('sirkulasi-melahirkan-table')
@@ -140,11 +144,11 @@ class SirkulasiMelahirkanDataTable extends DataTable
             Column::make('tmpt_lahir'),
             Column::make('tgl_lahir'),
             Column::make('jenis_kelamin'),
-            Column::make('penduduk_nama')
-                ->title('Keluarga'),
             Column::make('penduduk_nkk')
-                ->title('NKK')
-                ->exportFormat('integer'),
+            ->title('NKK')
+            ->exportFormat('integer'),
+            // Column::make('penduduk_nama')
+            //     ->title('Keluarga'),
             Column::make('created_at')
                 ->exportable(false),
             Column::make('updated_at')
