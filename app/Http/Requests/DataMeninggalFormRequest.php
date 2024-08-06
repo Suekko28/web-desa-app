@@ -22,9 +22,10 @@ class DataMeninggalFormRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'NIK_penduduk' => 'required|string|max:255',
             'tgl_meninggal' => 'required|date',
             'sebab' => 'required|string|max:255',
+            'penduduk_id' => 'required|exists:penduduk,id',
+
         ];
     }
 
@@ -36,10 +37,11 @@ class DataMeninggalFormRequest extends FormRequest
     public function messages(): array
     {
         return [
-            'NIK_penduduk.required' => 'Nomor Induk Kependudukan (NIK) penduduk harus diisi.',
             'tgl_meninggal.required' => 'Tanggal meninggal harus diisi.',
             'tgl_meninggal.date' => 'Format tanggal meninggal tidak valid.',
             'sebab.required' => 'Sebab meninggal harus diisi.',
+            'penduduk_id.required' => 'Nomor Induk Kependudukan harus diisi.',
+
         ];
     }
 }

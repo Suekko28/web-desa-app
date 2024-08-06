@@ -53,8 +53,8 @@ class SirkulasiMeninggalDataTable extends DataTable
                 if (request()->has('search') && !empty(request()->get('search')['value'])) {
                     $search = request()->get('search')['value'];
                     $query->where(function ($q) use ($search) {
-                        $q->whereRaw('LOWER(sirkulasi_meninggal.nama_penduduk) LIKE ?', ["%{$search}%"])
-                            ->orWhereRaw('LOWER(sirkulasi_meninggal.NIK_penduduk) LIKE ?', ["%{$search}%"])
+                        $q->whereRaw('LOWER(penduduk.NIK) LIKE ?', ["%{$search}%"])
+                            ->orWhereRaw('LOWER(penduduk.nama) LIKE ?', ["%{$search}%"])
                             ->orWhereRaw('LOWER(sirkulasi_meninggal.sebab) LIKE ?', ["%{$search}%"]);
                     });
                 }
@@ -76,15 +76,17 @@ class SirkulasiMeninggalDataTable extends DataTable
         return $model->newQuery()
             ->select(
                 'sirkulasi_meninggal.id as id',
-                'sirkulasi_meninggal.NIK_penduduk as NIK_penduduk',
-                'sirkulasi_meninggal.nama_penduduk as nama_penduduk',
                 'sirkulasi_meninggal.tgl_meninggal as tgl_meninggal',
                 'sirkulasi_meninggal.sebab as sebab',
                 'sirkulasi_meninggal.created_at as created_at',
                 'sirkulasi_meninggal.updated_at as updated_at',
-                'users.nama as user_nama'
+                'users.nama as user_nama',
+                'penduduk.NIK as penduduk_nik', // Pastikan kolom NKK sudah benar di tabel penduduk
+                'penduduk.nama as penduduk_nama' // Pastikan kolom NKK sudah benar di tabel penduduk
+
             )
             ->join('users', 'users.id', '=', 'sirkulasi_meninggal.user_id')
+            ->join('penduduk', 'penduduk.id', '=', 'sirkulasi_meninggal.penduduk_id')
             ->orderBy('sirkulasi_meninggal.created_at', 'desc');
     }
 
@@ -107,10 +109,7 @@ class SirkulasiMeninggalDataTable extends DataTable
                 ->text('Excel'),
             Button::make('pdf')
                 ->addClass('btn-danger rounded')
-                ->text('PDF')
-                ->action('function() {
-                window.location.href = "' . route('sirkulasi-meninggal.generate-pdf') . '";
-            }'),
+                ->text('PDF'),
 
 
         ];
@@ -135,9 +134,10 @@ class SirkulasiMeninggalDataTable extends DataTable
             Column::make('id')
                 ->title('No')
                 ->width(10),
-            Column::make('nama_penduduk')
+            Column::make('penduduk_nik')
+                ->title('NIK'),
+            Column::make('penduduk_nama')
                 ->title('Nama Penduduk'),
-            Column::make('NIK_penduduk'),
             Column::make('tgl_meninggal'),
             Column::make('sebab'),
             Column::make('created_at'),

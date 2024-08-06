@@ -5,7 +5,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Pemerintahan Meninggal as PDF</title>
+    <title>Data Meninggal as PDF</title>
     <!-- Add any additional CSS styling if needed -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
         integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
@@ -66,8 +66,8 @@
             <thead>
                 <tr>
                     <th scope="col">No</th>
-                    <th scope="col">Nama Penduduk</th>
-                    <th scope="col">NIK Penduduk</th>
+                    <th scope="col">NIK</th>
+                    <th scope="col">Nama</th>
                     <th scope="col">Tanggal Meninggal</th>
                     <th scope="col">Sebab</th>
                 </tr>
@@ -77,8 +77,8 @@
                 @foreach ($data as $row)
                     <tr>
                         <td>{{ $i++ }}</td>
-                        <td>{{ $row->nama_penduduk}}</td>
-                        <td>{{ $row->NIK_penduduk }}</td>
+                        <td>{{ $row->penduduk_nik }}</td>
+                        <td>{{ $row->penduduk_nama }}</td>
                         <td>{{ Carbon\Carbon::parse($row->tgl_meninggal)->format('d-m-Y') }}</td>
                         <td>{{ $row->sebab }}</td>
                     </tr>

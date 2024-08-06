@@ -26,15 +26,18 @@ class SirkulasiMeninggalExport implements FromCollection, WithHeadings, WithMapp
     public function collection()
     {
         $query = SirkulasiMeninggal::query()->select(
-            'nama_penduduk',
-            'NIK_penduduk',
             'tgl_meninggal',
-            'sebab'
-        );
+            'sebab',
+            'penduduk.NIK as penduduk_NIK',
+            'penduduk.nama as penduduk_nama',
+
+
+        )
+            ->join('penduduk', 'penduduk.id', '=', 'sirkulasi_meninggal.penduduk_id');
 
         // Filter berdasarkan tanggal
         if ($this->request->has('tgl_meninggal_start') && $this->request->has('tgl_meninggal_end')) {
-            $query->whereBetween('tgl_meninggal', [
+            $query->whereBetween('sirkulasi_meninggal.tgl_meninggal', [
                 $this->request->get('tgl_meninggal_start'),
                 $this->request->get('tgl_meninggal_end')
             ]);
@@ -46,8 +49,8 @@ class SirkulasiMeninggalExport implements FromCollection, WithHeadings, WithMapp
     public function headings(): array
     {
         return [
+            'NIK',
             'Nama Penduduk',
-            'NIK Penduduk',
             'Tanggal Meninggal',
             'Sebab'
         ];
@@ -56,8 +59,8 @@ class SirkulasiMeninggalExport implements FromCollection, WithHeadings, WithMapp
     public function map($row): array
     {
         return [
-            $row->nama_penduduk,
-            (int)$row->NIK_penduduk,
+            $row->penduduk_NIK,
+            $row->penduduk_nama,
             Carbon::parse($row->tgl_meninggal)->format('d-m-Y'),
             $row->sebab
         ];
@@ -66,7 +69,7 @@ class SirkulasiMeninggalExport implements FromCollection, WithHeadings, WithMapp
     public function columnFormats(): array
     {
         return [
-            'B' => NumberFormat::FORMAT_NUMBER,
+            'A' => NumberFormat::FORMAT_NUMBER,
             'C' => NumberFormat::FORMAT_DATE_DDMMYYYY,
         ];
     }

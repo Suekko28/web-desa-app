@@ -88,7 +88,9 @@ class PendudukDataTable extends DataTable
                 'users.nama as user_nama'
             )
             ->leftJoin('sirkulasi_pindah', 'penduduk.id', '=', 'sirkulasi_pindah.penduduk_id')
+            ->leftJoin('sirkulasi_meninggal', 'penduduk.id', '=', 'sirkulasi_meninggal.penduduk_id')
             ->whereNull('sirkulasi_pindah.penduduk_id') // Exclude data that exists in sirkulasi_pindah
+            ->whereNull('sirkulasi_meninggal.penduduk_id') // Exclude data that exists in sirkulasi_meninggal
             ->orderBy('penduduk.created_at', 'desc')
             ->join('users', 'users.id', '=', 'penduduk.user_id');
     }

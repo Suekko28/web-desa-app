@@ -24,16 +24,15 @@ class SirkulasiMeninggal extends Model
      */
     protected $fillable = [
         'nama',
-        'NIK_penduduk',
-        'nama_penduduk',
         'tgl_meninggal',
         'sebab',
         'user_id',
+        'penduduk_id'
 
     ];
 
     public function penduduk(){
-        return $this->belongsTo(Penduduk::class,'NIK_penduduk','id');
+        return $this->belongsTo(Penduduk::class,'penduduk_id','id');
     }
 
 

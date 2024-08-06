@@ -51,7 +51,7 @@ class SirkulasiPindahExport implements FromCollection, WithHeadings, WithMapping
     public function headings(): array
     {
         return [
-            'NIK Penduduk',
+            'NIK',
             'Nama Penduduk',
             'Tanggal Pindah',
             'Alasan',
