@@ -116,7 +116,7 @@ class penduduk extends Model
 
     public function getPekerjaanAttribute($value)
     {
-        $arr = ["Buruh Harian Lepas", "Belum Bekerja", "Pengrajin Logam", "Wiraswasta", "Guru", "Mengurus Rumah Tangga", "Pegawai Negri Sipil", "Tentara Nasional Indonesia", "Guru ngaji", "Wirausaha", "Penjahit", "Pensiun PNS", "Pemulung", "Buruh", "Linmas wilayah", "Driver", "Petani", "Amil", "Service"];
+        $arr = ["Buruh Harian Lepas", "Belum Bekerja", "Pengrajin Logam", "Wiraswasta", "Guru", "Mengurus Rumah Tangga", "Pegawai Negri Sipil", "Tentara Nasional Indonesia", "Guru Ngaji", "Wirausaha", "Penjahit", "Pensiun PNS", "Pemulung", "Buruh", "Linmas wilayah", "Driver", "Petani", "Amil", "Service"];
         return $arr[$value - 1];
     }
 }

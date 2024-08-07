@@ -190,7 +190,7 @@
                                     <div class="col-sm-12">
                                         <label for="alamat" class="col-form-label">Alamat</label>
                                         <textarea type="text" class="form-control" id="alamat" name="alamat" rows="5"
-                                            placeholder="Alamat Lengkap (Jl / Kampung  No.Rumah)">{{old('alamat')}}</textarea>
+                                            placeholder="Alamat Lengkap (Jl / Kampung  No.Rumah)">{{ old('alamat') }}</textarea>
                                     </div>
                                 </div>
                             </div>
@@ -260,7 +260,7 @@
                                             <option value="8" {{ old('pekerjaan') == '8' ? 'selected' : '' }}>Tentara
                                                 Nasional Indonesia</option>
                                             <option value="9" {{ old('pekerjaan') == '9' ? 'selected' : '' }}>Guru
-                                                ngaji</option>
+                                                Ngaji</option>
                                             <option value="10" {{ old('pekerjaan') == '10' ? 'selected' : '' }}>
                                                 Wirausaha</option>
                                             <option value="11" {{ old('pekerjaan') == '11' ? 'selected' : '' }}>
@@ -309,12 +309,16 @@
                                     <div class="col-sm-6">
                                         <label for="e_ktp" class="col-form-label">Kepemilikan E-KTP</label>
                                         <select class="form-control" name="kepemilikan_e_ktp" id="e_ktp">
-                                            <option value="" {{ old('kepemilikan_e_ktp') === '' ? 'selected' : '' }}>--Pilih Salah Satu--</option>
-                                            <option value="1" {{ old('kepemilikan_e_ktp') == '1' ? 'selected' : '' }}>Ada</option>
-                                            <option value="2" {{ old('kepemilikan_e_ktp') == '2' ? 'selected' : '' }}>Tidak Ada</option>
+                                            <option value=""
+                                                {{ old('kepemilikan_e_ktp') === '' ? 'selected' : '' }}>--Pilih Salah
+                                                Satu--</option>
+                                            <option value="1"
+                                                {{ old('kepemilikan_e_ktp') == '1' ? 'selected' : '' }}>Ada</option>
+                                            <option value="2"
+                                                {{ old('kepemilikan_e_ktp') == '2' ? 'selected' : '' }}>Tidak Ada</option>
                                         </select>
                                     </div>
-                                    
+
 
                                 </div>
                             </div>
