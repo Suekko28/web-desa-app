@@ -41,7 +41,7 @@ class LPJBarangJasa extends Model
         'nama_toko',
         'pemilik_toko',
         'lampiran',
-        'tim_pemeriksa',
+        'timpemeriksa_id',
         'perihal',
         'alamat',
         'user_id',
@@ -54,7 +54,7 @@ class LPJBarangJasa extends Model
 
     public function TimPemeriksa(): BelongsTo
     {
-        return $this->belongsTo(LPJTimPemeriksa::class, 'tim_pemeriksa', 'id');
+        return $this->belongsTo(LPJTimPemeriksa::class, 'tim_pemeriksa_id', 'id');
     }
 
 

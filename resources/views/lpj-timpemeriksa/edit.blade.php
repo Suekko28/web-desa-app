@@ -43,7 +43,6 @@
                             <h5 class="text-center data_diri mb-3">Tim Pemeriksa</h5>
                             <div class="form-group">
                                 <div class="row">
-                                    <!-- Tampilin Semua Field Di Table Jos !-->
                                     <div class="col-sm-4">
                                         <label for="nip" class="col-form-label">NIP</label>
                                         <input type="text" class="form-control" id="NIP" name="NIP"
@@ -52,14 +51,14 @@
 
                                     <div class="col-sm-4">
                                         <label for="nama" class="col-form-label">Nama</label>
-                                        <input type="text" class="form-control" id="nama_ketua" name="nama_ketua"
+                                        <input type="text" class="form-control" id="nama" name="nama_ketua"
                                             placeholder="Nama Lengkap" value="{{ $data_ketua->nama }}">
                                     </div>
 
                                     <div class="col-sm-4">
                                         <label for="jabatan" class="col-form-label">Jabatan</label>
                                         <div class="input-group">
-                                            <input type="text" class="form-control" id="jabatan_ketua" name="jabatan_ketua"
+                                            <input type="text" class="form-control" id="jabatan" name="jabatan_ketua"
                                                 placeholder="Jabatan" value="{{ $data_ketua->jabatan }}">
                                         </div>
                                     </div>
@@ -83,43 +82,26 @@
                                     </div>
 
                                     <div class="col-sm-12">
-                                        <label for="alamat" class="col-form-label">Alamat</label>
+                                        <label for=" alamat" class="col-form-label">Alamat</label>
                                         <textarea type="text" class="form-control" id="alamat" name="alamat" rows="5"
-                                            placeholder="Alamat Lengkap (Jl / Kampung  No.Rumah)">{{ $data_ketua->alamat }}</textarea>
+                                            placeholder="Alamat Lengkap (Jl / Kampung  No.Rumah)">{{$data_ketua->alamat}}</textarea>
                                     </div>
-
-                                    @foreach ($data_anggota as $anggota)
-                                        <div class="col-sm-6">
-                                            <label for="nama_{{ $anggota->id }}" class="col-form-label">Nama</label>
-                                            <input type="text" class="form-control" id="nama_{{ $anggota->id }}"
-                                                name="nama[]" value="{{ $anggota->nama }}" placeholder="Nama Lengkap">
-                                        </div>
-                                        <div class="col-sm-6">
-                                            <label for="jabatan_{{ $anggota->id }}"
-                                                class="col-form-label">Jabatan</label>
-                                            <div class="input-group">
-                                                <input type="text" class="form-control"
-                                                    id="jabatan_{{ $anggota->id }}" name="jabatan[]"
-                                                    value="{{ $anggota->jabatan }}" placeholder="Jabatan">
-                                                <div class="input-group-append">
-                                                    <button class="btn btn-danger rounded ml-2 remove-data-btn"
-                                                        type="button" data-counter="{{ $anggota->id }}">
-                                                        <i class="fas fa-trash-alt"></i>
-                                                    </button>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    @endforeach
                                 </div>
 
-                                <button class="btn btn-primary mt-3" type="button" id="addDataBtn">Tambah Data</button>
+                                <button class="btn btn-primary mt-3" type="button" id="addDataBtn">Tambah
+                                    Anggota</button>
                             </div>
+
+                            <div class="form-group" id="anggotaContainer"></div>
 
                             <div class="d-flex flex-row-reverse">
                                 <button type="submit" class="btn btn-primary ml-3">Simpan</button>
-                                <a href="{{route('lpj-timpemeriksa.index')}}" class="btn btn-danger">Batal</a>
+                                <a href="{{ route('lpj-timpemeriksa.index') }}" class="btn btn-danger">Batal</a>
                             </div>
-                            <!-- /.card-body -->
+                        </div>
+                        <!-- /.card-body -->
+                    </div>
+                    <!-- /.card-body -->
                 </form>
                 <!-- /.row (main row) -->
             </div><!-- /.container-fluid -->
@@ -158,73 +140,32 @@
     </script>
 
 
-    <script>
-        $(document).ready(function() {
-            // Counter to keep track of the number of added data fields
-            let counter = 1;
 
-            // Function to dynamically add new input fields for Nama and Jabatan
-            function addDataField() {
-                let html = `
-                <div class="row added-data-row">
-                    <div class="col-sm-6">
-                        <label for="nama_${counter}" class="col-form-label">Nama</label>
-                        <input type="text" class="form-control" id="nama_${counter}" name="nama[]" placeholder="Nama Lengkap">
+<script>
+    $(document).ready(function() {
+        $('#addDataBtn').click(function() {
+            $('#anggotaContainer').append(`
+                <div class="form-group anggota-row">
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <label for="nama" class="col-form-label">Nama</label>
+                            <input type="text" class="form-control" name="nama[]" placeholder="Nama Anggota">
+                        </div>
+                        <div class="col-sm-6">
+                            <label for="jabatan" class="col-form-label">Jabatan</label>
+                            <input type="text" class="form-control" name="jabatan[]" placeholder="Jabatan">
+                        </div>
+                        <div class="col-sm-2 d-flex align-items-end">
+                            <button type="button" class="btn btn-danger remove-anggota-btn">Hapus</button>
+                        </div>
                     </div>
-
-                    <div class="col-sm-6">
-                      <label for="jabatan_${counter}" class="col-form-label">Jabatan</label>
-                        <div class="input-group">
-                            <input type="text" class="form-control" id="jabatan${counter}" name="jabatan[]" placeholder="Jabatan">
-                        <div class="input-group-append">
-                         <button class="btn btn-danger rounded ml-2 remove-data-btn" type="button" data-counter="${counter}">
-                            <i class="fas fa-trash-alt"></i>
-                        </button>
-        </div>
-    </div>
-</div>
-
-            `;
-
-                // Append the new data fields to the form
-                $('.form-group').append(html);
-
-                // Increment the counter for the next set of data fields
-                counter++;
-            }
-
-            // Event listener for the "Tambah Data" button
-            $('#addDataBtn').on('click', function() {
-                addDataField();
-            });
-
-            // Event listener for dynamically added remove buttons
-            $('.form-group').on('click', '.remove-data-btn', function() {
-                // Get the counter value from the data attribute
-                let counterToRemove = $(this).data('counter');
-
-                // Remove the corresponding set of data fields
-                $(`.added-data-row:has([data-counter=${counterToRemove}])`).remove();
-            });
+                </div>
+            `);
         });
-    </script>
 
-    <script>
-        $(document).ready(function() {
-            // Event listener untuk tombol remove-data-btn
-            $('.remove-data-btn').on('click', function() {
-                // Dapatkan counter dari data-counter atribut tombol yang ditekan
-                var counter = $(this).data('counter');
-
-                // Tampilkan konfirmasi alert
-                var confirmation = confirm("Apakah Anda yakin ingin menghapus data?");
-
-                // Hapus elemen jika konfirmasi positif
-                if (confirmation) {
-                    $('#nama_' + counter).closest('.col-sm-6').remove();
-                    $('#jabatan_' + counter).closest('.col-sm-6').remove();
-                }
-            });
+        $(document).on('click', '.remove-anggota-btn', function() {
+            $(this).closest('.anggota-row').remove();
         });
-    </script>
+    });
+</script>
 @endsection

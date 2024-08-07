@@ -38,7 +38,7 @@ class PemerintahanLPJRequest extends FormRequest
             'nama_toko' => 'required|string|max:255',
             'pemilik_toko' => 'required|string|max:255',
             'lampiran' => 'required|string|max:255',
-            'tim_pemeriksa' => 'required|string|max:255',
+            'timpemeriksa_id' => 'required|exists:lpj_timpemeriksa,id',
             'perihal' => 'required|string|max:255',
             'alamat' => 'required|string|max:255',
         ];
@@ -72,7 +72,7 @@ class PemerintahanLPJRequest extends FormRequest
             'nama_toko.required' => 'Nama Toko harus diisi.',
             'pemilik_toko.required' => 'Pemilik Toko harus diisi.',
             'lampiran.required' => 'Lampiran harus diisi.',
-            'tim_pemeriksa.required' => 'Tim Pemeriksa harus diisi.',
+            'timpemeriksa_id.required' => 'Tim Pemeriksa harus diisi.',
             'perihal.required' => 'Perihal harus diisi.',
             'alamat.required' => 'Alamat harus diisi.',
         ];

@@ -41,17 +41,17 @@ class LPJTimPemeriksaController extends Controller
             'nomor' => $request->nomor,
             'tahun' => $request->tahun,
             'alamat' => $request->alamat,
-            'user_id' => $userId, 
+            'user_id' => $userId,
         ];
 
+        // Create LPJTimPemeriksa
+        $lpjTimPemeriksa = LPJTimPemeriksa::create($data_ketua);
 
-
-        LPJTimPemeriksa::create($data_ketua);
-        $id_ketua = LPJTimPemeriksa::where('NIP', '=', $data_ketua['NIP'])->where('jabatan', '=', $data_ketua['jabatan'])->where('tgl_pemeriksa', '=', $data_ketua['tgl_pemeriksa'])->first();
+        // Check if there are members to add
         if ($request->nama != null) {
             for ($i = 0; $i < sizeof($request->nama); $i++) {
                 $data = [
-                    'id_ketua' => $id_ketua->id,
+                    'timpemeriksa_id' => $lpjTimPemeriksa->id,
                     'nama' => $request->nama[$i],
                     'jabatan' => $request->jabatan[$i],
                 ];
@@ -60,6 +60,7 @@ class LPJTimPemeriksaController extends Controller
         }
         return redirect()->route('lpj-timpemeriksa.index')->with('success', 'Data berhasil ditambahkan');
     }
+
 
     /**
      * Display the specified resource.
@@ -87,7 +88,7 @@ class LPJTimPemeriksaController extends Controller
     public function update(Request $request, string $id)
     {
         $userId = auth()->user()->id;
-        
+
         $data = LPJTimPemeriksa::find($id);
         $data_ketua = [
             'NIP' => $request->NIP,
@@ -97,24 +98,29 @@ class LPJTimPemeriksaController extends Controller
             'nomor' => $request->nomor,
             'tahun' => $request->tahun,
             'alamat' => $request->alamat,
-            'user_id' => $userId, 
-
+            'user_id' => $userId,
         ];
+
+        // Update LPJTimPemeriksa
         $data->update($data_ketua);
+
+        // Remove existing members
         $data->AnggotaLPJTimPemeriksa()->delete();
+
+        // Add new members
         if ($request->nama != null) {
             for ($i = 0; $i < sizeof($request->nama); $i++) {
-                $data = [
-                    'id_ketua' => $id,
+                $memberData = [
+                    'timpemeriksa_id' => $id,
                     'nama' => $request->nama[$i],
                     'jabatan' => $request->jabatan[$i],
                 ];
-                AnggotaLPJTimPemeriksa::create($data);
+                AnggotaLPJTimPemeriksa::create($memberData);
             }
         }
         return redirect()->route('lpj-timpemeriksa.index')->with('success', 'Data berhasil diperbarui');
-
     }
+
 
     /**
      * Remove the specified resource from storage.

@@ -165,7 +165,7 @@
                                                 id="timPemeriksaDropdown">
                                                 <input type="text" id="timPemeriksaSearchInput" class="form-control"
                                                     placeholder="Cari Tim Pemeriksa..." oninput="searchTimPemeriksa()"
-                                                    name="tim_pemeriksa">
+                                                    name="timpemeiksa_id">
                                                 @foreach ($data_pemeriksa as $i)
                                                     <li><a class="dropdown-item penduduk-option" href="#"
                                                             value="{{ $i->NIP }}">{{ $i->NIP . ' - ' . $i->nama }}</a>
@@ -269,7 +269,7 @@
         function selectTimPemeriksa(value, label) {
             var dropdownButton = document.querySelector(".dropdown button[name='tim_pemeriksa_show']");
             dropdownButton.innerHTML = label;
-            var inputVal = document.querySelector("[name='tim_pemeriksa']");
+            var inputVal = document.querySelector("[name='timpemeiksa_id']");
             inputVal.value = value;
         }
     </script>

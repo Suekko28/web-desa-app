@@ -29,11 +29,12 @@ return new class extends Migration
             $table->string('nama_toko', 50);
             $table->string('pemilik_toko', 25);
             $table->string('lampiran', 50);
-            $table->integer('tim_pemeriksa');
             $table->string('perihal', 50);
             $table->text('alamat');
             $table->unsignedBigInteger('user_id');
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
+            $table->unsignedBigInteger('timpemeriksa_id');
+            $table->foreign('timpemeriksa_id')->references('id')->on('lpj_timpemeriksa')->onDelete('cascade');
             $table->timestamps();
         });
     }

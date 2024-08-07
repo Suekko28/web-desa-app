@@ -36,7 +36,7 @@ class LPJTimPemeriksa extends Model
 
     ];
     public function AnggotaLPJTimPemeriksa(): HasMany{
-        return $this->hasMany(AnggotaLPJTimPemeriksa::class,'id_ketua','id');
+        return $this->hasMany(AnggotaLPJTimPemeriksa::class,'timpemeriksa_id','id');
     }
 
     public function user(): BelongsTo
