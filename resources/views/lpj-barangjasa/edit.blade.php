@@ -42,11 +42,11 @@
                             <div class="form-group">
                                 <div class="row">
                                     <!--Field yang ditampilin di table
-                                            1. No
-                                            2. Nomor Pesanan
-                                            3. TPK (Nama TPK)
-                                            4. Tanggal Pesanan
-                                            5. Nama Toko !-->
+                                                1. No
+                                                2. Nomor Pesanan
+                                                3. TPK (Nama TPK)
+                                                4. Tanggal Pesanan
+                                                5. Nama Toko !-->
 
                                     <div class="col-sm-6">
                                         <label for="lampiran" class="col-form-label">Lampiran</label>
@@ -59,11 +59,11 @@
                                         <input type="text" class="form-control" id="perihal" name="perihal"
                                             placeholder="Masukkan Perihal" value="{{ $data->perihal }}">
                                     </div>
-                                    
+
                                     <div class="col-sm-6">
                                         <label for="dana_desa" class="col-form-label"> Sumber Dana Desa</label>
                                         <input type="text" class="form-control" id="dana_desa" name="dana_desa"
-                                            placeholder="Masukkan Sumber Dana Desa" value="{{$data->dana_desa}}">
+                                            placeholder="Masukkan Sumber Dana Desa" value="{{ $data->dana_desa }}">
                                     </div>
 
                                     <div class="col-sm-6">
@@ -74,7 +74,8 @@
                                     </div>
 
                                     <div class="col-sm-6">
-                                        <label for="no_berita_acara" class="col-form-label">No. Berita Acara Serah Terima Barang
+                                        <label for="no_berita_acara" class="col-form-label">No. Berita Acara Serah Terima
+                                            Barang
                                             (BASTB)</label>
                                         <input type="text" class="form-control" id="no_berita_acara"
                                             name="no_berita_acara" placeholder="001/BAST/PTPKD/15.2005/IV/2023"
@@ -85,7 +86,8 @@
                                         <label for="no_berita_acara_pemeriksaan" class="col-form-label">No. Berita Acara
                                             Pemeriksaan Barang (BAPB)</label>
                                         <input type="text" class="form-control" id="no_berita_acara_pemeriksaan"
-                                            name="no_berita_acara_pemeriksaan" placeholder="001/BAPB/PTPKD/15.2005/IV/2023" value="{{$data->no_berita_acara_pemeriksaan}}">
+                                            name="no_berita_acara_pemeriksaan" placeholder="001/BAPB/PTPKD/15.2005/IV/2023"
+                                            value="{{ $data->no_berita_acara_pemeriksaan }}">
                                     </div>
 
                                     <div class="col-sm-6">
@@ -167,27 +169,21 @@
                                             <button class="form-control dropdown-toggle text-left" type="button"
                                                 data-bs-toggle="dropdown" aria-expanded="false"
                                                 name="tim_pemeriksa_show">
-                                                {{ $data->tim_pemeriksa }} - {{ $data->nama_pemeriksa }}
+                                                --Pilih Tim Pemeriksa--
                                             </button>
                                             <!-- Data diambil dari TIM PEMERIKSA !-->
-                                            <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton"
-                                                id="timPemeriksaDropdown">
+                                            <ul class="dropdown-menu" id="timPemeriksaDropdown">
                                                 <input type="text" id="timPemeriksaSearchInput" class="form-control"
                                                     placeholder="Cari Tim Pemeriksa..." oninput="searchTimPemeriksa()"
-                                                    name="tim_pemeriksa" value="{{ $data->tim_pemeriksa }}">
+                                                    name="timpemeriksa_id">
                                                 @foreach ($data_pemeriksa as $i)
                                                     <li><a class="dropdown-item penduduk-option" href="#"
-                                                            value="{{ $i->NIP }}">{{ $i->NIP . ' - ' . $i->nama }}</a>
+                                                            data-value="{{ $i->id }}">{{ $i->NIP . ' - ' . $i->nama }}</a>
                                                     </li>
                                                 @endforeach
-                                                <!-- Tambahkan opsi ketua, sekretaris, dan anggota -->
-                                                <!-- <li><a class="dropdown-item penduduk-option" href="#"
-                                                            value="ketua">Ketua</a></li>
-                                                    <li><a class="dropdown-item penduduk-option" href="#"
-                                                            value="sekretaris">Sekretaris</a></li>
-                                                    <li><a class="dropdown-item penduduk-option" href="#"
-                                                            value="anggota">Anggota</a></li> -->
+
                                             </ul>
+
                                         </div>
                                     </div>
 
@@ -246,37 +242,31 @@
 
     <script>
         function searchTimPemeriksa() {
-            var input, filter, ul, li, a, i, txtValue;
-            input = document.getElementById("timPemeriksaSearchInput");
-            filter = input.value.toUpperCase();
-            ul = document.getElementById("timPemeriksaDropdown");
-            li = ul.getElementsByClassName("penduduk-option");
+            var input = document.getElementById("timPemeriksaSearchInput");
+            var filter = input.value.toUpperCase();
+            var ul = document.getElementById("timPemeriksaDropdown");
+            var li = ul.getElementsByClassName("penduduk-option");
 
-            for (i = 0; i < li.length; i++) {
-                a = li[i];
-                txtValue = a.textContent || a.innerText;
-
-                if (txtValue.toUpperCase().indexOf(filter) > -1) {
-                    li[i].style.display = "";
-                } else {
-                    li[i].style.display = "none";
-                }
+            for (var i = 0; i < li.length; i++) {
+                var a = li[i];
+                var txtValue = a.textContent || a.innerText;
+                li[i].style.display = txtValue.toUpperCase().indexOf(filter) > -1 ? "" : "none";
             }
         }
 
-        // Adding event listener for each option in the dropdown
-        var timPemeriksaOptions = document.querySelectorAll("#timPemeriksaDropdown .penduduk-option");
-        timPemeriksaOptions.forEach(function(option) {
-            option.addEventListener("click", function() {
-                selectTimPemeriksa(option.getAttribute("value"), option.textContent);
+        document.addEventListener("DOMContentLoaded", function() {
+            var timPemeriksaOptions = document.querySelectorAll("#timPemeriksaDropdown .penduduk-option");
+            timPemeriksaOptions.forEach(function(option) {
+                option.addEventListener("click", function() {
+                    selectTimPemeriksa(option.getAttribute("data-value"), option.textContent);
+                });
             });
         });
 
-        // Handling selection in the dropdown
         function selectTimPemeriksa(value, label) {
             var dropdownButton = document.querySelector(".dropdown button[name='tim_pemeriksa_show']");
             dropdownButton.innerHTML = label;
-            var inputVal = document.querySelector("[name='tim_pemeriksa']");
+            var inputVal = document.querySelector("[name='timpemeriksa_id']");
             inputVal.value = value;
         }
     </script>

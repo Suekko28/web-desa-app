@@ -30,8 +30,13 @@ class LPJBarangJasaController extends Controller
      */
     public function create()
     {
-        $data_pemeriksa = LPJTimPemeriksa::all();
+        // // Ambil ID penduduk yang sudah ada di sirkulasi_pindah
+        // $existingTimPemeriksaIds = LPJBarangJasa::pluck('timpemeriksa_id')->toArray();
 
+        // // Ambil penduduk yang tidak ada di sirkulasi_pindah
+        // $data_pemeriksa = LPJTimPemeriksa::whereNotIn('id', $existingTimPemeriksaIds)->get()->unique('NIP');
+
+        $data_pemeriksa = LPJTimPemeriksa::all();
         return view('lpj-barangjasa.create', ['data_pemeriksa' => $data_pemeriksa]);
     }
 
@@ -57,9 +62,11 @@ class LPJBarangJasaController extends Controller
     public function show(string $id)
     {
         $data = LPJBarangJasa::find($id);
+        $data_pemeriksa = LPJTimPemeriksa::find($data->timpemeriksa_id);
 
         return view('lpj-barangjasa.view', [
             "data" => $data,
+            "data_pemeriksa" => $data_pemeriksa,
         ]);
     }
 
@@ -72,13 +79,7 @@ class LPJBarangJasaController extends Controller
 
         $data_pemeriksa = LPJTimPemeriksa::all();
 
-        // Ambil nama pemeriksa jika ada
-        $data_pemeriksa_nama = LPJTimPemeriksa::where('NIP', '=', $data->tim_pemeriksa)->first();
-        if ($data_pemeriksa_nama) {
-            $data->nama_pemeriksa = $data_pemeriksa_nama->nama;
-        } else {
-            $data->nama_pemeriksa = null; // Nilai default jika tidak ditemukan
-        }
+
 
         return view('lpj-barangjasa.edit', [
             "data" => $data,

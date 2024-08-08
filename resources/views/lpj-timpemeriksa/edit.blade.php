@@ -1,6 +1,6 @@
 @extends('layouts.app')
 @section('master-title', 'Tim Pemeriksa/')
-@section('page-title', 'Create')
+@section('page-title', 'Edit')
 @section('contents')
     <link rel="shortcut icon" href="{{ asset('assets/images/favicon.ico') }}">
 
@@ -32,59 +32,61 @@
                 @include('layouts.message')
 
                 <!-- Small boxes (Stat box) -->
-
                 <form action="{{ route('lpj-timpemeriksa.update', $data_ketua->id) }}" method="POST"
                     enctype="multipart/form-data">
-                    @method('PUT')
                     @csrf
+                    @method('PUT')
                     <input type="hidden" id="user_id" name="user_id" value="{{ auth()->user()->id }}">
                     <div class="card">
                         <div class="card-body">
-                            <h5 class="text-center data_diri mb-3">Tim Pemeriksa</h5>
+                            <h5 class="text-center data_diri mb-3">Edit Tim Pemeriksa</h5>
                             <div class="form-group">
                                 <div class="row">
                                     <div class="col-sm-4">
                                         <label for="nip" class="col-form-label">NIP</label>
                                         <input type="text" class="form-control" id="NIP" name="NIP"
-                                            placeholder="Nomor Identitas Pemeriksa" value="{{ $data_ketua->NIP }}">
+                                            placeholder="Nomor Identitas Pemeriksa"
+                                            value="{{ old('NIP', $data_ketua->NIP) }}">
                                     </div>
 
                                     <div class="col-sm-4">
                                         <label for="nama" class="col-form-label">Nama</label>
                                         <input type="text" class="form-control" id="nama" name="nama_ketua"
-                                            placeholder="Nama Lengkap" value="{{ $data_ketua->nama }}">
+                                            placeholder="Nama Lengkap"
+                                            value="{{ old('nama_ketua', $data_ketua->nama) }}">
                                     </div>
 
                                     <div class="col-sm-4">
                                         <label for="jabatan" class="col-form-label">Jabatan</label>
                                         <div class="input-group">
                                             <input type="text" class="form-control" id="jabatan" name="jabatan_ketua"
-                                                placeholder="Jabatan" value="{{ $data_ketua->jabatan }}">
+                                                placeholder="Jabatan"
+                                                value="{{ old('jabatan_ketua', $data_ketua->jabatan) }}">
                                         </div>
                                     </div>
 
                                     <div class="col-sm-4">
                                         <label for="tgl_pemeriksa" class="col-form-label">Tanggal Pemeriksa</label>
                                         <input type="date" class="form-control" id="tgl_pemeriksa" name="tgl_pemeriksa"
-                                            placeholder="" value="{{ $data_ketua->tgl_pemeriksa }}">
+                                            placeholder="" value="{{ old('tgl_pemeriksa', $data_ketua->tgl_pemeriksa) }}">
                                     </div>
 
                                     <div class="col-sm-4">
                                         <label for="nomor" class="col-form-label">Nomor</label>
                                         <input type="number" class="form-control" id="nomor" name="nomor"
-                                            placeholder="Nomor" value="{{ $data_ketua->nomor }}">
+                                            placeholder="Nomor" value="{{ old('nomor', $data_ketua->nomor) }}">
                                     </div>
 
                                     <div class="col-sm-4">
                                         <label for="tahun" class="col-form-label">Tahun</label>
                                         <input type="number" class="form-control" id="tahun" name="tahun"
-                                            placeholder="Tahun" value="{{ $data_ketua->tahun }}">
+                                            placeholder="Tahun" value="{{ old('tahun', $data_ketua->tahun) }}">
                                     </div>
 
                                     <div class="col-sm-12">
                                         <label for=" alamat" class="col-form-label">Alamat</label>
                                         <textarea type="text" class="form-control" id="alamat" name="alamat" rows="5"
-                                            placeholder="Alamat Lengkap (Jl / Kampung  No.Rumah)">{{ $data_ketua->alamat }}</textarea>
+                                            placeholder="Alamat Lengkap (Jl / Kampung  No.Rumah)">{{ old('alamat', $data_ketua->alamat) }}</textarea>
                                     </div>
                                 </div>
 
@@ -92,7 +94,31 @@
                                     Anggota</button>
                             </div>
 
-                            <div class="form-group" id="anggotaContainer"></div>
+                            <div class="form-group" id="anggotaContainer">
+                                @foreach ($data_anggota as $anggota)
+                                    <div class="form-group anggota-row">
+                                        <div class="row">
+                                            <div class="col-sm-5">
+                                                <label for="nama" class="col-form-label">Nama</label>
+                                                <input type="text" class="form-control" name="nama[]"
+                                                    value="{{ old('nama[]', $anggota->nama) }}"
+                                                    placeholder="Nama Anggota">
+                                            </div>
+                                            <div class="col-sm-5">
+                                                <label for="jabatan" class="col-form-label">Jabatan</label>
+                                                <input type="text" class="form-control" name="jabatan[]"
+                                                    value="{{ old('jabatan[]', $anggota->jabatan) }}"
+                                                    placeholder="Jabatan">
+                                            </div>
+                                            <div class="col-sm-2 d-flex align-items-end">
+                                                <button type="button" class="btn btn-danger rounded remove-anggota-btn">
+                                                    <i class="fas fa-trash-alt"></i>
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                @endforeach
+                            </div>
 
                             <div class="d-flex flex-row-reverse">
                                 <button type="submit" class="btn btn-primary ml-3">Simpan</button>
@@ -101,7 +127,6 @@
                         </div>
                         <!-- /.card-body -->
                     </div>
-                    <!-- /.card-body -->
                 </form>
                 <!-- /.row (main row) -->
             </div><!-- /.container-fluid -->
@@ -113,57 +138,35 @@
     <script src="{{ asset('assets/libs/metismenu/metisMenu.min.js') }}"></script>
     <script src="{{ asset('assets/libs/simplebar/simplebar.min.js') }}"></script>
     <script src="{{ asset('assets/libs/node-waves/waves.min.js') }}"></script>
-
-    <!-- Required datatable js -->
-    <script src="{{ asset('assets/libs/datatables.net/js/jquery.dataTables.min.js') }}"></script>
-    <script src="{{ asset('assets/libs/datatables.net-bs4/js/dataTables.bootstrap4.min.js') }}"></script>
-    <!-- Buttons examples -->
-    <script src="{{ asset('assets/libs/datatables.net-buttons/js/dataTables.buttons.min.js') }}"></script>
-    <script src="{{ asset('assets/libs/datatables.net-buttons-bs4/js/buttons.bootstrap4.min.js') }}"></script>
-    <script src="{{ asset('assets/libs/jszip/jszip.min.js') }}"></script>
-    <script src="{{ asset('assets/libs/pdfmake/build/pdfmake.min.js') }}"></script>
-    <script src="{{ asset('assets/libs/pdfmake/build/vfs_fonts.js') }}"></script>
-    <script src="{{ asset('assets/libs/datatables.net-buttons/js/buttons.html5.min.js') }}"></script>
-    <script src="{{ asset('assets/libs/datatables.net-buttons/js/buttons.print.min.js') }}"></script>
-    <script src="{{ asset('assets/libs/datatables.net-buttons/js/buttons.colVis.min.js') }}"></script>
-    <!-- Responsive examples -->
-    <script src="{{ asset('assets/libs/datatables.net-responsive/js/dataTables.responsive.min.js') }}"></script>
-    <script src="{{ asset('assets/libs/datatables.net-responsive-bs4/js/responsive.bootstrap4.min.js') }}"></script>
-
-    <!-- Datatable init js -->
-    <script src="{{ asset('assets/js/pages/datatables.init.js') }}"></script>
-
+    <script src="{{ asset('assets/libs/waypoints/lib/jquery.waypoints.min.js') }}"></script>
+    <script src="{{ asset('assets/libs/jquery.counterup/jquery.counterup.min.js') }}"></script>
+    <!-- Chart -->
+    <script src="{{ asset('assets/libs/apexcharts/apexcharts.min.js') }}"></script>
     <!-- App js -->
     <script src="{{ asset('assets/js/app.js') }}"></script>
-    <script defer src="https://use.fontawesome.com/releases/v5.15.4/js/fontawesome.js"
-        integrity="sha384-dPBGbj4Uoy1OOpM4+aRGfAOc0W37JkROT+3uynUgTHZCHZNMHfGXsmmvYTffZjYO" crossorigin="anonymous">
-    </script>
-
-
 
     <script>
         $(document).ready(function() {
             $('#addDataBtn').click(function() {
                 $('#anggotaContainer').append(`
-            <div class="form-group anggota-row">
-    <div class="row">
-        <div class="col-sm-5">
-            <label for="nama" class="col-form-label">Nama</label>
-            <input type="text" class="form-control" name="nama[]" placeholder="Nama Anggota">
-        </div>
-        <div class="col-sm-5">
-            <label for="jabatan" class="col-form-label">Jabatan</label>
-            <input type="text" class="form-control" name="jabatan[]" placeholder="Jabatan">
-        </div>
-        <div class="col-sm-2 d-flex align-items-end">
-            <button type="button" class="btn btn-danger remove-anggota-btn">
-                <i class="fas fa-trash-alt"></i>
-            </button>
-        </div>
-    </div>
-</div>
-
-            `);
+                    <div class="form-group anggota-row">
+                        <div class="row">
+                            <div class="col-sm-5">
+                                <label for="nama" class="col-form-label">Nama</label>
+                                <input type="text" class="form-control" name="nama[]" placeholder="Nama Anggota">
+                            </div>
+                            <div class="col-sm-5">
+                                <label for="jabatan" class="col-form-label">Jabatan</label>
+                                <input type="text" class="form-control" name="jabatan[]" placeholder="Jabatan">
+                            </div>
+                            <div class="col-sm-2 d-flex align-items-end">
+                                <button type="button" class="btn btn-danger rounded remove-anggota-btn">
+                                    <i class="fas fa-trash-alt"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                `);
             });
 
             $(document).on('click', '.remove-anggota-btn', function() {

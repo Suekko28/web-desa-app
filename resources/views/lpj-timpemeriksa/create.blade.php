@@ -131,12 +131,13 @@
             <input type="text" class="form-control" name="jabatan[]" placeholder="Jabatan">
         </div>
         <div class="col-sm-2 d-flex align-items-end">
-            <button type="button" class="btn btn-danger remove-anggota-btn">
+            <button type="button" class="btn btn-danger rounded remove-anggota-btn">
                 <i class="fas fa-trash-alt"></i>
             </button>
         </div>
     </div>
 </div>
+
 
                 `);
             });

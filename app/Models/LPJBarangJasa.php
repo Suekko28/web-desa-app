@@ -54,7 +54,7 @@ class LPJBarangJasa extends Model
 
     public function TimPemeriksa(): BelongsTo
     {
-        return $this->belongsTo(LPJTimPemeriksa::class, 'tim_pemeriksa_id', 'id');
+        return $this->belongsTo(LPJTimPemeriksa::class, 'timpemeriksa_id', 'id');
     }
 
 

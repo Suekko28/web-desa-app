@@ -111,7 +111,7 @@ class LPJBarangJasaDataTable extends DataTable
             )
             ->join('users', 'users.id', '=', 'lpj-barang-jasa.user_id')
             ->orderBy('created_at', 'desc')
-            ->leftJoin('lpj_timpemeriksa', 'lpj_timpemeriksa.NIP', '=', 'lpj-barang-jasa.tim_pemeriksa');
+            ->join('lpj_timpemeriksa', 'lpj_timpemeriksa.id', '=', 'lpj-barang-jasa.timpemeriksa_id');
     }
 
     /**

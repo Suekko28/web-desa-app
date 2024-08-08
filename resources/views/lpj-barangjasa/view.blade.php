@@ -167,7 +167,7 @@
                                             <button class="form-control dropdown-toggle text-left" type="button"
                                                 data-bs-toggle="dropdown" aria-expanded="false"
                                                 name="tim_pemeriksa_show" disabled>
-                                                {{ $data->tim_pemeriksa }} - {{ $timPemeriksa->nama }}
+                                                {{ $data_pemeriksa->NIP }} - {{ $data_pemeriksa->nama }}
                                             </button>
                                             <!-- Data diambil dari TIM PEMERIKSA !-->
                                             <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton"
@@ -189,8 +189,7 @@
                             </div>
 
                             <div class="d-flex flex-row-reverse">
-                                <button type="submit" class="btn btn-primary ml-3">Simpan</button>
-                                <a href="{{ route('lpj-barangjasa.index') }}" class="btn btn-danger">Batal</a>
+                                <a href="{{ route('lpj-barangjasa.index') }}" class="btn btn-danger">Kembali</a>
                             </div>
 
 

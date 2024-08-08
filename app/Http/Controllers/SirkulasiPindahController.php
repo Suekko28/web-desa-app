@@ -84,12 +84,16 @@ class SirkulasiPindahController extends Controller
         // Ambil data SirkulasiPindah yang akan diedit
         $data = SirkulasiPindah::findOrFail($id);
 
-        // Ambil ID penduduk yang sudah ada di sirkulasi_pindah
-        $existingPendudukIds = SirkulasiPindah::pluck('penduduk_id')->toArray();
+        $dataPenduduk = Penduduk::all();
 
-        // Ambil penduduk yang tidak ada di sirkulasi_pindah
-        $dataPenduduk = Penduduk::whereNotIn('id', $existingPendudukIds)->get()->unique('NIK');
+        // // Ambil ID penduduk yang sudah ada di sirkulasi_pindah
+        // $existingPendudukIds = SirkulasiPindah::pluck('penduduk_id')->toArray();
 
+        // // Ambil penduduk yang tidak ada di sirkulasi_pindah
+        // $dataPenduduk = Penduduk::whereNotIn('id', $existingPendudukIds)->get()->unique('NIK');
+
+
+        
         return view('sirkulasi-pindah.edit', [
             'data' => $data,
             'dataPenduduk' => $dataPenduduk,

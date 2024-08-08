@@ -85,26 +85,29 @@
                                         <label for="nama_pelaksana_kegiatan" class="col-form-label">Nama Pelaksana
                                             Kegiatan/Pemesan (TPK)</label>
                                         <input type="text" class="form-control" id="nama_pelaksana_kegiatan"
-                                            name="nama_pelaksana_kegiatan" placeholder="Masukkan Nama TPK">
+                                            name="nama_pelaksana_kegiatan" placeholder="Masukkan Nama TPK"
+                                            value="{{ old('nama_pelaksana_kegiatan') }}">
                                     </div>
 
                                     <div class="col-sm-6">
                                         <label for="sk_tpk" class="col-form-label">SK TPK</label>
                                         <input type="text" class="form-control" id="sk_tpk" name="sk_tpk"
-                                            placeholder="Masukkan SK TPK" value="{{old('sk_tpk')}}">
+                                            placeholder="Masukkan SK TPK" value="{{ old('sk_tpk') }}">
                                     </div>
 
                                     <div class="col-sm-6">
                                         <label for="nama_rincian_spp" class="col-form-label">Nama Rincian SPP</label>
                                         <input type="text" class="form-control" id="nama_rincian_spp"
-                                            name="nama_rincian_spp" placeholder="Belanja Alat Tulis Kantor dan Benda Pos" value="{{old('nama_rincian_spp')}}">
+                                            name="nama_rincian_spp" placeholder="Belanja Alat Tulis Kantor dan Benda Pos"
+                                            value="{{ old('nama_rincian_spp') }}">
                                     </div>
 
                                     <div class="col-sm-6">
                                         <label for="uraian_kwitansi" class="col-form-label">Uraian Kwitansi Sesuai
                                             SISKEUDES</label>
                                         <input type="text" class="form-control" id="uraian_kwitansi"
-                                            name="uraian_kwitansi" placeholder="Belanja Alat Tulis Kantor dan Benda Pos" value="{{old('uraian_kwitansi')}}">
+                                            name="uraian_kwitansi" placeholder="Belanja Alat Tulis Kantor dan Benda Pos"
+                                            value="{{ old('uraian_kwitansi') }}">
                                     </div>
 
 
@@ -112,44 +115,45 @@
                                     <div class="col-sm-6">
                                         <label for="tgl_pesanan" class="col-form-label">Tanggal Pesanan</label>
                                         <input type="date" class="form-control" id="tgl_pesanan" name="tgl_pesanan"
-                                            placeholder="" value="{{old('tgl_pesanan')}}">
+                                            placeholder="" value="{{ old('tgl_pesanan') }}">
                                     </div>
 
                                     <div class="col-sm-6">
                                         <label for="jatuh_tempo" class="col-form-label">Jatuh Tempo</label>
                                         <input type="date" class="form-control" id="jatuh_tempo" name="jatuh_tempo"
-                                            placeholder="" value="{{old('jatuh_tempo')}}">
+                                            placeholder="" value="{{ old('jatuh_tempo') }}">
                                     </div>
 
                                     <div class="col-sm-6">
                                         <label for="tgl_bast" class="col-form-label">Tanggal Bast</label>
                                         <input type="date" class="form-control" id="tgl_bast" name="tgl_bast"
-                                            placeholder="" value="{{old('tgl_bast')}}">
+                                            placeholder="" value="{{ old('tgl_bast') }}">
                                     </div>
 
                                     <div class="col-sm-6">
                                         <label for="jatuh_pemeriksaan" class="col-form-label">Jatuh Pemeriksaan</label>
                                         <input type="date" class="form-control" id="jatuh_pemeriksaan"
-                                            name="jatuh_pemeriksaan" placeholder="" value="{{old('jatuh_pemeriksaan')}}">
+                                            name="jatuh_pemeriksaan" placeholder=""
+                                            value="{{ old('jatuh_pemeriksaan') }}">
                                     </div>
 
                                     <div class="col-sm-12">
                                         <label for="keterangan" class="col-form-label">Keterangan</label>
                                         <textarea type="text" class="form-control" id="keterangan" name="keterangan" rows="5"
-                                            placeholder="Barang-barang tersebut telah kami terima dengan baik">{{old('keterangan')}}</textarea>
+                                            placeholder="Barang-barang tersebut telah kami terima dengan baik">{{ old('keterangan') }}</textarea>
                                     </div>
 
 
                                     <div class="col-sm-6">
                                         <label for="nama_toko" class="col-form-label">Nama Toko</label>
                                         <input type="text" class="form-control" id="nama_toko" name="nama_toko"
-                                            placeholder="Nama Toko" value="{{old('nama_toko')}}">
+                                            placeholder="Nama Toko" value="{{ old('nama_toko') }}">
                                     </div>
 
                                     <div class="col-sm-6">
                                         <label for="pemilik_toko" class="col-form-label">Pemilik Toko</label>
                                         <input type="text" class="form-control" id="pemilik_toko" name="pemilik_toko"
-                                            placeholder="Nama Pemilik Toko" value="{{old('pemilik_toko')}}">
+                                            placeholder="Nama Pemilik Toko" value="{{ old('pemilik_toko') }}">
                                     </div>
 
                                     <div class="col-sm-12">
@@ -161,33 +165,25 @@
                                                 --Pilih Tim Pemeriksa--
                                             </button>
                                             <!-- Data diambil dari TIM PEMERIKSA !-->
-                                            <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton"
-                                                id="timPemeriksaDropdown">
+                                            <ul class="dropdown-menu" id="timPemeriksaDropdown">
                                                 <input type="text" id="timPemeriksaSearchInput" class="form-control"
                                                     placeholder="Cari Tim Pemeriksa..." oninput="searchTimPemeriksa()"
-                                                    name="timpemeiksa_id">
+                                                    name="timpemeriksa_id">
                                                 @foreach ($data_pemeriksa as $i)
                                                     <li><a class="dropdown-item penduduk-option" href="#"
-                                                            value="{{ $i->NIP }}">{{ $i->NIP . ' - ' . $i->nama }}</a>
+                                                            data-value="{{ $i->id }}">{{ $i->NIP . ' - ' . $i->nama }}</a>
                                                     </li>
                                                 @endforeach
-                                                <!-- Tambahkan opsi ketua, sekretaris, dan anggota -->
-                                                {{-- <!-- <li><a class="dropdown-item penduduk-option" href="#"
-                                                        value="ketua">Ketua</a></li>
-                                                <li><a class="dropdown-item penduduk-option" href="#"
-                                                        value="sekretaris">Sekretaris</a></li>
-                                                <li><a class="dropdown-item penduduk-option" href="#"
-                                                        value="anggota">Anggota</a></li> --> --}}
+
                                             </ul>
+
                                         </div>
                                     </div>
-
-
 
                                     <div class="col-sm-12">
                                         <label for="alamat" class="col-form-label">Alamat</label>
                                         <textarea type="text" class="form-control" id="alamat" name="alamat" rows="5"
-                                            placeholder="Masukkan Alamat Toko">{{old('alamat')}}</textarea>
+                                            placeholder="Masukkan Alamat Toko">{{ old('alamat') }}</textarea>
                                     </div>
 
                                 </div>
@@ -236,43 +232,37 @@
     <script defer src="https://use.fontawesome.com/releases/v5.15.4/js/fontawesome.js"
         integrity="sha384-dPBGbj4Uoy1OOpM4+aRGfAOc0W37JkROT+3uynUgTHZCHZNMHfGXsmmvYTffZjYO" crossorigin="anonymous">
     </script>
-
     <script>
         function searchTimPemeriksa() {
-            var input, filter, ul, li, a, i, txtValue;
-            input = document.getElementById("timPemeriksaSearchInput");
-            filter = input.value.toUpperCase();
-            ul = document.getElementById("timPemeriksaDropdown");
-            li = ul.getElementsByClassName("penduduk-option");
+            var input = document.getElementById("timPemeriksaSearchInput");
+            var filter = input.value.toUpperCase();
+            var ul = document.getElementById("timPemeriksaDropdown");
+            var li = ul.getElementsByClassName("penduduk-option");
 
-            for (i = 0; i < li.length; i++) {
-                a = li[i];
-                txtValue = a.textContent || a.innerText;
-
-                if (txtValue.toUpperCase().indexOf(filter) > -1) {
-                    li[i].style.display = "";
-                } else {
-                    li[i].style.display = "none";
-                }
+            for (var i = 0; i < li.length; i++) {
+                var a = li[i];
+                var txtValue = a.textContent || a.innerText;
+                li[i].style.display = txtValue.toUpperCase().indexOf(filter) > -1 ? "" : "none";
             }
         }
 
-        // Adding event listener for each option in the dropdown
-        var timPemeriksaOptions = document.querySelectorAll("#timPemeriksaDropdown .penduduk-option");
-        timPemeriksaOptions.forEach(function(option) {
-            option.addEventListener("click", function() {
-                selectTimPemeriksa(option.getAttribute("value"), option.textContent);
+        document.addEventListener("DOMContentLoaded", function() {
+            var timPemeriksaOptions = document.querySelectorAll("#timPemeriksaDropdown .penduduk-option");
+            timPemeriksaOptions.forEach(function(option) {
+                option.addEventListener("click", function() {
+                    selectTimPemeriksa(option.getAttribute("data-value"), option.textContent);
+                });
             });
         });
 
-        // Handling selection in the dropdown
         function selectTimPemeriksa(value, label) {
             var dropdownButton = document.querySelector(".dropdown button[name='tim_pemeriksa_show']");
             dropdownButton.innerHTML = label;
-            var inputVal = document.querySelector("[name='timpemeiksa_id']");
+            var inputVal = document.querySelector("[name='timpemeriksa_id']");
             inputVal.value = value;
         }
     </script>
+
 
 
 @endsection

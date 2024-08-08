@@ -81,12 +81,15 @@ class SirkulasiMeninggalController extends Controller
         // Ambil data Sirkulasimeninggal yang akan diedit
         $data = SirkulasiMeninggal::findOrFail($id);
 
-        // Ambil ID penduduk yang sudah ada di sirkulasi_meninggal
-        $existingPendudukIds = SirkulasiMeninggal::pluck('penduduk_id')->toArray();
+        $dataPenduduk = Penduduk::all();
 
-        // Ambil penduduk yang tidak ada di sirkulasi_meninggal
-        $dataPenduduk = Penduduk::whereNotIn('id', $existingPendudukIds)->get()->unique('NIK');
+        // // Ambil ID penduduk yang sudah ada di sirkulasi_meninggal
+        // $existingPendudukIds = SirkulasiMeninggal::pluck('penduduk_id')->toArray();
 
+        // // Ambil penduduk yang tidak ada di sirkulasi_meninggal
+        // $dataPenduduk = Penduduk::whereNotIn('id', $existingPendudukIds)->get()->unique('NIK');
+
+        
         return view('sirkulasi-meninggal.edit', [
             'data' => $data,
             'dataPenduduk' => $dataPenduduk,

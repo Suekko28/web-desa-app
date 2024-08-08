@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('NIP', 25);
             $table->string('nama', 50);
-            $table->string('jabatan', 25);
+            $table->string('jabatan', 50);
             $table->date('tgl_pemeriksa');
             $table->string('nomor', 25);
             $table->string('tahun', 25);
