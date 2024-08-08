@@ -84,7 +84,7 @@
                                     <div class="col-sm-12">
                                         <label for=" alamat" class="col-form-label">Alamat</label>
                                         <textarea type="text" class="form-control" id="alamat" name="alamat" rows="5"
-                                            placeholder="Alamat Lengkap (Jl / Kampung  No.Rumah)">{{$data_ketua->alamat}}</textarea>
+                                            placeholder="Alamat Lengkap (Jl / Kampung  No.Rumah)">{{ $data_ketua->alamat }}</textarea>
                                     </div>
                                 </div>
 
@@ -141,31 +141,34 @@
 
 
 
-<script>
-    $(document).ready(function() {
-        $('#addDataBtn').click(function() {
-            $('#anggotaContainer').append(`
-                <div class="form-group anggota-row">
-                    <div class="row">
-                        <div class="col-sm-6">
-                            <label for="nama" class="col-form-label">Nama</label>
-                            <input type="text" class="form-control" name="nama[]" placeholder="Nama Anggota">
-                        </div>
-                        <div class="col-sm-6">
-                            <label for="jabatan" class="col-form-label">Jabatan</label>
-                            <input type="text" class="form-control" name="jabatan[]" placeholder="Jabatan">
-                        </div>
-                        <div class="col-sm-2 d-flex align-items-end">
-                            <button type="button" class="btn btn-danger remove-anggota-btn">Hapus</button>
-                        </div>
-                    </div>
-                </div>
-            `);
-        });
+    <script>
+        $(document).ready(function() {
+            $('#addDataBtn').click(function() {
+                $('#anggotaContainer').append(`
+            <div class="form-group anggota-row">
+    <div class="row">
+        <div class="col-sm-5">
+            <label for="nama" class="col-form-label">Nama</label>
+            <input type="text" class="form-control" name="nama[]" placeholder="Nama Anggota">
+        </div>
+        <div class="col-sm-5">
+            <label for="jabatan" class="col-form-label">Jabatan</label>
+            <input type="text" class="form-control" name="jabatan[]" placeholder="Jabatan">
+        </div>
+        <div class="col-sm-2 d-flex align-items-end">
+            <button type="button" class="btn btn-danger remove-anggota-btn">
+                <i class="fas fa-trash-alt"></i>
+            </button>
+        </div>
+    </div>
+</div>
 
-        $(document).on('click', '.remove-anggota-btn', function() {
-            $(this).closest('.anggota-row').remove();
+            `);
+            });
+
+            $(document).on('click', '.remove-anggota-btn', function() {
+                $(this).closest('.anggota-row').remove();
+            });
         });
-    });
-</script>
+    </script>
 @endsection
