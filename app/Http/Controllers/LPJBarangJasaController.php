@@ -28,17 +28,16 @@ class LPJBarangJasaController extends Controller
     /**
      * Show the form for creating a new resource.
      */
-    public function create()
+    public function create(string $barangjasa_id)
     {
-        // // Ambil ID penduduk yang sudah ada di sirkulasi_pindah
-        // $existingTimPemeriksaIds = LPJBarangJasa::pluck('timpemeriksa_id')->toArray();
-
-        // // Ambil penduduk yang tidak ada di sirkulasi_pindah
-        // $data_pemeriksa = LPJTimPemeriksa::whereNotIn('id', $existingTimPemeriksaIds)->get()->unique('NIP');
-
         $data_pemeriksa = LPJTimPemeriksa::all();
-        return view('lpj-barangjasa.create', ['data_pemeriksa' => $data_pemeriksa]);
+
+        return view('lpj-belanja.create', [
+            'barangjasa_id' => $barangjasa_id,
+            'data_pemeriksa' => $data_pemeriksa,
+        ]);
     }
+
 
     /**
      * Store a newly created resource in storage.

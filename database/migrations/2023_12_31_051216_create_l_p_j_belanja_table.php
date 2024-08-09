@@ -14,13 +14,14 @@ return new class extends Migration
         // Schema::dropIfExists('lpj-belanja');
         Schema::create('lpj-belanja', function (Blueprint $table) {
             $table->id();
-            $table->integer('id_barang_jasa');
             $table->string('nama_barang', 50);
             $table->integer('volume_qty');
             $table->string('satuan', 25);
             $table->integer('harga');
             $table->unsignedBigInteger('user_id');
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
+            $table->unsignedBigInteger('barangjasa_id');
+            $table->foreign('barangjasa_id')->references('id')->on('lpj-barang-jasa')->onDelete('cascade');
             $table->timestamps();
         });
     }

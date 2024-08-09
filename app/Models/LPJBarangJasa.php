@@ -49,7 +49,7 @@ class LPJBarangJasa extends Model
     ];
     public function LPJBelanja(): HasMany
     {
-        return $this->hasMany(LPJBelanja::class, 'id_barang_jasa', 'id');
+        return $this->hasMany(LPJBelanja::class, 'barangjasa_id', 'id');
     }
 
     public function TimPemeriksa(): BelongsTo

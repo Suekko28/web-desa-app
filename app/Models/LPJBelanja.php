@@ -25,7 +25,7 @@ class LPJBelanja extends Model
      * @var array<int, string>
      */
     protected $fillable = [
-        'id_barang_jasa',
+        'barangjasa_id',
         'nama_barang',
         'volume_qty',
         'satuan',
@@ -34,6 +34,6 @@ class LPJBelanja extends Model
 
     ];
     public function LPJBarangJasa(): HasOne{
-        return $this->hasOne(LPJBarangJasa::class,'id_barang_jasa','id');
+        return $this->hasOne(LPJBarangJasa::class,'barangjasa_id','id');
     }  
 }

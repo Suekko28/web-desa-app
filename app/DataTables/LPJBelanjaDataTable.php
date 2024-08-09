@@ -19,9 +19,9 @@ class LPJBelanjaDataTable extends DataTable
     protected $rowIndex = 0;
 
     private $id_barang_jasa;
-    public function __construct($id = null)
+    public function __construct($barangjasa_id = null)
     {
-        $this->id_barang_jasa = $id;
+        $this->id_barang_jasa = $barangjasa_id;
     }
 
     /**

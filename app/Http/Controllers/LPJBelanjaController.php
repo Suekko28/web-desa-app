@@ -25,12 +25,12 @@ class LPJBelanjaController extends Controller
     /**
      * Show the form for creating a new resource.
      */
-    public function create(string $id, Request $request)
+    public function create(string $id)
     {
         $data_pemeriksa = LPJTimPemeriksa::all();
 
         return view('lpj-belanja.create', [
-            'id' => $id,
+            'barangjasa_id' => $id,
             'data_pemeriksa' => $data_pemeriksa,
         ]);
     }
@@ -59,14 +59,11 @@ class LPJBelanjaController extends Controller
         // Tambahkan user_id ke dalam data yang akan disimpan
         $validatedData['user_id'] = $userId;
 
-        // Tambahkan id_barang_jasa berdasarkan request id ke dalam data yang akan disimpan
-        $validatedData['id_barang_jasa'] = $request->id;
-
         // Simpan data LPJBelanja berdasarkan data yang sudah divalidasi
         LPJBelanja::create($validatedData);
 
         // Redirect kembali ke halaman show lpj-belanja dengan id yang sesuai dan pesan sukses
-        return redirect()->route('lpj-belanja.show', ['lpj_belanja' => $request->id])->with('success', 'Data berhasil ditambahkan');
+        return redirect()->route('lpj-belanja.show', ['lpj_belanja' => $request->barangjasa_id])->with('success', 'Data berhasil ditambahkan');
     }
 
 

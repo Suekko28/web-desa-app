@@ -127,6 +127,7 @@ Route::middleware(['auth'])->group(function () {
     Route::resource('/lpj-barangjasa', \App\Http\Controllers\LPJBarangJasaController::class);
 
     // LPJ Belanja Routes
+    Route::get('lpj-belanja/create/{barangjasa_id}', [\App\Http\Controllers\LPJBelanjaController::class, 'create'])->name('lpj-belanja.create');
     Route::get('/lpj-belanja/generate-pdf/{id}', [\App\Http\Controllers\LPJBelanjaController::class, 'pdfTemplate'])
         ->name('lpj-belanja.generate-pdf');
     Route::resource('/lpj-belanja', \App\Http\Controllers\LPJBelanjaController::class);
