@@ -32,7 +32,7 @@
 
                 <!-- Small boxes (Stat box) -->
 
-                <form action="{{ route('lpj-belanja.store')}}" method="POST" enctype="multipart/form-data">
+                <form action="{{ route('lpj-belanja.store', ['id' => $BarangJasaId])}}" method="POST" enctype="multipart/form-data">
                     @csrf
                     <input type="hidden" id="user_id" name="user_id" value="{{ auth()->user()->id }}">
                     <div class="card">
