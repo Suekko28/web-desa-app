@@ -18,10 +18,10 @@ class LPJBelanjaDataTable extends DataTable
 
     protected $rowIndex = 0;
 
-    private $id_barang_jasa;
+    private $barangjasa_id;
     public function __construct($barangjasa_id = null)
     {
-        $this->id_barang_jasa = $barangjasa_id;
+        $this->barangjasa_id = $barangjasa_id;
     }
 
     /**
@@ -34,10 +34,10 @@ class LPJBelanjaDataTable extends DataTable
     {
         //.$this->id_barang_jasa;
         $actionBtn = '<div class="col">
-        <a href="' . route('lpj-belanja.index') . '/' . $this->id_barang_jasa . '/{{ $id }}/edit" name="edit" class="btn btn-warning"><i class="fa-solid fa-pen-to-square"></i></a>';
+        <a href="' . route('lpj-belanja.index') . '/' . $this->barangjasa_id . '/{{ $id }}/edit" name="edit" class="btn btn-warning"><i class="fa-solid fa-pen-to-square"></i></a>';
 
         $actionBtn .= '<a href="javascript:void(0)" onclick="confirmDelete($(this))"
-            route="' . route('lpj-belanja.index') . '/' . $this->id_barang_jasa . '/{{ $id }}" class="btn btn-danger mt-2"><i class="fa-solid fa-trash-can"></i></a>';
+            route="' . route('lpj-belanja.index') . '/' . $this->barangjasa_id . '/{{ $id }}" class="btn btn-danger mt-2"><i class="fa-solid fa-trash-can"></i></a>';
 
         $actionBtn .= '</div>';
         $dataTable = (new EloquentDataTable($query))
@@ -68,7 +68,7 @@ class LPJBelanjaDataTable extends DataTable
             ->rawColumns(['action'])
             ->setRowId('id');
         $dataTable->filter(function ($query) {
-            $query->where('id_barang_jasa', '=', $this->id_barang_jasa);
+            $query->where('barangjasa_id', '=', $this->barangjasa_id);
         });
         return $dataTable;
     }
@@ -110,7 +110,7 @@ class LPJBelanjaDataTable extends DataTable
                 ->text('+ Tambah Data')
                 ->addClass('rounded')
                 ->action('function() {
-                window.location.href = "' . route('lpj-belanja.create', ['id' => $this->id_barang_jasa]) . '";
+                window.location.href = "' . route('lpj-belanja.create', ['id' => $this->barangjasa_id]) . '";
             }'),
             // Button::make('csv')
             //     ->addClass('btn-warning rounded')
@@ -122,7 +122,7 @@ class LPJBelanjaDataTable extends DataTable
                 ->addClass('btn-danger rounded')
                 ->text('PDF')
                 ->action('function() {
-                window.location.href = "' . route('lpj-belanja.generate-pdf', ['id' => $this->id_barang_jasa]) . '";
+                window.location.href = "' . route('lpj-belanja.generate-pdf', ['id' => $this->barangjasa_id]) . '";
             }'),
 
         ];

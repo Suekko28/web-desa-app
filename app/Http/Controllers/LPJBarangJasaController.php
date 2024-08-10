@@ -28,12 +28,11 @@ class LPJBarangJasaController extends Controller
     /**
      * Show the form for creating a new resource.
      */
-    public function create(string $barangjasa_id)
+    public function create()
     {
         $data_pemeriksa = LPJTimPemeriksa::all();
 
-        return view('lpj-belanja.create', [
-            'barangjasa_id' => $barangjasa_id,
+        return view('lpj-barangjasa.create', [
             'data_pemeriksa' => $data_pemeriksa,
         ]);
     }
@@ -77,8 +76,6 @@ class LPJBarangJasaController extends Controller
         $data = LPJBarangJasa::find($id);
 
         $data_pemeriksa = LPJTimPemeriksa::all();
-
-
 
         return view('lpj-barangjasa.edit', [
             "data" => $data,

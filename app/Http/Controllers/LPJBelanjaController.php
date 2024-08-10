@@ -25,13 +25,13 @@ class LPJBelanjaController extends Controller
     /**
      * Show the form for creating a new resource.
      */
-    public function create(string $id)
+    public function create($BarangJasaId)
     {
-        $data_pemeriksa = LPJTimPemeriksa::all();
+        $barangjasa_id = LPJBarangJasa::findOrFail($BarangJasaId);
 
         return view('lpj-belanja.create', [
-            'barangjasa_id' => $id,
-            'data_pemeriksa' => $data_pemeriksa,
+            'barangjasa_id' => $barangjasa_id,
+            'BarangJasaId' => $BarangJasaId,
         ]);
     }
 
@@ -46,11 +46,13 @@ class LPJBelanjaController extends Controller
             'volume_qty' => 'required|integer',
             'satuan' => 'required|string|max:255',
             'harga' => 'required|integer',
+            'barangjasa_id' => 'required',
         ], [
             'nama_barang.required' => 'Nama Barang wajib diisi.',
             'volume_qty.required' => 'Volume Quantity wajib diisi.',
             'satuan.required' => 'Satuan wajib diisi.',
             'harga.required' => 'Harga wajib diisi.',
+            'barangjasa_id.required' => 'Barang jasa ID diisi.',
         ]);
 
         // Ambil ID pengguna yang sedang login

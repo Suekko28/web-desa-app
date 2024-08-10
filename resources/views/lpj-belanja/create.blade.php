@@ -32,9 +32,10 @@
 
                 <!-- Small boxes (Stat box) -->
 
-                <form action="{{ route('lpj-belanja.store', ['id' => $BarangJasaId])}}" method="POST" enctype="multipart/form-data">
+                <form action="{{ route('lpj-belanja.store', ['id' => $barangjasa_id])}}" method="POST" enctype="multipart/form-data">
                     @csrf
                     <input type="hidden" id="user_id" name="user_id" value="{{ auth()->user()->id }}">
+                    <input type="hidden" name="barangjasa_id" value="{{ $barangjasa_id->id }}">
                     <div class="card">
                         <div class="card-body">
                             <h5 class="text-center data_diri mb-3">Data Belanja</h5>
@@ -71,7 +72,7 @@
 
                             <div class="d-flex flex-row-reverse">
                                 <button type="submit" class="btn btn-primary ml-3">Simpan</button>
-                                <a href="{{ route('lpj-belanja.show', ['lpj_belanja' => $id]) }}"
+                                <a href="{{ route('lpj-belanja.show', ['lpj_belanja' => $barangjasa_id]) }}"
                                     class="btn btn-danger">Batal</a>
                             </div>
 
