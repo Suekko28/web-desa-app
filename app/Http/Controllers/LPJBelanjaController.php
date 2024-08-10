@@ -82,32 +82,31 @@ class LPJBelanjaController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id_barang_jasa, string $id)
+    /**
+     * Show the form for editing the specified resource.
+     */
+    /**
+     * Show the form for editing the specified resource.
+     */
+    public function edit(string $barangjasa_id, string $id)
     {
-        $data = LPJBelanja::where('id', '=', $id)->where('id_barang_jasa', '=', $id_barang_jasa)->first();
-        $data_pemeriksa = LPJTimPemeriksa::all();
+        // Temukan data LPJBelanja berdasarkan ID
+        $lpjBelanja = LPJBelanja::findOrFail($id);
 
-        // Ambil nama pemeriksa jika ada
-        $data_pemeriksa_nama = LPJTimPemeriksa::where('NIP', '=', $data['tim_pemeriksa'])->first();
-        if ($data_pemeriksa_nama) {
-            $data['nama_pemeriksa'] = $data_pemeriksa_nama->nama;
-        } else {
-            $data['nama_pemeriksa'] = null; // Nilai default jika tidak ditemukan
-        }
+        // Temukan data LPJBarangJasa untuk form
+        $barangjasa = LPJBarangJasa::findOrFail($barangjasa_id);
 
+        // Kembalikan view edit dengan data yang diperlukan
         return view('lpj-belanja.edit', [
-            'data' => $data,
-            'id' => $id,
-            'data_pemeriksa' => $data_pemeriksa,
-            'id_barang_jasa' => $id_barang_jasa,
+            'lpjBelanja' => $lpjBelanja,
+            'barangjasa' => $barangjasa,
         ]);
     }
-
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id_barang_jasa, string $id)
+    public function update(Request $request, string $barangjasa_id, string $id)
     {
         // Validasi data yang diterima dari request
         $validatedData = $request->validate([
@@ -128,21 +127,24 @@ class LPJBelanjaController extends Controller
         // Tambahkan user_id ke dalam data yang akan diperbarui
         $validatedData['user_id'] = $userId;
 
-        // Perbarui data LPJBelanja berdasarkan id yang diberikan
-        LPJBelanja::find($id)->update($validatedData);
+        // Temukan data LPJBelanja berdasarkan ID dan perbarui
+        $lpjBelanja = LPJBelanja::findOrFail($id);
+        $lpjBelanja->update($validatedData);
 
-        // Redirect kembali ke halaman show lpj-belanja dengan id_barang_jasa yang sesuai dan pesan sukses
-        return redirect()->route('lpj-belanja.show', ['lpj_belanja' => $id_barang_jasa])->with('success', 'Berhasil mengubah data');
+        // Redirect kembali ke halaman show lpj-belanja dengan barangjasa_id yang sesuai dan pesan sukses
+        return redirect()->route('lpj-belanja.show', ['lpj_belanja' => $barangjasa_id])->with('success', 'Berhasil mengubah data');
     }
+
+
 
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id_barang_jasa, string $id)
+    public function destroy(string $barangjasa_id, string $id)
     {
         $user = LPJBelanja::find($id)->delete();
-        return redirect()->route('lpj-belanja.show', ['lpj_belanja' => $id_barang_jasa])->with('success', 'Berhasil menghapus data');
+        return redirect()->route('lpj-belanja.show', ['lpj_belanja' => $barangjasa_id])->with('success', 'Berhasil menghapus data');
     }
 
     public function pdfTemplate(LPJBelanjaDataTable $dataTable, string $id)

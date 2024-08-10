@@ -27,58 +27,59 @@
 
     <main>
         <section class="content">
-
             <div class="container-fluid">
                 @include('layouts.message')
 
                 <!-- Small boxes (Stat box) -->
 
-                <form action="{{ route('lpj-belanja.update', ['id' => $id, 'id_barang_jasa' => $id_barang_jasa]) }}"
-                    method="post" enctype="multipart/form-data">
-                    @method('PUT')
+                <form
+                    action="{{ route('lpj-belanja.update', ['barangjasa_id' => $barangjasa->id, 'id' => $lpjBelanja->id]) }}"
+                    method="POST" enctype="multipart/form-data">
                     @csrf
+                    @method('PUT')
                     <input type="hidden" id="user_id" name="user_id" value="{{ auth()->user()->id }}">
+                    <input type="hidden" name="barangjasa_id" value="{{ $barangjasa->id }}">
                     <div class="card">
                         <div class="card-body">
-                            <h5 class="text-center data_diri mb-3">Data Belanja</h5>
+                            <h5 class="text-center data_diri mb-3">Edit Data Belanja</h5>
                             <div class="form-group">
                                 <div class="row">
                                     <!-- Tampilin Semua Field Di Table Jos !-->
-                                    
+
                                     <div class="col-sm-6">
                                         <label for="nama_barang" class="col-form-label">Nama Barang / Jasa</label>
                                         <input type="text" class="form-control" id="nama_barang" name="nama_barang"
-                                            placeholder="Buku/Pena/dll" value="{{ $data->nama_barang }}">
+                                            placeholder="Buku/Pena/dll"
+                                            value="{{ old('nama_barang', $lpjBelanja->nama_barang) }}">
                                     </div>
 
                                     <div class="col-sm-6">
                                         <label for="volume_qty" class="col-form-label">Volume / QTY</label>
                                         <input type="number" class="form-control" id="volume_qty" name="volume_qty"
-                                            placeholder="50" value="{{ $data->volume_qty }}">
+                                            placeholder="50" value="{{ old('volume_qty', $lpjBelanja->volume_qty) }}">
                                     </div>
 
                                     <div class="col-sm-6">
                                         <label for="satuan" class="col-form-label">Satuan</label>
                                         <input type="text" class="form-control" id="satuan" name="satuan"
-                                            placeholder="Masukkan Nama Satuan" value="{{ $data->satuan }}">
+                                            placeholder="Masukkan Nama Satuan"
+                                            value="{{ old('satuan', $lpjBelanja->satuan) }}">
                                     </div>
 
                                     <div class="col-sm-6">
                                         <label for="harga" class="col-form-label">Harga</label>
                                         <input type="number" class="form-control" id="harga" name="harga"
-                                            placeholder="Masukkan Harga" value="{{ $data->harga }}">
+                                            placeholder="Masukkan Harga" value="{{ old('harga', $lpjBelanja->harga) }}">
                                     </div>
 
                                 </div>
                             </div>
 
-
                             <div class="d-flex flex-row-reverse">
-                                <button type="submit" class="btn btn-primary ml-3">Simpan</button>
-                                <a href="{{ route('lpj-belanja.show', ['lpj_belanja' => $id]) }}"
+                                <button type="submit" class="btn btn-primary ml-3">Update</button>
+                                <a href="{{ route('lpj-belanja.show', ['lpj_belanja' => $barangjasa->id]) }}"
                                     class="btn btn-danger">Batal</a>
                             </div>
-
 
                             <!-- /.card-body -->
                 </form>
