@@ -147,8 +147,6 @@ class SirkulasiMelahirkanDataTable extends DataTable
             Column::make('penduduk_nkk')
             ->title('NKK')
             ->exportFormat('integer'),
-            // Column::make('penduduk_nama')
-            //     ->title('Keluarga'),
             Column::make('created_at')
                 ->exportable(false),
             Column::make('updated_at')
