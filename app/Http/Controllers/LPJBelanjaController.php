@@ -88,25 +88,23 @@ class LPJBelanjaController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $barangjasa_id, string $id)
+    // Show the form for editing the specified resource.
+    public function edit(string $id)
     {
         // Temukan data LPJBelanja berdasarkan ID
         $lpjBelanja = LPJBelanja::findOrFail($id);
 
-        // Temukan data LPJBarangJasa untuk form
-        $barangjasa = LPJBarangJasa::findOrFail($barangjasa_id);
+        // Temukan data barang jasa yang sesuai
+        $barangjasa_id = LPJBarangJasa::findOrFail($lpjBelanja->barangjasa_id);
 
-        // Kembalikan view edit dengan data yang diperlukan
         return view('lpj-belanja.edit', [
             'lpjBelanja' => $lpjBelanja,
-            'barangjasa' => $barangjasa,
+            'barangjasa_id' => $barangjasa_id,
         ]);
     }
 
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, string $barangjasa_id, string $id)
+    // Update the specified resource in storage.
+    public function update(Request $request, string $id)
     {
         // Validasi data yang diterima dari request
         $validatedData = $request->validate([
@@ -114,26 +112,25 @@ class LPJBelanjaController extends Controller
             'volume_qty' => 'required|integer',
             'satuan' => 'required|string|max:255',
             'harga' => 'required|integer',
+            'barangjasa_id' => 'required',
         ], [
             'nama_barang.required' => 'Nama Barang wajib diisi.',
             'volume_qty.required' => 'Volume Quantity wajib diisi.',
             'satuan.required' => 'Satuan wajib diisi.',
             'harga.required' => 'Harga wajib diisi.',
+            'barangjasa_id.required' => 'Barang jasa ID diisi.',
         ]);
 
-        // Ambil ID pengguna yang sedang login
-        $userId = auth()->user()->id;
-
-        // Tambahkan user_id ke dalam data yang akan diperbarui
-        $validatedData['user_id'] = $userId;
-
-        // Temukan data LPJBelanja berdasarkan ID dan perbarui
+        // Temukan data LPJBelanja berdasarkan ID
         $lpjBelanja = LPJBelanja::findOrFail($id);
+
+        // Update data LPJBelanja dengan data yang sudah divalidasi
         $lpjBelanja->update($validatedData);
 
-        // Redirect kembali ke halaman show lpj-belanja dengan barangjasa_id yang sesuai dan pesan sukses
-        return redirect()->route('lpj-belanja.show', ['lpj_belanja' => $barangjasa_id])->with('success', 'Berhasil mengubah data');
+        // Redirect kembali ke halaman show lpj-belanja dengan id yang sesuai dan pesan sukses
+        return redirect()->route('lpj-belanja.show', ['lpj_belanja' => $request->barangjasa_id])->with('success', 'Data berhasil diperbarui');
     }
+
 
 
 
@@ -143,8 +140,15 @@ class LPJBelanjaController extends Controller
      */
     public function destroy(string $barangjasa_id, string $id)
     {
-        $user = LPJBelanja::find($id)->delete();
-        return redirect()->route('lpj-belanja.show', ['lpj_belanja' => $barangjasa_id])->with('success', 'Berhasil menghapus data');
+        // Temukan data LPJBelanja berdasarkan ID
+        $lpjBelanja = LPJBelanja::findOrFail($id);
+
+        // Hapus data LPJBelanja
+        $lpjBelanja->delete();
+
+        // Redirect kembali ke halaman yang sesuai dengan pesan sukses
+        return redirect()->route('lpj-belanja.show', ['lpj_belanja' => $barangjasa_id])
+            ->with('success', 'Data berhasil dihapus');
     }
 
     public function pdfTemplate(LPJBelanjaDataTable $dataTable, string $id)

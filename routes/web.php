@@ -132,9 +132,9 @@ Route::middleware(['auth'])->group(function () {
     Route::resource('/lpj-belanja', \App\Http\Controllers\LPJBelanjaController::class);
     Route::get('lpj-belanja/create/{id}', [\App\Http\Controllers\LPJBelanjaController::class, 'create'])->name('lpj-belanja.create');
     Route::post('lpj-belanja/{id}', [\App\Http\Controllers\LPJBelanjaController::class, 'store'])->name('lpj-belanja.store');
-    // Route::get('/lpj-belanja/{id_barang_jasa}/{id}/edit', [\App\Http\Controllers\LPJBelanjaController::class, 'edit'])->name('lpj-belanja.edit');
-    // Route::put('/lpj-belanja/{id_barang_jasa}/{id}', [\App\Http\Controllers\LPJBelanjaController::class, 'update'])->name('lpj-belanja.update');
-    // Route::delete('/lpj-belanja/{id_barang_jasa}/{id}', [\App\Http\Controllers\LPJBelanjaController::class, 'destroy'])->name('lpj-belanja.destroy');
+    Route::get('/lpj-belanja/{barangjasa_id}/{id}/edit', [\App\Http\Controllers\LPJBelanjaController::class, 'edit'])->name('lpj-belanja.edit');
+    Route::put('/lpj-belanja/{barangjasa_id}/{id}', [\App\Http\Controllers\LPJBelanjaController::class, 'update'])->name('lpj-belanja.update');
+    Route::delete('/lpj-belanja/{barangjasa_id}/{id}', [\App\Http\Controllers\LPJBelanjaController::class, 'destroy'])->name('lpj-belanja.destroy');
 
     // LPJ Tim Pemeriksa Routes
     Route::resource('/lpj-timpemeriksa', \App\Http\Controllers\LPJTimPemeriksaController::class);
