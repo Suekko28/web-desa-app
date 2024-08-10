@@ -130,8 +130,8 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/lpj-belanja/generate-pdf/{id}', [\App\Http\Controllers\LPJBelanjaController::class, 'pdfTemplate'])
     ->name('lpj-belanja.generate-pdf');
     Route::resource('/lpj-belanja', \App\Http\Controllers\LPJBelanjaController::class);
-    Route::get('lpj-belanja/create/{id}', [\App\Http\Controllers\LPJBelanjaController::class, 'create'])->name('lpj-belanja.create');
-    Route::post('lpj-belanja/{id}', [\App\Http\Controllers\LPJBelanjaController::class, 'store'])->name('lpj-belanja.store');
+    Route::get('l/pj-belanja/{id}/create', [\App\Http\Controllers\LPJBelanjaController::class, 'create'])->name('lpj-belanja.create');
+    Route::post('/lpj-belanja/{id}', [\App\Http\Controllers\LPJBelanjaController::class, 'store'])->name('lpj-belanja.store');
     Route::get('/lpj-belanja/{barangjasa_id}/{id}/edit', [\App\Http\Controllers\LPJBelanjaController::class, 'edit'])->name('lpj-belanja.edit');
     Route::put('/lpj-belanja/{barangjasa_id}/{id}', [\App\Http\Controllers\LPJBelanjaController::class, 'update'])->name('lpj-belanja.update');
     Route::delete('/lpj-belanja/{barangjasa_id}/{id}', [\App\Http\Controllers\LPJBelanjaController::class, 'destroy'])->name('lpj-belanja.destroy');
