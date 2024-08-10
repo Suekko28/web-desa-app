@@ -172,13 +172,14 @@ class LPJBelanjaController extends Controller
 
         // Ensure that $data_belanja exists
         if (!$data_belanja) {
-            return redirect()->route('lpj-barangjasa.index')->with('error', "Data tidak ditemukan");
+            return redirect()->route('lpj-belanja.show', ['lpj_belanja' => $id])->with('delete', "Data tidak ditemukan");
         }
 
         $data_barang = $data_belanja->LPJBelanja()->get();
         if (sizeof($data_barang) == 0) {
-            return redirect()->route('lpj-barangjasa.index')->with('error', "Tidak ada data belanja untuk barang/jasa ini");
+            return redirect()->route('lpj-belanja.show', ['lpj_belanja' => $id])->with('delete', "Tidak ada data belanja untuk barang/jasa ini");
         }
+
 
         $date_pesanan = $data_belanja->tgl_pesanan;
         $date_pesanan = strtotime($date_pesanan);
@@ -190,9 +191,7 @@ class LPJBelanjaController extends Controller
 
         // Retrieve tim pemeriksa and anggota data from LPJBarangJasa relationship
         $data_pemeriksa = $data_belanja->timPemeriksa;
-        if (!$data_pemeriksa) {
-            return redirect()->route('lpj-barangjasa.index')->with('error', "Data tim pemeriksa tidak ditemukan");
-        }
+
 
         $data_anggota_pemeriksa = $data_pemeriksa->anggotaLPJTimPemeriksa()->get();
 

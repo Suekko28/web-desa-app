@@ -133,6 +133,7 @@
                     <th scope="col" style="width: 10%;">No</th>
                     <th scope="col">Nama Barang</th>
                     <th scope="col">Banyaknya</th>
+                    <th scope="col">Total Harga</th>
                 </tr>
             </thead>
             <tbody>
@@ -142,6 +143,7 @@
                         <td>{{ $i++ }}</td>
                         <td>{{ $row->nama_barang }}</td>
                         <td>{{ $row->volume_qty }}</td>
+                        <td>{{ number_format($row->harga, 0, ',', '.') }}</td>
                     </tr>
                 @endforeach
             </tbody>
