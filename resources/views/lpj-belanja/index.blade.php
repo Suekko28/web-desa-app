@@ -29,8 +29,19 @@
     <main>
         <div class="row">
             <div class="col-12">
+                @if ($message = Session::get('delete'))
+                    <div class="alert alert-danger alert-dismissible mt-1">
+                        <div class="d-flex">
+                            <div>
+                                {{ $message }}
+                            </div>
+                        </div>
+                        <a class="btn-close" data-bs-dismiss="alert" aria-label="close"></a>
+                    </div>
+                @endif
                 <div class="card">
                     <div class="card-body">
+
                         <div id="table-default" class="table-responsive">
                             <!-- Tampilin Semua Field Di Table Jos !-->
                             {{ $dataTable->table() }}
