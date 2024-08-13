@@ -1,6 +1,6 @@
 @extends('layouts.app')
 @section('master-title', 'Barang dan Jasa/')
-@section('page-title', 'Edit')
+@section('page-title', 'View')
 @section('contents')
     <link rel="shortcut icon" href="{{ asset('assets/images/favicon.ico') }}">
 

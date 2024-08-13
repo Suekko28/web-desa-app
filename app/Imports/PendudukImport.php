@@ -65,10 +65,10 @@ class PendudukImport implements ToModel
 
     private function cekDusun($data)
     {
-        if ($data != null) {
-            $this->dusun = $data;
+        if ($data == null) {
+            return 'Tidak Ada';
         }
-        return $this->dusun;
+        return $data;
     }
     private function convertTgl($data)
     {

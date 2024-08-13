@@ -181,6 +181,7 @@ class LPJBelanjaController extends Controller
         }
 
 
+
         $date_pesanan = $data_belanja->tgl_pesanan;
         $date_pesanan = strtotime($date_pesanan);
         $tahun_terbilang = Terbilang::make(date('Y'));
@@ -196,6 +197,13 @@ class LPJBelanjaController extends Controller
         $data_anggota_pemeriksa = $data_pemeriksa->anggotaLPJTimPemeriksa()->get();
 
         // Date Pada Hari ini
+        $date_pemeriksa_formatted = $data_pemeriksa->tgl_pemeriksa;
+        $date_pemeriksa_formatted = strtotime($date_pemeriksa_formatted);
+
+        $bulan_pemeriksa_terbilang = Carbon::create()->month(date('m', $date_pemeriksa_formatted))->isoFormat('MMMM');
+        $tahun_pemeriksa_formatted = Carbon::create()->year(date('Y', $date_pemeriksa_formatted))->isoFormat('Y');
+        $date_pemeriksa_formatted = date('d', $date_pemeriksa_formatted) . ' ' . ucwords($bulan_pemeriksa_terbilang) . ' ' . $tahun_pemeriksa_formatted;
+
         $date_pemeriksa = $data_pemeriksa->tgl_pemeriksa;
         $date_pemeriksa = Carbon::parse($date_pemeriksa);
 
@@ -228,7 +236,7 @@ class LPJBelanjaController extends Controller
             'date_pemeriksa_text_year' => $date_pemeriksa_text_year,
             'tanggalProperCase' => $tanggalProperCase,
             'date_pemeriksa_hari' => $date_pemeriksa->isoFormat('dddd'),
-            'date_pemeriksa_format' => $date_pemeriksa->format('d-m-Y'),
+            'date_pemeriksa' => $date_pemeriksa_formatted,
             'tahun' => $tahun_terbilang,
             'date_pesanan' => $date_pesanan,
             'hari' => $hari,

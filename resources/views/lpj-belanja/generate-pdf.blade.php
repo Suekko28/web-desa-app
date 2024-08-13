@@ -206,7 +206,7 @@
         <br>
         <p style="text-indent: 20px; text-align:justify;">Berdasarkan Surat Keputusan Kepala Desa
             Tarikolot Nomor
-            {{ $data_pemeriksa->nomor }} Tahun 2024 tanggal {{ $date_pemeriksa_format }}
+            {{ $data_pemeriksa->nomor }} Tahun 2024 tanggal {{ $date_pemeriksa }}
             tentang Penetapan Tim Pemeriksa Pekerjaan/Penerima Barang/Jasa Desa Tarikolot Tahun 2024, Kami selaku Tim
             Pemeriksa Pekerjaan/Penerima Barang/Jasa telah melaksanakan Pemeriksaan Barang yang diserahkan oleh:
             {{ $data->first()->nama_toko }}</p>
