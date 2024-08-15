@@ -9,12 +9,11 @@ use App\Models\SirkulasiMelahirkan;
 use App\Models\SirkulasiPendatang;
 use App\Models\SirkulasiPindah;
 use App\Models\SirkulasiMeninggal;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
 class DashboardController extends Controller
 {
-    public function index(Request $requests)
+    public function index()
     {
         $jumlah_laki_laki = Penduduk::where('jenis_kelamin', '1');
         $jumlah_perempuan = Penduduk::where('jenis_kelamin', '2');
