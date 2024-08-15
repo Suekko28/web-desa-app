@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\DataTables\Scopes\SirkulasiMelahirkanScope;
-use App\DataTables\SirkulasiMelahirkanDatatable;
+use App\DataTables\SirkulasiMelahirkanDataTable;
 use App\Exports\SirkulasiMelahirkanExport;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\DataMelahirkanFormRequest;

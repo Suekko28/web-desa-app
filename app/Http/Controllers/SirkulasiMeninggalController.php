@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\DataTables\Scopes\SirkulasiMeninggalScope;
-use App\DataTables\SirkulasiMeninggalDatatable;
+use App\DataTables\SirkulasiMeninggalDataTable;
 use App\Exports\SirkulasiMeninggalExport;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\DataMeninggalFormRequest;
@@ -89,7 +89,7 @@ class SirkulasiMeninggalController extends Controller
         // // Ambil penduduk yang tidak ada di sirkulasi_meninggal
         // $dataPenduduk = Penduduk::whereNotIn('id', $existingPendudukIds)->get()->unique('NIK');
 
-        
+
         return view('sirkulasi-meninggal.edit', [
             'data' => $data,
             'dataPenduduk' => $dataPenduduk,
@@ -125,24 +125,24 @@ class SirkulasiMeninggalController extends Controller
 
     }
 
-    public function pdfTemplate(SirkulasiMeninggalDatatable $dataTable,  Request $request)
+    public function pdfTemplate(SirkulasiMeninggalDatatable $dataTable, Request $request)
     {
-          // Retrieve the query builder instance for Sirkulasi Memeninggalkan data
-          $query = $dataTable->query(new SirkulasiMeninggal());
+        // Retrieve the query builder instance for Sirkulasi Memeninggalkan data
+        $query = $dataTable->query(new SirkulasiMeninggal());
 
-          // Apply the date range filter
-          if ($request->has('tgl_meninggal_start') && $request->has('tgl_meninggal_end')) {
-              $query->whereBetween('sirkulasi_meninggal.tgl_meninggal', [$request->get('tgl_meninggal_start'), $request->get('tgl_meninggal_end')]);
-          }
-  
-          // Retrieve the filtered data
-          $data = $query->get();
-  
-          // Send data to the view for PDF rendering
-          $html = view('sirkulasi-meninggal.generate-pdf', ['data' => $data])->render();
-  
-          // Adjust PDF options including setting paper to landscape
-          $pdf = PDF::loadHtml($html)->setPaper('a4', 'landscape');
+        // Apply the date range filter
+        if ($request->has('tgl_meninggal_start') && $request->has('tgl_meninggal_end')) {
+            $query->whereBetween('sirkulasi_meninggal.tgl_meninggal', [$request->get('tgl_meninggal_start'), $request->get('tgl_meninggal_end')]);
+        }
+
+        // Retrieve the filtered data
+        $data = $query->get();
+
+        // Send data to the view for PDF rendering
+        $html = view('sirkulasi-meninggal.generate-pdf', ['data' => $data])->render();
+
+        // Adjust PDF options including setting paper to landscape
+        $pdf = PDF::loadHtml($html)->setPaper('a4', 'landscape');
 
         return $pdf->stream('SirkulasiMeninggal.pdf');
     }
