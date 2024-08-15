@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class PemerintahanRW extends Model
 {
-    protected $table = 'pemerintahan_RW';
+    protected $table = 'pemerintahan_rw';
 
     /**
      * The attributes that are mass assignable.

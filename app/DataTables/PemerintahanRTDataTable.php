@@ -64,8 +64,8 @@ class PemerintahanRTDataTable extends DataTable
                 if (request()->has('search') && !empty(request()->get('search')['value'])) {
                     $search = request()->get('search')['value'];
                     $query->where(function ($q) use ($search) {
-                        $q->whereRaw('LOWER(pemerintahan_RT.nama) LIKE ?', ["%{$search}%"])
-                            ->orWhereRaw('LOWER(pemerintahan_RT.jabatan) LIKE ?', ["%{$search}%"]);
+                        $q->whereRaw('LOWER(pemerintahan_rt.nama) LIKE ?', ["%{$search}%"])
+                            ->orWhereRaw('LOWER(pemerintahan_rt.jabatan) LIKE ?', ["%{$search}%"]);
                     });
                 }
             })
@@ -84,22 +84,22 @@ class PemerintahanRTDataTable extends DataTable
     {
         return $model->newQuery()
             ->select(
-                'pemerintahan_RT.id as id',
-                'pemerintahan_RT.nama as nama',
-                'pemerintahan_RT.jabatan as jabatan',
+                'pemerintahan_rt.id as id',
+                'pemerintahan_rt.nama as nama',
+                'pemerintahan_rt.jabatan as jabatan',
                 \DB::raw('CASE WHEN jenis_kelamin = 1 THEN "Laki-Laki" ELSE "Perempuan" END AS jenis_kelamin'),
-                'pemerintahan_RT.tmpt_lahir as tmpt_lahir',
-                'pemerintahan_RT.tgl_lahir as tgl_lahir',
-                'pemerintahan_RT.alamat as alamat',
-                'pemerintahan_RT.created_at as created_at',
-                'pemerintahan_RT.updated_at as updated_at',
-                'pemerintahan_RT.no_telepon as no_telepon',
-                'pemerintahan_RT.no_sk as no_sk',
-                'pemerintahan_RT.tgl_sk as tgl_sk',
+                'pemerintahan_rt.tmpt_lahir as tmpt_lahir',
+                'pemerintahan_rt.tgl_lahir as tgl_lahir',
+                'pemerintahan_rt.alamat as alamat',
+                'pemerintahan_rt.created_at as created_at',
+                'pemerintahan_rt.updated_at as updated_at',
+                'pemerintahan_rt.no_telepon as no_telepon',
+                'pemerintahan_rt.no_sk as no_sk',
+                'pemerintahan_rt.tgl_sk as tgl_sk',
                 'users.nama as user_nama',
 
             )
-            ->join('users', 'users.id', '=', 'pemerintahan_RT.user_id')
+            ->join('users', 'users.id', '=', 'pemerintahan_rt.user_id')
             ->orderBy('created_at', 'desc');
     }
 
@@ -130,7 +130,7 @@ class PemerintahanRTDataTable extends DataTable
         ];
 
         return $this->builder()
-            ->setTableId('pemerintahan_RT-table')
+            ->setTableId('pemerintahan_rt-table')
             ->columns($this->getColumns())
             ->minifiedAjax()
             ->orderBy(0, 'asc')

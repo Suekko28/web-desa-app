@@ -79,11 +79,17 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
-        return User::create([
+        User::create([
             'nama' => $data['nama'],
             'email' => $data['email'],
             'password' => Hash::make($data['password']),
         ]);
+
+        // Add a success message to the session
+        session()->flash('success', 'Berhasil membuat akun!');
+
+        // Redirect to the login route
         return redirect()->route('login');
     }
+
 }
