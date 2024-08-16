@@ -20,7 +20,7 @@ class PemerintahanBPDController extends Controller
     public function index(PemerintahanBPDDataTable $dataTable)
     {
 
-        return $dataTable->render('pemerintahan-BPD.index');
+        return $dataTable->render('pemerintahan-bpd.index');
     }
 
     /**
@@ -28,7 +28,7 @@ class PemerintahanBPDController extends Controller
      */
     public function create()
     {
-        return view('pemerintahan-BPD.create');
+        return view('pemerintahan-bpd.create');
     }
 
     /**
@@ -71,7 +71,7 @@ class PemerintahanBPDController extends Controller
     {
 
         $user = PemerintahanBPD::find($id);
-        return view('pemerintahan-BPD.edit', [
+        return view('pemerintahan-bpd.edit', [
             "data" => $user,
         ]);
     }

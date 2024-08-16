@@ -64,8 +64,8 @@ class PemerintahanBPDDataTable extends DataTable
                 if (request()->has('search') && !empty(request()->get('search')['value'])) {
                     $search = request()->get('search')['value'];
                     $query->where(function ($q) use ($search) {
-                        $q->whereRaw('LOWER(pemerintahan_desa.nama) LIKE ?', ["%{$search}%"])
-                            ->orWhereRaw('LOWER(pemerintahan_desa.jabatan) LIKE ?', ["%{$search}%"]);
+                        $q->whereRaw('LOWER(pemerintahan_bpd.nama) LIKE ?', ["%{$search}%"])
+                            ->orWhereRaw('LOWER(pemerintahan_bpd.jabatan) LIKE ?', ["%{$search}%"]);
                     });
                 }
             })
@@ -84,22 +84,22 @@ class PemerintahanBPDDataTable extends DataTable
     {
         return $model->newQuery()
             ->select(
-                'Pemerintahan_BPD.id as id',
-                'Pemerintahan_BPD.nama as nama',
-                'Pemerintahan_BPD.jabatan as jabatan',
+                'pemerintahan_bpd.id as id',
+                'pemerintahan_bpd.nama as nama',
+                'pemerintahan_bpd.jabatan as jabatan',
                 \DB::raw('CASE WHEN jenis_kelamin = 1 THEN "Laki-Laki" ELSE "Perempuan" END AS jenis_kelamin'),
-                'Pemerintahan_BPD.tmpt_lahir as tmpt_lahir',
-                'Pemerintahan_BPD.tgl_lahir as tgl_lahir',
-                'Pemerintahan_BPD.alamat as alamat',
-                'Pemerintahan_BPD.created_at as created_at',
-                'Pemerintahan_BPD.updated_at as updated_at',
-                'Pemerintahan_BPD.no_telepon as no_telepon',
-                'Pemerintahan_BPD.no_sk as no_sk',
-                'Pemerintahan_BPD.tgl_sk as tgl_sk',
+                'pemerintahan_bpd.tmpt_lahir as tmpt_lahir',
+                'pemerintahan_bpd.tgl_lahir as tgl_lahir',
+                'pemerintahan_bpd.alamat as alamat',
+                'pemerintahan_bpd.created_at as created_at',
+                'pemerintahan_bpd.updated_at as updated_at',
+                'pemerintahan_bpd.no_telepon as no_telepon',
+                'pemerintahan_bpd.no_sk as no_sk',
+                'pemerintahan_bpd.tgl_sk as tgl_sk',
                 'users.nama as user_nama',
 
             )
-            ->join('users', 'users.id', '=', 'Pemerintahan_BPD.user_id')
+            ->join('users', 'users.id', '=', 'pemerintahan_bpd.user_id')
             ->orderBy('created_at', 'desc');
 
     }

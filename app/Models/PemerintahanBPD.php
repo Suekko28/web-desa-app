@@ -15,7 +15,7 @@ class PemerintahanBPD extends Model
      *
      * @var string
      */
-    protected $table = 'pemerintahan_BPD';
+    protected $table = 'pemerintahan_bpd';
 
     /**
      * The attributes that are mass assignable.
