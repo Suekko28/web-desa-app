@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Controller;
 use App\Http\Controllers\PendudukApiController;
+use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -33,6 +34,11 @@ Route::delete('api/penduduk/{id}', [\App\Http\Controllers\Api\PendudukApiControl
 // Root Redirect to Dashboard
 Route::get('/', function () {
     return redirect()->route('index');
+});
+
+Route::get('/storage-link' , function () {
+    Artisan::call('storage:link');
+    return 'Storage linkdes Successfully';
 });
 
 Route::middleware(['auth'])->group(function () {
