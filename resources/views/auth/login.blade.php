@@ -1,11 +1,11 @@
 @extends('layouts.guest')
 @section('page-title', 'Login')
 @section('contents')
-<style>
-    .toggle-btn {
-        display: none;
-    }
-</style>
+    <style>
+        .toggle-btn {
+            display: none;
+        }
+    </style>
     <div class="container">
         <div class="row justify-content-center">
             <div class="col-md-8">
@@ -13,7 +13,7 @@
                     <div class="card-body">
 
                         <!-- Display Success Message -->
-                        @if(session('success'))
+                        @if (session('success'))
                             <div class="alert alert-success">
                                 {{ session('success') }}
                             </div>

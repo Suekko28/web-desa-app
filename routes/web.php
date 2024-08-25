@@ -23,7 +23,6 @@ Auth::routes([
 ]);
 
 // Penduduk API Routes
-//  Route::resource('api/penduduk', \App\Http\Controllers\Api\PendudukApiController::class);
 Route::get('api/penduduk', [\App\Http\Controllers\Api\PendudukApiController::class, 'index']);
 Route::post('api/penduduk', [\App\Http\Controllers\Api\PendudukApiController::class, 'store']);
 Route::get('api/penduduk/{id}', [\App\Http\Controllers\Api\PendudukApiController::class, 'show']);
@@ -37,7 +36,6 @@ Route::get('/', function () {
 });
 
 Route::middleware(['auth'])->group(function () {
-
 
     // Dashboard Routes
     Route::get('/dashboard', [\App\Http\Controllers\DashboardController::class, 'index'])->name('index');
@@ -133,11 +131,11 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/lpj-belanja/generate-pdf/{id}', [\App\Http\Controllers\LPJBelanjaController::class, 'pdfTemplate'])
         ->name('lpj-belanja.generate-pdf');
     Route::resource('/lpj-belanja', \App\Http\Controllers\LPJBelanjaController::class);
-    Route::get('l/pj-belanja/{id}/create', [\App\Http\Controllers\LPJBelanjaController::class, 'create'])->name('lpj-belanja.create');
-    Route::post('/lpj-belanja/{id}', [\App\Http\Controllers\LPJBelanjaController::class, 'store'])->name('lpj-belanja.store');
-    Route::get('/lpj-belanja/{barangjasa_id}/{id}/edit', [\App\Http\Controllers\LPJBelanjaController::class, 'edit'])->name('lpj-belanja.edit');
-    Route::put('/lpj-belanja/{barangjasa_id}/{id}', [\App\Http\Controllers\LPJBelanjaController::class, 'update'])->name('lpj-belanja.update');
-    Route::delete('/lpj-belanja/{barangjasa_id}/{id}', [\App\Http\Controllers\LPJBelanjaController::class, 'destroy'])->name('lpj-belanja.destroy');
+    // Route::get('/lpj-belanja/{id}/create', [\App\Http\Controllers\LPJBelanjaController::class, 'create'])->name('lpj-belanja.create');
+    // Route::post('/lpj-belanja/{id}', [\App\Http\Controllers\LPJBelanjaController::class, 'store'])->name('lpj-belanja.store');
+    // Route::get('/lpj-belanja/{barangjasa_id}/{id}/edit', [\App\Http\Controllers\LPJBelanjaController::class, 'edit'])->name('lpj-belanja.edit');
+    // Route::put('/lpj-belanja/{barangjasa_id}/{id}', [\App\Http\Controllers\LPJBelanjaController::class, 'update'])->name('lpj-belanja.update');
+    // Route::delete('/lpj-belanja/{barangjasa_id}/{id}', [\App\Http\Controllers\LPJBelanjaController::class, 'destroy'])->name('lpj-belanja.destroy');
 
     // LPJ Tim Pemeriksa Routes
     Route::resource('/lpj-timpemeriksa', \App\Http\Controllers\LPJTimPemeriksaController::class);
