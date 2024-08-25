@@ -20,7 +20,7 @@ class PemerintahanBPDController extends Controller
     public function index(PemerintahanBPDDataTable $dataTable)
     {
 
-        return $dataTable->render('pemerintahan-BPD.index');
+        return $dataTable->render('pemerintahan-bpd.index');
     }
 
     /**
