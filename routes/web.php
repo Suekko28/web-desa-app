@@ -22,17 +22,17 @@ Auth::routes([
     'verify' => false,
 ]);
 
- // Penduduk API Routes
+// Penduduk API Routes
 //  Route::resource('api/penduduk', \App\Http\Controllers\Api\PendudukApiController::class);
- Route::get('api/penduduk', [\App\Http\Controllers\Api\PendudukApiController::class, 'index']);
- Route::post('api/penduduk', [\App\Http\Controllers\Api\PendudukApiController::class, 'store']);
- Route::get('api/penduduk/{id}', [\App\Http\Controllers\Api\PendudukApiController::class, 'show']);
- Route::put('api/penduduk/{id}', [\App\Http\Controllers\Api\PendudukApiController::class, 'update']);
- Route::delete('api/penduduk/{id}', [\App\Http\Controllers\Api\PendudukApiController::class, 'destroy']);
+Route::get('api/penduduk', [\App\Http\Controllers\Api\PendudukApiController::class, 'index']);
+Route::post('api/penduduk', [\App\Http\Controllers\Api\PendudukApiController::class, 'store']);
+Route::get('api/penduduk/{id}', [\App\Http\Controllers\Api\PendudukApiController::class, 'show']);
+Route::put('api/penduduk/{id}', [\App\Http\Controllers\Api\PendudukApiController::class, 'update']);
+Route::delete('api/penduduk/{id}', [\App\Http\Controllers\Api\PendudukApiController::class, 'destroy']);
 
 
 Route::middleware(['auth'])->group(function () {
-// Rute API tanpa autentikasi
+    // Rute API tanpa autentikasi
 
 
     // Dashboard Routes
@@ -128,7 +128,7 @@ Route::middleware(['auth'])->group(function () {
 
     // LPJ Belanja Routes
     Route::get('/lpj-belanja/generate-pdf/{id}', [\App\Http\Controllers\LPJBelanjaController::class, 'pdfTemplate'])
-    ->name('lpj-belanja.generate-pdf');
+        ->name('lpj-belanja.generate-pdf');
     Route::resource('/lpj-belanja', \App\Http\Controllers\LPJBelanjaController::class);
     Route::get('l/pj-belanja/{id}/create', [\App\Http\Controllers\LPJBelanjaController::class, 'create'])->name('lpj-belanja.create');
     Route::post('/lpj-belanja/{id}', [\App\Http\Controllers\LPJBelanjaController::class, 'store'])->name('lpj-belanja.store');
