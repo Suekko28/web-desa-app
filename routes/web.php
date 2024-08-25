@@ -36,10 +36,7 @@ Route::get('/', function () {
     return redirect()->route('index');
 });
 
-Route::get('/storage-link' , function () {
-    Artisan::call('storage:link');
-    return 'Storage linkdes Successfully';
-});
+
 
 Route::middleware(['auth'])->group(function () {
 
