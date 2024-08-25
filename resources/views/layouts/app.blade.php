@@ -37,7 +37,7 @@
                     <div class="row mt-2">
                         <div class="col-12">
                             <div class="page-title-box d-flex align-items-center justify-content-between">
-                                <h4 class="page-title mb-0 font-size-18">
+                                <h4 class="page-title mb-0 font-size-18" style="line-height: 24px">
                                     @yield('page-title')
                                 </h4>
 

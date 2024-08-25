@@ -22,6 +22,13 @@ class PendudukApiController extends Controller
             'message' => 'Data ditemukan',
             'data' => $data,
         ], 200);
+
+        if (empty($data)) {
+            return response()->json([
+                'status' => false,
+                'message' => 'Data Tidak Ditemukan',
+            ], 404);
+        }
     }
 
     /**

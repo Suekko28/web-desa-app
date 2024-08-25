@@ -31,12 +31,15 @@ Route::put('api/penduduk/{id}', [\App\Http\Controllers\Api\PendudukApiController
 Route::delete('api/penduduk/{id}', [\App\Http\Controllers\Api\PendudukApiController::class, 'destroy']);
 
 
+// Root Redirect to Dashboard
+Route::get('/', function () {
+    return redirect()->route('index');
+});
+
 Route::middleware(['auth'])->group(function () {
-    // Rute API tanpa autentikasi
 
 
     // Dashboard Routes
-    Route::get('/', [\App\Http\Controllers\DashboardController::class, 'index'])->name('index');
     Route::get('/dashboard', [\App\Http\Controllers\DashboardController::class, 'index'])->name('index');
 
     // Pemerintahan Desa Routes

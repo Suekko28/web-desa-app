@@ -40,7 +40,7 @@
                                 <i class="fas fa-solid fa-building"></i>
                                 <span>Data Lembaga Pemerintahan</span>
                             </a>
-                            <ul class="sub-menu mb-2" aria-expanded="false">
+                            <ul class="sub-menu mb-2" aria-expanded="false" style="overflow-y: auto; height: 200px">
                                 <li><a href="{{ route('pemerintahan-desa.index') }}">Pemerintahan Desa</a></li>
                                 <li><a href="{{ route('pemerintahan-BPD.index') }}">Badan Permusyawaratan Desa</a></li>
                                 <li><a href="{{ route('pemerintahan-lpm.index') }}">Lembaga Pemberdayaan Masyarakat</a>
