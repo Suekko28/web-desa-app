@@ -107,12 +107,15 @@ class SirkulasiPendatangDataTable extends DataTable
             Button::make('excel')
                 ->addClass('btn-success rounded')
                 ->text('Excel'),
+            // Button::make('pdf')
+            //     ->addClass('btn-danger rounded')
+            //     ->text('PDF')
+            //     ->action('function() {
+            //     window.location.href = "' . route('sirkulasi-pendatang.generate-pdf') . '";
+            // }'),
             Button::make('pdf')
-                ->addClass('btn-danger rounded')
-                ->text('PDF')
-                ->action('function() {
-                window.location.href = "' . route('sirkulasi-pendatang.generate-pdf') . '";
-            }'),
+            ->addClass('btn-danger rounded')
+            ->text('PDF'),
 
 
         ];

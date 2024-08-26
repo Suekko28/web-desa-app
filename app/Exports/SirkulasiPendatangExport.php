@@ -4,44 +4,48 @@ namespace App\Exports;
 
 use App\Models\SirkulasiPendatang;
 use Illuminate\Support\Carbon;
-use Maatwebsite\Excel\Concerns\Exportable;
+use Illuminate\Http\Request;
+use Maatwebsite\Excel\Concerns\FromCollection;
 use Maatwebsite\Excel\Concerns\FromQuery;
 use Maatwebsite\Excel\Concerns\WithHeadings;
 use Maatwebsite\Excel\Concerns\WithMapping;
 use Maatwebsite\Excel\Concerns\WithColumnFormatting;
 use PhpOffice\PhpSpreadsheet\Style\NumberFormat;
 
-class SirkulasiPendatangExport implements FromQuery, WithHeadings, WithMapping, WithColumnFormatting
+class SirkulasiPendatangExport implements FromCollection, WithHeadings, WithMapping, WithColumnFormatting
 {
-    use Exportable;
-
     protected $request;
 
-    public function __construct($request)
+    public function __construct(Request $request)
     {
         $this->request = $request;
     }
 
-    public function query()
+    /**
+     * @return \Illuminate\Support\Collection
+     */
+    public function collection()
     {
-        $query = SirkulasiPendatang::query()->select(
-            'nama',
-            'NIK',
-            'jenis_kelamin',
-            'tgl_datang',
-            'alamat_sblm',
-            'alamat_skrg'
-        );
-
+        $query = SirkulasiPendatang::query()
+            ->select(
+                'sirkulasi_pendatang.nama',
+                'sirkulasi_pendatang.NIK',
+                'sirkulasi_pendatang.jenis_kelamin',
+                'sirkulasi_pendatang.tgl_datang',
+                'sirkulasi_pendatang.alamat_sblm',
+                'sirkulasi_pendatang.alamat_skrg',
+            );
+            
         if ($this->request->has('tgl_datang_start') && $this->request->has('tgl_datang_end')) {
-            $query->whereBetween('tgl_datang', [
+            $query->whereBetween('sirkulasi_pendatang.tgl_datang', [
                 $this->request->get('tgl_datang_start'),
                 $this->request->get('tgl_datang_end')
             ]);
         }
 
-        return $query;
+        return $query->get();
     }
+
 
     public function headings(): array
     {

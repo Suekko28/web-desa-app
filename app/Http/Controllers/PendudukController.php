@@ -95,7 +95,7 @@ class PendudukController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(PendudukFormRequest $request, string $id)
     {
         // Ambil id pengguna yang sedang login
         $userId = auth()->user()->id;

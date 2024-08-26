@@ -69,6 +69,7 @@
                     <th scope="col">Nama</th>
                     <th scope="col">NIK</th>
                     <th scope="col">Jenis Kelamin</th>
+                    <th scope="col">Tanggl Datang</th>
                     <th scope="col">Alamat Sebelum</th>
                     <th scope="col">Alamat Sekarang</th>
                 </tr>
@@ -81,6 +82,7 @@
                         <td>{{ $row->nama }}</td>
                         <td>{{ $row->NIK }}</td>
                         <td>{{ $row->jenis_kelamin }}</td>
+                        <td>{{ Carbon\Carbon::parse($row->tgl_datang)->format('d-m-Y') }}</td>
                         <td>{{ $row->alamat_sblm }}</td>
                         <td>{{ $row->alamat_skrg }}</td>
                     </tr>

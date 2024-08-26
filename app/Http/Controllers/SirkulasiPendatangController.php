@@ -18,21 +18,16 @@ class SirkulasiPendatangController extends Controller
      */
     public function index(SirkulasiPendatangDataTable $dataTable, Request $request)
     {
-        // Handle PDF generation request
         if ($dataTable->request()->action == 'pdf') {
+
             return redirect()->route('sirkulasi-pendatang.generate-pdf', [$request]);
         }
 
-        // Handle Excel or CSV export request
         if ($dataTable->request()->action != null) {
-            return Excel::download(
-                new SirkulasiPendatangExport($request),
-                'sirkulasi-pendatang-' . date('Y-m-d H:i:s') . ($dataTable->request()->action == 'excel' ? '.xlsx' : '.csv')
-            );
+            return Excel::download(new SirkulasiPendatangExport($request), 'sirkulasi-pendatang-' . date('Y-m-d H:i:s') . ($dataTable->request()->action == 'excel' ? '.xlsx' : '.csv'));
         }
-
-        // Render the DataTable view with any applied filters
         return $dataTable->addScope(new SirkulasiPendatangScope($request))->render('sirkulasi-pendatang.index');
+
     }
 
     /**
@@ -75,10 +70,10 @@ class SirkulasiPendatangController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(DataPendatangFormRequest $request, string $id)
+    public function update(Request $request, string $id)
     {
         // Validasi data yang diperbarui
-        $validatedData = $request->validated();
+        $validatedData = $request->all();
 
         // Temukan data SirkulasiPendatang berdasarkan ID
         $data = SirkulasiPendatang::findOrFail($id);
@@ -99,10 +94,18 @@ class SirkulasiPendatangController extends Controller
 
     }
 
-    public function pdfTemplate(SirkulasiPendatangDataTable $dataTable)
+    public function pdfTemplate(SirkulasiPendatangDataTable $dataTable, Request $request)
     {
-        // Retrieve the data directly from the query builder
-        $data = $dataTable->query(new SirkulasiPendatang())->get();
+        // Retrieve the query builder instance for Sirkulasi pendatang data
+        $query = $dataTable->query(new SirkulasiPendatang());
+
+        // Apply the date range filter
+        if ($request->has('tgl_datang_start') && $request->has('tgl_datang_end')) {
+            $query->whereBetween('sirkulasi_pendatang.tgl_datang', [$request->get('tgl_datang_start'), $request->get('tgl_datang_end')]);
+        }
+
+        // Retrieve the filtered data
+        $data = $query->get();
 
         // Send data to the view for PDF rendering
         $html = view('sirkulasi-pendatang.generate-pdf', ['data' => $data])->render();
@@ -112,4 +115,5 @@ class SirkulasiPendatangController extends Controller
 
         return $pdf->stream('SirkulasiPendatang.pdf');
     }
+
 }

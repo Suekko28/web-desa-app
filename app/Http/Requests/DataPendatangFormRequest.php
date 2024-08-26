@@ -23,7 +23,7 @@ class DataPendatangFormRequest extends FormRequest
     {
         return [
             'nama' => 'required|string|max:255',
-            'NIK' => 'required|string|max:255',
+            'NIK' => 'required|string|max:255|unique:sirkulasi_pendatang',
             'jenis_kelamin' => 'required|int',
             'tgl_datang' => 'required|date',
             'alamat_sblm' => 'required|string|max:255',
@@ -41,6 +41,7 @@ class DataPendatangFormRequest extends FormRequest
         return [
             'nama.required' => 'Nama harus diisi.',
             'NIK.required' => 'Nomor Induk Kependudukan (NIK) harus diisi.',
+            'NIK.unique' => 'Nomor Induk Kependudukan (NIK) sudah terdaftar',
             'jenis_kelamin.required' => 'Jenis kelamin harus diisi.',
             'jenis_kelamin.in' => 'Jenis kelamin harus berupa "Laki-laki" atau "Perempuan".',
             'tgl_datang.required' => 'Tanggal datang harus diisi.',
