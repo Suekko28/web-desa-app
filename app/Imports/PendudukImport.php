@@ -103,7 +103,21 @@ class PendudukImport implements ToModel
 
     private function getPendidikan($data)
     {
-        $arr = ['belum Sekolah', 'tamat sd', 'belum tamat sd', 'akademi', 'sd sederajat', 'sltp sederajat', 'slta sederajat', 'diploma 1', 'diploma 2', 'diploma 3', 'diploma 4', 'stara 1', 'stara 2', 'stara 3'];
+        $arr = [
+            'belum sekolah',
+            'tamat sd',
+            'belum tamat sd',
+            'akademi',
+            'sltp',
+            'slta',
+            'diploma i',
+            'diploma ii',
+            'diploma iii',
+            'diploma iv',
+            'stara i',
+            'stara ii',
+            'stara iii'
+        ];
         return (string) (array_search($data, $arr) + 1);
     }
     private function getKepemilikanBpjs($data)

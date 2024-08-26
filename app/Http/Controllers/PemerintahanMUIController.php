@@ -107,6 +107,13 @@ class PemerintahanMUIController extends Controller
         return redirect()->route('pemerintahan-mui.index')->with('success', 'data berhasil diubah');
     }
 
+    public function destroy(string $id)
+    {
+        $user = PemerintahanMUI::find($id)->delete();
+        return redirect()->route('pemerintahan-mui.index')->with('success', 'Data berhasil dihapus');
+
+    }
+
     /**
      * Remove the specified resource from storage.
      */

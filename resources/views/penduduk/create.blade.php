@@ -214,25 +214,23 @@
                                                 Tamat SD</option>
                                             <option value="4" {{ old('pendidikan') == '4' ? 'selected' : '' }}>
                                                 Akademi</option>
-                                            <option value="5" {{ old('pendidikan') == '5' ? 'selected' : '' }}>SD
-                                                Sederajat</option>
-                                            <option value="6" {{ old('pendidikan') == '6' ? 'selected' : '' }}>SLTP
-                                                Sederajat</option>
-                                            <option value="7" {{ old('pendidikan') == '7' ? 'selected' : '' }}>SLTA
-                                                Sederajat</option>
-                                            <option value="8" {{ old('pendidikan') == '8' ? 'selected' : '' }}>
+                                            <option value="5" {{ old('pendidikan') == '6' ? 'selected' : '' }}>SLTP
+                                                </option>
+                                            <option value="6" {{ old('pendidikan') == '7' ? 'selected' : '' }}>SLTA
+                                                </option>
+                                            <option value="7" {{ old('pendidikan') == '8' ? 'selected' : '' }}>
                                                 Diploma I</option>
-                                            <option value="9" {{ old('pendidikan') == '9' ? 'selected' : '' }}>
+                                            <option value="8" {{ old('pendidikan') == '9' ? 'selected' : '' }}>
                                                 Diploma II</option>
-                                            <option value="10" {{ old('pendidikan') == '10' ? 'selected' : '' }}>
+                                            <option value="9" {{ old('pendidikan') == '10' ? 'selected' : '' }}>
                                                 Diploma III</option>
-                                            <option value="11" {{ old('pendidikan') == '11' ? 'selected' : '' }}>
+                                            <option value="10" {{ old('pendidikan') == '11' ? 'selected' : '' }}>
                                                 Diploma IV</option>
-                                            <option value="12" {{ old('pendidikan') == '12' ? 'selected' : '' }}>Stara
+                                            <option value="11" {{ old('pendidikan') == '12' ? 'selected' : '' }}>Stara
                                                 I</option>
-                                            <option value="13" {{ old('pendidikan') == '13' ? 'selected' : '' }}>Stara
+                                            <option value="12" {{ old('pendidikan') == '13' ? 'selected' : '' }}>Stara
                                                 II</option>
-                                            <option value="14" {{ old('pendidikan') == '14' ? 'selected' : '' }}>Stara
+                                            <option value="13" {{ old('pendidikan') == '14' ? 'selected' : '' }}>Stara
                                                 III</option>
                                         </select>
                                     </div>

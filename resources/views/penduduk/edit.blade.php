@@ -199,8 +199,6 @@
 
                             <div class="form-group">
                                 <div class="row">
-
-
                                     <div class="col-sm-6">
                                         <label for="pendidikan" class="col-form-label">
                                             Pendidikan</label>
@@ -214,25 +212,23 @@
                                                 Belum Tamat SD</option>
                                             <option value="4" @if ($data->pendidikan == 'Akademi') selected @endif>
                                                 Akademi</option>
-                                            <option value="5" @if ($data->pendidikan == 'SD Sederajat') selected @endif>SD
-                                                Sederajat</option>
-                                            <option value="6" @if ($data->pendidikan == 'SLTP Sederajat') selected @endif>SLTP
-                                                Sederajat</option>
-                                            <option value="7" @if ($data->pendidikan == 'SLTA Sederajat') selected @endif>SLTA
-                                                Sederajat</option>
-                                            <option value="8" @if ($data->pendidikan == 'Diploma I') selected @endif>
+                                            <option value="5" @if ($data->pendidikan == 'SLTP') selected @endif>SLTP
+                                            </option>
+                                            <option value="6" @if ($data->pendidikan == 'SLTA') selected @endif>SLTA
+                                            </option>
+                                            <option value="7" @if ($data->pendidikan == 'Diploma I') selected @endif>
                                                 Diploma I</option>
-                                            <option value="9" @if ($data->pendidikan == 'Diploma II') selected @endif>
+                                            <option value="8" @if ($data->pendidikan == 'Diploma II') selected @endif>
                                                 Diploma II</option>
-                                            <option value="10" @if ($data->pendidikan == 'Diploma III') selected @endif>
+                                            <option value="9" @if ($data->pendidikan == 'Diploma III') selected @endif>
                                                 Diploma III</option>
-                                            <option value="11" @if ($data->pendidikan == 'Diploma IV') selected @endif>
+                                            <option value="10" @if ($data->pendidikan == 'Diploma IV') selected @endif>
                                                 Diploma IV</option>
-                                            <option value="12" @if ($data->pendidikan == 'Stara I') selected @endif>
+                                            <option value="11" @if ($data->pendidikan == 'Stara I') selected @endif>
                                                 Stara I</option>
-                                            <option value="13" @if ($data->pendidikan == 'Stara II') selected @endif>
+                                            <option value="12" @if ($data->pendidikan == 'Stara II') selected @endif>
                                                 Stara II</option>
-                                            <option value="14" @if ($data->pendidikan == 'Stara III') selected @endif>
+                                            <option value="13" @if ($data->pendidikan == 'Stara III') selected @endif>
                                                 Stara III</option>
                                         </select>
                                     </div>
@@ -282,7 +278,7 @@
                                                 Service</option>
                                         </select>
                                     </div>
-                                    
+
 
 
 

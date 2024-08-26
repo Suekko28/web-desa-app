@@ -42,16 +42,18 @@
                                 <select class="form-control" name="pendidikan" id="pendidikan">
                                     <option value="">--Pilih Salah Satu--</option>
                                     <option value="1">Tidak/Belum Sekolah</option>
-                                    <option value="2">SD Sederajat</option>
-                                    <option value="3">SLTP Sederajat</option>
-                                    <option value="4">SLTA Sederajat</option>
-                                    <option value="5">Diploma I</option>
-                                    <option value="6">Diploma II</option>
-                                    <option value="7">Diploma III</option>
-                                    <option value="8">Diploma IV</option>
-                                    <option value="9">Stara I</option>
-                                    <option value="10">Stara II</option>
-                                    <option value="11">Stara III</option>
+                                    <option value="2">Tamat SD</option>
+                                    <option value="3">Belum Tamat SD</option>
+                                    <option value="4">Akademi</option>
+                                    <option value="5">SLTP</option>
+                                    <option value="6">SLTA</option>
+                                    <option value="7">Diploma I</option>
+                                    <option value="8">Diploma II</option>
+                                    <option value="9">Diploma III</option>
+                                    <option value="10">Diploma IV</option>
+                                    <option value="11">Stara I</option>
+                                    <option value="12">Stara II</option>
+                                    <option value="13">Stara III</option>
                                 </select>
                             </div>
 
@@ -237,7 +239,5 @@
 
 
 @push('scripts')
-
     {{ $dataTable->scripts(attributes: ['type' => 'module']) }}
-    
 @endpush
