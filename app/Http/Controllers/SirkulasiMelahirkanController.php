@@ -38,7 +38,7 @@ class SirkulasiMelahirkanController extends Controller
     public function create()
     {
         // Ambil semua penduduk yang belum ada di sirkulasi_pindah
-        $data = Penduduk::whereDoesntHave('sirkulasiPindah')->get();
+        $data = Penduduk::whereDoesntHave('sirkulasiPindah')->doesntHave('sirkulasimeninggal')->get();
 
         return view('sirkulasi-melahirkan.create', [
             "data" => $data,

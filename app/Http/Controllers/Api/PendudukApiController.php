@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\PendudukFormRequest;
-use App\Models\penduduk;
+use App\Models\Penduduk;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -16,7 +16,7 @@ class PendudukApiController extends Controller
      */
     public function index()
     {
-        $data = penduduk::orderBy('id', 'desc')->get();
+        $data = Penduduk::orderBy('id', 'desc')->get();
         return response()->json([
             'status' => true,
             'message' => 'Data ditemukan',
@@ -40,7 +40,7 @@ class PendudukApiController extends Controller
         $validatedData = $request->validated();
 
         // Create a new penduduk record and fill it with validated data
-        $dataPenduduk = new penduduk();
+        $dataPenduduk = new Penduduk();
         $dataPenduduk->fill($validatedData);
 
         $tglLahir = Carbon::parse($request->tgl_lahir);
@@ -66,7 +66,7 @@ class PendudukApiController extends Controller
      */
     public function show(string $id)
     {
-        $data = penduduk::find($id);
+        $data = Penduduk::find($id);
         if ($data) {
             return response()->json([
                 'status' => true,

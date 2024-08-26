@@ -11,7 +11,7 @@ use Illuminate\Database\Eloquent\Relations\HasOne;
 
 
 
-class penduduk extends Model
+class Penduduk extends Model
 {
     use HasFactory;
 
@@ -58,7 +58,7 @@ class penduduk extends Model
         return $this->belongsTo(User::class, 'user_id', 'id');
     }
 
-    public function SirkulasiMelahirkan(): HasMany
+    public function sirkulasiMelahirkan(): HasMany
     {
         return $this->hasMany(SirkulasiMelahirkan::class, 'penduduk_id', 'id');
     }

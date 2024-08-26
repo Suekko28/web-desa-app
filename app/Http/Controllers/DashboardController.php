@@ -62,7 +62,7 @@ class DashboardController extends Controller
 
         $penduduk = Penduduk::doesntHave('sirkulasimeninggal')->doesntHave('sirkulasipindah');
 
-        $penduduk_all = Penduduk::get();
+        $penduduk_all = Penduduk::doesntHave('sirkulasimeninggal')->doesntHave('sirkulasipindah');
 
 
         $pekerjaan_swasta = Penduduk::where('pekerjaan', '1');

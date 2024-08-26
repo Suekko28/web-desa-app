@@ -105,8 +105,8 @@
                         <path
                             d="M5 19h14a2 2 0 0 0 1.84 -2.75l-7.1 -12.25a2 2 0 0 0 -3.5 0l-7.1 12.25a2 2 0 0 0 1.75 2.75" />
                     </svg>
-                    <h3>Are you sure?</h3>
-                    <div class="text-muted">Do you really want to remove? What you've done cannot be undone.
+                    <h3>Apa kamu yakin?</h3>
+                    <div class="text-muted">Apakah Anda benar-benar ingin menghapusnya? Apa yang telah Anda lakukan tidak dapat dibatalkan.
                     </div>
                 </div>
                 <div class="modal-footer">

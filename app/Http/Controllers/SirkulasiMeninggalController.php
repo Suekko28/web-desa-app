@@ -43,7 +43,7 @@ class SirkulasiMeninggalController extends Controller
         $existingPendudukIds = SirkulasiMeninggal::pluck('penduduk_id')->toArray();
 
         // Ambil penduduk yang tidak ada di sirkulasi_meninggal
-        $data = Penduduk::whereNotIn('id', $existingPendudukIds)->get()->unique('NIK');
+        $data = Penduduk::whereNotIn('id', $existingPendudukIds)->doesntHave('sirkulasipindah')->get()->unique('NIK');
 
         return view('sirkulasi-meninggal.create', [
             'data' => $data,
