@@ -47,8 +47,8 @@
                                         <div class="d-flex flex-column">
                                             <label for="profile" class="col-form-label">Profile</label>
                                             <img class="img-fluid rounded-circle"
-                                                src="{{ asset('storage/karangtaruna/' . $data->profile) }}" alt="Foto Profile"
-                                                width="230" height="230">
+                                                src="{{ asset('storage/karangtaruna/' . $data->profile) }}"
+                                                alt="Foto Profile" width="230" height="230">
                                         </div>
                                     </div>
                                     <div class="col-sm-4">
@@ -76,9 +76,11 @@
                                     </div>
 
                                     <div class="col-sm-4">
-                                        <label for="tgl_lahir" class="col-form-label">Tanggal Lahir</label>
-                                        <input type="date" class="form-control" id="tgl_lahir" name="tgl_lahir"
-                                            value="{{ $data->tgl_lahir }}" disabled>
+                                        <label for="jenis_kelamin" class="col-form-label">Jenis Kelamin</label>
+                                        <input type="text" class="form-control text-capitalize" id="jenis_kelamin"
+                                            name="jenis_kelamin" placeholder=""
+                                            value="{{ $data->jenis_kelamin == 1 ? 'Laki-Laki' : ($data->jenis_kelamin == 2 ? 'Perempuan' : '') }}"
+                                            disabled>
                                     </div>
 
                                     <div class="col-sm-4">
@@ -108,7 +110,8 @@
                             </div>
 
                             <div class="d-flex flex-row-reverse">
-                                <a href="{{ route('pemerintahan-karang-taruna.index') }}" class="btn btn-danger">Kembali</a>
+                                <a href="{{ route('pemerintahan-karang-taruna.index') }}"
+                                    class="btn btn-danger">Kembali</a>
                             </div>
 
 

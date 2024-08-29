@@ -86,12 +86,17 @@ class PendudukImport implements ToModel
     private function getAgama($data)
     {
         $arr = ['islam', 'kristen protestan', 'kristen katholik', 'hindu', 'buddha', 'khonghucu'];
-        return (string) (array_search($data, $arr) + 1);
+    
+        if (strtolower($data) === 'kristen') {
+            $data = 'kristen protestan';
+        }
+    
+        return (string)(array_search($data, $arr) + 1);
     }
 
     private function getKewarganegaraan($data)
     {
-        $arr = ['indonesia', 'wna', 'kedua kewarganegaraan'];
+        $arr = ['wni', 'wna', 'kedua kewarganegaraan'];
         return (string) (array_search($data, $arr) + 1);
     }
 
@@ -132,8 +137,15 @@ class PendudukImport implements ToModel
     private function getKepemilikanEKtp($data)
     {
         $arr = ['ada', 'tidak ada'];
-        return (string) (array_search($data, $arr) + 1);
+    
+        $index = array_search($data, $arr);
+        if ($index === false) {
+            return (string)(array_search('tidak ada', $arr) + 1);
+        }
+    
+        return (string)($index + 1);
     }
+    
 
     private function getPekerjaan($data)
     {

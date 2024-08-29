@@ -77,8 +77,10 @@
 
                                     <div class="col-sm-4">
                                         <label for="jenis_kelamin" class="col-form-label">Jenis Kelamin</label>
-                                        <input type="text" class="form-control" id="jenis_kelamin" name="jenis_kelamin"
-                                               value="{{ $data->jenis_kelamin == 1 ? 'Laki-laki' : ($data->jenis_kelamin == 2 ? 'Perempuan' : '') }}" disabled>
+                                        <input type="text" class="form-control text-capitalize" id="jenis_kelamin"
+                                            name="jenis_kelamin" placeholder=""
+                                            value="{{ $data->jenis_kelamin == 1 ? 'Laki-Laki' : ($data->jenis_kelamin == 2 ? 'Perempuan' : '') }}"
+                                            disabled>
                                     </div>
                                     
 

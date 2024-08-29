@@ -79,9 +79,11 @@
                                     </div>
 
                                     <div class="col-sm-4">
-                                        <label for="tgl_lahir" class="col-form-label">Tanggal Lahir</label>
-                                        <input type="date" class="form-control" id="tgl_lahir" name="tgl_lahir"
-                                            value="{{ $data->tgl_lahir }}" disabled>
+                                        <label for="jenis_kelamin" class="col-form-label">Jenis Kelamin</label>
+                                        <input type="text" class="form-control text-capitalize" id="jenis_kelamin"
+                                            name="jenis_kelamin" placeholder=""
+                                            value="{{ $data->jenis_kelamin == 1 ? 'Laki-Laki' : ($data->jenis_kelamin == 2 ? 'Perempuan' : '') }}"
+                                            disabled>
                                     </div>
 
                                     <div class="col-sm-4">
