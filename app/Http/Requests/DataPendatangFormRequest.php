@@ -40,6 +40,7 @@ class DataPendatangFormRequest extends FormRequest
     {
         return [
             'nama.required' => 'Nama harus diisi.',
+            'nama.max' => 'Nama tidak boleh lebih dari 100 karakter.',
             'NIK.required' => 'Nomor Induk Kependudukan (NIK) harus diisi.',
             'NIK.unique' => 'Nomor Induk Kependudukan (NIK) sudah terdaftar',
             'jenis_kelamin.required' => 'Jenis kelamin harus diisi.',

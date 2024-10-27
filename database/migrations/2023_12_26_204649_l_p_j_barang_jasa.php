@@ -13,23 +13,23 @@ return new class extends Migration
     {
         Schema::create('lpj-barang-jasa', function (Blueprint $table) {
             $table->id();
-            $table->string("no_pesanan_brg", 50);
-            $table->string("no_berita_acara", 50);
-            $table->string("no_berita_acara_pemeriksaan", 50);
-            $table->string("dana_desa", 50);
-            $table->string("nama_pelaksana_kegiatan", 50);
-            $table->string("sk_tpk" , 50);
-            $table->string("nama_rincian_spp", 50);
-            $table->string("uraian_kwitansi", 50);
+            $table->string("no_pesanan_brg", 100);
+            $table->string("no_berita_acara", 100);
+            $table->string("no_berita_acara_pemeriksaan", 100);
+            $table->string("dana_desa", 100);
+            $table->string("nama_pelaksana_kegiatan", 100);
+            $table->string("sk_tpk" , 100);
+            $table->string("nama_rincian_spp", 100);
+            $table->string("uraian_kwitansi", 100);
             $table->date('tgl_pesanan');
             $table->date('tgl_bast');
             $table->date('jatuh_tempo');
             $table->date('jatuh_pemeriksaan');
             $table->text('keterangan');
-            $table->string('nama_toko', 50);
-            $table->string('pemilik_toko', 25);
-            $table->string('lampiran', 50);
-            $table->string('perihal', 50);
+            $table->string('nama_toko', 100);
+            $table->string('pemilik_toko', 100);
+            $table->string('lampiran', 100);
+            $table->string('perihal', 100);
             $table->text('alamat');
             $table->unsignedBigInteger('user_id');
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');

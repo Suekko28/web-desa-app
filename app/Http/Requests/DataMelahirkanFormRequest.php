@@ -39,6 +39,7 @@ class DataMelahirkanFormRequest extends FormRequest
     {
         return [
             'nama.required' => 'Nama harus diisi.',
+            'nama.max' => 'Nama tidak boleh lebih dari 100 karakter.',
             'tmpt_lahir.required' => 'Tempat lahir harus diisi.',
             'tgl_lahir.required' => 'Tanggal lahir harus diisi.',
             'tgl_lahir.date' => 'Format tanggal lahir tidak valid.',

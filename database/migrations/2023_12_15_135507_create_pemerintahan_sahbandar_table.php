@@ -13,15 +13,15 @@ return new class extends Migration
     {
         Schema::create('pemerintahan_sahbandar', function (Blueprint $table) {
             $table->id();
-            $table->string('nama', 50);
-            $table->string('jabatan', 25);
-            $table->string('tmpt_lahir', 25);
+            $table->string('nama', 100);
+            $table->string('jabatan', 100);
+            $table->string('tmpt_lahir', 100);
             $table->integer('jenis_kelamin');
             $table->date('tgl_lahir');
             $table->text('alamat');
             $table->string('profile');
-            $table->string('no_telepon', 25);
-            $table->string('no_sk', 25);
+            $table->string('no_telepon', 100);
+            $table->string('no_sk', 100);
             $table->date('tgl_sk');
             $table->unsignedBigInteger('user_id');
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');

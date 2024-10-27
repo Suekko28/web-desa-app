@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('sirkulasi_pendatang', function (Blueprint $table) {
             $table->id();
             $table->string('NIK', 25)->unique();
-            $table->string('nama', 50);
+            $table->string('nama', 100);
             $table->integer('jenis_kelamin');
             $table->date('tgl_datang');
             $table->text('alamat_sblm');

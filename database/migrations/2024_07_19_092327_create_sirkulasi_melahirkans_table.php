@@ -13,8 +13,8 @@ return new class extends Migration
     {
         Schema::create('sirkulasi_melahirkans', function (Blueprint $table) {
             $table->id();
-            $table->string("nama", 50);
-            $table->string("tmpt_lahir", 25);
+            $table->string("nama", 100);
+            $table->string("tmpt_lahir", 100);
             $table->date("tgl_lahir");
             $table->integer("jenis_kelamin");
             // $table->string("NKK_keluarga");

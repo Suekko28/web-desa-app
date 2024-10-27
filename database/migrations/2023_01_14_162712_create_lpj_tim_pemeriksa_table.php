@@ -13,12 +13,12 @@ return new class extends Migration
     {
         Schema::create('lpj_timpemeriksa', function (Blueprint $table) {
             $table->id();
-            $table->string('NIP', 25);
-            $table->string('nama', 50);
-            $table->string('jabatan', 50);
+            $table->string('NIP', 100);
+            $table->string('nama', 100);
+            $table->string('jabatan', 100);
             $table->date('tgl_pemeriksa');
-            $table->string('nomor', 25);
-            $table->string('tahun', 25);
+            $table->string('nomor', 100);
+            $table->string('tahun', 100);
             $table->text('alamat');
             $table->unsignedBigInteger('user_id');
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');

@@ -40,6 +40,7 @@ class DataMeninggalFormRequest extends FormRequest
             'tgl_meninggal.required' => 'Tanggal meninggal harus diisi.',
             'tgl_meninggal.date' => 'Format tanggal meninggal tidak valid.',
             'sebab.required' => 'Sebab meninggal harus diisi.',
+            'sebab.max' => 'Sebab tidak boleh lebih dari 100 karakter.',
             'penduduk_id.required' => 'Nomor Induk Kependudukan harus diisi.',
 
         ];
